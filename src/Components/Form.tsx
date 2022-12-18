@@ -14,6 +14,7 @@ import {
   RadioGroup,
   Select,
 } from "@chakra-ui/react";
+import axios from "axios";
 
 interface UserCollegeData {
   [key: string]: {
@@ -28,8 +29,8 @@ interface UserCollegeData {
     honors: number;
     apib: number;
     lang: number;
-    cs: number;
-    core: number;
+    cs: string;
+    core: string;
     major: number;
   };
   confidence: {
@@ -72,7 +73,7 @@ interface UserCollegeData {
 }
 
 export function Form() {
-  const [formData, setFormData] = useState<UserCollegeData>({
+  const defaultData: UserCollegeData = {
     academic: {
       gpa: -1,
       sat: -1,
@@ -82,8 +83,8 @@ export function Form() {
       honors: -1,
       apib: -1,
       lang: -1,
-      cs: -1,
-      core: -1,
+      cs: "",
+      core: "",
       major: -1,
     },
     confidence: {
@@ -123,7 +124,46 @@ export function Form() {
       international: false,
       transfer: false,
     },
-  });
+  };
+
+  const [formData, setFormData] = useState<UserCollegeData>(defaultData);
+
+  function toggleFirstGenValue() {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      adversity: {
+        ...prevFormData["adversity"],
+        fgen: !prevFormData["adversity"]["fgen"],
+      },
+    }));
+  }
+  function toggleInternationalValue() {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      adversity: {
+        ...prevFormData["adversity"],
+        international: !prevFormData["adversity"]["international"],
+      },
+    }));
+  }
+  function toggleTransferValue() {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      adversity: {
+        ...prevFormData["adversity"],
+        transfer: !prevFormData["adversity"]["transfer"],
+      },
+    }));
+  }
+  function handleRadioClick(name: string, value: number) {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      confidence: {
+        ...prevFormData["confidence"],
+        [name]: value,
+      },
+    }));
+  }
 
   function handleChange(event: any) {
     console.log(formData);
@@ -142,8 +182,15 @@ export function Form() {
     console.log("submit");
     event.preventDefault();
     console.log(formData);
-    // Make an API call to the endpoint with the form data
-    // setFormData({ name: '', email: '', message: '' });
+
+    axios
+      .post("http://localhost:4000/college/submit-data/1234", formData)
+      .then((res: any) => {
+        console.log(res);
+      })
+      .catch((err: any) => {
+        console.error(err);
+      });
   };
 
   return (
@@ -243,15 +290,8 @@ export function Form() {
                 name={"courseload.cs"}
                 placeholder="CS Courses"
               >
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
+                <option value="Y">Yes</option>
+                <option value="N">No</option>
               </Select>
             </InputGroup>
             <InputGroup>
@@ -260,15 +300,8 @@ export function Form() {
                 name={"courseload.core"}
                 placeholder="Core Courses"
               >
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
+                <option value="Y">Yes</option>
+                <option value="N">No</option>
               </Select>
             </InputGroup>
             <InputGroup>
@@ -293,166 +326,314 @@ export function Form() {
             Confidence (Low - 1, High - 5)
           </Heading>
           <Grid>
-            <RadioGroup
-              onChange={handleChange}
-              name={"confidence.extracurriculars"}
-            >
+            <RadioGroup>
               <Heading as="h3" size="sm">
                 Extracurriculars
               </Heading>
               <Flex justifyContent={"space-evenly"}>
-                <Radio name={"confidence.extracurriculars"} value="1">
+                <Radio
+                  onClick={() => handleRadioClick("extracurriculars", 1)}
+                  value="1"
+                >
                   1
                 </Radio>
-                <Radio name={"confidence.extracurriculars"} value="2">
+                <Radio
+                  onClick={() => handleRadioClick("extracurriculars", 2)}
+                  value="2"
+                >
                   2
                 </Radio>
-                <Radio name={"confidence.extracurriculars"} value="3">
+                <Radio
+                  onClick={() => handleRadioClick("extracurriculars", 3)}
+                  value="3"
+                >
                   3
                 </Radio>
-                <Radio name={"confidence.extracurriculars"} value="4">
+                <Radio
+                  onClick={() => handleRadioClick("extracurriculars", 4)}
+                  value="4"
+                >
                   4
                 </Radio>
-                <Radio name={"confidence.extracurriculars"} value="5">
+                <Radio
+                  onClick={() => handleRadioClick("extracurriculars", 5)}
+                  value="5"
+                >
                   5
                 </Radio>
               </Flex>
             </RadioGroup>
-            <RadioGroup onChange={handleChange} name={"confidence.essay"}>
+            <RadioGroup>
               <Heading as="h3" size="sm">
                 Essay
               </Heading>
               <Flex justifyContent={"space-evenly"}>
-                <Radio name={"confidence.essay"} value="1">
+                <Radio onClick={() => handleRadioClick("essay", 1)} value="1">
                   1
                 </Radio>
-                <Radio name={"confidence.essay"} value="2">
+                <Radio onClick={() => handleRadioClick("essay", 2)} value="2">
                   2
                 </Radio>
-                <Radio name={"confidence.essay"} value="3">
+                <Radio onClick={() => handleRadioClick("essay", 3)} value="3">
                   3
                 </Radio>
-                <Radio name={"confidence.essay"} value="4">
+                <Radio onClick={() => handleRadioClick("essay", 4)} value="4">
                   4
                 </Radio>
-                <Radio name={"confidence.essay"} value="5">
+                <Radio onClick={() => handleRadioClick("essay", 5)} value="5">
                   5
                 </Radio>
               </Flex>
             </RadioGroup>
-            <RadioGroup onChange={handleChange} name={"confidence.awards"}>
+            <RadioGroup>
               <Heading as="h3" size="sm">
                 Awards
               </Heading>
               <Flex justifyContent={"space-evenly"}>
-                <Radio name={"confidence.awards"} value="1">
+                <Radio onClick={() => handleRadioClick("awards", 1)} value="1">
                   1
                 </Radio>
-                <Radio name={"confidence.awards"} value="2">
+                <Radio onClick={() => handleRadioClick("awards", 2)} value="2">
                   2
                 </Radio>
-                <Radio name={"confidence.awards"} value="3">
+                <Radio onClick={() => handleRadioClick("awards", 3)} value="3">
                   3
                 </Radio>
-                <Radio name={"confidence.awards"} value="4">
+                <Radio onClick={() => handleRadioClick("awards", 4)} value="4">
                   4
                 </Radio>
-                <Radio name={"confidence.awards"} value="5">
+                <Radio onClick={() => handleRadioClick("awards", 5)} value="5">
                   5
                 </Radio>
               </Flex>
             </RadioGroup>
-            <RadioGroup
-              onChange={handleChange}
-              name={"confidence.recommendations"}
-            >
+            <RadioGroup>
               <Heading as="h3" size="sm">
                 Recommendations
               </Heading>
               <Flex justifyContent={"space-evenly"}>
-                <Radio value="1">1</Radio>
-                <Radio value="2">2</Radio>
-                <Radio value="3">3</Radio>
-                <Radio value="4">4</Radio>
-                <Radio value="5">5</Radio>
+                <Radio
+                  onClick={() => handleRadioClick("recommendations", 1)}
+                  value="1"
+                >
+                  1
+                </Radio>
+                <Radio
+                  onClick={() => handleRadioClick("recommendations", 2)}
+                  value="2"
+                >
+                  2
+                </Radio>
+                <Radio
+                  onClick={() => handleRadioClick("recommendations", 3)}
+                  value="3"
+                >
+                  3
+                </Radio>
+                <Radio
+                  onClick={() => handleRadioClick("recommendations", 4)}
+                  value="4"
+                >
+                  4
+                </Radio>
+                <Radio
+                  onClick={() => handleRadioClick("recommendations", 5)}
+                  value="5"
+                >
+                  5
+                </Radio>
               </Flex>
             </RadioGroup>
-            <RadioGroup
-              onChange={handleChange}
-              name={"confidence.volunteering"}
-            >
+            <RadioGroup>
               <Heading as="h3" size="sm">
                 Volunteering
               </Heading>
               <Flex justifyContent={"space-evenly"}>
-                <Radio value="1">1</Radio>
-                <Radio value="2">2</Radio>
-                <Radio value="3">3</Radio>
-                <Radio value="4">4</Radio>
-                <Radio value="5">5</Radio>
+                <Radio
+                  onClick={() => handleRadioClick("volunteering", 1)}
+                  value="1"
+                >
+                  1
+                </Radio>
+                <Radio
+                  onClick={() => handleRadioClick("volunteering", 2)}
+                  value="2"
+                >
+                  2
+                </Radio>
+                <Radio
+                  onClick={() => handleRadioClick("volunteering", 3)}
+                  value="3"
+                >
+                  3
+                </Radio>
+                <Radio
+                  onClick={() => handleRadioClick("volunteering", 4)}
+                  value="4"
+                >
+                  4
+                </Radio>
+                <Radio
+                  onClick={() => handleRadioClick("volunteering", 5)}
+                  value="5"
+                >
+                  5
+                </Radio>
               </Flex>
             </RadioGroup>
-            <RadioGroup onChange={handleChange} name={"confidence.work"}>
+            <RadioGroup>
               <Heading as="h3" size="sm">
                 Work
               </Heading>
               <Flex justifyContent={"space-evenly"}>
-                <Radio value="1">1</Radio>
-                <Radio value="2">2</Radio>
-                <Radio value="3">3</Radio>
-                <Radio value="4">4</Radio>
-                <Radio value="5">5</Radio>
+                <Radio onClick={() => handleRadioClick("work", 1)} value="1">
+                  1
+                </Radio>
+                <Radio onClick={() => handleRadioClick("work", 2)} value="2">
+                  2
+                </Radio>
+                <Radio onClick={() => handleRadioClick("work", 3)} value="3">
+                  3
+                </Radio>
+                <Radio onClick={() => handleRadioClick("work", 4)} value="4">
+                  4
+                </Radio>
+                <Radio onClick={() => handleRadioClick("work", 5)} value="5">
+                  5
+                </Radio>
               </Flex>
             </RadioGroup>
-            <RadioGroup onChange={handleChange} name={"confidence.talent"}>
+            <RadioGroup>
               <Heading as="h3" size="sm">
                 Talent
               </Heading>
               <Flex justifyContent={"space-evenly"}>
-                <Radio value="1">1</Radio>
-                <Radio value="2">2</Radio>
-                <Radio value="3">3</Radio>
-                <Radio value="4">4</Radio>
-                <Radio value="5">5</Radio>
+                <Radio onClick={() => handleRadioClick("talent", 1)} value="1">
+                  1
+                </Radio>
+                <Radio onClick={() => handleRadioClick("talent", 2)} value="2">
+                  2
+                </Radio>
+                <Radio onClick={() => handleRadioClick("talent", 3)} value="3">
+                  3
+                </Radio>
+                <Radio onClick={() => handleRadioClick("talent", 4)} value="4">
+                  4
+                </Radio>
+                <Radio onClick={() => handleRadioClick("talent", 5)} value="5">
+                  5
+                </Radio>
               </Flex>
             </RadioGroup>
-            <RadioGroup
-              onChange={handleChange}
-              name={"confidence.interviewing"}
-            >
+            <RadioGroup>
               <Heading as="h3" size="sm">
                 Interviewing
               </Heading>
               <Flex justifyContent={"space-evenly"}>
-                <Radio value="1">1</Radio>
-                <Radio value="2">2</Radio>
-                <Radio value="3">3</Radio>
-                <Radio value="4">4</Radio>
-                <Radio value="5">5</Radio>
+                <Radio
+                  onClick={() => handleRadioClick("interviewing", 1)}
+                  value="1"
+                >
+                  1
+                </Radio>
+                <Radio
+                  onClick={() => handleRadioClick("interviewing", 2)}
+                  value="2"
+                >
+                  2
+                </Radio>
+                <Radio
+                  onClick={() => handleRadioClick("interviewing", 3)}
+                  value="3"
+                >
+                  3
+                </Radio>
+                <Radio
+                  onClick={() => handleRadioClick("interviewing", 4)}
+                  value="4"
+                >
+                  4
+                </Radio>
+                <Radio
+                  onClick={() => handleRadioClick("interviewing", 5)}
+                  value="5"
+                >
+                  5
+                </Radio>
               </Flex>
             </RadioGroup>
-            <RadioGroup onChange={handleChange} name={"confidence.character"}>
+            <RadioGroup>
               <Heading as="h3" size="sm">
                 Character
               </Heading>
               <Flex justifyContent={"space-evenly"}>
-                <Radio value="1">1</Radio>
-                <Radio value="2">2</Radio>
-                <Radio value="3">3</Radio>
-                <Radio value="4">4</Radio>
-                <Radio value="5">5</Radio>
+                <Radio
+                  onClick={() => handleRadioClick("character", 1)}
+                  value="1"
+                >
+                  1
+                </Radio>
+                <Radio
+                  onClick={() => handleRadioClick("character", 2)}
+                  value="2"
+                >
+                  2
+                </Radio>
+                <Radio
+                  onClick={() => handleRadioClick("character", 3)}
+                  value="3"
+                >
+                  3
+                </Radio>
+                <Radio
+                  onClick={() => handleRadioClick("character", 4)}
+                  value="4"
+                >
+                  4
+                </Radio>
+                <Radio
+                  onClick={() => handleRadioClick("character", 5)}
+                  value="5"
+                >
+                  5
+                </Radio>
               </Flex>
             </RadioGroup>
-            <RadioGroup onChange={handleChange} name={"confidence.interest"}>
+            <RadioGroup>
               <Heading as="h3" size="sm">
                 Interest
               </Heading>
               <Flex justifyContent={"space-evenly"}>
-                <Radio value="1">1</Radio>
-                <Radio value="2">2</Radio>
-                <Radio value="3">3</Radio>
-                <Radio value="4">4</Radio>
-                <Radio value="5">5</Radio>
+                <Radio
+                  onClick={() => handleRadioClick("interest", 1)}
+                  value="1"
+                >
+                  1
+                </Radio>
+                <Radio
+                  onClick={() => handleRadioClick("interest", 2)}
+                  value="2"
+                >
+                  2
+                </Radio>
+                <Radio
+                  onClick={() => handleRadioClick("interest", 3)}
+                  value="3"
+                >
+                  3
+                </Radio>
+                <Radio
+                  onClick={() => handleRadioClick("interest", 4)}
+                  value="4"
+                >
+                  4
+                </Radio>
+                <Radio
+                  onClick={() => handleRadioClick("interest", 5)}
+                  value="5"
+                >
+                  5
+                </Radio>
               </Flex>
             </RadioGroup>
           </Grid>
@@ -617,20 +798,23 @@ export function Form() {
           </Heading>
           <Grid templateColumns="repeat(3, 1fr)" gap={1}>
             <InputGroup>
-              <Checkbox onChange={handleChange} name={"adversity.fgen"}>
+              <Checkbox onChange={toggleFirstGenValue} name={"adversity.fgen"}>
                 First Gen
               </Checkbox>
             </InputGroup>
             <InputGroup>
               <Checkbox
-                onChange={handleChange}
+                onChange={toggleInternationalValue}
                 name={"adversity.international"}
               >
                 International
               </Checkbox>
             </InputGroup>
             <InputGroup>
-              <Checkbox onChange={handleChange} name={"adversity.transfer"}>
+              <Checkbox
+                onChange={toggleTransferValue}
+                name={"adversity.transfer"}
+              >
                 Transfer
               </Checkbox>
             </InputGroup>
