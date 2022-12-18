@@ -45,9 +45,15 @@ interface UserCollegeData {
     interest: number;
   };
   colleges: {
-    legacy: string[];
-    alumni: string[];
-    feeder: string[];
+    legacy1: string;
+    legacy2: string;
+    legacy3: string;
+    alumni1: string;
+    alumni2: string;
+    alumni3: string;
+    feeder1: string;
+    feeder2: string;
+    feeder3: string;
   };
   residency: {
     zipcode: number;
@@ -93,9 +99,15 @@ export function Form() {
       interest: -1,
     },
     colleges: {
-      legacy: [],
-      alumni: [],
-      feeder: [],
+      legacy1: "",
+      legacy2: "",
+      legacy3: "",
+      alumni1: "",
+      alumni2: "",
+      alumni3: "",
+      feeder1: "",
+      feeder2: "",
+      feeder3: "",
     },
     residency: {
       zipcode: -1,
@@ -289,11 +301,21 @@ export function Form() {
                 Extracurriculars
               </Heading>
               <Flex justifyContent={"space-evenly"}>
-                <Radio value="1">1</Radio>
-                <Radio value="2">2</Radio>
-                <Radio value="3">3</Radio>
-                <Radio value="4">4</Radio>
-                <Radio value="5">5</Radio>
+                <Radio name={"confidence.extracurriculars"} value="1">
+                  1
+                </Radio>
+                <Radio name={"confidence.extracurriculars"} value="2">
+                  2
+                </Radio>
+                <Radio name={"confidence.extracurriculars"} value="3">
+                  3
+                </Radio>
+                <Radio name={"confidence.extracurriculars"} value="4">
+                  4
+                </Radio>
+                <Radio name={"confidence.extracurriculars"} value="5">
+                  5
+                </Radio>
               </Flex>
             </RadioGroup>
             <RadioGroup onChange={handleChange} name={"confidence.essay"}>
@@ -301,11 +323,21 @@ export function Form() {
                 Essay
               </Heading>
               <Flex justifyContent={"space-evenly"}>
-                <Radio value="1">1</Radio>
-                <Radio value="2">2</Radio>
-                <Radio value="3">3</Radio>
-                <Radio value="4">4</Radio>
-                <Radio value="5">5</Radio>
+                <Radio name={"confidence.essay"} value="1">
+                  1
+                </Radio>
+                <Radio name={"confidence.essay"} value="2">
+                  2
+                </Radio>
+                <Radio name={"confidence.essay"} value="3">
+                  3
+                </Radio>
+                <Radio name={"confidence.essay"} value="4">
+                  4
+                </Radio>
+                <Radio name={"confidence.essay"} value="5">
+                  5
+                </Radio>
               </Flex>
             </RadioGroup>
             <RadioGroup onChange={handleChange} name={"confidence.awards"}>
@@ -313,11 +345,21 @@ export function Form() {
                 Awards
               </Heading>
               <Flex justifyContent={"space-evenly"}>
-                <Radio value="1">1</Radio>
-                <Radio value="2">2</Radio>
-                <Radio value="3">3</Radio>
-                <Radio value="4">4</Radio>
-                <Radio value="5">5</Radio>
+                <Radio name={"confidence.awards"} value="1">
+                  1
+                </Radio>
+                <Radio name={"confidence.awards"} value="2">
+                  2
+                </Radio>
+                <Radio name={"confidence.awards"} value="3">
+                  3
+                </Radio>
+                <Radio name={"confidence.awards"} value="4">
+                  4
+                </Radio>
+                <Radio name={"confidence.awards"} value="5">
+                  5
+                </Radio>
               </Flex>
             </RadioGroup>
             <RadioGroup
@@ -425,7 +467,7 @@ export function Form() {
               <InputLeftAddon children="Mom" />
               <Input
                 onChange={handleChange}
-                name={"colleges.legacy"}
+                name={"colleges.legacy1"}
                 type="text"
                 placeholder="University"
               />
@@ -434,7 +476,7 @@ export function Form() {
               <InputLeftAddon children="Dad" />
               <Input
                 onChange={handleChange}
-                name={"colleges.legacy"}
+                name={"colleges.legacy2"}
                 type="text"
                 placeholder="University"
               />
@@ -443,7 +485,7 @@ export function Form() {
               <InputLeftAddon children="Other" />
               <Input
                 onChange={handleChange}
-                name={"colleges.legacy"}
+                name={"colleges.legacy3"}
                 type="text"
                 placeholder="University"
               />
@@ -457,7 +499,7 @@ export function Form() {
               <InputLeftAddon children="#1" />
               <Input
                 onChange={handleChange}
-                name={"colleges.alumni"}
+                name={"colleges.alumni1"}
                 type="text"
                 placeholder="University"
               />
@@ -466,7 +508,7 @@ export function Form() {
               <InputLeftAddon children="#2" />
               <Input
                 onChange={handleChange}
-                name={"colleges.alumni"}
+                name={"colleges.alumni2"}
                 type="text"
                 placeholder="University"
               />
@@ -475,7 +517,7 @@ export function Form() {
               <InputLeftAddon children="#3" />
               <Input
                 onChange={handleChange}
-                name={"colleges.alumni"}
+                name={"colleges.alumni3"}
                 type="text"
                 placeholder="University"
               />
@@ -489,7 +531,7 @@ export function Form() {
               <InputLeftAddon children="#1" />
               <Input
                 onChange={handleChange}
-                name={"colleges.feeder"}
+                name={"colleges.feeder1"}
                 type="text"
                 placeholder="University"
               />
@@ -498,7 +540,7 @@ export function Form() {
               <InputLeftAddon children="#2" />
               <Input
                 onChange={handleChange}
-                name={"colleges.feeder"}
+                name={"colleges.feeder2"}
                 type="text"
                 placeholder="University"
               />
@@ -507,7 +549,7 @@ export function Form() {
               <InputLeftAddon children="#3" />
               <Input
                 onChange={handleChange}
-                name={"colleges.feeder"}
+                name={"colleges.feeder3"}
                 type="text"
                 placeholder="University"
               />
