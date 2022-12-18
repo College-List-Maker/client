@@ -2,7 +2,7 @@
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://college-list-maker.github.io",
+  "homepage": "https://college-list-maker.github.io/client-www",
   "dependencies": {
     "@chakra-ui/react": "^2.4.4",
     "@emotion/react": "^11.10.5",
