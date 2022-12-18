@@ -15,6 +15,7 @@ import {
   Select,
 } from "@chakra-ui/react";
 import axios from "axios";
+import { getCookie } from "../Cookie";
 
 interface UserCollegeData {
   [key: string]: {
@@ -184,7 +185,10 @@ export function Form() {
     console.log(formData);
 
     axios
-      .post("http://localhost:4000/college/submit-data/1234", formData)
+      .post(
+        "http://localhost:4000/college/submit-data/" + getCookie("visitorId="),
+        formData
+      )
       .then((res: any) => {
         console.log(res);
       })
