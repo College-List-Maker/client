@@ -141,6 +141,8 @@ export function Form() {
       .catch((err: any) => {
         console.error(err);
       });
+
+    window.location.hash = "#college-list";
   };
 
   return (

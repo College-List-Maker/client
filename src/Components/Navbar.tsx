@@ -54,16 +54,21 @@ export default function Navbar() {
           />
         </Flex>
         <Flex flex={{ base: 1 }} justify={{ base: "center", md: "start" }}>
-          <Flex
-            justifyContent={useBreakpointValue({ base: "center", md: "left" })}
-          >
-            <Image
-              src={
-                "https://avatars.githubusercontent.com/u/120841647?s=200&v=4"
-              }
-              h={6}
-            />
-          </Flex>
+          <Link href={"#"}>
+            <Flex
+              justifyContent={useBreakpointValue({
+                base: "center",
+                md: "left",
+              })}
+            >
+              <Image
+                src={
+                  "https://avatars.githubusercontent.com/u/120841647?s=200&v=4"
+                }
+                h={6}
+              />
+            </Flex>
+          </Link>
 
           <Flex display={{ base: "none", md: "flex" }} ml={10}>
             <DesktopNav />
