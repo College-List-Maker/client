@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { getCookie } from "../Cookie";
 import { Skeleton } from "@chakra-ui/react";
+import { Form } from "./Form";
 import { UserCollegeData } from "../types";
+import { Dashboard } from "./Dashboard";
 
-export function CollegeList() {
+export function Home() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [formData, setFormData] = useState<UserCollegeData>();
 
@@ -29,7 +31,13 @@ export function CollegeList() {
 
   return (
     <div>
-      {isLoading ? <Skeleton>Test</Skeleton> : formData ? "is data" : "no data"}
+      {isLoading ? (
+        <Skeleton>Test</Skeleton>
+      ) : formData ? (
+        <Dashboard data={formData} />
+      ) : (
+        <Form />
+      )}
     </div>
   );
 }
