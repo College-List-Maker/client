@@ -37,11 +37,11 @@ interface UserCollegeData {
   confidence: {
     extracurriculars: number;
     essay: number;
-    rewards: number;
+    awards: number;
     recommendations: number;
     volunteering: number;
-    work: number;
-    talent: number;
+    works: number;
+    talents: number;
     interviewing: number;
     character: number;
     interest: number;
@@ -91,11 +91,11 @@ export function Form() {
     confidence: {
       extracurriculars: -1,
       essay: -1,
-      rewards: -1,
+      awards: -1,
       recommendations: -1,
       volunteering: -1,
-      work: -1,
-      talent: -1,
+      works: -1,
+      talents: -1,
       interviewing: -1,
       character: -1,
       interest: -1,
@@ -156,6 +156,7 @@ export function Form() {
       },
     }));
   }
+
   function handleRadioClick(name: string, value: number) {
     setFormData((prevFormData) => ({
       ...prevFormData,
@@ -490,19 +491,19 @@ export function Form() {
                 Work
               </Heading>
               <Flex justifyContent={"space-evenly"}>
-                <Radio onClick={() => handleRadioClick("work", 1)} value="1">
+                <Radio onClick={() => handleRadioClick("works", 1)} value="1">
                   1
                 </Radio>
-                <Radio onClick={() => handleRadioClick("work", 2)} value="2">
+                <Radio onClick={() => handleRadioClick("works", 2)} value="2">
                   2
                 </Radio>
-                <Radio onClick={() => handleRadioClick("work", 3)} value="3">
+                <Radio onClick={() => handleRadioClick("works", 3)} value="3">
                   3
                 </Radio>
-                <Radio onClick={() => handleRadioClick("work", 4)} value="4">
+                <Radio onClick={() => handleRadioClick("works", 4)} value="4">
                   4
                 </Radio>
-                <Radio onClick={() => handleRadioClick("work", 5)} value="5">
+                <Radio onClick={() => handleRadioClick("works", 5)} value="5">
                   5
                 </Radio>
               </Flex>
@@ -512,19 +513,19 @@ export function Form() {
                 Talent
               </Heading>
               <Flex justifyContent={"space-evenly"}>
-                <Radio onClick={() => handleRadioClick("talent", 1)} value="1">
+                <Radio onClick={() => handleRadioClick("talents", 1)} value="1">
                   1
                 </Radio>
-                <Radio onClick={() => handleRadioClick("talent", 2)} value="2">
+                <Radio onClick={() => handleRadioClick("talents", 2)} value="2">
                   2
                 </Radio>
-                <Radio onClick={() => handleRadioClick("talent", 3)} value="3">
+                <Radio onClick={() => handleRadioClick("talents", 3)} value="3">
                   3
                 </Radio>
-                <Radio onClick={() => handleRadioClick("talent", 4)} value="4">
+                <Radio onClick={() => handleRadioClick("talents", 4)} value="4">
                   4
                 </Radio>
-                <Radio onClick={() => handleRadioClick("talent", 5)} value="5">
+                <Radio onClick={() => handleRadioClick("talents", 5)} value="5">
                   5
                 </Radio>
               </Flex>

@@ -23,11 +23,11 @@ interface UserCollegeData {
   confidence: {
     extracurriculars: number;
     essay: number;
-    rewards: number;
+    awards: number;
     recommendations: number;
     volunteering: number;
-    work: number;
-    talent: number;
+    works: number;
+    talents: number;
     interviewing: number;
     character: number;
     interest: number;
