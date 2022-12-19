@@ -13,6 +13,7 @@ import {
   Radio,
   RadioGroup,
   Select,
+  useToast,
 } from "@chakra-ui/react";
 import axios from "axios";
 import { getCookie } from "../Cookie";
@@ -73,6 +74,8 @@ export function Form() {
   };
 
   const [formData, setFormData] = useState<UserCollegeData>(defaultData);
+
+  const toast = useToast();
 
   function toggleFirstGenValue() {
     setFormData((prevFormData) => ({
@@ -137,9 +140,23 @@ export function Form() {
       )
       .then((res: any) => {
         console.log(res);
+        toast({
+          title: "Details submitted.",
+          description: "Your colleges will appear soon.",
+          status: "success",
+          duration: 5000,
+          isClosable: true,
+        });
       })
       .catch((err: any) => {
         console.error(err);
+        toast({
+          title: "Error",
+          description: "Please try again.",
+          status: "error",
+          duration: 5000,
+          isClosable: true,
+        });
       });
 
     window.location.hash = "#college-list";
