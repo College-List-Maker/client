@@ -19,8 +19,12 @@ export function CollegeList() {
           getCookie("visitorId=")
       )
       .then((res: any) => {
-        setFormData(res.data[0]);
-        setIsLoading(false);
+        if (res.data[0]) {
+          setFormData(res.data[0]);
+          setIsLoading(false);
+        } else {
+          window.location.hash = "#";
+        }
       })
       .catch((err: any) => {
         console.error(err);
@@ -29,7 +33,7 @@ export function CollegeList() {
 
   return (
     <div>
-      {isLoading ? <Skeleton>Test</Skeleton> : formData ? "is data" : "no data"}
+      {isLoading ? <Skeleton>Test</Skeleton> : "display college list here"}
     </div>
   );
 }
