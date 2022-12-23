@@ -1,7 +1,11 @@
-export default function setVisitorCookie(name: string, expireDays: number) {
+export default function setVisitorCookie() {
+  const profileId = JSON.parse(localStorage.getItem("user_info") || "").result
+    .id;
   const visitorIdCookie = getCookie("visitorId=");
-  if (!visitorIdCookie) {
-    createCookie("visitorId", createUniqueId(), 7);
+  if (profileId && profileId !== visitorIdCookie) {
+    createCookie("visitorId", profileId, 10 * 365 * 24 * 60 * 60);
+  } else if (!visitorIdCookie) {
+    createCookie("visitorId", createUniqueId(), 10 * 24 * 60 * 60);
   }
 }
 
@@ -12,7 +16,7 @@ function createCookie(name: string, value: string, expireDays: number) {
   document.cookie = name + "=" + value + ";" + expires + ";path=/";
 }
 
-// will return format of: visitorId=51czetjt0lmh2k24gvbobh
+// will return format of: 51czetjt0lmh2k24gvbobh, no visitorId=
 export function getCookie(s: string) {
   const idCoookie = document.cookie
     .split(";")

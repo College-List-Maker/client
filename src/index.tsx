@@ -1,29 +1,48 @@
-import { ColorModeScript } from "@chakra-ui/react"
-import * as React from "react"
-import * as ReactDOM from "react-dom/client"
-import { App } from "./App"
-import reportWebVitals from "./reportWebVitals"
-import * as serviceWorker from "./serviceWorker"
+import * as React from "react";
+import * as ReactDOM from "react-dom/client";
+import { App } from "./App";
+import reportWebVitals from "./reportWebVitals";
+import * as serviceWorker from "./serviceWorker";
+import { Provider } from "react-redux";
+import { reducers } from "./redux/reducers";
+import thunk from "redux-thunk";
+import { BrowserRouter } from "react-router-dom";
+import { createStore, applyMiddleware, compose } from "redux";
+import { GoogleOAuthProvider } from "@react-oauth/google";
+import { ColorModeScript } from "@chakra-ui/react";
 
+const container = document.getElementById("root");
+if (!container) throw new Error("Failed to find the root element");
+const root = ReactDOM.createRoot(container);
 
-const container = document.getElementById("root")
-if (!container) throw new Error('Failed to find the root element');
-const root = ReactDOM.createRoot(container)
+declare global {
+  interface Window {
+    __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
+  }
+}
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(
+  reducers,
+  {},
+  composeEnhancers(applyMiddleware(thunk))
+);
 
 root.render(
   <React.StrictMode>
     <ColorModeScript />
-    <App />
-  </React.StrictMode>,
-)
+    <Provider store={store}>
+      <BrowserRouter>
+        <GoogleOAuthProvider
+          clientId={
+            "336809998605-4oab4bn2o55ermsojoqbaipm6kqern4p.apps.googleusercontent.com"
+          }
+        >
+          <App />
+        </GoogleOAuthProvider>
+      </BrowserRouter>
+    </Provider>
+  </React.StrictMode>
+);
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://cra.link/PWA
-serviceWorker.unregister()
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals()
-
+serviceWorker.unregister();
+reportWebVitals();
