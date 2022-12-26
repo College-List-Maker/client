@@ -36,7 +36,7 @@ export function getCookie(s: string) {
 }
 
 export function eraseCookie(s: string) {
-  document.cookie = s + "=; Max-Age=-99999999;";
+  document.cookie = s + "=; Max-Age=-99999999;path=/";
 }
 
 // Generate a unique ID for each visitor
