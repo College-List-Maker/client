@@ -1,12 +1,10 @@
 import { useEffect, useState } from "react";
 import { ChakraProvider, theme } from "@chakra-ui/react";
-import setVisitorCookie from "./Cookie";
 import { Home } from "./Components/Home";
 import Navbar from "./Components/Navbar";
 import { CollegeList } from "./Components/CollegeList";
 import { SignIn } from "./Components/SignIn";
 
-setVisitorCookie();
 export const App = () => {
   /* 
     HANDLE APP DIRECTORY

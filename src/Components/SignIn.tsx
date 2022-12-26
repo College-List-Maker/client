@@ -10,8 +10,10 @@ export function SignIn() {
 
   function handleGoogleLoginSuccess(tokenResponse: any) {
     const accessToken = tokenResponse.access_token;
-    dispatch(continueGoogle(accessToken, navigate));
-    window.location.hash = "";
+    dispatch(continueGoogle(accessToken, navigate)).then(() => {
+      window.location.hash = "";
+      window.location.reload();
+    });
   }
   function handleGoogleError(err: any) {
     console.log(err);
