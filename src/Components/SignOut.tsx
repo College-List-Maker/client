@@ -8,7 +8,7 @@ export function SignOut() {
       eraseCookie("visitorId");
       resolve("finished erase");
     }).then(() => {
-      window.location.reload();
+      window.location.assign("https://college-list-maker.github.io/client/#/");
     });
   };
 
