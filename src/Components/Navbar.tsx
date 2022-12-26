@@ -22,6 +22,9 @@ import {
   ChevronDownIcon,
   ChevronRightIcon,
 } from "@chakra-ui/icons";
+import { isLoggedIn } from "../Cookie";
+import { SignIn } from "./SignIn";
+import { SignOut } from "./SignOut";
 
 export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure();
@@ -81,29 +84,7 @@ export default function Navbar() {
           direction={"row"}
           spacing={6}
         >
-          <Button
-            as={"a"}
-            fontSize={"sm"}
-            fontWeight={400}
-            variant={"link"}
-            href={"#sign-in"}
-          >
-            Sign In
-          </Button>
-          <Button
-            display={{ base: "none", md: "inline-flex" }}
-            fontSize={"sm"}
-            fontWeight={600}
-            color={"white"}
-            bg={"pink.400"}
-            as={"a"}
-            href={"#sign-in"}
-            _hover={{
-              bg: "pink.300",
-            }}
-          >
-            Sign Up
-          </Button>
+          {isLoggedIn() ? <SignOut /> : <SignIn />}
         </Stack>
       </Flex>
 

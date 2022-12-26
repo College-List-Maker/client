@@ -35,10 +35,22 @@ export function getCookie(s: string) {
   return undefined;
 }
 
+export function eraseCookie(s: string) {
+  document.cookie = s + "=; Max-Age=-99999999;";
+}
+
 // Generate a unique ID for each visitor
 function createUniqueId() {
   return (
     Math.random().toString(36).substring(2, 15) +
     Math.random().toString(36).substring(2, 15)
   );
+}
+
+export function isLoggedIn() {
+  const user_info = localStorage.getItem("user_info");
+  if (user_info) {
+    return true;
+  }
+  return false;
 }
