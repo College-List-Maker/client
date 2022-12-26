@@ -10,10 +10,7 @@ export function SignIn() {
 
   function handleGoogleLoginSuccess(tokenResponse: any) {
     const accessToken = tokenResponse.access_token;
-    dispatch(continueGoogle(accessToken, navigate)).then(() => {
-      window.location.assign("https://college-list-maker.github.io/client/#/");
-      window.location.reload();
-    });
+    dispatch(continueGoogle(accessToken, navigate));
   }
   function handleGoogleError(err: any) {
     console.log(err);
