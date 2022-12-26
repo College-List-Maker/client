@@ -1,10 +1,14 @@
 export default function setVisitorCookie() {
-  const profileId = JSON.parse(localStorage.getItem("user_info") || "").result
-    .id;
-  const visitorIdCookie = getCookie("visitorId=");
-  if (profileId && profileId !== visitorIdCookie) {
-    createCookie("visitorId", profileId, 10 * 365 * 24 * 60 * 60);
-  } else if (!visitorIdCookie) {
+  try {
+    const profileId = JSON.parse(localStorage.getItem("user_info") || "").result
+      .id;
+    const visitorIdCookie = getCookie("visitorId=");
+    if (profileId && profileId !== visitorIdCookie) {
+      createCookie("visitorId", profileId, 10 * 365 * 24 * 60 * 60);
+    } else if (!visitorIdCookie) {
+      createCookie("visitorId", createUniqueId(), 10 * 24 * 60 * 60);
+    }
+  } catch {
     createCookie("visitorId", createUniqueId(), 10 * 24 * 60 * 60);
   }
 }
