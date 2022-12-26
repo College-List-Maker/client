@@ -12,5 +12,14 @@ export function SignOut() {
     });
   };
 
-  return <Button onClick={() => signout()}>Sign Out</Button>;
+  const refresh = () => {
+    window.location.reload();
+  };
+
+  return (
+    <>
+      <Button onClick={() => signout()}>Sign Out</Button>
+      <Button onClick={() => refresh()}>Refresh</Button>
+    </>
+  );
 }
