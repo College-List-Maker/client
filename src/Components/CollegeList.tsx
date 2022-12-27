@@ -6,7 +6,7 @@ import { UserCollegeData } from "../types";
 
 export function CollegeList() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [formData, setFormData] = useState<UserCollegeData>();
+  const [collegeData, setCollegeData] = useState<UserCollegeData>();
 
   useEffect(() => {
     fetchSubmittedData();
@@ -15,25 +15,28 @@ export function CollegeList() {
   const fetchSubmittedData = () => {
     axios
       .get(
-        "http://localhost:4000/college/get-submit-data/" +
+        "http://localhost:4000/college/set-college-list/" +
           getCookie("visitorId=")
       )
       .then((res: any) => {
-        if (res.data[0]) {
-          setFormData(res.data[0]);
+        if (res.data) {
+          setCollegeData(res.data);
           setIsLoading(false);
-        } else {
-          window.location.hash = "#";
         }
       })
       .catch((err: any) => {
         console.error(err);
+        window.location.hash = "#";
       });
   };
 
   return (
     <div>
-      {isLoading ? <Skeleton>Test</Skeleton> : "display college list here"}
+      {isLoading ? (
+        <Skeleton>Test</Skeleton>
+      ) : (
+        <>{JSON.stringify(collegeData)}</>
+      )}
     </div>
   );
 }
