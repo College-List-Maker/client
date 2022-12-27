@@ -167,7 +167,142 @@ export function Form() {
             },
         }));
     }
-
+    function toggleFacilityImportanceValue() {
+        setFormData((prevFormData) => ({
+            ...prevFormData,
+            collegePrefs: {
+                ...prevFormData["collegePrefs"],
+                facilityImportance:
+                    !prevFormData["collegePrefs"]["facilityImportance"],
+            },
+        }));
+    }
+    function toggleCostImportanceValue() {
+        setFormData((prevFormData) => ({
+            ...prevFormData,
+            costPrefs: {
+                ...prevFormData["costPrefs"],
+                costImportance: !prevFormData["costPrefs"]["costImportance"],
+            },
+        }));
+    }
+    function toggleFederalAidImportanceValue() {
+        setFormData((prevFormData) => ({
+            ...prevFormData,
+            costPrefs: {
+                ...prevFormData["costPrefs"],
+                federalAidImportance:
+                    !prevFormData["costPrefs"]["federalAidImportance"],
+            },
+        }));
+    }
+    function togglePublicControlImportanceValue() {
+        setFormData((prevFormData) => ({
+            ...prevFormData,
+            collegePrefs: {
+                ...prevFormData["collegePrefs"],
+                prefPublicControl:
+                    !prevFormData["collegePrefs"]["prefPublicControl"],
+            },
+        }));
+    }
+    function toggleLocationImportanceValue() {
+        setFormData((prevFormData) => ({
+            ...prevFormData,
+            locationPrefs: {
+                ...prevFormData["locationPrefs"],
+                locationImportance:
+                    !prevFormData["locationPrefs"]["locationImportance"],
+            },
+        }));
+    }
+    function toggleLivingAtHomePrefValue() {
+        setFormData((prevFormData) => ({
+            ...prevFormData,
+            locationPrefs: {
+                ...prevFormData["locationPrefs"],
+                livingAtHome: !prevFormData["locationPrefs"]["livingAtHome"],
+            },
+        }));
+    }
+    function toggleSuccessImportanceValue() {
+        setFormData((prevFormData) => ({
+            ...prevFormData,
+            successPrefs: {
+                ...prevFormData["successPrefs"],
+                successImportance:
+                    !prevFormData["successPrefs"]["successImportance"],
+            },
+        }));
+    }
+    function toggleAlumniCarreerImportanceValue() {
+        setFormData((prevFormData) => ({
+            ...prevFormData,
+            successPrefs: {
+                ...prevFormData["successPrefs"],
+                alumniCarreerImportance:
+                    !prevFormData["successPrefs"]["alumniCarreerImportance"],
+            },
+        }));
+    }
+    function toggleGraduationRateImportanceValue() {
+        setFormData((prevFormData) => ({
+            ...prevFormData,
+            successPrefs: {
+                ...prevFormData["successPrefs"],
+                graduationRateImportance:
+                    !prevFormData["successPrefs"]["graduationRateImportance"],
+            },
+        }));
+    }
+    function toggleRetentionRateImportanceValue() {
+        setFormData((prevFormData) => ({
+            ...prevFormData,
+            successPrefs: {
+                ...prevFormData["successPrefs"],
+                retentionRateImportance:
+                    !prevFormData["successPrefs"]["retentionRateImportance"],
+            },
+        }));
+    }
+    function toggleReligiousPrefValue() {
+        setFormData((prevFormData) => ({
+            ...prevFormData,
+            collegePrefs: {
+                ...prevFormData["collegePrefs"],
+                prefReligious: !prevFormData["collegePrefs"]["prefReligious"],
+            },
+        }));
+    }
+    function togglePrivateControlImportanceValue() {
+        setFormData((prevFormData) => ({
+            ...prevFormData,
+            collegePrefs: {
+                ...prevFormData["collegePrefs"],
+                prefPrivateControl:
+                    !prevFormData["collegePrefs"]["prefPrivateControl"],
+            },
+        }));
+    }
+    function toggle4yrPrefValue() {
+        setFormData((prevFormData) => ({
+            ...prevFormData,
+            collegePrefs: {
+                ...prevFormData["collegePrefs"],
+                pref4yr: !prevFormData["collegePrefs"]["pref4yr"],
+            },
+        }));
+    }
+    function toggleMajorProminenceImportanceValue() {
+        setFormData((prevFormData) => ({
+            ...prevFormData,
+            collegePrefs: {
+                ...prevFormData["collegePrefs"],
+                majorProminenceImportance:
+                    !prevFormData["collegePrefs"]["majorProminenceImportance"],
+            },
+        }));
+    }
     function handleRadioClickApplicant(name: string, value: number) {
         setFormData((prevFormData) => ({
             ...prevFormData,
@@ -1562,9 +1697,1629 @@ export function Form() {
                     <Heading as="h1" size="lg">
                         Rank
                     </Heading>
+                    (for number fields, only numbers, no commas nor dollar signs
+                    nor percent signs)
                     <Heading as="h4" size="md">
-                        College
+                        College Importance
                     </Heading>
+                    <RadioGroup>
+                        <Heading as="h3" size="sm">
+                            Prestiege Importance
+                        </Heading>
+                        <Flex justifyContent={"space-evenly"}>
+                            <Radio
+                                onClick={() =>
+                                    handleRadioClickCollege(
+                                        "prestiegeImportance",
+                                        0
+                                    )
+                                }
+                                value="0"
+                            >
+                                0
+                            </Radio>
+                            <Radio
+                                onClick={() =>
+                                    handleRadioClickCollege(
+                                        "prestiegeImportance",
+                                        1
+                                    )
+                                }
+                                value="1"
+                            >
+                                1
+                            </Radio>
+                            <Radio
+                                onClick={() =>
+                                    handleRadioClickCollege(
+                                        "prestiegeImportance",
+                                        2
+                                    )
+                                }
+                                value="2"
+                            >
+                                2
+                            </Radio>
+                            <Radio
+                                onClick={() =>
+                                    handleRadioClickCollege(
+                                        "prestiegeImportance",
+                                        3
+                                    )
+                                }
+                                value="3"
+                            >
+                                3
+                            </Radio>
+                            <Radio
+                                onClick={() =>
+                                    handleRadioClickCollege(
+                                        "prestiegeImportance",
+                                        4
+                                    )
+                                }
+                                value="4"
+                            >
+                                4
+                            </Radio>
+                            <Radio
+                                onClick={() =>
+                                    handleRadioClickCollege(
+                                        "prestiegeImportance",
+                                        5
+                                    )
+                                }
+                                value="5"
+                            >
+                                5
+                            </Radio>
+                        </Flex>
+                    </RadioGroup>
+                    <RadioGroup>
+                        <Heading as="h3" size="sm">
+                            Internship Importance
+                        </Heading>
+                        <Flex justifyContent={"space-evenly"}>
+                            <Radio
+                                onClick={() =>
+                                    handleRadioClickCollege(
+                                        "internshipImportance",
+                                        0
+                                    )
+                                }
+                                value="0"
+                            >
+                                0
+                            </Radio>
+                            <Radio
+                                onClick={() =>
+                                    handleRadioClickCollege(
+                                        "internshipImportance",
+                                        1
+                                    )
+                                }
+                                value="1"
+                            >
+                                1
+                            </Radio>
+                            <Radio
+                                onClick={() =>
+                                    handleRadioClickCollege(
+                                        "internshipImportance",
+                                        2
+                                    )
+                                }
+                                value="2"
+                            >
+                                2
+                            </Radio>
+                            <Radio
+                                onClick={() =>
+                                    handleRadioClickCollege(
+                                        "internshipImportance",
+                                        3
+                                    )
+                                }
+                                value="3"
+                            >
+                                3
+                            </Radio>
+                            <Radio
+                                onClick={() =>
+                                    handleRadioClickCollege(
+                                        "internshipImportance",
+                                        4
+                                    )
+                                }
+                                value="4"
+                            >
+                                4
+                            </Radio>
+                            <Radio
+                                onClick={() =>
+                                    handleRadioClickCollege(
+                                        "internshipImportance",
+                                        5
+                                    )
+                                }
+                                value="5"
+                            >
+                                5
+                            </Radio>
+                        </Flex>
+                    </RadioGroup>
+                    <RadioGroup>
+                        <Heading as="h3" size="sm">
+                            Study Abroad Importance
+                        </Heading>
+                        <Flex justifyContent={"space-evenly"}>
+                            <Radio
+                                onClick={() =>
+                                    handleRadioClickCollege(
+                                        "studyAbroadImportance",
+                                        0
+                                    )
+                                }
+                                value="0"
+                            >
+                                0
+                            </Radio>
+                            <Radio
+                                onClick={() =>
+                                    handleRadioClickCollege(
+                                        "studyAbroadImportance",
+                                        1
+                                    )
+                                }
+                                value="1"
+                            >
+                                1
+                            </Radio>
+                            <Radio
+                                onClick={() =>
+                                    handleRadioClickCollege(
+                                        "studyAbroadImportance",
+                                        2
+                                    )
+                                }
+                                value="2"
+                            >
+                                2
+                            </Radio>
+                            <Radio
+                                onClick={() =>
+                                    handleRadioClickCollege(
+                                        "studyAbroadImportance",
+                                        3
+                                    )
+                                }
+                                value="3"
+                            >
+                                3
+                            </Radio>
+                            <Radio
+                                onClick={() =>
+                                    handleRadioClickCollege(
+                                        "studyAbroadImportance",
+                                        4
+                                    )
+                                }
+                                value="4"
+                            >
+                                4
+                            </Radio>
+                            <Radio
+                                onClick={() =>
+                                    handleRadioClickCollege(
+                                        "studyAbroadImportance",
+                                        5
+                                    )
+                                }
+                                value="5"
+                            >
+                                5
+                            </Radio>
+                        </Flex>
+                    </RadioGroup>
+                    <RadioGroup>
+                        <Heading as="h3" size="sm">
+                            Rigor Importance
+                        </Heading>
+                        <Flex justifyContent={"space-evenly"}>
+                            <Radio
+                                onClick={() =>
+                                    handleRadioClickCollege(
+                                        "rigorImportance",
+                                        0
+                                    )
+                                }
+                                value="0"
+                            >
+                                0
+                            </Radio>
+                            <Radio
+                                onClick={() =>
+                                    handleRadioClickCollege(
+                                        "rigorImportance",
+                                        1
+                                    )
+                                }
+                                value="1"
+                            >
+                                1
+                            </Radio>
+                            <Radio
+                                onClick={() =>
+                                    handleRadioClickCollege(
+                                        "rigorImportance",
+                                        2
+                                    )
+                                }
+                                value="2"
+                            >
+                                2
+                            </Radio>
+                            <Radio
+                                onClick={() =>
+                                    handleRadioClickCollege(
+                                        "rigorImportance",
+                                        3
+                                    )
+                                }
+                                value="3"
+                            >
+                                3
+                            </Radio>
+                            <Radio
+                                onClick={() =>
+                                    handleRadioClickCollege(
+                                        "rigorImportance",
+                                        4
+                                    )
+                                }
+                                value="4"
+                            >
+                                4
+                            </Radio>
+                            <Radio
+                                onClick={() =>
+                                    handleRadioClickCollege(
+                                        "rigorImportance",
+                                        5
+                                    )
+                                }
+                                value="5"
+                            >
+                                5
+                            </Radio>
+                        </Flex>
+                    </RadioGroup>
+                    <RadioGroup>
+                        <Heading as="h3" size="sm">
+                            Work Study Importance
+                        </Heading>
+                        <Flex justifyContent={"space-evenly"}>
+                            <Radio
+                                onClick={() =>
+                                    handleRadioClickCollege(
+                                        "workStudyImportance",
+                                        0
+                                    )
+                                }
+                                value="0"
+                            >
+                                0
+                            </Radio>
+                            <Radio
+                                onClick={() =>
+                                    handleRadioClickCollege(
+                                        "workStudyImportance",
+                                        1
+                                    )
+                                }
+                                value="1"
+                            >
+                                1
+                            </Radio>
+                            <Radio
+                                onClick={() =>
+                                    handleRadioClickCollege(
+                                        "workStudyImportance",
+                                        2
+                                    )
+                                }
+                                value="2"
+                            >
+                                2
+                            </Radio>
+                            <Radio
+                                onClick={() =>
+                                    handleRadioClickCollege(
+                                        "workStudyImportance",
+                                        3
+                                    )
+                                }
+                                value="3"
+                            >
+                                3
+                            </Radio>
+                            <Radio
+                                onClick={() =>
+                                    handleRadioClickCollege(
+                                        "workStudyImportance",
+                                        4
+                                    )
+                                }
+                                value="4"
+                            >
+                                4
+                            </Radio>
+                            <Radio
+                                onClick={() =>
+                                    handleRadioClickCollege(
+                                        "workStudyImportance",
+                                        5
+                                    )
+                                }
+                                value="5"
+                            >
+                                5
+                            </Radio>
+                        </Flex>
+                    </RadioGroup>
+                    <RadioGroup>
+                        <Heading as="h3" size="sm">
+                            Academic Resources Importance
+                        </Heading>
+                        <Flex justifyContent={"space-evenly"}>
+                            <Radio
+                                onClick={() =>
+                                    handleRadioClickCollege(
+                                        "academicResourcesImportance",
+                                        0
+                                    )
+                                }
+                                value="0"
+                            >
+                                0
+                            </Radio>
+                            <Radio
+                                onClick={() =>
+                                    handleRadioClickCollege(
+                                        "academicResourcesImportance",
+                                        1
+                                    )
+                                }
+                                value="1"
+                            >
+                                1
+                            </Radio>
+                            <Radio
+                                onClick={() =>
+                                    handleRadioClickCollege(
+                                        "academicResourcesImportance",
+                                        2
+                                    )
+                                }
+                                value="2"
+                            >
+                                2
+                            </Radio>
+                            <Radio
+                                onClick={() =>
+                                    handleRadioClickCollege(
+                                        "academicResourcesImportance",
+                                        3
+                                    )
+                                }
+                                value="3"
+                            >
+                                3
+                            </Radio>
+                            <Radio
+                                onClick={() =>
+                                    handleRadioClickCollege(
+                                        "academicResourcesImportance",
+                                        4
+                                    )
+                                }
+                                value="4"
+                            >
+                                4
+                            </Radio>
+                            <Radio
+                                onClick={() =>
+                                    handleRadioClickCollege(
+                                        "academicResourcesImportance",
+                                        5
+                                    )
+                                }
+                                value="5"
+                            >
+                                5
+                            </Radio>
+                        </Flex>
+                    </RadioGroup>
+                    <RadioGroup>
+                        <Heading as="h3" size="sm">
+                            Research Importance
+                        </Heading>
+                        <Flex justifyContent={"space-evenly"}>
+                            <Radio
+                                onClick={() =>
+                                    handleRadioClickCollege(
+                                        "researchImportance",
+                                        0
+                                    )
+                                }
+                                value="0"
+                            >
+                                0
+                            </Radio>
+                            <Radio
+                                onClick={() =>
+                                    handleRadioClickCollege(
+                                        "researchImportance",
+                                        1
+                                    )
+                                }
+                                value="1"
+                            >
+                                1
+                            </Radio>
+                            <Radio
+                                onClick={() =>
+                                    handleRadioClickCollege(
+                                        "researchImportance",
+                                        2
+                                    )
+                                }
+                                value="2"
+                            >
+                                2
+                            </Radio>
+                            <Radio
+                                onClick={() =>
+                                    handleRadioClickCollege(
+                                        "researchImportance",
+                                        3
+                                    )
+                                }
+                                value="3"
+                            >
+                                3
+                            </Radio>
+                            <Radio
+                                onClick={() =>
+                                    handleRadioClickCollege(
+                                        "researchImportance",
+                                        4
+                                    )
+                                }
+                                value="4"
+                            >
+                                4
+                            </Radio>
+                            <Radio
+                                onClick={() =>
+                                    handleRadioClickCollege(
+                                        "researchImportance",
+                                        5
+                                    )
+                                }
+                                value="5"
+                            >
+                                5
+                            </Radio>
+                        </Flex>
+                    </RadioGroup>
+                    <Heading as="h4" size="md">
+                        College Preferences
+                    </Heading>
+                    <Heading as="h3" size="sm">
+                        Student Body
+                    </Heading>
+                    <Grid templateColumns="repeat(2, 1fr)" gap={1}>
+                        <InputGroup>
+                            <InputLeftAddon children="Pref Size" />
+                            <Input
+                                onChange={handleChange}
+                                name={"collegePrefs.prefSize"}
+                                type="text"
+                                placeholder="10000" //No commas!!! (account for after wired)
+                            />
+                        </InputGroup>
+                        <InputGroup>
+                            <InputLeftAddon children="Sex Ratio (% women)" />
+                            <Input
+                                onChange={handleChange}
+                                name={"collegePrefs.prefSexRatioF"}
+                                type="text"
+                                placeholder="40"
+                            />
+                        </InputGroup>
+                        <InputGroup>
+                            <Select
+                                onChange={handleChange}
+                                name={"collegePrefs.gender"}
+                                placeholder="Gender"
+                            >
+                                <option value="M">Male</option>
+                                <option value="M">Female</option>
+                                <option value="M">Other</option>
+                            </Select>
+                        </InputGroup>
+                    </Grid>
+                    <RadioGroup>
+                        <Heading as="h3" size="sm">
+                            Same-Gender Importance (Ex. Female-Only)
+                        </Heading>
+                        <Flex justifyContent={"space-evenly"}>
+                            <Radio
+                                onClick={() =>
+                                    handleRadioClickCollege(
+                                        "sameGenderImportance",
+                                        0
+                                    )
+                                }
+                                value="0"
+                            >
+                                0
+                            </Radio>
+                            <Radio
+                                onClick={() =>
+                                    handleRadioClickCollege(
+                                        "sameGenderImportance",
+                                        1
+                                    )
+                                }
+                                value="1"
+                            >
+                                1
+                            </Radio>
+                            <Radio
+                                onClick={() =>
+                                    handleRadioClickCollege(
+                                        "sameGenderImportance",
+                                        2
+                                    )
+                                }
+                                value="2"
+                            >
+                                2
+                            </Radio>
+                            <Radio
+                                onClick={() =>
+                                    handleRadioClickCollege(
+                                        "sameGenderImportance",
+                                        3
+                                    )
+                                }
+                                value="3"
+                            >
+                                3
+                            </Radio>
+                            <Radio
+                                onClick={() =>
+                                    handleRadioClickCollege(
+                                        "sameGenderImportance",
+                                        4
+                                    )
+                                }
+                                value="4"
+                            >
+                                4
+                            </Radio>
+                            <Radio
+                                onClick={() =>
+                                    handleRadioClickCollege(
+                                        "sameGenderImportance",
+                                        5
+                                    )
+                                }
+                                value="5"
+                            >
+                                5
+                            </Radio>
+                        </Flex>
+                    </RadioGroup>
+                    <RadioGroup>
+                        <Heading as="h3" size="sm">
+                            HBCU Importance (Historically Black
+                            Colleges/Universities)
+                        </Heading>
+                        <Flex justifyContent={"space-evenly"}>
+                            <Radio
+                                onClick={() =>
+                                    handleRadioClickCollege("hbcuImportance", 0)
+                                }
+                                value="0"
+                            >
+                                0
+                            </Radio>
+                            <Radio
+                                onClick={() =>
+                                    handleRadioClickCollege("hbcuImportance", 1)
+                                }
+                                value="1"
+                            >
+                                1
+                            </Radio>
+                            <Radio
+                                onClick={() =>
+                                    handleRadioClickCollege("hbcuImportance", 2)
+                                }
+                                value="2"
+                            >
+                                2
+                            </Radio>
+                            <Radio
+                                onClick={() =>
+                                    handleRadioClickCollege("hbcuImportance", 3)
+                                }
+                                value="3"
+                            >
+                                3
+                            </Radio>
+                            <Radio
+                                onClick={() =>
+                                    handleRadioClickCollege("hbcuImportance", 4)
+                                }
+                                value="4"
+                            >
+                                4
+                            </Radio>
+                            <Radio
+                                onClick={() =>
+                                    handleRadioClickCollege("hbcuImportance", 5)
+                                }
+                                value="5"
+                            >
+                                5
+                            </Radio>
+                        </Flex>
+                    </RadioGroup>
+                    <RadioGroup>
+                        <Heading as="h3" size="sm">
+                            Coed Importance
+                        </Heading>
+                        <Flex justifyContent={"space-evenly"}>
+                            <Radio
+                                onClick={() =>
+                                    handleRadioClickCollege("coedImportance", 0)
+                                }
+                                value="0"
+                            >
+                                0
+                            </Radio>
+                            <Radio
+                                onClick={() =>
+                                    handleRadioClickCollege("coedImportance", 1)
+                                }
+                                value="1"
+                            >
+                                1
+                            </Radio>
+                            <Radio
+                                onClick={() =>
+                                    handleRadioClickCollege("coedImportance", 2)
+                                }
+                                value="2"
+                            >
+                                2
+                            </Radio>
+                            <Radio
+                                onClick={() =>
+                                    handleRadioClickCollege("coedImportance", 3)
+                                }
+                                value="3"
+                            >
+                                3
+                            </Radio>
+                            <Radio
+                                onClick={() =>
+                                    handleRadioClickCollege("coedImportance", 4)
+                                }
+                                value="4"
+                            >
+                                4
+                            </Radio>
+                            <Radio
+                                onClick={() =>
+                                    handleRadioClickCollege("coedImportance", 5)
+                                }
+                                value="5"
+                            >
+                                5
+                            </Radio>
+                        </Flex>
+                    </RadioGroup>
+                    <Heading as="h3" size="sm">
+                        Institution
+                    </Heading>
+                    <Grid templateColumns="repeat(3, 1fr)" gap={1}>
+                        <InputGroup>
+                            <Checkbox
+                                onChange={toggleFacilityImportanceValue}
+                                name={"collegePrefs.facilityImportance"}
+                            >
+                                Good Facilities
+                            </Checkbox>
+                        </InputGroup>
+                        <InputGroup>
+                            <Checkbox
+                                onChange={togglePublicControlImportanceValue}
+                                name={"collegePrefs.prefPublicControl"}
+                            >
+                                Pref Public
+                            </Checkbox>
+                        </InputGroup>
+                        <InputGroup>
+                            <Checkbox
+                                onChange={togglePrivateControlImportanceValue}
+                                name={"collegePrefs.prefPrivateControl"}
+                            >
+                                Pref Private
+                            </Checkbox>
+                        </InputGroup>
+                        <InputGroup>
+                            <Checkbox
+                                onChange={toggle4yrPrefValue}
+                                name={"collegePrefs.pref4yr"}
+                            >
+                                Pref 4yr
+                            </Checkbox>
+                        </InputGroup>
+                        <InputGroup>
+                            <Checkbox
+                                onChange={toggleReligiousPrefValue}
+                                name={"collegePrefs.prefReligious"}
+                            >
+                                Pref Religious
+                            </Checkbox>
+                        </InputGroup>
+                        <InputGroup>
+                            <Select
+                                onChange={handleChange}
+                                name={"collegePrefs.prefReligion"}
+                                placeholder="Pref Religion"
+                            >
+                                <option value="0">N/A</option>
+                                <option value="22">
+                                    American Evangelical Lutheran Church
+                                </option>
+                                <option value="24">
+                                    African Methodist Episcopal Zion Church
+                                </option>
+                                <option value="27">
+                                    Assemblies of God Church
+                                </option>
+                                <option value="28">Brethren Church</option>
+                                <option value="30">Roman Catholic</option>
+                                <option value="33">
+                                    Wisconsin Evangelical Lutheran Synod
+                                </option>
+                                <option value="34">
+                                    Christ and Missionary Alliance Church
+                                </option>
+                                <option value="35">
+                                    Christian Reformed Church
+                                </option>
+                                <option value="36">
+                                    Evangelical Congregational Church
+                                </option>
+                                <option value="37">
+                                    Evangelical Covenant Church of America
+                                </option>
+                                <option value="38">
+                                    Evangelical Free Church of America
+                                </option>
+                                <option value="39">
+                                    Evangelical Lutheran Church
+                                </option>
+                                <option value="40">
+                                    International United Pentecostal Church
+                                </option>
+                                <option value="41">
+                                    Free Will Baptist Church
+                                </option>
+                                <option value="42">Interdenominational</option>
+                                <option value="43">
+                                    Mennonite Brethren Church
+                                </option>
+                                <option value="44">Moravian Church</option>
+                                <option value="45">
+                                    North American Baptist
+                                </option>
+                                <option value="47">
+                                    Pentecostal Holiness Church
+                                </option>
+                                <option value="48">
+                                    Christian Churches and Churches of Christ
+                                </option>
+                                <option value="49">
+                                    Reformed Church in America
+                                </option>
+                                <option value="50">
+                                    Episcopal Church, Reformed
+                                </option>
+                                <option value="51">
+                                    African Methodist Episcopal
+                                </option>
+                                <option value="52">American Baptist</option>
+                                <option value="53">American Lutheran</option>
+                                <option value="54">Baptist</option>
+                                <option value="55">
+                                    Christian Methodist Episcopal
+                                </option>
+                                <option value="57">Church of God</option>
+                                <option value="58">Church of Brethren</option>
+                                <option value="59">
+                                    Church of the Nazarene
+                                </option>
+                                <option value="60">
+                                    Cumberland Presbyterian
+                                </option>
+                                <option value="61">
+                                    Christian Church (Disciples of Christ)
+                                </option>
+                                <option value="64">Free Methodist</option>
+                                <option value="65">Friends</option>
+                                <option value="66">
+                                    Presbyterian Church (USA)
+                                </option>
+                                <option value="67">
+                                    Lutheran Church in America
+                                </option>
+                                <option value="68">
+                                    Lutheran Church - Missouri Synod
+                                </option>
+                                <option value="69">Mennonite Church</option>
+                                <option value="71">United Methodist</option>
+                                <option value="73">Protestant Episcopal</option>
+                                <option value="74">Churches of Christ</option>
+                                <option value="75">Southern Baptist</option>
+                                <option value="76">
+                                    United Church of Christ
+                                </option>
+                                <option value="77">
+                                    Protestant, not specified
+                                </option>
+                                <option value="78">
+                                    Multiple Protestant Denomination
+                                </option>
+                                <option value="79">Other Protestant</option>
+                                <option value="80">Jewish</option>
+                                <option value="81">
+                                    Reformed Presbyterian Church
+                                </option>
+                                <option value="84">
+                                    United Brethren Church
+                                </option>
+                                <option value="87">
+                                    Missionary Church Inc
+                                </option>
+                                <option value="88">Undenominational</option>
+                                <option value="89">Wesleyan</option>
+                                <option value="91">Greek Orthodox</option>
+                                <option value="92">Russian Orthodox</option>
+                                <option value="93">
+                                    Unitarian Universalist
+                                </option>
+                                <option value="94">
+                                    Latter Day Saints (Mormon Church)
+                                </option>
+                                <option value="95">
+                                    Seventh Day Adventists
+                                </option>
+                                <option value="97">
+                                    The Presbyterian Church in America
+                                </option>
+                                <option value="99">
+                                    Other (none of the above)
+                                </option>
+                                <option value="100">
+                                    Original Free Will Baptist
+                                </option>
+                                <option value="101">
+                                    Ecumenical Christian
+                                </option>
+                                <option value="102">
+                                    Evangelical Christian
+                                </option>
+                                <option value="103">Presbyterian</option>
+                                <option value="105">General Baptist</option>
+                                <option value="106">Muslim</option>
+                                <option value="107">Plymouth Brethren</option>
+                            </Select>
+                        </InputGroup>
+                    </Grid>
+                    <RadioGroup>
+                        <Heading as="h3" size="sm">
+                            Committed Faculty Importance
+                        </Heading>
+                        <Flex justifyContent={"space-evenly"}>
+                            <Radio
+                                onClick={() =>
+                                    handleRadioClickCollege(
+                                        "prefCommittedFaculty",
+                                        0
+                                    )
+                                }
+                                value="0"
+                            >
+                                0
+                            </Radio>
+                            <Radio
+                                onClick={() =>
+                                    handleRadioClickCollege(
+                                        "prefCommittedFaculty",
+                                        1
+                                    )
+                                }
+                                value="1"
+                            >
+                                1
+                            </Radio>
+                            <Radio
+                                onClick={() =>
+                                    handleRadioClickCollege(
+                                        "prefCommittedFaculty",
+                                        2
+                                    )
+                                }
+                                value="2"
+                            >
+                                2
+                            </Radio>
+                            <Radio
+                                onClick={() =>
+                                    handleRadioClickCollege(
+                                        "prefCommittedFaculty",
+                                        3
+                                    )
+                                }
+                                value="3"
+                            >
+                                3
+                            </Radio>
+                            <Radio
+                                onClick={() =>
+                                    handleRadioClickCollege(
+                                        "prefCommittedFaculty",
+                                        4
+                                    )
+                                }
+                                value="4"
+                            >
+                                4
+                            </Radio>
+                            <Radio
+                                onClick={() =>
+                                    handleRadioClickCollege(
+                                        "prefCommittedFaculty",
+                                        5
+                                    )
+                                }
+                                value="5"
+                            >
+                                5
+                            </Radio>
+                        </Flex>
+                    </RadioGroup>
+                    <Heading as="h3" size="sm">
+                        Major/Degree
+                    </Heading>
+                    <Grid templateColumns="repeat(3, 1fr)" gap={1}>
+                        <InputGroup>
+                            <Select
+                                onChange={handleChange}
+                                name={"collegePrefs.prefMajor"}
+                                placeholder="Major Type"
+                            >
+                                <option value="PCIP01">
+                                    Agriculture, Agriculture Operations, and
+                                    Related Sciences
+                                </option>
+                                <option value="PCIP03">
+                                    Natural Resources and Conservation
+                                </option>
+                                <option value="PCIP04">
+                                    Architecture and Related Services
+                                </option>
+                                <option value="PCIP05">
+                                    Area, Ethnic, Cultural, Gender, and Group
+                                    Studies
+                                </option>
+                                <option value="PCIP09">
+                                    Communication, Journalism, and Related
+                                    Programs
+                                </option>
+                                <option value="PCIP10">
+                                    Communications Technologies/Technicians and
+                                    Support Services
+                                </option>
+                                <option value="PCIP11">
+                                    Computer and Information Sciences and
+                                    Support Services
+                                </option>
+                                <option value="PCIP12">
+                                    Personal and Culinary Services
+                                </option>
+                                <option value="PCIP13">Education</option>
+                                <option value="PCIP14">Engineering</option>
+                                <option value="PCIP15">
+                                    Engineering Technologies and
+                                    Engineering-Related Fields
+                                </option>
+                                <option value="PCIP16">
+                                    Foreign Languages, Literatures, and
+                                    Linguistics
+                                </option>
+                                <option value="PCIP19">
+                                    Family and Consumer Sciences/Human Sciences
+                                </option>
+                                <option value="PCIP22">
+                                    Legal Professions and Studies
+                                </option>
+                                <option value="PCIP23">
+                                    English Language and Literature/Letters
+                                </option>
+                                <option value="PCIP24">
+                                    Liberal Arts and Sciences, General Studies
+                                    and Humanities
+                                </option>
+                                <option value="PCIP25">Library Science</option>
+                                <option value="PCIP26">
+                                    Biological and Biomedical Sciences
+                                </option>
+                                <option value="PCIP27">
+                                    Mathematics and Statistics
+                                </option>
+                                <option value="PCIP29">
+                                    Military Technologies and Applied Sciences
+                                </option>
+                                <option value="PCIP30">
+                                    Multi/Interdisciplinary Studies
+                                </option>
+                                <option value="PCIP31">
+                                    Parks, Recreation, Leisure, and Fitness
+                                    Studies
+                                </option>
+                                <option value="PCIP38">
+                                    Philosophy and Religious Studies
+                                </option>
+                                <option value="PCIP39">
+                                    Theology and Religious Vocations
+                                </option>
+                                <option value="PCIP40">
+                                    Physical Sciences
+                                </option>
+                                <option value="PCIP41">
+                                    Science Technologies/Technicians
+                                </option>
+                                <option value="PCIP42">Psychology</option>
+                                <option value="PCIP43">
+                                    Homeland Security, Law Enforcement,
+                                    Firefighting and Related Protective Services
+                                </option>
+                                <option value="PCIP44">
+                                    Public Administration and Social Service
+                                    Professions
+                                </option>
+                                <option value="PCIP45">Social Sciences</option>
+                                <option value="PCIP46">
+                                    Construction Trades
+                                </option>
+                                <option value="PCIP47">
+                                    Mechanic and Repair Technologies/Technicians
+                                </option>
+                                <option value="PCIP48">
+                                    Precision Production
+                                </option>
+                                <option value="PCIP49">
+                                    Transportation and Materials Moving
+                                </option>
+                                <option value="PCIP50">
+                                    Visual and Performing Arts
+                                </option>
+                                <option value="PCIP51">
+                                    Health Professions and Related Programs
+                                </option>
+                                <option value="PCIP52">
+                                    Business, Management, Marketing, and Related
+                                    Support Services
+                                </option>
+                                <option value="PCIP54">History</option>
+                                <option value="">Other/Undecided</option>
+                            </Select>
+                        </InputGroup>
+                        <InputGroup>
+                            <Checkbox
+                                onChange={toggleMajorProminenceImportanceValue}
+                                name={"collegePrefs.majorProminenceImportance"}
+                            >
+                                Major Prominence
+                            </Checkbox>
+                        </InputGroup>
+                        <InputGroup>
+                            <Select
+                                onChange={handleChange}
+                                name={"collegePrefs.prefHighestDegree"}
+                                placeholder="Highest Pref Degree"
+                            >
+                                <option value="0">Non-degree-granting</option>
+                                <option value="1">Certificate degree</option>
+                                <option value="2">Associate degree</option>
+                                <option value="3">Bachelor's degree</option>
+                                <option value="4">Graduate degree</option>
+                            </Select>
+                        </InputGroup>
+                    </Grid>
+                    <Heading as="h4" size="md">
+                        Cost Preferences
+                    </Heading>
+                    <Grid templateColumns="repeat(2, 1fr)" gap={1}>
+                        <InputGroup>
+                            <Checkbox
+                                onChange={toggleCostImportanceValue}
+                                name={"costPrefs.costImportance"}
+                            >
+                                Is Cost Important?
+                            </Checkbox>
+                        </InputGroup>
+                        <InputGroup>
+                            <Checkbox
+                                onChange={toggleFederalAidImportanceValue}
+                                name={"costPrefs.federalAidImportance"}
+                            >
+                                Is Federal Aid Important?
+                            </Checkbox>
+                        </InputGroup>
+                        <InputGroup>
+                            <InputLeftAddon children="Income" />
+                            <Input
+                                onChange={handleChange}
+                                name={"costPrefs.income"}
+                                type="text" //no commas nor dollar signs!
+                                placeholder="100000"
+                            />
+                        </InputGroup>
+                        <InputGroup>
+                            <InputLeftAddon children="Pref COA" />
+                            <Input
+                                onChange={handleChange}
+                                name={"costPrefs.prefCOA"}
+                                type="text" //no commas nor dollar signs!
+                                placeholder="50000"
+                            />
+                        </InputGroup>
+                    </Grid>
+                    <Heading as="h4" size="md">
+                        Location Preferences
+                    </Heading>
+                    <Grid templateColumns="repeat(2, 1fr)" gap={1}>
+                        <InputGroup>
+                            <Checkbox
+                                onChange={toggleLocationImportanceValue}
+                                name={"locationPrefs.locationImportance"}
+                            >
+                                Is Location Important?
+                            </Checkbox>
+                        </InputGroup>
+                        <InputGroup>
+                            <Checkbox
+                                onChange={toggleLivingAtHomePrefValue}
+                                name={"locationPrefs.livingAtHome"}
+                            >
+                                Will you 100% live at home (in-state)?
+                            </Checkbox>
+                        </InputGroup>
+                        <InputGroup>
+                            <InputLeftAddon children="ZIP" />
+                            <Input
+                                onChange={handleChange}
+                                name={"locationPrefs.ZIP"}
+                                type="text" //no commas nor dollar signs!
+                                placeholder="14450"
+                            />
+                        </InputGroup>
+                        <InputGroup>
+                            <Select
+                                onChange={handleChange}
+                                name={"locationPrefs.curState"}
+                                placeholder="Current State"
+                            >
+                                <option value="AL">Alabama</option>
+                                <option value="AK">Alaska</option>
+                                <option value="AZ">Arizona</option>
+                                <option value="AR">Arkansas</option>
+                                <option value="CA">California</option>
+                                <option value="CO">Colorado</option>
+                                <option value="CT">Connecticut</option>
+                                <option value="DE">Delaware</option>
+                                <option value="FL">Florida</option>
+                                <option value="GA">Georgia</option>
+                                <option value="HI">Hawaii</option>
+                                <option value="ID">Idaho</option>
+                                <option value="IL">Illinois</option>
+                                <option value="IN">Indiana</option>
+                                <option value="IA">Iowa</option>
+                                <option value="KS">Kansas</option>
+                                <option value="KY">Kentucky</option>
+                                <option value="LA">Louisiana</option>
+                                <option value="ME">Maine</option>
+                                <option value="MD">Maryland</option>
+                                <option value="MA">Massachusetts</option>
+                                <option value="MI">Michigan</option>
+                                <option value="MN">Minnesota</option>
+                                <option value="MS">Mississippi</option>
+                                <option value="MO">Missouri</option>
+                                <option value="MT">Montana</option>
+                                <option value="NE">Nebraska</option>
+                                <option value="NV">Nevada</option>
+                                <option value="NH">New Hampshire</option>
+                                <option value="NJ">New Jersey</option>
+                                <option value="NM">New Mexico</option>
+                                <option value="NY">New York</option>
+                                <option value="NC">North Carolina</option>
+                                <option value="ND">North Dakota</option>
+                                <option value="OH">Ohio</option>
+                                <option value="OK">Oklahoma</option>
+                                <option value="OR">Oregon</option>
+                                <option value="PA">Pennsylvania</option>
+                                <option value="RI">Rhode Island</option>
+                                <option value="SC">South Carolina</option>
+                                <option value="SD">South Dakota</option>
+                                <option value="TN">Tennessee</option>
+                                <option value="TX">Texas</option>
+                                <option value="UT">Utah</option>
+                                <option value="VT">Vermont</option>
+                                <option value="VA">Virginia</option>
+                                <option value="WA">Washington</option>
+                                <option value="WV">West Virginia</option>
+                                <option value="WI">Wisconsin</option>
+                                <option value="WY">Wyoming</option>
+                                <option value="">N/A</option>
+                            </Select>
+                        </InputGroup>
+                        <InputGroup>
+                            <InputLeftAddon children="Pref City" />
+                            <Input
+                                onChange={handleChange}
+                                name={"locationPrefs.prefCity"}
+                                type="text" //no commas nor dollar signs!
+                                placeholder="Rochester"
+                            />
+                        </InputGroup>
+                        <InputGroup>
+                            <Select
+                                onChange={handleChange}
+                                name={"locationPrefs.prefState"}
+                                placeholder="Pref State"
+                            >
+                                <option value="AL">Alabama</option>
+                                <option value="AK">Alaska</option>
+                                <option value="AZ">Arizona</option>
+                                <option value="AR">Arkansas</option>
+                                <option value="CA">California</option>
+                                <option value="CO">Colorado</option>
+                                <option value="CT">Connecticut</option>
+                                <option value="DE">Delaware</option>
+                                <option value="FL">Florida</option>
+                                <option value="GA">Georgia</option>
+                                <option value="HI">Hawaii</option>
+                                <option value="ID">Idaho</option>
+                                <option value="IL">Illinois</option>
+                                <option value="IN">Indiana</option>
+                                <option value="IA">Iowa</option>
+                                <option value="KS">Kansas</option>
+                                <option value="KY">Kentucky</option>
+                                <option value="LA">Louisiana</option>
+                                <option value="ME">Maine</option>
+                                <option value="MD">Maryland</option>
+                                <option value="MA">Massachusetts</option>
+                                <option value="MI">Michigan</option>
+                                <option value="MN">Minnesota</option>
+                                <option value="MS">Mississippi</option>
+                                <option value="MO">Missouri</option>
+                                <option value="MT">Montana</option>
+                                <option value="NE">Nebraska</option>
+                                <option value="NV">Nevada</option>
+                                <option value="NH">New Hampshire</option>
+                                <option value="NJ">New Jersey</option>
+                                <option value="NM">New Mexico</option>
+                                <option value="NY">New York</option>
+                                <option value="NC">North Carolina</option>
+                                <option value="ND">North Dakota</option>
+                                <option value="OH">Ohio</option>
+                                <option value="OK">Oklahoma</option>
+                                <option value="OR">Oregon</option>
+                                <option value="PA">Pennsylvania</option>
+                                <option value="RI">Rhode Island</option>
+                                <option value="SC">South Carolina</option>
+                                <option value="SD">South Dakota</option>
+                                <option value="TN">Tennessee</option>
+                                <option value="TX">Texas</option>
+                                <option value="UT">Utah</option>
+                                <option value="VT">Vermont</option>
+                                <option value="VA">Virginia</option>
+                                <option value="WA">Washington</option>
+                                <option value="WV">West Virginia</option>
+                                <option value="WI">Wisconsin</option>
+                                <option value="WY">Wyoming</option>
+                                <option value="">N/A</option>
+                            </Select>
+                        </InputGroup>
+                    </Grid>
+                    <Grid templateColumns="repeat(1, 1fr)" gap={1}>
+                        <InputGroup>
+                            <Select
+                                onChange={handleChange}
+                                name={"locationPrefs.prefRegion"}
+                                placeholder="Pref Region"
+                            >
+                                <option value="0">U.S. Service Schools</option>
+                                <option value="1">
+                                    New England (CT, ME, MA, NH, RI, VT)
+                                </option>
+                                <option value="2">
+                                    Mid East (DE, DC, MD, NJ, NY, PA)
+                                </option>
+                                <option value="3">
+                                    Great Lakes (IL, IN, MI, OH, WI)
+                                </option>
+                                <option value="4">
+                                    Plains (IA, KS, MN, MO, NE, ND, SD)
+                                </option>
+                                <option value="5">
+                                    Southeast (AL, AR, FL, GA, KY, LA, MS, NC,
+                                    SC, TN, VA, WV)
+                                </option>
+                                <option value="6">
+                                    Southwest (AZ, NM, OK, TX)
+                                </option>
+                                <option value="7">
+                                    Rocky Mountains (CO, ID, MT, UT, WY)
+                                </option>
+                                <option value="8">
+                                    Far West (AK, CA, HI, NV, OR, WA)
+                                </option>
+                                <option value="9">
+                                    Outlying Areas (AS, FM, GU, MH, MP, PR, PW,
+                                    VI)
+                                </option>
+                                <option value="-1">N/A</option>
+                            </Select>
+                        </InputGroup>
+                        <InputGroup>
+                            <Select
+                                onChange={handleChange}
+                                name={"locationPrefs.prefLocale"}
+                                placeholder="Pref Locale"
+                            >
+                                <option value="11">
+                                    City: Large (population of 250,000 or more)
+                                </option>
+                                <option value="12">
+                                    City: Midsize (population of at least
+                                    100,000 but less than 250,000)
+                                </option>
+                                <option value="13">
+                                    City: Small (population less than 100,000)
+                                </option>
+                                <option value="21">
+                                    Suburb: Large (outside principal city, in
+                                    urbanized area with population of 250,000 or
+                                    more)
+                                </option>
+                                <option value="22">
+                                    Suburb: Midsize (outside principal city, in
+                                    urbanized area with population of at least
+                                    100,000 but less than 250,000)
+                                </option>
+                                <option value="23">
+                                    Suburb: Small (outside principal city, in
+                                    urbanized area with population less than
+                                    100,000)
+                                </option>
+                                <option value="31">
+                                    Town: Fringe (in urban cluster up to 10
+                                    miles from an urbanized area)
+                                </option>
+                                <option value="32">
+                                    Town: Distant (in urban cluster more than 10
+                                    miles and up to 35 miles from an urbanized
+                                    area)
+                                </option>
+                                <option value="33">
+                                    Town: Remote (in urban cluster more than 35
+                                    miles from an urbanized area)
+                                </option>
+                                <option value="41">
+                                    Rural: Fringe (rural territory up to 5 miles
+                                    from an urbanized area or up to 2.5 miles
+                                    from an urban cluster)
+                                </option>
+                                <option value="42">
+                                    Rural: Distant (rural territory more than 5
+                                    miles but up to 25 miles from an urbanized
+                                    area or more than 2.5 and up to 10 miles
+                                    from an urban cluster)
+                                </option>
+                                <option value="43">
+                                    Rural: Remote (rural territory more than 25
+                                    miles from an urbanized area and more than
+                                    10 miles from an urban cluster)
+                                </option>
+                            </Select>
+                        </InputGroup>
+                    </Grid>
+                    <Grid templateColumns="repeat(2, 1fr)" gap={1}>
+                        <InputGroup>
+                            <InputLeftAddon children="Pref Summer Temp ('F)" />
+                            <Input
+                                onChange={handleChange}
+                                name={"locationPrefs.prefSummerClimate"}
+                                type="text" //no commas or words
+                                placeholder="65"
+                            />
+                        </InputGroup>
+                        <InputGroup>
+                            <InputLeftAddon children="Pref Winter Temp ('F)" />
+                            <Input
+                                onChange={handleChange}
+                                name={"locationPrefs.prefWinterClimate"}
+                                type="text" //no commas or words
+                                placeholder="30"
+                            />
+                        </InputGroup>
+                    </Grid>
+                    <Heading as="h4" size="md">
+                        Success Preferences
+                    </Heading>
+                    <Grid templateColumns="repeat(2, 1fr)" gap={1}>
+                        <InputGroup>
+                            <Checkbox
+                                onChange={toggleSuccessImportanceValue}
+                                name={"successPrefs.successImportance"}
+                            >
+                                Is success (ROI) important?
+                            </Checkbox>
+                        </InputGroup>
+                        <InputGroup>
+                            <Checkbox
+                                onChange={toggleAlumniCarreerImportanceValue}
+                                name={"successPrefs.alumniCarreerImportance"}
+                            >
+                                Is alumni network important?
+                            </Checkbox>
+                        </InputGroup>
+                        <InputGroup>
+                            <Checkbox
+                                onChange={toggleGraduationRateImportanceValue}
+                                name={"successPrefs.graduationRateImportance"}
+                            >
+                                Is grad rate important?
+                            </Checkbox>
+                        </InputGroup>
+                        <InputGroup>
+                            <InputLeftAddon children="Pref Min Grad Rate" />
+                            <Input
+                                onChange={handleChange}
+                                name={"successPrefs.prefGraduationRate"}
+                                type="text" //no percent signs!!!!
+                                placeholder="50"
+                            />
+                        </InputGroup>
+                        <InputGroup>
+                            <Checkbox
+                                onChange={toggleRetentionRateImportanceValue}
+                                name={"successPrefs.retentionRateImportance"}
+                            >
+                                Is retention rate important?
+                            </Checkbox>
+                        </InputGroup>
+                        <InputGroup>
+                            <InputLeftAddon children="Min Retention Rate" />
+                            <Input
+                                onChange={handleChange}
+                                name={"successPrefs.prefRetentionRate"}
+                                type="text" //no percent signs!!!!
+                                placeholder="50"
+                            />
+                        </InputGroup>
+                        <InputGroup>
+                            <InputLeftAddon children="Pref 6yr Earnings" />
+                            <Input
+                                onChange={handleChange}
+                                name={"successPrefs.desiredEarnings"}
+                                type="text" //no commas nor dollar signs!
+                                placeholder="60000"
+                            />
+                        </InputGroup>
+                    </Grid>
+                    <Heading as="h4" size="md">
+                        Weighting Preferences
+                    </Heading>
+                    <Grid templateColumns="repeat(2, 1fr)" gap={1}>
+                        <InputGroup>
+                            <Select
+                                onChange={handleChange}
+                                name={"weights.collegeWeight"}
+                                placeholder="College Weight"
+                            >
+                                <option value="1">Not Important</option>
+                                <option value="2">Neutral</option>
+                                <option value="3">Important</option>
+                            </Select>
+                        </InputGroup>
+                        <InputGroup>
+                            <Select
+                                onChange={handleChange}
+                                name={"weights.costWeight"}
+                                placeholder="Cost Weight"
+                            >
+                                <option value="1">Not Important</option>
+                                <option value="2">Neutral</option>
+                                <option value="3">Important</option>
+                            </Select>
+                        </InputGroup>
+                        <InputGroup>
+                            <Select
+                                onChange={handleChange}
+                                name={"weights.locationWeight"}
+                                placeholder="Location Weight"
+                            >
+                                <option value="1">Not Important</option>
+                                <option value="2">Neutral</option>
+                                <option value="3">Important</option>
+                            </Select>
+                        </InputGroup>
+                        <InputGroup>
+                            <Select
+                                onChange={handleChange}
+                                name={"weights.successWeight"}
+                                placeholder="Success Weight"
+                            >
+                                <option value="1">Not Important</option>
+                                <option value="2">Neutral</option>
+                                <option value="3">Important</option>
+                            </Select>
+                        </InputGroup>
+                    </Grid>
+                    <Heading as="h4" size="md">
+                        Preferred List Length
+                    </Heading>
+                    <Grid templateColumns="repeat(3, 1fr)" gap={1}>
+                        <InputGroup>
+                            <InputLeftAddon children="# Safeties" />
+                            <Input
+                                onChange={handleChange}
+                                name={"listLengths.safeties"}
+                                type="text" //no commas nor dollar signs!
+                                placeholder="3"
+                            />
+                        </InputGroup>
+                        <InputGroup>
+                            <InputLeftAddon children="# Targets" />
+                            <Input
+                                onChange={handleChange}
+                                name={"listLengths.targets"}
+                                type="text" //no commas nor dollar signs!
+                                placeholder="4"
+                            />
+                        </InputGroup>
+                        <InputGroup>
+                            <InputLeftAddon children="# Reaches" />
+                            <Input
+                                onChange={handleChange}
+                                name={"listLengths.reaches"}
+                                type="text" //no commas nor dollar signs!
+                                placeholder="2"
+                            />
+                        </InputGroup>
+                    </Grid>
                     <Button type={"submit"} colorScheme="teal">
                         Submit
                     </Button>
