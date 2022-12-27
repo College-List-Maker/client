@@ -17,7 +17,7 @@ export function Home() {
   const fetchSubmittedData = () => {
     axios
       .get(
-        "http://localhost:4000/college/get-submit-data/" +
+        "https://collegy-server.herokuapp.com/college/get-submit-data/" +
           getCookie("visitorId=")
       )
       .then((res: any) => {
