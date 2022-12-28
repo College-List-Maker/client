@@ -57,7 +57,6 @@ export interface UserCollegeData {
         academicResourcesImportance: number;
         facilityImportance: boolean;
         gender: string;
-        hbcuImportance: number;
         internshipImportance: number;
         majorProminenceImportance: boolean;
         pref4yr: boolean;
@@ -74,6 +73,7 @@ export interface UserCollegeData {
         researchImportance: number;
         rigorImportance: number;
         sameGenderImportance: number;
+        hbcuImportance: number;
         studyAbroadImportance: number;
         workStudyImportance: number;
     };
