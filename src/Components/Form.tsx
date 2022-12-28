@@ -5,6 +5,7 @@ import {
     Checkbox,
     Container,
     Flex,
+    FormControl,
     Grid,
     Heading,
     Input,
@@ -177,7 +178,8 @@ export function Form() {
             },
         }));
     }
-    function toggleCostImportanceValue() {
+    const [isCostChecked, setCostChecked] = useState(false);
+    function toggleCostImportanceValue(event: any) {
         setFormData((prevFormData) => ({
             ...prevFormData,
             costPrefs: {
@@ -185,6 +187,7 @@ export function Form() {
                 costImportance: !prevFormData["costPrefs"]["costImportance"],
             },
         }));
+        setCostChecked(event.target.checked);
     }
     function toggleFederalAidImportanceValue() {
         setFormData((prevFormData) => ({
@@ -206,7 +209,8 @@ export function Form() {
             },
         }));
     }
-    function toggleLocationImportanceValue() {
+    const [isLocationChecked, setLocationChecked] = useState(false);
+    function toggleLocationImportanceValue(event: any) {
         setFormData((prevFormData) => ({
             ...prevFormData,
             locationPrefs: {
@@ -215,6 +219,7 @@ export function Form() {
                     !prevFormData["locationPrefs"]["locationImportance"],
             },
         }));
+        setLocationChecked(event.target.checked);
     }
     function toggleLivingAtHomePrefValue() {
         setFormData((prevFormData) => ({
@@ -225,7 +230,8 @@ export function Form() {
             },
         }));
     }
-    function toggleSuccessImportanceValue() {
+    const [isSuccessChecked, setSuccessChecked] = useState(false);
+    function toggleSuccessImportanceValue(event: any) {
         setFormData((prevFormData) => ({
             ...prevFormData,
             successPrefs: {
@@ -234,6 +240,7 @@ export function Form() {
                     !prevFormData["successPrefs"]["successImportance"],
             },
         }));
+        setSuccessChecked(event.target.checked);
     }
     function toggleAlumniCarreerImportanceValue() {
         setFormData((prevFormData) => ({
@@ -245,7 +252,8 @@ export function Form() {
             },
         }));
     }
-    function toggleGraduationRateImportanceValue() {
+    const [isGradRChecked, setGradRChecked] = useState(false);
+    function toggleGraduationRateImportanceValue(event: any) {
         setFormData((prevFormData) => ({
             ...prevFormData,
             successPrefs: {
@@ -254,8 +262,10 @@ export function Form() {
                     !prevFormData["successPrefs"]["graduationRateImportance"],
             },
         }));
+        setGradRChecked(event.target.checked);
     }
-    function toggleRetentionRateImportanceValue() {
+    const [isRetentionRChecked, setRetentionRChecked] = useState(false);
+    function toggleRetentionRateImportanceValue(event: any) {
         setFormData((prevFormData) => ({
             ...prevFormData,
             successPrefs: {
@@ -264,6 +274,7 @@ export function Form() {
                     !prevFormData["successPrefs"]["retentionRateImportance"],
             },
         }));
+        setRetentionRChecked(event.target.checked);
     }
     function toggleReligiousPrefValue() {
         setFormData((prevFormData) => ({
@@ -371,6 +382,19 @@ export function Form() {
         window.location.hash = "#college-list";
     };
 
+    const [isSATChecked, setSATChecked] = useState(false);
+    const [isACTChecked, setACTChecked] = useState(false);
+    const [isCRChecked, setCRChecked] = useState(false);
+    const handleSATChange = (event: any) => {
+        setSATChecked(event.target.checked);
+    };
+    const handleACTChange = (event: any) => {
+        setACTChecked(event.target.checked);
+    };
+    const handleCRChange = (event: any) => {
+        setCRChecked(event.target.checked);
+    };
+
     return (
         <Center>
             <Container>
@@ -382,31 +406,51 @@ export function Form() {
                         Academics
                     </Heading>
                     <Grid templateColumns="repeat(3, 1fr)" gap={1}>
-                        <InputGroup>
-                            <InputLeftAddon children="SAT" />
-                            <Input
-                                onChange={handleChange}
-                                name={"academic.sat"}
-                                type="text"
-                                placeholder="Out of 1600"
-                            />
-                        </InputGroup>
-                        <InputGroup>
-                            <InputLeftAddon children="ACT" />
-                            <Input
-                                onChange={handleChange}
-                                name={"academic.act"}
-                                type="text"
-                                placeholder="Out of 36"
-                            />
-                        </InputGroup>
+                        <Checkbox onChange={handleSATChange}>SAT</Checkbox>
+                        {isSATChecked && (
+                            <InputGroup>
+                                <InputLeftAddon children="SAT" />
+
+                                <Input
+                                    onChange={handleChange}
+                                    name={"academic.sat"}
+                                    type="number"
+                                    placeholder="Out of 1600"
+                                    required
+                                    min={400}
+                                    max={1600}
+                                    step={10}
+                                />
+                            </InputGroup>
+                        )}
+                        <Checkbox onChange={handleACTChange}>ACT</Checkbox>
+                        {isACTChecked && (
+                            <InputGroup>
+                                <InputLeftAddon children="ACT" />
+
+                                <Input
+                                    onChange={handleChange}
+                                    name={"academic.act"}
+                                    type="number"
+                                    placeholder="Out of 36"
+                                    required
+                                    min={1}
+                                    max={36}
+                                    step={1}
+                                />
+                            </InputGroup>
+                        )}
                         <InputGroup>
                             <InputLeftAddon children="GPA" />
                             <Input
                                 onChange={handleChange}
                                 name={"academic.gpa"}
-                                type="text"
+                                type="number"
                                 placeholder="Out of 4.00"
+                                required
+                                min={0}
+                                max={4}
+                                step={0.001}
                             />
                         </InputGroup>
                     </Grid>
@@ -419,6 +463,7 @@ export function Form() {
                                 onChange={handleChange}
                                 name={"courseload.honors"}
                                 placeholder="Honors Courses"
+                                required
                             >
                                 <option value="0">0</option>
                                 <option value="1">1</option>
@@ -438,6 +483,7 @@ export function Form() {
                                 onChange={handleChange}
                                 name={"courseload.apib"}
                                 placeholder="AP/IB Courses"
+                                required
                             >
                                 <option value="0">0</option>
                                 <option value="1">1</option>
@@ -457,6 +503,7 @@ export function Form() {
                                 onChange={handleChange}
                                 name={"courseload.lang"}
                                 placeholder="Lang Courses"
+                                required
                             >
                                 <option value="0">0</option>
                                 <option value="1">1</option>
@@ -470,6 +517,7 @@ export function Form() {
                                 onChange={handleChange}
                                 name={"courseload.cs"}
                                 placeholder="CS Courses"
+                                required
                             >
                                 <option value="Y">Yes</option>
                                 <option value="N">No</option>
@@ -480,6 +528,7 @@ export function Form() {
                                 onChange={handleChange}
                                 name={"courseload.core"}
                                 placeholder="Core Courses"
+                                required
                             >
                                 <option value="Y">Yes</option>
                                 <option value="N">No</option>
@@ -490,6 +539,7 @@ export function Form() {
                                 onChange={handleChange}
                                 name={"courseload.major"}
                                 placeholder="Major Related"
+                                required
                             >
                                 <option value="0">0</option>
                                 <option value="1">1</option>
@@ -503,646 +553,756 @@ export function Form() {
                         Confidence (Low - 0, High - 5)
                     </Heading>
                     <Grid>
-                        <RadioGroup>
-                            <Heading as="h3" size="sm">
-                                Extracurriculars
-                            </Heading>
-                            <Flex justifyContent={"space-evenly"}>
-                                <Radio
-                                    onClick={() =>
-                                        handleRadioClickApplicant(
-                                            "extracurriculars",
-                                            0
-                                        )
-                                    }
-                                    value="0"
-                                >
-                                    0
-                                </Radio>
-                                <Radio
-                                    onClick={() =>
-                                        handleRadioClickApplicant(
-                                            "extracurriculars",
-                                            1
-                                        )
-                                    }
-                                    value="1"
-                                >
-                                    1
-                                </Radio>
-                                <Radio
-                                    onClick={() =>
-                                        handleRadioClickApplicant(
-                                            "extracurriculars",
-                                            2
-                                        )
-                                    }
-                                    value="2"
-                                >
-                                    2
-                                </Radio>
-                                <Radio
-                                    onClick={() =>
-                                        handleRadioClickApplicant(
-                                            "extracurriculars",
-                                            3
-                                        )
-                                    }
-                                    value="3"
-                                >
-                                    3
-                                </Radio>
-                                <Radio
-                                    onClick={() =>
-                                        handleRadioClickApplicant(
-                                            "extracurriculars",
-                                            4
-                                        )
-                                    }
-                                    value="4"
-                                >
-                                    4
-                                </Radio>
-                                <Radio
-                                    onClick={() =>
-                                        handleRadioClickApplicant(
-                                            "extracurriculars",
-                                            5
-                                        )
-                                    }
-                                    value="5"
-                                >
-                                    5
-                                </Radio>
-                            </Flex>
-                        </RadioGroup>
-                        <RadioGroup>
-                            <Heading as="h3" size="sm">
-                                Essay
-                            </Heading>
-                            <Flex justifyContent={"space-evenly"}>
-                                <Radio
-                                    onClick={() =>
-                                        handleRadioClickApplicant("essay", 0)
-                                    }
-                                    value="0"
-                                >
-                                    0
-                                </Radio>
-                                <Radio
-                                    onClick={() =>
-                                        handleRadioClickApplicant("essay", 1)
-                                    }
-                                    value="1"
-                                >
-                                    1
-                                </Radio>
-                                <Radio
-                                    onClick={() =>
-                                        handleRadioClickApplicant("essay", 2)
-                                    }
-                                    value="2"
-                                >
-                                    2
-                                </Radio>
-                                <Radio
-                                    onClick={() =>
-                                        handleRadioClickApplicant("essay", 3)
-                                    }
-                                    value="3"
-                                >
-                                    3
-                                </Radio>
-                                <Radio
-                                    onClick={() =>
-                                        handleRadioClickApplicant("essay", 4)
-                                    }
-                                    value="4"
-                                >
-                                    4
-                                </Radio>
-                                <Radio
-                                    onClick={() =>
-                                        handleRadioClickApplicant("essay", 5)
-                                    }
-                                    value="5"
-                                >
-                                    5
-                                </Radio>
-                            </Flex>
-                        </RadioGroup>
-                        <RadioGroup>
-                            <Heading as="h3" size="sm">
-                                Awards
-                            </Heading>
-                            <Flex justifyContent={"space-evenly"}>
-                                <Radio
-                                    onClick={() =>
-                                        handleRadioClickApplicant("awards", 0)
-                                    }
-                                    value="0"
-                                >
-                                    0
-                                </Radio>
-                                <Radio
-                                    onClick={() =>
-                                        handleRadioClickApplicant("awards", 1)
-                                    }
-                                    value="1"
-                                >
-                                    1
-                                </Radio>
-                                <Radio
-                                    onClick={() =>
-                                        handleRadioClickApplicant("awards", 2)
-                                    }
-                                    value="2"
-                                >
-                                    2
-                                </Radio>
-                                <Radio
-                                    onClick={() =>
-                                        handleRadioClickApplicant("awards", 3)
-                                    }
-                                    value="3"
-                                >
-                                    3
-                                </Radio>
-                                <Radio
-                                    onClick={() =>
-                                        handleRadioClickApplicant("awards", 4)
-                                    }
-                                    value="4"
-                                >
-                                    4
-                                </Radio>
-                                <Radio
-                                    onClick={() =>
-                                        handleRadioClickApplicant("awards", 5)
-                                    }
-                                    value="5"
-                                >
-                                    5
-                                </Radio>
-                            </Flex>
-                        </RadioGroup>
-                        <RadioGroup>
-                            <Heading as="h3" size="sm">
-                                Recommendations
-                            </Heading>
-                            <Flex justifyContent={"space-evenly"}>
-                                <Radio
-                                    onClick={() =>
-                                        handleRadioClickApplicant(
-                                            "recommendations",
-                                            0
-                                        )
-                                    }
-                                    value="0"
-                                >
-                                    0
-                                </Radio>
-                                <Radio
-                                    onClick={() =>
-                                        handleRadioClickApplicant(
-                                            "recommendations",
-                                            1
-                                        )
-                                    }
-                                    value="1"
-                                >
-                                    1
-                                </Radio>
-                                <Radio
-                                    onClick={() =>
-                                        handleRadioClickApplicant(
-                                            "recommendations",
-                                            2
-                                        )
-                                    }
-                                    value="2"
-                                >
-                                    2
-                                </Radio>
-                                <Radio
-                                    onClick={() =>
-                                        handleRadioClickApplicant(
-                                            "recommendations",
-                                            3
-                                        )
-                                    }
-                                    value="3"
-                                >
-                                    3
-                                </Radio>
-                                <Radio
-                                    onClick={() =>
-                                        handleRadioClickApplicant(
-                                            "recommendations",
-                                            4
-                                        )
-                                    }
-                                    value="4"
-                                >
-                                    4
-                                </Radio>
-                                <Radio
-                                    onClick={() =>
-                                        handleRadioClickApplicant(
-                                            "recommendations",
-                                            5
-                                        )
-                                    }
-                                    value="5"
-                                >
-                                    5
-                                </Radio>
-                            </Flex>
-                        </RadioGroup>
-                        <RadioGroup>
-                            <Heading as="h3" size="sm">
-                                Volunteering
-                            </Heading>
-                            <Flex justifyContent={"space-evenly"}>
-                                <Radio
-                                    onClick={() =>
-                                        handleRadioClickApplicant(
-                                            "volunteering",
-                                            0
-                                        )
-                                    }
-                                    value="0"
-                                >
-                                    0
-                                </Radio>
-                                <Radio
-                                    onClick={() =>
-                                        handleRadioClickApplicant(
-                                            "volunteering",
-                                            1
-                                        )
-                                    }
-                                    value="1"
-                                >
-                                    1
-                                </Radio>
-                                <Radio
-                                    onClick={() =>
-                                        handleRadioClickApplicant(
-                                            "volunteering",
-                                            2
-                                        )
-                                    }
-                                    value="2"
-                                >
-                                    2
-                                </Radio>
-                                <Radio
-                                    onClick={() =>
-                                        handleRadioClickApplicant(
-                                            "volunteering",
-                                            3
-                                        )
-                                    }
-                                    value="3"
-                                >
-                                    3
-                                </Radio>
-                                <Radio
-                                    onClick={() =>
-                                        handleRadioClickApplicant(
-                                            "volunteering",
-                                            4
-                                        )
-                                    }
-                                    value="4"
-                                >
-                                    4
-                                </Radio>
-                                <Radio
-                                    onClick={() =>
-                                        handleRadioClickApplicant(
-                                            "volunteering",
-                                            5
-                                        )
-                                    }
-                                    value="5"
-                                >
-                                    5
-                                </Radio>
-                            </Flex>
-                        </RadioGroup>
-                        <RadioGroup>
-                            <Heading as="h3" size="sm">
-                                Work
-                            </Heading>
-                            <Flex justifyContent={"space-evenly"}>
-                                <Radio
-                                    onClick={() =>
-                                        handleRadioClickApplicant("works", 0)
-                                    }
-                                    value="0"
-                                >
-                                    0
-                                </Radio>
-                                <Radio
-                                    onClick={() =>
-                                        handleRadioClickApplicant("works", 1)
-                                    }
-                                    value="1"
-                                >
-                                    1
-                                </Radio>
-                                <Radio
-                                    onClick={() =>
-                                        handleRadioClickApplicant("works", 2)
-                                    }
-                                    value="2"
-                                >
-                                    2
-                                </Radio>
-                                <Radio
-                                    onClick={() =>
-                                        handleRadioClickApplicant("works", 3)
-                                    }
-                                    value="3"
-                                >
-                                    3
-                                </Radio>
-                                <Radio
-                                    onClick={() =>
-                                        handleRadioClickApplicant("works", 4)
-                                    }
-                                    value="4"
-                                >
-                                    4
-                                </Radio>
-                                <Radio
-                                    onClick={() =>
-                                        handleRadioClickApplicant("works", 5)
-                                    }
-                                    value="5"
-                                >
-                                    5
-                                </Radio>
-                            </Flex>
-                        </RadioGroup>
-                        <RadioGroup>
-                            <Heading as="h3" size="sm">
-                                Talent
-                            </Heading>
-                            <Flex justifyContent={"space-evenly"}>
-                                <Radio
-                                    onClick={() =>
-                                        handleRadioClickApplicant("talents", 0)
-                                    }
-                                    value="0"
-                                >
-                                    0
-                                </Radio>
-                                <Radio
-                                    onClick={() =>
-                                        handleRadioClickApplicant("talents", 1)
-                                    }
-                                    value="1"
-                                >
-                                    1
-                                </Radio>
-                                <Radio
-                                    onClick={() =>
-                                        handleRadioClickApplicant("talents", 2)
-                                    }
-                                    value="2"
-                                >
-                                    2
-                                </Radio>
-                                <Radio
-                                    onClick={() =>
-                                        handleRadioClickApplicant("talents", 3)
-                                    }
-                                    value="3"
-                                >
-                                    3
-                                </Radio>
-                                <Radio
-                                    onClick={() =>
-                                        handleRadioClickApplicant("talents", 4)
-                                    }
-                                    value="4"
-                                >
-                                    4
-                                </Radio>
-                                <Radio
-                                    onClick={() =>
-                                        handleRadioClickApplicant("talents", 5)
-                                    }
-                                    value="5"
-                                >
-                                    5
-                                </Radio>
-                            </Flex>
-                        </RadioGroup>
-                        <RadioGroup>
-                            <Heading as="h3" size="sm">
-                                Interviewing
-                            </Heading>
-                            <Flex justifyContent={"space-evenly"}>
-                                <Radio
-                                    onClick={() =>
-                                        handleRadioClickApplicant(
-                                            "interviewing",
-                                            0
-                                        )
-                                    }
-                                    value="0"
-                                >
-                                    0
-                                </Radio>
-                                <Radio
-                                    onClick={() =>
-                                        handleRadioClickApplicant(
-                                            "interviewing",
-                                            1
-                                        )
-                                    }
-                                    value="1"
-                                >
-                                    1
-                                </Radio>
-                                <Radio
-                                    onClick={() =>
-                                        handleRadioClickApplicant(
-                                            "interviewing",
-                                            2
-                                        )
-                                    }
-                                    value="2"
-                                >
-                                    2
-                                </Radio>
-                                <Radio
-                                    onClick={() =>
-                                        handleRadioClickApplicant(
-                                            "interviewing",
-                                            3
-                                        )
-                                    }
-                                    value="3"
-                                >
-                                    3
-                                </Radio>
-                                <Radio
-                                    onClick={() =>
-                                        handleRadioClickApplicant(
-                                            "interviewing",
-                                            4
-                                        )
-                                    }
-                                    value="4"
-                                >
-                                    4
-                                </Radio>
-                                <Radio
-                                    onClick={() =>
-                                        handleRadioClickApplicant(
-                                            "interviewing",
-                                            5
-                                        )
-                                    }
-                                    value="5"
-                                >
-                                    5
-                                </Radio>
-                            </Flex>
-                        </RadioGroup>
-                        <RadioGroup>
-                            <Heading as="h3" size="sm">
-                                Character
-                            </Heading>
-                            <Flex justifyContent={"space-evenly"}>
-                                <Radio
-                                    onClick={() =>
-                                        handleRadioClickApplicant(
-                                            "character",
-                                            0
-                                        )
-                                    }
-                                    value="0"
-                                >
-                                    0
-                                </Radio>
-                                <Radio
-                                    onClick={() =>
-                                        handleRadioClickApplicant(
-                                            "character",
-                                            1
-                                        )
-                                    }
-                                    value="1"
-                                >
-                                    1
-                                </Radio>
-                                <Radio
-                                    onClick={() =>
-                                        handleRadioClickApplicant(
-                                            "character",
-                                            2
-                                        )
-                                    }
-                                    value="2"
-                                >
-                                    2
-                                </Radio>
-                                <Radio
-                                    onClick={() =>
-                                        handleRadioClickApplicant(
-                                            "character",
-                                            3
-                                        )
-                                    }
-                                    value="3"
-                                >
-                                    3
-                                </Radio>
-                                <Radio
-                                    onClick={() =>
-                                        handleRadioClickApplicant(
-                                            "character",
-                                            4
-                                        )
-                                    }
-                                    value="4"
-                                >
-                                    4
-                                </Radio>
-                                <Radio
-                                    onClick={() =>
-                                        handleRadioClickApplicant(
-                                            "character",
-                                            5
-                                        )
-                                    }
-                                    value="5"
-                                >
-                                    5
-                                </Radio>
-                            </Flex>
-                        </RadioGroup>
-                        <RadioGroup>
-                            <Heading as="h3" size="sm">
-                                Interest
-                            </Heading>
-                            <Flex justifyContent={"space-evenly"}>
-                                <Radio
-                                    onClick={() =>
-                                        handleRadioClickApplicant("interest", 0)
-                                    }
-                                    value="0"
-                                >
-                                    0
-                                </Radio>
-                                <Radio
-                                    onClick={() =>
-                                        handleRadioClickApplicant("interest", 1)
-                                    }
-                                    value="1"
-                                >
-                                    1
-                                </Radio>
-                                <Radio
-                                    onClick={() =>
-                                        handleRadioClickApplicant("interest", 2)
-                                    }
-                                    value="2"
-                                >
-                                    2
-                                </Radio>
-                                <Radio
-                                    onClick={() =>
-                                        handleRadioClickApplicant("interest", 3)
-                                    }
-                                    value="3"
-                                >
-                                    3
-                                </Radio>
-                                <Radio
-                                    onClick={() =>
-                                        handleRadioClickApplicant("interest", 4)
-                                    }
-                                    value="4"
-                                >
-                                    4
-                                </Radio>
-                                <Radio
-                                    onClick={() =>
-                                        handleRadioClickApplicant("interest", 5)
-                                    }
-                                    value="5"
-                                >
-                                    5
-                                </Radio>
-                            </Flex>
-                        </RadioGroup>
+                        <FormControl isRequired>
+                            <RadioGroup>
+                                <Heading as="h3" size="sm">
+                                    Extracurriculars
+                                </Heading>
+                                <Flex justifyContent={"space-evenly"}>
+                                    <Radio
+                                        onChange={() =>
+                                            handleRadioClickApplicant(
+                                                "extracurriculars",
+                                                0
+                                            )
+                                        }
+                                        value="0"
+                                    >
+                                        0
+                                    </Radio>
+                                    <Radio
+                                        onChange={() =>
+                                            handleRadioClickApplicant(
+                                                "extracurriculars",
+                                                1
+                                            )
+                                        }
+                                        value="1"
+                                    >
+                                        1
+                                    </Radio>
+                                    <Radio
+                                        onChange={() =>
+                                            handleRadioClickApplicant(
+                                                "extracurriculars",
+                                                2
+                                            )
+                                        }
+                                        value="2"
+                                    >
+                                        2
+                                    </Radio>
+                                    <Radio
+                                        onChange={() =>
+                                            handleRadioClickApplicant(
+                                                "extracurriculars",
+                                                3
+                                            )
+                                        }
+                                        value="3"
+                                    >
+                                        3
+                                    </Radio>
+                                    <Radio
+                                        onChange={() =>
+                                            handleRadioClickApplicant(
+                                                "extracurriculars",
+                                                4
+                                            )
+                                        }
+                                        value="4"
+                                    >
+                                        4
+                                    </Radio>
+                                    <Radio
+                                        onChange={() =>
+                                            handleRadioClickApplicant(
+                                                "extracurriculars",
+                                                5
+                                            )
+                                        }
+                                        value="5"
+                                    >
+                                        5
+                                    </Radio>
+                                </Flex>
+                            </RadioGroup>
+                        </FormControl>
+                        <FormControl isRequired>
+                            <RadioGroup>
+                                <Heading as="h3" size="sm">
+                                    Essay
+                                </Heading>
+                                <Flex justifyContent={"space-evenly"}>
+                                    <Radio
+                                        onChange={() =>
+                                            handleRadioClickApplicant(
+                                                "essay",
+                                                0
+                                            )
+                                        }
+                                        value="0"
+                                    >
+                                        0
+                                    </Radio>
+                                    <Radio
+                                        onChange={() =>
+                                            handleRadioClickApplicant(
+                                                "essay",
+                                                1
+                                            )
+                                        }
+                                        value="1"
+                                    >
+                                        1
+                                    </Radio>
+                                    <Radio
+                                        onChange={() =>
+                                            handleRadioClickApplicant(
+                                                "essay",
+                                                2
+                                            )
+                                        }
+                                        value="2"
+                                    >
+                                        2
+                                    </Radio>
+                                    <Radio
+                                        onChange={() =>
+                                            handleRadioClickApplicant(
+                                                "essay",
+                                                3
+                                            )
+                                        }
+                                        value="3"
+                                    >
+                                        3
+                                    </Radio>
+                                    <Radio
+                                        onChange={() =>
+                                            handleRadioClickApplicant(
+                                                "essay",
+                                                4
+                                            )
+                                        }
+                                        value="4"
+                                    >
+                                        4
+                                    </Radio>
+                                    <Radio
+                                        onChange={() =>
+                                            handleRadioClickApplicant(
+                                                "essay",
+                                                5
+                                            )
+                                        }
+                                        value="5"
+                                    >
+                                        5
+                                    </Radio>
+                                </Flex>
+                            </RadioGroup>
+                        </FormControl>
+                        <FormControl isRequired>
+                            <RadioGroup>
+                                <Heading as="h3" size="sm">
+                                    Awards
+                                </Heading>
+                                <Flex justifyContent={"space-evenly"}>
+                                    <Radio
+                                        onChange={() =>
+                                            handleRadioClickApplicant(
+                                                "awards",
+                                                0
+                                            )
+                                        }
+                                        value="0"
+                                    >
+                                        0
+                                    </Radio>
+                                    <Radio
+                                        onChange={() =>
+                                            handleRadioClickApplicant(
+                                                "awards",
+                                                1
+                                            )
+                                        }
+                                        value="1"
+                                    >
+                                        1
+                                    </Radio>
+                                    <Radio
+                                        onChange={() =>
+                                            handleRadioClickApplicant(
+                                                "awards",
+                                                2
+                                            )
+                                        }
+                                        value="2"
+                                    >
+                                        2
+                                    </Radio>
+                                    <Radio
+                                        onChange={() =>
+                                            handleRadioClickApplicant(
+                                                "awards",
+                                                3
+                                            )
+                                        }
+                                        value="3"
+                                    >
+                                        3
+                                    </Radio>
+                                    <Radio
+                                        onChange={() =>
+                                            handleRadioClickApplicant(
+                                                "awards",
+                                                4
+                                            )
+                                        }
+                                        value="4"
+                                    >
+                                        4
+                                    </Radio>
+                                    <Radio
+                                        onChange={() =>
+                                            handleRadioClickApplicant(
+                                                "awards",
+                                                5
+                                            )
+                                        }
+                                        value="5"
+                                    >
+                                        5
+                                    </Radio>
+                                </Flex>
+                            </RadioGroup>
+                        </FormControl>
+                        <FormControl isRequired>
+                            <RadioGroup>
+                                <Heading as="h3" size="sm">
+                                    Recommendations
+                                </Heading>
+                                <Flex justifyContent={"space-evenly"}>
+                                    <Radio
+                                        onChange={() =>
+                                            handleRadioClickApplicant(
+                                                "recommendations",
+                                                0
+                                            )
+                                        }
+                                        value="0"
+                                    >
+                                        0
+                                    </Radio>
+                                    <Radio
+                                        onChange={() =>
+                                            handleRadioClickApplicant(
+                                                "recommendations",
+                                                1
+                                            )
+                                        }
+                                        value="1"
+                                    >
+                                        1
+                                    </Radio>
+                                    <Radio
+                                        onChange={() =>
+                                            handleRadioClickApplicant(
+                                                "recommendations",
+                                                2
+                                            )
+                                        }
+                                        value="2"
+                                    >
+                                        2
+                                    </Radio>
+                                    <Radio
+                                        onChange={() =>
+                                            handleRadioClickApplicant(
+                                                "recommendations",
+                                                3
+                                            )
+                                        }
+                                        value="3"
+                                    >
+                                        3
+                                    </Radio>
+                                    <Radio
+                                        onChange={() =>
+                                            handleRadioClickApplicant(
+                                                "recommendations",
+                                                4
+                                            )
+                                        }
+                                        value="4"
+                                    >
+                                        4
+                                    </Radio>
+                                    <Radio
+                                        onChange={() =>
+                                            handleRadioClickApplicant(
+                                                "recommendations",
+                                                5
+                                            )
+                                        }
+                                        value="5"
+                                    >
+                                        5
+                                    </Radio>
+                                </Flex>
+                            </RadioGroup>
+                        </FormControl>
+                        <FormControl isRequired>
+                            <RadioGroup>
+                                <Heading as="h3" size="sm">
+                                    Volunteering
+                                </Heading>
+                                <Flex justifyContent={"space-evenly"}>
+                                    <Radio
+                                        onChange={() =>
+                                            handleRadioClickApplicant(
+                                                "volunteering",
+                                                0
+                                            )
+                                        }
+                                        value="0"
+                                    >
+                                        0
+                                    </Radio>
+                                    <Radio
+                                        onChange={() =>
+                                            handleRadioClickApplicant(
+                                                "volunteering",
+                                                1
+                                            )
+                                        }
+                                        value="1"
+                                    >
+                                        1
+                                    </Radio>
+                                    <Radio
+                                        onChange={() =>
+                                            handleRadioClickApplicant(
+                                                "volunteering",
+                                                2
+                                            )
+                                        }
+                                        value="2"
+                                    >
+                                        2
+                                    </Radio>
+                                    <Radio
+                                        onChange={() =>
+                                            handleRadioClickApplicant(
+                                                "volunteering",
+                                                3
+                                            )
+                                        }
+                                        value="3"
+                                    >
+                                        3
+                                    </Radio>
+                                    <Radio
+                                        onChange={() =>
+                                            handleRadioClickApplicant(
+                                                "volunteering",
+                                                4
+                                            )
+                                        }
+                                        value="4"
+                                    >
+                                        4
+                                    </Radio>
+                                    <Radio
+                                        onChange={() =>
+                                            handleRadioClickApplicant(
+                                                "volunteering",
+                                                5
+                                            )
+                                        }
+                                        value="5"
+                                    >
+                                        5
+                                    </Radio>
+                                </Flex>
+                            </RadioGroup>
+                        </FormControl>
+                        <FormControl isRequired>
+                            <RadioGroup>
+                                <Heading as="h3" size="sm">
+                                    Work
+                                </Heading>
+                                <Flex justifyContent={"space-evenly"}>
+                                    <Radio
+                                        onChange={() =>
+                                            handleRadioClickApplicant(
+                                                "works",
+                                                0
+                                            )
+                                        }
+                                        value="0"
+                                    >
+                                        0
+                                    </Radio>
+                                    <Radio
+                                        onChange={() =>
+                                            handleRadioClickApplicant(
+                                                "works",
+                                                1
+                                            )
+                                        }
+                                        value="1"
+                                    >
+                                        1
+                                    </Radio>
+                                    <Radio
+                                        onChange={() =>
+                                            handleRadioClickApplicant(
+                                                "works",
+                                                2
+                                            )
+                                        }
+                                        value="2"
+                                    >
+                                        2
+                                    </Radio>
+                                    <Radio
+                                        onChange={() =>
+                                            handleRadioClickApplicant(
+                                                "works",
+                                                3
+                                            )
+                                        }
+                                        value="3"
+                                    >
+                                        3
+                                    </Radio>
+                                    <Radio
+                                        onChange={() =>
+                                            handleRadioClickApplicant(
+                                                "works",
+                                                4
+                                            )
+                                        }
+                                        value="4"
+                                    >
+                                        4
+                                    </Radio>
+                                    <Radio
+                                        onChange={() =>
+                                            handleRadioClickApplicant(
+                                                "works",
+                                                5
+                                            )
+                                        }
+                                        value="5"
+                                    >
+                                        5
+                                    </Radio>
+                                </Flex>
+                            </RadioGroup>
+                        </FormControl>
+                        <FormControl isRequired>
+                            <RadioGroup>
+                                <Heading as="h3" size="sm">
+                                    Talent
+                                </Heading>
+                                <Flex justifyContent={"space-evenly"}>
+                                    <Radio
+                                        onChange={() =>
+                                            handleRadioClickApplicant(
+                                                "talents",
+                                                0
+                                            )
+                                        }
+                                        value="0"
+                                    >
+                                        0
+                                    </Radio>
+                                    <Radio
+                                        onChange={() =>
+                                            handleRadioClickApplicant(
+                                                "talents",
+                                                1
+                                            )
+                                        }
+                                        value="1"
+                                    >
+                                        1
+                                    </Radio>
+                                    <Radio
+                                        onChange={() =>
+                                            handleRadioClickApplicant(
+                                                "talents",
+                                                2
+                                            )
+                                        }
+                                        value="2"
+                                    >
+                                        2
+                                    </Radio>
+                                    <Radio
+                                        onChange={() =>
+                                            handleRadioClickApplicant(
+                                                "talents",
+                                                3
+                                            )
+                                        }
+                                        value="3"
+                                    >
+                                        3
+                                    </Radio>
+                                    <Radio
+                                        onChange={() =>
+                                            handleRadioClickApplicant(
+                                                "talents",
+                                                4
+                                            )
+                                        }
+                                        value="4"
+                                    >
+                                        4
+                                    </Radio>
+                                    <Radio
+                                        onChange={() =>
+                                            handleRadioClickApplicant(
+                                                "talents",
+                                                5
+                                            )
+                                        }
+                                        value="5"
+                                    >
+                                        5
+                                    </Radio>
+                                </Flex>
+                            </RadioGroup>
+                        </FormControl>
+                        <FormControl isRequired>
+                            <RadioGroup>
+                                <Heading as="h3" size="sm">
+                                    Interviewing
+                                </Heading>
+                                <Flex justifyContent={"space-evenly"}>
+                                    <Radio
+                                        onChange={() =>
+                                            handleRadioClickApplicant(
+                                                "interviewing",
+                                                0
+                                            )
+                                        }
+                                        value="0"
+                                    >
+                                        0
+                                    </Radio>
+                                    <Radio
+                                        onChange={() =>
+                                            handleRadioClickApplicant(
+                                                "interviewing",
+                                                1
+                                            )
+                                        }
+                                        value="1"
+                                    >
+                                        1
+                                    </Radio>
+                                    <Radio
+                                        onChange={() =>
+                                            handleRadioClickApplicant(
+                                                "interviewing",
+                                                2
+                                            )
+                                        }
+                                        value="2"
+                                    >
+                                        2
+                                    </Radio>
+                                    <Radio
+                                        onChange={() =>
+                                            handleRadioClickApplicant(
+                                                "interviewing",
+                                                3
+                                            )
+                                        }
+                                        value="3"
+                                    >
+                                        3
+                                    </Radio>
+                                    <Radio
+                                        onChange={() =>
+                                            handleRadioClickApplicant(
+                                                "interviewing",
+                                                4
+                                            )
+                                        }
+                                        value="4"
+                                    >
+                                        4
+                                    </Radio>
+                                    <Radio
+                                        onChange={() =>
+                                            handleRadioClickApplicant(
+                                                "interviewing",
+                                                5
+                                            )
+                                        }
+                                        value="5"
+                                    >
+                                        5
+                                    </Radio>
+                                </Flex>
+                            </RadioGroup>
+                        </FormControl>
+                        <FormControl isRequired>
+                            <RadioGroup>
+                                <Heading as="h3" size="sm">
+                                    Character
+                                </Heading>
+                                <Flex justifyContent={"space-evenly"}>
+                                    <Radio
+                                        onChange={() =>
+                                            handleRadioClickApplicant(
+                                                "character",
+                                                0
+                                            )
+                                        }
+                                        value="0"
+                                    >
+                                        0
+                                    </Radio>
+                                    <Radio
+                                        onChange={() =>
+                                            handleRadioClickApplicant(
+                                                "character",
+                                                1
+                                            )
+                                        }
+                                        value="1"
+                                    >
+                                        1
+                                    </Radio>
+                                    <Radio
+                                        onChange={() =>
+                                            handleRadioClickApplicant(
+                                                "character",
+                                                2
+                                            )
+                                        }
+                                        value="2"
+                                    >
+                                        2
+                                    </Radio>
+                                    <Radio
+                                        onChange={() =>
+                                            handleRadioClickApplicant(
+                                                "character",
+                                                3
+                                            )
+                                        }
+                                        value="3"
+                                    >
+                                        3
+                                    </Radio>
+                                    <Radio
+                                        onChange={() =>
+                                            handleRadioClickApplicant(
+                                                "character",
+                                                4
+                                            )
+                                        }
+                                        value="4"
+                                    >
+                                        4
+                                    </Radio>
+                                    <Radio
+                                        onChange={() =>
+                                            handleRadioClickApplicant(
+                                                "character",
+                                                5
+                                            )
+                                        }
+                                        value="5"
+                                    >
+                                        5
+                                    </Radio>
+                                </Flex>
+                            </RadioGroup>
+                        </FormControl>
+                        <FormControl isRequired>
+                            <RadioGroup>
+                                <Heading as="h3" size="sm">
+                                    Interest
+                                </Heading>
+                                <Flex justifyContent={"space-evenly"}>
+                                    <Radio
+                                        onChange={() =>
+                                            handleRadioClickApplicant(
+                                                "interest",
+                                                0
+                                            )
+                                        }
+                                        value="0"
+                                    >
+                                        0
+                                    </Radio>
+                                    <Radio
+                                        onChange={() =>
+                                            handleRadioClickApplicant(
+                                                "interest",
+                                                1
+                                            )
+                                        }
+                                        value="1"
+                                    >
+                                        1
+                                    </Radio>
+                                    <Radio
+                                        onChange={() =>
+                                            handleRadioClickApplicant(
+                                                "interest",
+                                                2
+                                            )
+                                        }
+                                        value="2"
+                                    >
+                                        2
+                                    </Radio>
+                                    <Radio
+                                        onChange={() =>
+                                            handleRadioClickApplicant(
+                                                "interest",
+                                                3
+                                            )
+                                        }
+                                        value="3"
+                                    >
+                                        3
+                                    </Radio>
+                                    <Radio
+                                        onChange={() =>
+                                            handleRadioClickApplicant(
+                                                "interest",
+                                                4
+                                            )
+                                        }
+                                        value="4"
+                                    >
+                                        4
+                                    </Radio>
+                                    <Radio
+                                        onChange={() =>
+                                            handleRadioClickApplicant(
+                                                "interest",
+                                                5
+                                            )
+                                        }
+                                        value="5"
+                                    >
+                                        5
+                                    </Radio>
+                                </Flex>
+                            </RadioGroup>
+                        </FormControl>
                     </Grid>
                     <Heading as="h4" size="md">
                         Extra
@@ -1150,6 +1310,7 @@ export function Form() {
                     <Heading as="h3" size="sm">
                         Parents / Siblings
                     </Heading>
+                    (leave blank if N/A)
                     <Grid templateColumns="repeat(3, 1fr)" gap={1}>
                         <InputGroup>
                             <InputLeftAddon children="Mom" />
@@ -1182,6 +1343,7 @@ export function Form() {
                     <Heading as="h3" size="sm">
                         Alumni
                     </Heading>
+                    (leave blank if N/A)
                     <Grid templateColumns="repeat(3, 1fr)" gap={1}>
                         <InputGroup>
                             <InputLeftAddon children="#1" />
@@ -1214,6 +1376,7 @@ export function Form() {
                     <Heading as="h3" size="sm">
                         Feeder
                     </Heading>
+                    (leave blank if N/A)
                     <Grid templateColumns="repeat(3, 1fr)" gap={1}>
                         <InputGroup>
                             <InputLeftAddon children="#1" />
@@ -1254,6 +1417,10 @@ export function Form() {
                                 name={"residency.zipcode"}
                                 type="text"
                                 placeholder="14450"
+                                required
+                                pattern="^[0-9]+$"
+                                minLength={5}
+                                maxLength={5}
                             />
                         </InputGroup>
                         <InputGroup>
@@ -1261,6 +1428,7 @@ export function Form() {
                                 onChange={handleChange}
                                 name={"residency.state"}
                                 placeholder="State"
+                                required
                             >
                                 <option value="AL">Alabama</option>
                                 <option value="AK">Alaska</option>
@@ -1320,6 +1488,7 @@ export function Form() {
                                 onChange={handleChange}
                                 name={"residency.country"}
                                 placeholder="Country"
+                                required
                             >
                                 <option value="US">United States</option>
                                 <option value="AF">Afghanistan</option>
@@ -1331,9 +1500,7 @@ export function Form() {
                                 <option value="AO">Angola</option>
                                 <option value="AI">Anguilla</option>
                                 <option value="AQ">Antarctica</option>
-                                <option value="AG">
-                                    Antigua and Barbuda
-                                </option>{" "}
+                                <option value="AG">Antigua and Barbuda</option>
                                 <option value="AR">Argentina</option>
                                 <option value="AM">Armenia</option>
                                 <option value="AW">Aruba</option>
@@ -1458,7 +1625,7 @@ export function Form() {
                                 <option value="IM">Isle of Man</option>
                                 <option value="IL">Israel</option>
                                 <option value="IT">Italy</option>
-                                <option value="JM">Jamaica</option>{" "}
+                                <option value="JM">Jamaica</option>
                                 <option value="JP">Japan</option>
                                 <option value="JE">Jersey</option>
                                 <option value="JO">Jordan</option>
@@ -1516,7 +1683,7 @@ export function Form() {
                                 <option value="NC">New Caledonia</option>
                                 <option value="NZ">New Zealand</option>
                                 <option value="NI">Nicaragua</option>
-                                <option value="NE">Niger</option>{" "}
+                                <option value="NE">Niger</option>
                                 <option value="NG">Nigeria</option>
                                 <option value="NU">Niue</option>
                                 <option value="NF">Norfolk Island</option>
@@ -1575,7 +1742,7 @@ export function Form() {
                                 <option value="SX">
                                     Sint Maarten (Dutch part)
                                 </option>
-                                <option value="SK">Slovakia</option>{" "}
+                                <option value="SK">Slovakia</option>
                                 <option value="SI">Slovenia</option>
                                 <option value="SB">Solomon Islands</option>
                                 <option value="SO">Somalia</option>
@@ -1645,26 +1812,33 @@ export function Form() {
                     <Heading as="h3" size="sm">
                         Class
                     </Heading>
-                    <Grid templateColumns="repeat(2, 1fr)" gap={1}>
-                        <InputGroup>
-                            <InputLeftAddon children="Class Rank" />
-                            <Input
-                                onChange={handleChange}
-                                name={"class.rank"}
-                                type="text"
-                                placeholder="12"
-                            />
-                        </InputGroup>
-                        <InputGroup>
-                            <InputLeftAddon children="Class Size" />
-                            <Input
-                                onChange={handleChange}
-                                name={"class.size"}
-                                type="text"
-                                placeholder="244"
-                            />
-                        </InputGroup>
-                    </Grid>
+                    <Checkbox onChange={handleCRChange}>Class Rank</Checkbox>
+                    {isCRChecked && (
+                        <Grid templateColumns="repeat(2, 1fr)" gap={1}>
+                            <InputGroup>
+                                <InputLeftAddon children="Class Rank" />
+                                <Input
+                                    onChange={handleChange}
+                                    name={"class.rank"}
+                                    type="number"
+                                    placeholder="12"
+                                    required
+                                    min={1}
+                                />
+                            </InputGroup>
+                            <InputGroup>
+                                <InputLeftAddon children="Class Size" />
+                                <Input
+                                    onChange={handleChange}
+                                    name={"class.size"}
+                                    type="number"
+                                    placeholder="244"
+                                    required
+                                    min={1}
+                                />
+                            </InputGroup>
+                        </Grid>
+                    )}
                     <Heading as="h3" size="sm">
                         Adversity
                     </Heading>
@@ -1697,522 +1871,534 @@ export function Form() {
                     <Heading as="h1" size="lg">
                         Rank
                     </Heading>
-                    (for number fields, only numbers, no commas nor dollar signs
-                    nor percent signs)
                     <Heading as="h4" size="md">
                         College Importance
                     </Heading>
-                    <RadioGroup>
-                        <Heading as="h3" size="sm">
-                            Prestiege Importance
-                        </Heading>
-                        <Flex justifyContent={"space-evenly"}>
-                            <Radio
-                                onClick={() =>
-                                    handleRadioClickCollege(
-                                        "prestiegeImportance",
-                                        0
-                                    )
-                                }
-                                value="0"
-                            >
-                                0
-                            </Radio>
-                            <Radio
-                                onClick={() =>
-                                    handleRadioClickCollege(
-                                        "prestiegeImportance",
-                                        1
-                                    )
-                                }
-                                value="1"
-                            >
-                                1
-                            </Radio>
-                            <Radio
-                                onClick={() =>
-                                    handleRadioClickCollege(
-                                        "prestiegeImportance",
-                                        2
-                                    )
-                                }
-                                value="2"
-                            >
-                                2
-                            </Radio>
-                            <Radio
-                                onClick={() =>
-                                    handleRadioClickCollege(
-                                        "prestiegeImportance",
-                                        3
-                                    )
-                                }
-                                value="3"
-                            >
-                                3
-                            </Radio>
-                            <Radio
-                                onClick={() =>
-                                    handleRadioClickCollege(
-                                        "prestiegeImportance",
-                                        4
-                                    )
-                                }
-                                value="4"
-                            >
-                                4
-                            </Radio>
-                            <Radio
-                                onClick={() =>
-                                    handleRadioClickCollege(
-                                        "prestiegeImportance",
-                                        5
-                                    )
-                                }
-                                value="5"
-                            >
-                                5
-                            </Radio>
-                        </Flex>
-                    </RadioGroup>
-                    <RadioGroup>
-                        <Heading as="h3" size="sm">
-                            Internship Importance
-                        </Heading>
-                        <Flex justifyContent={"space-evenly"}>
-                            <Radio
-                                onClick={() =>
-                                    handleRadioClickCollege(
-                                        "internshipImportance",
-                                        0
-                                    )
-                                }
-                                value="0"
-                            >
-                                0
-                            </Radio>
-                            <Radio
-                                onClick={() =>
-                                    handleRadioClickCollege(
-                                        "internshipImportance",
-                                        1
-                                    )
-                                }
-                                value="1"
-                            >
-                                1
-                            </Radio>
-                            <Radio
-                                onClick={() =>
-                                    handleRadioClickCollege(
-                                        "internshipImportance",
-                                        2
-                                    )
-                                }
-                                value="2"
-                            >
-                                2
-                            </Radio>
-                            <Radio
-                                onClick={() =>
-                                    handleRadioClickCollege(
-                                        "internshipImportance",
-                                        3
-                                    )
-                                }
-                                value="3"
-                            >
-                                3
-                            </Radio>
-                            <Radio
-                                onClick={() =>
-                                    handleRadioClickCollege(
-                                        "internshipImportance",
-                                        4
-                                    )
-                                }
-                                value="4"
-                            >
-                                4
-                            </Radio>
-                            <Radio
-                                onClick={() =>
-                                    handleRadioClickCollege(
-                                        "internshipImportance",
-                                        5
-                                    )
-                                }
-                                value="5"
-                            >
-                                5
-                            </Radio>
-                        </Flex>
-                    </RadioGroup>
-                    <RadioGroup>
-                        <Heading as="h3" size="sm">
-                            Study Abroad Importance
-                        </Heading>
-                        <Flex justifyContent={"space-evenly"}>
-                            <Radio
-                                onClick={() =>
-                                    handleRadioClickCollege(
-                                        "studyAbroadImportance",
-                                        0
-                                    )
-                                }
-                                value="0"
-                            >
-                                0
-                            </Radio>
-                            <Radio
-                                onClick={() =>
-                                    handleRadioClickCollege(
-                                        "studyAbroadImportance",
-                                        1
-                                    )
-                                }
-                                value="1"
-                            >
-                                1
-                            </Radio>
-                            <Radio
-                                onClick={() =>
-                                    handleRadioClickCollege(
-                                        "studyAbroadImportance",
-                                        2
-                                    )
-                                }
-                                value="2"
-                            >
-                                2
-                            </Radio>
-                            <Radio
-                                onClick={() =>
-                                    handleRadioClickCollege(
-                                        "studyAbroadImportance",
-                                        3
-                                    )
-                                }
-                                value="3"
-                            >
-                                3
-                            </Radio>
-                            <Radio
-                                onClick={() =>
-                                    handleRadioClickCollege(
-                                        "studyAbroadImportance",
-                                        4
-                                    )
-                                }
-                                value="4"
-                            >
-                                4
-                            </Radio>
-                            <Radio
-                                onClick={() =>
-                                    handleRadioClickCollege(
-                                        "studyAbroadImportance",
-                                        5
-                                    )
-                                }
-                                value="5"
-                            >
-                                5
-                            </Radio>
-                        </Flex>
-                    </RadioGroup>
-                    <RadioGroup>
-                        <Heading as="h3" size="sm">
-                            Rigor Importance
-                        </Heading>
-                        <Flex justifyContent={"space-evenly"}>
-                            <Radio
-                                onClick={() =>
-                                    handleRadioClickCollege(
-                                        "rigorImportance",
-                                        0
-                                    )
-                                }
-                                value="0"
-                            >
-                                0
-                            </Radio>
-                            <Radio
-                                onClick={() =>
-                                    handleRadioClickCollege(
-                                        "rigorImportance",
-                                        1
-                                    )
-                                }
-                                value="1"
-                            >
-                                1
-                            </Radio>
-                            <Radio
-                                onClick={() =>
-                                    handleRadioClickCollege(
-                                        "rigorImportance",
-                                        2
-                                    )
-                                }
-                                value="2"
-                            >
-                                2
-                            </Radio>
-                            <Radio
-                                onClick={() =>
-                                    handleRadioClickCollege(
-                                        "rigorImportance",
-                                        3
-                                    )
-                                }
-                                value="3"
-                            >
-                                3
-                            </Radio>
-                            <Radio
-                                onClick={() =>
-                                    handleRadioClickCollege(
-                                        "rigorImportance",
-                                        4
-                                    )
-                                }
-                                value="4"
-                            >
-                                4
-                            </Radio>
-                            <Radio
-                                onClick={() =>
-                                    handleRadioClickCollege(
-                                        "rigorImportance",
-                                        5
-                                    )
-                                }
-                                value="5"
-                            >
-                                5
-                            </Radio>
-                        </Flex>
-                    </RadioGroup>
-                    <RadioGroup>
-                        <Heading as="h3" size="sm">
-                            Work Study Importance
-                        </Heading>
-                        <Flex justifyContent={"space-evenly"}>
-                            <Radio
-                                onClick={() =>
-                                    handleRadioClickCollege(
-                                        "workStudyImportance",
-                                        0
-                                    )
-                                }
-                                value="0"
-                            >
-                                0
-                            </Radio>
-                            <Radio
-                                onClick={() =>
-                                    handleRadioClickCollege(
-                                        "workStudyImportance",
-                                        1
-                                    )
-                                }
-                                value="1"
-                            >
-                                1
-                            </Radio>
-                            <Radio
-                                onClick={() =>
-                                    handleRadioClickCollege(
-                                        "workStudyImportance",
-                                        2
-                                    )
-                                }
-                                value="2"
-                            >
-                                2
-                            </Radio>
-                            <Radio
-                                onClick={() =>
-                                    handleRadioClickCollege(
-                                        "workStudyImportance",
-                                        3
-                                    )
-                                }
-                                value="3"
-                            >
-                                3
-                            </Radio>
-                            <Radio
-                                onClick={() =>
-                                    handleRadioClickCollege(
-                                        "workStudyImportance",
-                                        4
-                                    )
-                                }
-                                value="4"
-                            >
-                                4
-                            </Radio>
-                            <Radio
-                                onClick={() =>
-                                    handleRadioClickCollege(
-                                        "workStudyImportance",
-                                        5
-                                    )
-                                }
-                                value="5"
-                            >
-                                5
-                            </Radio>
-                        </Flex>
-                    </RadioGroup>
-                    <RadioGroup>
-                        <Heading as="h3" size="sm">
-                            Academic Resources Importance
-                        </Heading>
-                        <Flex justifyContent={"space-evenly"}>
-                            <Radio
-                                onClick={() =>
-                                    handleRadioClickCollege(
-                                        "academicResourcesImportance",
-                                        0
-                                    )
-                                }
-                                value="0"
-                            >
-                                0
-                            </Radio>
-                            <Radio
-                                onClick={() =>
-                                    handleRadioClickCollege(
-                                        "academicResourcesImportance",
-                                        1
-                                    )
-                                }
-                                value="1"
-                            >
-                                1
-                            </Radio>
-                            <Radio
-                                onClick={() =>
-                                    handleRadioClickCollege(
-                                        "academicResourcesImportance",
-                                        2
-                                    )
-                                }
-                                value="2"
-                            >
-                                2
-                            </Radio>
-                            <Radio
-                                onClick={() =>
-                                    handleRadioClickCollege(
-                                        "academicResourcesImportance",
-                                        3
-                                    )
-                                }
-                                value="3"
-                            >
-                                3
-                            </Radio>
-                            <Radio
-                                onClick={() =>
-                                    handleRadioClickCollege(
-                                        "academicResourcesImportance",
-                                        4
-                                    )
-                                }
-                                value="4"
-                            >
-                                4
-                            </Radio>
-                            <Radio
-                                onClick={() =>
-                                    handleRadioClickCollege(
-                                        "academicResourcesImportance",
-                                        5
-                                    )
-                                }
-                                value="5"
-                            >
-                                5
-                            </Radio>
-                        </Flex>
-                    </RadioGroup>
-                    <RadioGroup>
-                        <Heading as="h3" size="sm">
-                            Research Importance
-                        </Heading>
-                        <Flex justifyContent={"space-evenly"}>
-                            <Radio
-                                onClick={() =>
-                                    handleRadioClickCollege(
-                                        "researchImportance",
-                                        0
-                                    )
-                                }
-                                value="0"
-                            >
-                                0
-                            </Radio>
-                            <Radio
-                                onClick={() =>
-                                    handleRadioClickCollege(
-                                        "researchImportance",
-                                        1
-                                    )
-                                }
-                                value="1"
-                            >
-                                1
-                            </Radio>
-                            <Radio
-                                onClick={() =>
-                                    handleRadioClickCollege(
-                                        "researchImportance",
-                                        2
-                                    )
-                                }
-                                value="2"
-                            >
-                                2
-                            </Radio>
-                            <Radio
-                                onClick={() =>
-                                    handleRadioClickCollege(
-                                        "researchImportance",
-                                        3
-                                    )
-                                }
-                                value="3"
-                            >
-                                3
-                            </Radio>
-                            <Radio
-                                onClick={() =>
-                                    handleRadioClickCollege(
-                                        "researchImportance",
-                                        4
-                                    )
-                                }
-                                value="4"
-                            >
-                                4
-                            </Radio>
-                            <Radio
-                                onClick={() =>
-                                    handleRadioClickCollege(
-                                        "researchImportance",
-                                        5
-                                    )
-                                }
-                                value="5"
-                            >
-                                5
-                            </Radio>
-                        </Flex>
-                    </RadioGroup>
+                    <FormControl isRequired>
+                        <RadioGroup>
+                            <Heading as="h3" size="sm">
+                                Prestiege Importance
+                            </Heading>
+                            <Flex justifyContent={"space-evenly"}>
+                                <Radio
+                                    onChange={() =>
+                                        handleRadioClickCollege(
+                                            "prestiegeImportance",
+                                            0
+                                        )
+                                    }
+                                    value="0"
+                                >
+                                    0
+                                </Radio>
+                                <Radio
+                                    onChange={() =>
+                                        handleRadioClickCollege(
+                                            "prestiegeImportance",
+                                            1
+                                        )
+                                    }
+                                    value="1"
+                                >
+                                    1
+                                </Radio>
+                                <Radio
+                                    onChange={() =>
+                                        handleRadioClickCollege(
+                                            "prestiegeImportance",
+                                            2
+                                        )
+                                    }
+                                    value="2"
+                                >
+                                    2
+                                </Radio>
+                                <Radio
+                                    onChange={() =>
+                                        handleRadioClickCollege(
+                                            "prestiegeImportance",
+                                            3
+                                        )
+                                    }
+                                    value="3"
+                                >
+                                    3
+                                </Radio>
+                                <Radio
+                                    onChange={() =>
+                                        handleRadioClickCollege(
+                                            "prestiegeImportance",
+                                            4
+                                        )
+                                    }
+                                    value="4"
+                                >
+                                    4
+                                </Radio>
+                                <Radio
+                                    onChange={() =>
+                                        handleRadioClickCollege(
+                                            "prestiegeImportance",
+                                            5
+                                        )
+                                    }
+                                    value="5"
+                                >
+                                    5
+                                </Radio>
+                            </Flex>
+                        </RadioGroup>
+                    </FormControl>
+                    <FormControl isRequired>
+                        <RadioGroup>
+                            <Heading as="h3" size="sm">
+                                Internship Importance
+                            </Heading>
+                            <Flex justifyContent={"space-evenly"}>
+                                <Radio
+                                    onChange={() =>
+                                        handleRadioClickCollege(
+                                            "internshipImportance",
+                                            0
+                                        )
+                                    }
+                                    value="0"
+                                >
+                                    0
+                                </Radio>
+                                <Radio
+                                    onChange={() =>
+                                        handleRadioClickCollege(
+                                            "internshipImportance",
+                                            1
+                                        )
+                                    }
+                                    value="1"
+                                >
+                                    1
+                                </Radio>
+                                <Radio
+                                    onChange={() =>
+                                        handleRadioClickCollege(
+                                            "internshipImportance",
+                                            2
+                                        )
+                                    }
+                                    value="2"
+                                >
+                                    2
+                                </Radio>
+                                <Radio
+                                    onChange={() =>
+                                        handleRadioClickCollege(
+                                            "internshipImportance",
+                                            3
+                                        )
+                                    }
+                                    value="3"
+                                >
+                                    3
+                                </Radio>
+                                <Radio
+                                    onChange={() =>
+                                        handleRadioClickCollege(
+                                            "internshipImportance",
+                                            4
+                                        )
+                                    }
+                                    value="4"
+                                >
+                                    4
+                                </Radio>
+                                <Radio
+                                    onChange={() =>
+                                        handleRadioClickCollege(
+                                            "internshipImportance",
+                                            5
+                                        )
+                                    }
+                                    value="5"
+                                >
+                                    5
+                                </Radio>
+                            </Flex>
+                        </RadioGroup>
+                    </FormControl>
+                    <FormControl isRequired>
+                        <RadioGroup>
+                            <Heading as="h3" size="sm">
+                                Study Abroad Importance
+                            </Heading>
+                            <Flex justifyContent={"space-evenly"}>
+                                <Radio
+                                    onChange={() =>
+                                        handleRadioClickCollege(
+                                            "studyAbroadImportance",
+                                            0
+                                        )
+                                    }
+                                    value="0"
+                                >
+                                    0
+                                </Radio>
+                                <Radio
+                                    onChange={() =>
+                                        handleRadioClickCollege(
+                                            "studyAbroadImportance",
+                                            1
+                                        )
+                                    }
+                                    value="1"
+                                >
+                                    1
+                                </Radio>
+                                <Radio
+                                    onChange={() =>
+                                        handleRadioClickCollege(
+                                            "studyAbroadImportance",
+                                            2
+                                        )
+                                    }
+                                    value="2"
+                                >
+                                    2
+                                </Radio>
+                                <Radio
+                                    onChange={() =>
+                                        handleRadioClickCollege(
+                                            "studyAbroadImportance",
+                                            3
+                                        )
+                                    }
+                                    value="3"
+                                >
+                                    3
+                                </Radio>
+                                <Radio
+                                    onChange={() =>
+                                        handleRadioClickCollege(
+                                            "studyAbroadImportance",
+                                            4
+                                        )
+                                    }
+                                    value="4"
+                                >
+                                    4
+                                </Radio>
+                                <Radio
+                                    onChange={() =>
+                                        handleRadioClickCollege(
+                                            "studyAbroadImportance",
+                                            5
+                                        )
+                                    }
+                                    value="5"
+                                >
+                                    5
+                                </Radio>
+                            </Flex>
+                        </RadioGroup>
+                    </FormControl>
+                    <FormControl isRequired>
+                        <RadioGroup>
+                            <Heading as="h3" size="sm">
+                                Rigor Importance
+                            </Heading>
+                            <Flex justifyContent={"space-evenly"}>
+                                <Radio
+                                    onChange={() =>
+                                        handleRadioClickCollege(
+                                            "rigorImportance",
+                                            0
+                                        )
+                                    }
+                                    value="0"
+                                >
+                                    0
+                                </Radio>
+                                <Radio
+                                    onChange={() =>
+                                        handleRadioClickCollege(
+                                            "rigorImportance",
+                                            1
+                                        )
+                                    }
+                                    value="1"
+                                >
+                                    1
+                                </Radio>
+                                <Radio
+                                    onChange={() =>
+                                        handleRadioClickCollege(
+                                            "rigorImportance",
+                                            2
+                                        )
+                                    }
+                                    value="2"
+                                >
+                                    2
+                                </Radio>
+                                <Radio
+                                    onChange={() =>
+                                        handleRadioClickCollege(
+                                            "rigorImportance",
+                                            3
+                                        )
+                                    }
+                                    value="3"
+                                >
+                                    3
+                                </Radio>
+                                <Radio
+                                    onChange={() =>
+                                        handleRadioClickCollege(
+                                            "rigorImportance",
+                                            4
+                                        )
+                                    }
+                                    value="4"
+                                >
+                                    4
+                                </Radio>
+                                <Radio
+                                    onChange={() =>
+                                        handleRadioClickCollege(
+                                            "rigorImportance",
+                                            5
+                                        )
+                                    }
+                                    value="5"
+                                >
+                                    5
+                                </Radio>
+                            </Flex>
+                        </RadioGroup>
+                    </FormControl>
+                    <FormControl isRequired>
+                        <RadioGroup>
+                            <Heading as="h3" size="sm">
+                                Work Study Importance
+                            </Heading>
+                            <Flex justifyContent={"space-evenly"}>
+                                <Radio
+                                    onChange={() =>
+                                        handleRadioClickCollege(
+                                            "workStudyImportance",
+                                            0
+                                        )
+                                    }
+                                    value="0"
+                                >
+                                    0
+                                </Radio>
+                                <Radio
+                                    onChange={() =>
+                                        handleRadioClickCollege(
+                                            "workStudyImportance",
+                                            1
+                                        )
+                                    }
+                                    value="1"
+                                >
+                                    1
+                                </Radio>
+                                <Radio
+                                    onChange={() =>
+                                        handleRadioClickCollege(
+                                            "workStudyImportance",
+                                            2
+                                        )
+                                    }
+                                    value="2"
+                                >
+                                    2
+                                </Radio>
+                                <Radio
+                                    onChange={() =>
+                                        handleRadioClickCollege(
+                                            "workStudyImportance",
+                                            3
+                                        )
+                                    }
+                                    value="3"
+                                >
+                                    3
+                                </Radio>
+                                <Radio
+                                    onChange={() =>
+                                        handleRadioClickCollege(
+                                            "workStudyImportance",
+                                            4
+                                        )
+                                    }
+                                    value="4"
+                                >
+                                    4
+                                </Radio>
+                                <Radio
+                                    onChange={() =>
+                                        handleRadioClickCollege(
+                                            "workStudyImportance",
+                                            5
+                                        )
+                                    }
+                                    value="5"
+                                >
+                                    5
+                                </Radio>
+                            </Flex>
+                        </RadioGroup>
+                    </FormControl>
+                    <FormControl isRequired>
+                        <RadioGroup>
+                            <Heading as="h3" size="sm">
+                                Academic Resources Importance
+                            </Heading>
+                            <Flex justifyContent={"space-evenly"}>
+                                <Radio
+                                    onChange={() =>
+                                        handleRadioClickCollege(
+                                            "academicResourcesImportance",
+                                            0
+                                        )
+                                    }
+                                    value="0"
+                                >
+                                    0
+                                </Radio>
+                                <Radio
+                                    onChange={() =>
+                                        handleRadioClickCollege(
+                                            "academicResourcesImportance",
+                                            1
+                                        )
+                                    }
+                                    value="1"
+                                >
+                                    1
+                                </Radio>
+                                <Radio
+                                    onChange={() =>
+                                        handleRadioClickCollege(
+                                            "academicResourcesImportance",
+                                            2
+                                        )
+                                    }
+                                    value="2"
+                                >
+                                    2
+                                </Radio>
+                                <Radio
+                                    onChange={() =>
+                                        handleRadioClickCollege(
+                                            "academicResourcesImportance",
+                                            3
+                                        )
+                                    }
+                                    value="3"
+                                >
+                                    3
+                                </Radio>
+                                <Radio
+                                    onChange={() =>
+                                        handleRadioClickCollege(
+                                            "academicResourcesImportance",
+                                            4
+                                        )
+                                    }
+                                    value="4"
+                                >
+                                    4
+                                </Radio>
+                                <Radio
+                                    onChange={() =>
+                                        handleRadioClickCollege(
+                                            "academicResourcesImportance",
+                                            5
+                                        )
+                                    }
+                                    value="5"
+                                >
+                                    5
+                                </Radio>
+                            </Flex>
+                        </RadioGroup>
+                    </FormControl>
+                    <FormControl isRequired>
+                        <RadioGroup>
+                            <Heading as="h3" size="sm">
+                                Research Importance
+                            </Heading>
+                            <Flex justifyContent={"space-evenly"}>
+                                <Radio
+                                    onChange={() =>
+                                        handleRadioClickCollege(
+                                            "researchImportance",
+                                            0
+                                        )
+                                    }
+                                    value="0"
+                                >
+                                    0
+                                </Radio>
+                                <Radio
+                                    onChange={() =>
+                                        handleRadioClickCollege(
+                                            "researchImportance",
+                                            1
+                                        )
+                                    }
+                                    value="1"
+                                >
+                                    1
+                                </Radio>
+                                <Radio
+                                    onChange={() =>
+                                        handleRadioClickCollege(
+                                            "researchImportance",
+                                            2
+                                        )
+                                    }
+                                    value="2"
+                                >
+                                    2
+                                </Radio>
+                                <Radio
+                                    onChange={() =>
+                                        handleRadioClickCollege(
+                                            "researchImportance",
+                                            3
+                                        )
+                                    }
+                                    value="3"
+                                >
+                                    3
+                                </Radio>
+                                <Radio
+                                    onChange={() =>
+                                        handleRadioClickCollege(
+                                            "researchImportance",
+                                            4
+                                        )
+                                    }
+                                    value="4"
+                                >
+                                    4
+                                </Radio>
+                                <Radio
+                                    onChange={() =>
+                                        handleRadioClickCollege(
+                                            "researchImportance",
+                                            5
+                                        )
+                                    }
+                                    value="5"
+                                >
+                                    5
+                                </Radio>
+                            </Flex>
+                        </RadioGroup>
+                    </FormControl>
                     <Heading as="h4" size="md">
                         College Preferences
                     </Heading>
@@ -2225,8 +2411,10 @@ export function Form() {
                             <Input
                                 onChange={handleChange}
                                 name={"collegePrefs.prefSize"}
-                                type="text"
-                                placeholder="10000" //No commas!!! (account for after wired)
+                                type="number"
+                                placeholder="10000"
+                                required
+                                min={1}
                             />
                         </InputGroup>
                         <InputGroup>
@@ -2234,8 +2422,12 @@ export function Form() {
                             <Input
                                 onChange={handleChange}
                                 name={"collegePrefs.prefSexRatioF"}
-                                type="text"
+                                type="number"
                                 placeholder="40"
+                                required
+                                min={0}
+                                max={100}
+                                step={0.001}
                             />
                         </InputGroup>
                         <InputGroup>
@@ -2243,197 +2435,240 @@ export function Form() {
                                 onChange={handleChange}
                                 name={"collegePrefs.gender"}
                                 placeholder="Gender"
+                                required
                             >
                                 <option value="M">Male</option>
-                                <option value="M">Female</option>
-                                <option value="M">Other</option>
+                                <option value="F">Female</option>
+                                <option value="">Other</option>
                             </Select>
                         </InputGroup>
                     </Grid>
-                    <RadioGroup>
-                        <Heading as="h3" size="sm">
-                            Same-Gender Importance (Ex. Female-Only)
-                        </Heading>
-                        <Flex justifyContent={"space-evenly"}>
-                            <Radio
-                                onClick={() =>
-                                    handleRadioClickCollege(
-                                        "sameGenderImportance",
-                                        0
-                                    )
-                                }
-                                value="0"
-                            >
-                                0
-                            </Radio>
-                            <Radio
-                                onClick={() =>
-                                    handleRadioClickCollege(
-                                        "sameGenderImportance",
-                                        1
-                                    )
-                                }
-                                value="1"
-                            >
-                                1
-                            </Radio>
-                            <Radio
-                                onClick={() =>
-                                    handleRadioClickCollege(
-                                        "sameGenderImportance",
-                                        2
-                                    )
-                                }
-                                value="2"
-                            >
-                                2
-                            </Radio>
-                            <Radio
-                                onClick={() =>
-                                    handleRadioClickCollege(
-                                        "sameGenderImportance",
-                                        3
-                                    )
-                                }
-                                value="3"
-                            >
-                                3
-                            </Radio>
-                            <Radio
-                                onClick={() =>
-                                    handleRadioClickCollege(
-                                        "sameGenderImportance",
-                                        4
-                                    )
-                                }
-                                value="4"
-                            >
-                                4
-                            </Radio>
-                            <Radio
-                                onClick={() =>
-                                    handleRadioClickCollege(
-                                        "sameGenderImportance",
-                                        5
-                                    )
-                                }
-                                value="5"
-                            >
-                                5
-                            </Radio>
-                        </Flex>
-                    </RadioGroup>
-                    <RadioGroup>
-                        <Heading as="h3" size="sm">
-                            HBCU Importance (Historically Black
-                            Colleges/Universities)
-                        </Heading>
-                        <Flex justifyContent={"space-evenly"}>
-                            <Radio
-                                onClick={() =>
-                                    handleRadioClickCollege("hbcuImportance", 0)
-                                }
-                                value="0"
-                            >
-                                0
-                            </Radio>
-                            <Radio
-                                onClick={() =>
-                                    handleRadioClickCollege("hbcuImportance", 1)
-                                }
-                                value="1"
-                            >
-                                1
-                            </Radio>
-                            <Radio
-                                onClick={() =>
-                                    handleRadioClickCollege("hbcuImportance", 2)
-                                }
-                                value="2"
-                            >
-                                2
-                            </Radio>
-                            <Radio
-                                onClick={() =>
-                                    handleRadioClickCollege("hbcuImportance", 3)
-                                }
-                                value="3"
-                            >
-                                3
-                            </Radio>
-                            <Radio
-                                onClick={() =>
-                                    handleRadioClickCollege("hbcuImportance", 4)
-                                }
-                                value="4"
-                            >
-                                4
-                            </Radio>
-                            <Radio
-                                onClick={() =>
-                                    handleRadioClickCollege("hbcuImportance", 5)
-                                }
-                                value="5"
-                            >
-                                5
-                            </Radio>
-                        </Flex>
-                    </RadioGroup>
-                    <RadioGroup>
-                        <Heading as="h3" size="sm">
-                            Coed Importance
-                        </Heading>
-                        <Flex justifyContent={"space-evenly"}>
-                            <Radio
-                                onClick={() =>
-                                    handleRadioClickCollege("coedImportance", 0)
-                                }
-                                value="0"
-                            >
-                                0
-                            </Radio>
-                            <Radio
-                                onClick={() =>
-                                    handleRadioClickCollege("coedImportance", 1)
-                                }
-                                value="1"
-                            >
-                                1
-                            </Radio>
-                            <Radio
-                                onClick={() =>
-                                    handleRadioClickCollege("coedImportance", 2)
-                                }
-                                value="2"
-                            >
-                                2
-                            </Radio>
-                            <Radio
-                                onClick={() =>
-                                    handleRadioClickCollege("coedImportance", 3)
-                                }
-                                value="3"
-                            >
-                                3
-                            </Radio>
-                            <Radio
-                                onClick={() =>
-                                    handleRadioClickCollege("coedImportance", 4)
-                                }
-                                value="4"
-                            >
-                                4
-                            </Radio>
-                            <Radio
-                                onClick={() =>
-                                    handleRadioClickCollege("coedImportance", 5)
-                                }
-                                value="5"
-                            >
-                                5
-                            </Radio>
-                        </Flex>
-                    </RadioGroup>
+                    <FormControl isRequired>
+                        <RadioGroup>
+                            <Heading as="h3" size="sm">
+                                Same-Gender Importance (Ex. Female-Only)
+                            </Heading>
+                            <Flex justifyContent={"space-evenly"}>
+                                <Radio
+                                    onChange={() =>
+                                        handleRadioClickCollege(
+                                            "sameGenderImportance",
+                                            0
+                                        )
+                                    }
+                                    value="0"
+                                >
+                                    0
+                                </Radio>
+                                <Radio
+                                    onChange={() =>
+                                        handleRadioClickCollege(
+                                            "sameGenderImportance",
+                                            1
+                                        )
+                                    }
+                                    value="1"
+                                >
+                                    1
+                                </Radio>
+                                <Radio
+                                    onChange={() =>
+                                        handleRadioClickCollege(
+                                            "sameGenderImportance",
+                                            2
+                                        )
+                                    }
+                                    value="2"
+                                >
+                                    2
+                                </Radio>
+                                <Radio
+                                    onChange={() =>
+                                        handleRadioClickCollege(
+                                            "sameGenderImportance",
+                                            3
+                                        )
+                                    }
+                                    value="3"
+                                >
+                                    3
+                                </Radio>
+                                <Radio
+                                    onChange={() =>
+                                        handleRadioClickCollege(
+                                            "sameGenderImportance",
+                                            4
+                                        )
+                                    }
+                                    value="4"
+                                >
+                                    4
+                                </Radio>
+                                <Radio
+                                    onChange={() =>
+                                        handleRadioClickCollege(
+                                            "sameGenderImportance",
+                                            5
+                                        )
+                                    }
+                                    value="5"
+                                >
+                                    5
+                                </Radio>
+                            </Flex>
+                        </RadioGroup>
+                    </FormControl>
+                    <FormControl isRequired>
+                        <RadioGroup>
+                            <Heading as="h3" size="sm">
+                                HBCU Importance (Historically Black
+                                Colleges/Universities)
+                            </Heading>
+                            <Flex justifyContent={"space-evenly"}>
+                                <Radio
+                                    onChange={() =>
+                                        handleRadioClickCollege(
+                                            "hbcuImportance",
+                                            0
+                                        )
+                                    }
+                                    value="0"
+                                >
+                                    0
+                                </Radio>
+                                <Radio
+                                    onChange={() =>
+                                        handleRadioClickCollege(
+                                            "hbcuImportance",
+                                            1
+                                        )
+                                    }
+                                    value="1"
+                                >
+                                    1
+                                </Radio>
+                                <Radio
+                                    onChange={() =>
+                                        handleRadioClickCollege(
+                                            "hbcuImportance",
+                                            2
+                                        )
+                                    }
+                                    value="2"
+                                >
+                                    2
+                                </Radio>
+                                <Radio
+                                    onChange={() =>
+                                        handleRadioClickCollege(
+                                            "hbcuImportance",
+                                            3
+                                        )
+                                    }
+                                    value="3"
+                                >
+                                    3
+                                </Radio>
+                                <Radio
+                                    onChange={() =>
+                                        handleRadioClickCollege(
+                                            "hbcuImportance",
+                                            4
+                                        )
+                                    }
+                                    value="4"
+                                >
+                                    4
+                                </Radio>
+                                <Radio
+                                    onChange={() =>
+                                        handleRadioClickCollege(
+                                            "hbcuImportance",
+                                            5
+                                        )
+                                    }
+                                    value="5"
+                                >
+                                    5
+                                </Radio>
+                            </Flex>
+                        </RadioGroup>
+                    </FormControl>
+                    <FormControl isRequired>
+                        <RadioGroup>
+                            <Heading as="h3" size="sm">
+                                Coed Importance
+                            </Heading>
+                            <Flex justifyContent={"space-evenly"}>
+                                <Radio
+                                    onChange={() =>
+                                        handleRadioClickCollege(
+                                            "coedImportance",
+                                            0
+                                        )
+                                    }
+                                    value="0"
+                                >
+                                    0
+                                </Radio>
+                                <Radio
+                                    onChange={() =>
+                                        handleRadioClickCollege(
+                                            "coedImportance",
+                                            1
+                                        )
+                                    }
+                                    value="1"
+                                >
+                                    1
+                                </Radio>
+                                <Radio
+                                    onChange={() =>
+                                        handleRadioClickCollege(
+                                            "coedImportance",
+                                            2
+                                        )
+                                    }
+                                    value="2"
+                                >
+                                    2
+                                </Radio>
+                                <Radio
+                                    onChange={() =>
+                                        handleRadioClickCollege(
+                                            "coedImportance",
+                                            3
+                                        )
+                                    }
+                                    value="3"
+                                >
+                                    3
+                                </Radio>
+                                <Radio
+                                    onChange={() =>
+                                        handleRadioClickCollege(
+                                            "coedImportance",
+                                            4
+                                        )
+                                    }
+                                    value="4"
+                                >
+                                    4
+                                </Radio>
+                                <Radio
+                                    onChange={() =>
+                                        handleRadioClickCollege(
+                                            "coedImportance",
+                                            5
+                                        )
+                                    }
+                                    value="5"
+                                >
+                                    5
+                                </Radio>
+                            </Flex>
+                        </RadioGroup>
+                    </FormControl>
                     <Heading as="h3" size="sm">
                         Institution
                     </Heading>
@@ -2483,6 +2718,7 @@ export function Form() {
                                 onChange={handleChange}
                                 name={"collegePrefs.prefReligion"}
                                 placeholder="Pref Religion"
+                                required
                             >
                                 <option value="0">N/A</option>
                                 <option value="22">
@@ -2634,79 +2870,81 @@ export function Form() {
                             </Select>
                         </InputGroup>
                     </Grid>
-                    <RadioGroup>
-                        <Heading as="h3" size="sm">
-                            Committed Faculty Importance
-                        </Heading>
-                        <Flex justifyContent={"space-evenly"}>
-                            <Radio
-                                onClick={() =>
-                                    handleRadioClickCollege(
-                                        "prefCommittedFaculty",
-                                        0
-                                    )
-                                }
-                                value="0"
-                            >
-                                0
-                            </Radio>
-                            <Radio
-                                onClick={() =>
-                                    handleRadioClickCollege(
-                                        "prefCommittedFaculty",
-                                        1
-                                    )
-                                }
-                                value="1"
-                            >
-                                1
-                            </Radio>
-                            <Radio
-                                onClick={() =>
-                                    handleRadioClickCollege(
-                                        "prefCommittedFaculty",
-                                        2
-                                    )
-                                }
-                                value="2"
-                            >
-                                2
-                            </Radio>
-                            <Radio
-                                onClick={() =>
-                                    handleRadioClickCollege(
-                                        "prefCommittedFaculty",
-                                        3
-                                    )
-                                }
-                                value="3"
-                            >
-                                3
-                            </Radio>
-                            <Radio
-                                onClick={() =>
-                                    handleRadioClickCollege(
-                                        "prefCommittedFaculty",
-                                        4
-                                    )
-                                }
-                                value="4"
-                            >
-                                4
-                            </Radio>
-                            <Radio
-                                onClick={() =>
-                                    handleRadioClickCollege(
-                                        "prefCommittedFaculty",
-                                        5
-                                    )
-                                }
-                                value="5"
-                            >
-                                5
-                            </Radio>
-                        </Flex>
-                    </RadioGroup>
+                    <FormControl isRequired>
+                        <RadioGroup>
+                            <Heading as="h3" size="sm">
+                                Committed Faculty Importance
+                            </Heading>
+                            <Flex justifyContent={"space-evenly"}>
+                                <Radio
+                                    onChange={() =>
+                                        handleRadioClickCollege(
+                                            "prefCommittedFaculty",
+                                            0
+                                        )
+                                    }
+                                    value="0"
+                                >
+                                    0
+                                </Radio>
+                                <Radio
+                                    onChange={() =>
+                                        handleRadioClickCollege(
+                                            "prefCommittedFaculty",
+                                            1
+                                        )
+                                    }
+                                    value="1"
+                                >
+                                    1
+                                </Radio>
+                                <Radio
+                                    onChange={() =>
+                                        handleRadioClickCollege(
+                                            "prefCommittedFaculty",
+                                            2
+                                        )
+                                    }
+                                    value="2"
+                                >
+                                    2
+                                </Radio>
+                                <Radio
+                                    onChange={() =>
+                                        handleRadioClickCollege(
+                                            "prefCommittedFaculty",
+                                            3
+                                        )
+                                    }
+                                    value="3"
+                                >
+                                    3
+                                </Radio>
+                                <Radio
+                                    onChange={() =>
+                                        handleRadioClickCollege(
+                                            "prefCommittedFaculty",
+                                            4
+                                        )
+                                    }
+                                    value="4"
+                                >
+                                    4
+                                </Radio>
+                                <Radio
+                                    onChange={() =>
+                                        handleRadioClickCollege(
+                                            "prefCommittedFaculty",
+                                            5
+                                        )
+                                    }
+                                    value="5"
+                                >
+                                    5
+                                </Radio>
+                            </Flex>
+                        </RadioGroup>
+                    </FormControl>
                     <Heading as="h3" size="sm">
                         Major/Degree
                     </Heading>
@@ -2716,7 +2954,9 @@ export function Form() {
                                 onChange={handleChange}
                                 name={"collegePrefs.prefMajor"}
                                 placeholder="Major Type"
+                                required
                             >
+                                <option value="">Other/Undecided</option>
                                 <option value="PCIP01">
                                     Agriculture, Agriculture Operations, and
                                     Related Sciences
@@ -2831,7 +3071,6 @@ export function Form() {
                                     Support Services
                                 </option>
                                 <option value="PCIP54">History</option>
-                                <option value="">Other/Undecided</option>
                             </Select>
                         </InputGroup>
                         <InputGroup>
@@ -2847,6 +3086,7 @@ export function Form() {
                                 onChange={handleChange}
                                 name={"collegePrefs.prefHighestDegree"}
                                 placeholder="Highest Pref Degree"
+                                required
                             >
                                 <option value="0">Non-degree-granting</option>
                                 <option value="1">Certificate degree</option>
@@ -2868,32 +3108,42 @@ export function Form() {
                                 Is Cost Important?
                             </Checkbox>
                         </InputGroup>
-                        <InputGroup>
-                            <Checkbox
-                                onChange={toggleFederalAidImportanceValue}
-                                name={"costPrefs.federalAidImportance"}
-                            >
-                                Is Federal Aid Important?
-                            </Checkbox>
-                        </InputGroup>
-                        <InputGroup>
-                            <InputLeftAddon children="Income" />
-                            <Input
-                                onChange={handleChange}
-                                name={"costPrefs.income"}
-                                type="text" //no commas nor dollar signs!
-                                placeholder="100000"
-                            />
-                        </InputGroup>
-                        <InputGroup>
-                            <InputLeftAddon children="Pref COA" />
-                            <Input
-                                onChange={handleChange}
-                                name={"costPrefs.prefCOA"}
-                                type="text" //no commas nor dollar signs!
-                                placeholder="50000"
-                            />
-                        </InputGroup>
+                        {isCostChecked && (
+                            <InputGroup>
+                                <Checkbox
+                                    onChange={toggleFederalAidImportanceValue}
+                                    name={"costPrefs.federalAidImportance"}
+                                >
+                                    Is Federal Aid Important?
+                                </Checkbox>
+                            </InputGroup>
+                        )}
+                        {isCostChecked && (
+                            <InputGroup>
+                                <InputLeftAddon children="Income" />
+                                <Input
+                                    onChange={handleChange}
+                                    name={"costPrefs.income"}
+                                    type="number"
+                                    placeholder="100000"
+                                    required
+                                    min={0}
+                                />
+                            </InputGroup>
+                        )}
+                        {isCostChecked && (
+                            <InputGroup>
+                                <InputLeftAddon children="Pref COA" />
+                                <Input
+                                    onChange={handleChange}
+                                    name={"costPrefs.prefCOA"}
+                                    type="number"
+                                    placeholder="50000"
+                                    required
+                                    min={0}
+                                />
+                            </InputGroup>
+                        )}
                     </Grid>
                     <Heading as="h4" size="md">
                         Location Preferences
@@ -2907,274 +3157,303 @@ export function Form() {
                                 Is Location Important?
                             </Checkbox>
                         </InputGroup>
-                        <InputGroup>
-                            <Checkbox
-                                onChange={toggleLivingAtHomePrefValue}
-                                name={"locationPrefs.livingAtHome"}
-                            >
-                                Will you 100% live at home (in-state)?
-                            </Checkbox>
-                        </InputGroup>
-                        <InputGroup>
-                            <InputLeftAddon children="ZIP" />
-                            <Input
-                                onChange={handleChange}
-                                name={"locationPrefs.ZIP"}
-                                type="text" //no commas nor dollar signs!
-                                placeholder="14450"
-                            />
-                        </InputGroup>
-                        <InputGroup>
-                            <Select
-                                onChange={handleChange}
-                                name={"locationPrefs.curState"}
-                                placeholder="Current State"
-                            >
-                                <option value="AL">Alabama</option>
-                                <option value="AK">Alaska</option>
-                                <option value="AZ">Arizona</option>
-                                <option value="AR">Arkansas</option>
-                                <option value="CA">California</option>
-                                <option value="CO">Colorado</option>
-                                <option value="CT">Connecticut</option>
-                                <option value="DE">Delaware</option>
-                                <option value="FL">Florida</option>
-                                <option value="GA">Georgia</option>
-                                <option value="HI">Hawaii</option>
-                                <option value="ID">Idaho</option>
-                                <option value="IL">Illinois</option>
-                                <option value="IN">Indiana</option>
-                                <option value="IA">Iowa</option>
-                                <option value="KS">Kansas</option>
-                                <option value="KY">Kentucky</option>
-                                <option value="LA">Louisiana</option>
-                                <option value="ME">Maine</option>
-                                <option value="MD">Maryland</option>
-                                <option value="MA">Massachusetts</option>
-                                <option value="MI">Michigan</option>
-                                <option value="MN">Minnesota</option>
-                                <option value="MS">Mississippi</option>
-                                <option value="MO">Missouri</option>
-                                <option value="MT">Montana</option>
-                                <option value="NE">Nebraska</option>
-                                <option value="NV">Nevada</option>
-                                <option value="NH">New Hampshire</option>
-                                <option value="NJ">New Jersey</option>
-                                <option value="NM">New Mexico</option>
-                                <option value="NY">New York</option>
-                                <option value="NC">North Carolina</option>
-                                <option value="ND">North Dakota</option>
-                                <option value="OH">Ohio</option>
-                                <option value="OK">Oklahoma</option>
-                                <option value="OR">Oregon</option>
-                                <option value="PA">Pennsylvania</option>
-                                <option value="RI">Rhode Island</option>
-                                <option value="SC">South Carolina</option>
-                                <option value="SD">South Dakota</option>
-                                <option value="TN">Tennessee</option>
-                                <option value="TX">Texas</option>
-                                <option value="UT">Utah</option>
-                                <option value="VT">Vermont</option>
-                                <option value="VA">Virginia</option>
-                                <option value="WA">Washington</option>
-                                <option value="WV">West Virginia</option>
-                                <option value="WI">Wisconsin</option>
-                                <option value="WY">Wyoming</option>
-                                <option value="">N/A</option>
-                            </Select>
-                        </InputGroup>
-                        <InputGroup>
-                            <InputLeftAddon children="Pref City" />
-                            <Input
-                                onChange={handleChange}
-                                name={"locationPrefs.prefCity"}
-                                type="text" //no commas nor dollar signs!
-                                placeholder="Rochester"
-                            />
-                        </InputGroup>
-                        <InputGroup>
-                            <Select
-                                onChange={handleChange}
-                                name={"locationPrefs.prefState"}
-                                placeholder="Pref State"
-                            >
-                                <option value="AL">Alabama</option>
-                                <option value="AK">Alaska</option>
-                                <option value="AZ">Arizona</option>
-                                <option value="AR">Arkansas</option>
-                                <option value="CA">California</option>
-                                <option value="CO">Colorado</option>
-                                <option value="CT">Connecticut</option>
-                                <option value="DE">Delaware</option>
-                                <option value="FL">Florida</option>
-                                <option value="GA">Georgia</option>
-                                <option value="HI">Hawaii</option>
-                                <option value="ID">Idaho</option>
-                                <option value="IL">Illinois</option>
-                                <option value="IN">Indiana</option>
-                                <option value="IA">Iowa</option>
-                                <option value="KS">Kansas</option>
-                                <option value="KY">Kentucky</option>
-                                <option value="LA">Louisiana</option>
-                                <option value="ME">Maine</option>
-                                <option value="MD">Maryland</option>
-                                <option value="MA">Massachusetts</option>
-                                <option value="MI">Michigan</option>
-                                <option value="MN">Minnesota</option>
-                                <option value="MS">Mississippi</option>
-                                <option value="MO">Missouri</option>
-                                <option value="MT">Montana</option>
-                                <option value="NE">Nebraska</option>
-                                <option value="NV">Nevada</option>
-                                <option value="NH">New Hampshire</option>
-                                <option value="NJ">New Jersey</option>
-                                <option value="NM">New Mexico</option>
-                                <option value="NY">New York</option>
-                                <option value="NC">North Carolina</option>
-                                <option value="ND">North Dakota</option>
-                                <option value="OH">Ohio</option>
-                                <option value="OK">Oklahoma</option>
-                                <option value="OR">Oregon</option>
-                                <option value="PA">Pennsylvania</option>
-                                <option value="RI">Rhode Island</option>
-                                <option value="SC">South Carolina</option>
-                                <option value="SD">South Dakota</option>
-                                <option value="TN">Tennessee</option>
-                                <option value="TX">Texas</option>
-                                <option value="UT">Utah</option>
-                                <option value="VT">Vermont</option>
-                                <option value="VA">Virginia</option>
-                                <option value="WA">Washington</option>
-                                <option value="WV">West Virginia</option>
-                                <option value="WI">Wisconsin</option>
-                                <option value="WY">Wyoming</option>
-                                <option value="">N/A</option>
-                            </Select>
-                        </InputGroup>
+                        {isLocationChecked && (
+                            <InputGroup>
+                                <Checkbox
+                                    onChange={toggleLivingAtHomePrefValue}
+                                    name={"locationPrefs.livingAtHome"}
+                                >
+                                    Will you 100% live at home (in-state)?
+                                </Checkbox>
+                            </InputGroup>
+                        )}
+                        {isLocationChecked && (
+                            <InputGroup>
+                                <InputLeftAddon children="ZIP" />
+                                <Input
+                                    onChange={handleChange}
+                                    name={"locationPrefs.ZIP"}
+                                    type="text"
+                                    placeholder="14450"
+                                    required
+                                    pattern="^[0-9]+$"
+                                    minLength={5}
+                                    maxLength={5}
+                                />
+                            </InputGroup>
+                        )}
+                        {isLocationChecked && (
+                            <InputGroup>
+                                <Select
+                                    onChange={handleChange}
+                                    name={"locationPrefs.curState"}
+                                    placeholder="Current State"
+                                    required
+                                >
+                                    <option value="AL">Alabama</option>
+                                    <option value="AK">Alaska</option>
+                                    <option value="AZ">Arizona</option>
+                                    <option value="AR">Arkansas</option>
+                                    <option value="CA">California</option>
+                                    <option value="CO">Colorado</option>
+                                    <option value="CT">Connecticut</option>
+                                    <option value="DE">Delaware</option>
+                                    <option value="FL">Florida</option>
+                                    <option value="GA">Georgia</option>
+                                    <option value="HI">Hawaii</option>
+                                    <option value="ID">Idaho</option>
+                                    <option value="IL">Illinois</option>
+                                    <option value="IN">Indiana</option>
+                                    <option value="IA">Iowa</option>
+                                    <option value="KS">Kansas</option>
+                                    <option value="KY">Kentucky</option>
+                                    <option value="LA">Louisiana</option>
+                                    <option value="ME">Maine</option>
+                                    <option value="MD">Maryland</option>
+                                    <option value="MA">Massachusetts</option>
+                                    <option value="MI">Michigan</option>
+                                    <option value="MN">Minnesota</option>
+                                    <option value="MS">Mississippi</option>
+                                    <option value="MO">Missouri</option>
+                                    <option value="MT">Montana</option>
+                                    <option value="NE">Nebraska</option>
+                                    <option value="NV">Nevada</option>
+                                    <option value="NH">New Hampshire</option>
+                                    <option value="NJ">New Jersey</option>
+                                    <option value="NM">New Mexico</option>
+                                    <option value="NY">New York</option>
+                                    <option value="NC">North Carolina</option>
+                                    <option value="ND">North Dakota</option>
+                                    <option value="OH">Ohio</option>
+                                    <option value="OK">Oklahoma</option>
+                                    <option value="OR">Oregon</option>
+                                    <option value="PA">Pennsylvania</option>
+                                    <option value="RI">Rhode Island</option>
+                                    <option value="SC">South Carolina</option>
+                                    <option value="SD">South Dakota</option>
+                                    <option value="TN">Tennessee</option>
+                                    <option value="TX">Texas</option>
+                                    <option value="UT">Utah</option>
+                                    <option value="VT">Vermont</option>
+                                    <option value="VA">Virginia</option>
+                                    <option value="WA">Washington</option>
+                                    <option value="WV">West Virginia</option>
+                                    <option value="WI">Wisconsin</option>
+                                    <option value="WY">Wyoming</option>
+                                    <option value="">N/A</option>
+                                </Select>
+                            </InputGroup>
+                        )}
+                        {isLocationChecked && (
+                            <InputGroup>
+                                <InputLeftAddon children="Pref City" />
+                                <Input
+                                    onChange={handleChange}
+                                    name={"locationPrefs.prefCity"}
+                                    type="text"
+                                    placeholder="Rochester"
+                                    required
+                                />
+                            </InputGroup>
+                        )}
+                        {isLocationChecked && (
+                            <InputGroup>
+                                <Select
+                                    onChange={handleChange}
+                                    name={"locationPrefs.prefState"}
+                                    placeholder="Pref State"
+                                    required
+                                >
+                                    <option value="AL">Alabama</option>
+                                    <option value="AK">Alaska</option>
+                                    <option value="AZ">Arizona</option>
+                                    <option value="AR">Arkansas</option>
+                                    <option value="CA">California</option>
+                                    <option value="CO">Colorado</option>
+                                    <option value="CT">Connecticut</option>
+                                    <option value="DE">Delaware</option>
+                                    <option value="FL">Florida</option>
+                                    <option value="GA">Georgia</option>
+                                    <option value="HI">Hawaii</option>
+                                    <option value="ID">Idaho</option>
+                                    <option value="IL">Illinois</option>
+                                    <option value="IN">Indiana</option>
+                                    <option value="IA">Iowa</option>
+                                    <option value="KS">Kansas</option>
+                                    <option value="KY">Kentucky</option>
+                                    <option value="LA">Louisiana</option>
+                                    <option value="ME">Maine</option>
+                                    <option value="MD">Maryland</option>
+                                    <option value="MA">Massachusetts</option>
+                                    <option value="MI">Michigan</option>
+                                    <option value="MN">Minnesota</option>
+                                    <option value="MS">Mississippi</option>
+                                    <option value="MO">Missouri</option>
+                                    <option value="MT">Montana</option>
+                                    <option value="NE">Nebraska</option>
+                                    <option value="NV">Nevada</option>
+                                    <option value="NH">New Hampshire</option>
+                                    <option value="NJ">New Jersey</option>
+                                    <option value="NM">New Mexico</option>
+                                    <option value="NY">New York</option>
+                                    <option value="NC">North Carolina</option>
+                                    <option value="ND">North Dakota</option>
+                                    <option value="OH">Ohio</option>
+                                    <option value="OK">Oklahoma</option>
+                                    <option value="OR">Oregon</option>
+                                    <option value="PA">Pennsylvania</option>
+                                    <option value="RI">Rhode Island</option>
+                                    <option value="SC">South Carolina</option>
+                                    <option value="SD">South Dakota</option>
+                                    <option value="TN">Tennessee</option>
+                                    <option value="TX">Texas</option>
+                                    <option value="UT">Utah</option>
+                                    <option value="VT">Vermont</option>
+                                    <option value="VA">Virginia</option>
+                                    <option value="WA">Washington</option>
+                                    <option value="WV">West Virginia</option>
+                                    <option value="WI">Wisconsin</option>
+                                    <option value="WY">Wyoming</option>
+                                    <option value="">N/A</option>
+                                </Select>
+                            </InputGroup>
+                        )}
                     </Grid>
-                    <Grid templateColumns="repeat(1, 1fr)" gap={1}>
-                        <InputGroup>
-                            <Select
-                                onChange={handleChange}
-                                name={"locationPrefs.prefRegion"}
-                                placeholder="Pref Region"
-                            >
-                                <option value="0">U.S. Service Schools</option>
-                                <option value="1">
-                                    New England (CT, ME, MA, NH, RI, VT)
-                                </option>
-                                <option value="2">
-                                    Mid East (DE, DC, MD, NJ, NY, PA)
-                                </option>
-                                <option value="3">
-                                    Great Lakes (IL, IN, MI, OH, WI)
-                                </option>
-                                <option value="4">
-                                    Plains (IA, KS, MN, MO, NE, ND, SD)
-                                </option>
-                                <option value="5">
-                                    Southeast (AL, AR, FL, GA, KY, LA, MS, NC,
-                                    SC, TN, VA, WV)
-                                </option>
-                                <option value="6">
-                                    Southwest (AZ, NM, OK, TX)
-                                </option>
-                                <option value="7">
-                                    Rocky Mountains (CO, ID, MT, UT, WY)
-                                </option>
-                                <option value="8">
-                                    Far West (AK, CA, HI, NV, OR, WA)
-                                </option>
-                                <option value="9">
-                                    Outlying Areas (AS, FM, GU, MH, MP, PR, PW,
-                                    VI)
-                                </option>
-                                <option value="-1">N/A</option>
-                            </Select>
-                        </InputGroup>
-                        <InputGroup>
-                            <Select
-                                onChange={handleChange}
-                                name={"locationPrefs.prefLocale"}
-                                placeholder="Pref Locale"
-                            >
-                                <option value="11">
-                                    City: Large (population of 250,000 or more)
-                                </option>
-                                <option value="12">
-                                    City: Midsize (population of at least
-                                    100,000 but less than 250,000)
-                                </option>
-                                <option value="13">
-                                    City: Small (population less than 100,000)
-                                </option>
-                                <option value="21">
-                                    Suburb: Large (outside principal city, in
-                                    urbanized area with population of 250,000 or
-                                    more)
-                                </option>
-                                <option value="22">
-                                    Suburb: Midsize (outside principal city, in
-                                    urbanized area with population of at least
-                                    100,000 but less than 250,000)
-                                </option>
-                                <option value="23">
-                                    Suburb: Small (outside principal city, in
-                                    urbanized area with population less than
-                                    100,000)
-                                </option>
-                                <option value="31">
-                                    Town: Fringe (in urban cluster up to 10
-                                    miles from an urbanized area)
-                                </option>
-                                <option value="32">
-                                    Town: Distant (in urban cluster more than 10
-                                    miles and up to 35 miles from an urbanized
-                                    area)
-                                </option>
-                                <option value="33">
-                                    Town: Remote (in urban cluster more than 35
-                                    miles from an urbanized area)
-                                </option>
-                                <option value="41">
-                                    Rural: Fringe (rural territory up to 5 miles
-                                    from an urbanized area or up to 2.5 miles
-                                    from an urban cluster)
-                                </option>
-                                <option value="42">
-                                    Rural: Distant (rural territory more than 5
-                                    miles but up to 25 miles from an urbanized
-                                    area or more than 2.5 and up to 10 miles
-                                    from an urban cluster)
-                                </option>
-                                <option value="43">
-                                    Rural: Remote (rural territory more than 25
-                                    miles from an urbanized area and more than
-                                    10 miles from an urban cluster)
-                                </option>
-                            </Select>
-                        </InputGroup>
-                    </Grid>
-                    <Grid templateColumns="repeat(2, 1fr)" gap={1}>
-                        <InputGroup>
-                            <InputLeftAddon children="Pref Summer Temp ('F)" />
-                            <Input
-                                onChange={handleChange}
-                                name={"locationPrefs.prefSummerClimate"}
-                                type="text" //no commas or words
-                                placeholder="65"
-                            />
-                        </InputGroup>
-                        <InputGroup>
-                            <InputLeftAddon children="Pref Winter Temp ('F)" />
-                            <Input
-                                onChange={handleChange}
-                                name={"locationPrefs.prefWinterClimate"}
-                                type="text" //no commas or words
-                                placeholder="30"
-                            />
-                        </InputGroup>
-                    </Grid>
+                    {isLocationChecked && (
+                        <Grid templateColumns="repeat(1, 1fr)" gap={1}>
+                            <InputGroup>
+                                <Select
+                                    onChange={handleChange}
+                                    name={"locationPrefs.prefRegion"}
+                                    placeholder="Pref Region"
+                                    required
+                                >
+                                    <option value="0">
+                                        U.S. Service Schools
+                                    </option>
+                                    <option value="1">
+                                        New England (CT, ME, MA, NH, RI, VT)
+                                    </option>
+                                    <option value="2">
+                                        Mid East (DE, DC, MD, NJ, NY, PA)
+                                    </option>
+                                    <option value="3">
+                                        Great Lakes (IL, IN, MI, OH, WI)
+                                    </option>
+                                    <option value="4">
+                                        Plains (IA, KS, MN, MO, NE, ND, SD)
+                                    </option>
+                                    <option value="5">
+                                        Southeast (AL, AR, FL, GA, KY, LA, MS,
+                                        NC, SC, TN, VA, WV)
+                                    </option>
+                                    <option value="6">
+                                        Southwest (AZ, NM, OK, TX)
+                                    </option>
+                                    <option value="7">
+                                        Rocky Mountains (CO, ID, MT, UT, WY)
+                                    </option>
+                                    <option value="8">
+                                        Far West (AK, CA, HI, NV, OR, WA)
+                                    </option>
+                                    <option value="9">
+                                        Outlying Areas (AS, FM, GU, MH, MP, PR,
+                                        PW, VI)
+                                    </option>
+                                    <option value="-1">N/A</option>
+                                </Select>
+                            </InputGroup>
+                            <InputGroup>
+                                <Select
+                                    onChange={handleChange}
+                                    name={"locationPrefs.prefLocale"}
+                                    placeholder="Pref Locale"
+                                    required
+                                >
+                                    <option value="11">
+                                        City: Large (population of 250,000 or
+                                        more)
+                                    </option>
+                                    <option value="12">
+                                        City: Midsize (population of at least
+                                        100,000 but less than 250,000)
+                                    </option>
+                                    <option value="13">
+                                        City: Small (population less than
+                                        100,000)
+                                    </option>
+                                    <option value="21">
+                                        Suburb: Large (outside principal city,
+                                        in urbanized area with population of
+                                        250,000 or more)
+                                    </option>
+                                    <option value="22">
+                                        Suburb: Midsize (outside principal city,
+                                        in urbanized area with population of at
+                                        least 100,000 but less than 250,000)
+                                    </option>
+                                    <option value="23">
+                                        Suburb: Small (outside principal city,
+                                        in urbanized area with population less
+                                        than 100,000)
+                                    </option>
+                                    <option value="31">
+                                        Town: Fringe (in urban cluster up to 10
+                                        miles from an urbanized area)
+                                    </option>
+                                    <option value="32">
+                                        Town: Distant (in urban cluster more
+                                        than 10 miles and up to 35 miles from an
+                                        urbanized area)
+                                    </option>
+                                    <option value="33">
+                                        Town: Remote (in urban cluster more than
+                                        35 miles from an urbanized area)
+                                    </option>
+                                    <option value="41">
+                                        Rural: Fringe (rural territory up to 5
+                                        miles from an urbanized area or up to
+                                        2.5 miles from an urban cluster)
+                                    </option>
+                                    <option value="42">
+                                        Rural: Distant (rural territory more
+                                        than 5 miles but up to 25 miles from an
+                                        urbanized area or more than 2.5 and up
+                                        to 10 miles from an urban cluster)
+                                    </option>
+                                    <option value="43">
+                                        Rural: Remote (rural territory more than
+                                        25 miles from an urbanized area and more
+                                        than 10 miles from an urban cluster)
+                                    </option>
+                                </Select>
+                            </InputGroup>
+                        </Grid>
+                    )}
+                    {isLocationChecked && (
+                        <Grid templateColumns="repeat(2, 1fr)" gap={1}>
+                            <InputGroup>
+                                <InputLeftAddon children="Pref Summer Temp ('F)" />
+                                <Input
+                                    onChange={handleChange}
+                                    name={"locationPrefs.prefSummerClimate"}
+                                    type="number"
+                                    placeholder="65"
+                                    required
+                                />
+                            </InputGroup>
+                            <InputGroup>
+                                <InputLeftAddon children="Pref Winter Temp ('F)" />
+                                <Input
+                                    onChange={handleChange}
+                                    name={"locationPrefs.prefWinterClimate"}
+                                    type="number"
+                                    placeholder="30"
+                                    required
+                                />
+                            </InputGroup>
+                        </Grid>
+                    )}
                     <Heading as="h4" size="md">
                         Success Preferences
                     </Heading>
@@ -3187,57 +3466,89 @@ export function Form() {
                                 Is success (ROI) important?
                             </Checkbox>
                         </InputGroup>
-                        <InputGroup>
-                            <Checkbox
-                                onChange={toggleAlumniCarreerImportanceValue}
-                                name={"successPrefs.alumniCarreerImportance"}
-                            >
-                                Is alumni network important?
-                            </Checkbox>
-                        </InputGroup>
-                        <InputGroup>
-                            <Checkbox
-                                onChange={toggleGraduationRateImportanceValue}
-                                name={"successPrefs.graduationRateImportance"}
-                            >
-                                Is grad rate important?
-                            </Checkbox>
-                        </InputGroup>
-                        <InputGroup>
-                            <InputLeftAddon children="Pref Min Grad Rate" />
-                            <Input
-                                onChange={handleChange}
-                                name={"successPrefs.prefGraduationRate"}
-                                type="text" //no percent signs!!!!
-                                placeholder="50"
-                            />
-                        </InputGroup>
-                        <InputGroup>
-                            <Checkbox
-                                onChange={toggleRetentionRateImportanceValue}
-                                name={"successPrefs.retentionRateImportance"}
-                            >
-                                Is retention rate important?
-                            </Checkbox>
-                        </InputGroup>
-                        <InputGroup>
-                            <InputLeftAddon children="Min Retention Rate" />
-                            <Input
-                                onChange={handleChange}
-                                name={"successPrefs.prefRetentionRate"}
-                                type="text" //no percent signs!!!!
-                                placeholder="50"
-                            />
-                        </InputGroup>
-                        <InputGroup>
-                            <InputLeftAddon children="Pref 6yr Earnings" />
-                            <Input
-                                onChange={handleChange}
-                                name={"successPrefs.desiredEarnings"}
-                                type="text" //no commas nor dollar signs!
-                                placeholder="60000"
-                            />
-                        </InputGroup>
+                        {isSuccessChecked && (
+                            <InputGroup>
+                                <Checkbox
+                                    onChange={
+                                        toggleAlumniCarreerImportanceValue
+                                    }
+                                    name={
+                                        "successPrefs.alumniCarreerImportance"
+                                    }
+                                >
+                                    Is alumni network important?
+                                </Checkbox>
+                            </InputGroup>
+                        )}
+                        {isSuccessChecked && (
+                            <InputGroup>
+                                <Checkbox
+                                    onChange={
+                                        toggleGraduationRateImportanceValue
+                                    }
+                                    name={
+                                        "successPrefs.graduationRateImportance"
+                                    }
+                                >
+                                    Is grad rate important?
+                                </Checkbox>
+                            </InputGroup>
+                        )}
+                        {isSuccessChecked && isGradRChecked && (
+                            <InputGroup>
+                                <InputLeftAddon children="Pref Min Grad Rate" />
+                                <Input
+                                    onChange={handleChange}
+                                    name={"successPrefs.prefGraduationRate"}
+                                    type="number"
+                                    placeholder="50"
+                                    required
+                                    min={0}
+                                    max={100}
+                                />
+                            </InputGroup>
+                        )}
+                        {isSuccessChecked && (
+                            <InputGroup>
+                                <Checkbox
+                                    onChange={
+                                        toggleRetentionRateImportanceValue
+                                    }
+                                    name={
+                                        "successPrefs.retentionRateImportance"
+                                    }
+                                >
+                                    Is retention rate important?
+                                </Checkbox>
+                            </InputGroup>
+                        )}
+                        {isSuccessChecked && isRetentionRChecked && (
+                            <InputGroup>
+                                <InputLeftAddon children="Min Retention Rate" />
+                                <Input
+                                    onChange={handleChange}
+                                    name={"successPrefs.prefRetentionRate"}
+                                    type="number"
+                                    placeholder="50"
+                                    required
+                                    min={0}
+                                    max={100}
+                                />
+                            </InputGroup>
+                        )}
+                        {isSuccessChecked && (
+                            <InputGroup>
+                                <InputLeftAddon children="Pref 6yr Earnings" />
+                                <Input
+                                    onChange={handleChange}
+                                    name={"successPrefs.desiredEarnings"}
+                                    type="number"
+                                    placeholder="60000"
+                                    required
+                                    min={0}
+                                />
+                            </InputGroup>
+                        )}
                     </Grid>
                     <Heading as="h4" size="md">
                         Weighting Preferences
@@ -3248,6 +3559,7 @@ export function Form() {
                                 onChange={handleChange}
                                 name={"weights.collegeWeight"}
                                 placeholder="College Weight"
+                                required
                             >
                                 <option value="1">Not Important</option>
                                 <option value="2">Neutral</option>
@@ -3259,6 +3571,7 @@ export function Form() {
                                 onChange={handleChange}
                                 name={"weights.costWeight"}
                                 placeholder="Cost Weight"
+                                required
                             >
                                 <option value="1">Not Important</option>
                                 <option value="2">Neutral</option>
@@ -3270,6 +3583,7 @@ export function Form() {
                                 onChange={handleChange}
                                 name={"weights.locationWeight"}
                                 placeholder="Location Weight"
+                                required
                             >
                                 <option value="1">Not Important</option>
                                 <option value="2">Neutral</option>
@@ -3281,6 +3595,7 @@ export function Form() {
                                 onChange={handleChange}
                                 name={"weights.successWeight"}
                                 placeholder="Success Weight"
+                                required
                             >
                                 <option value="1">Not Important</option>
                                 <option value="2">Neutral</option>
@@ -3297,8 +3612,10 @@ export function Form() {
                             <Input
                                 onChange={handleChange}
                                 name={"listLengths.safeties"}
-                                type="text" //no commas nor dollar signs!
+                                type="number"
                                 placeholder="3"
+                                required
+                                min={0}
                             />
                         </InputGroup>
                         <InputGroup>
@@ -3306,8 +3623,10 @@ export function Form() {
                             <Input
                                 onChange={handleChange}
                                 name={"listLengths.targets"}
-                                type="text" //no commas nor dollar signs!
+                                type="number"
                                 placeholder="4"
+                                required
+                                min={0}
                             />
                         </InputGroup>
                         <InputGroup>
@@ -3315,8 +3634,10 @@ export function Form() {
                             <Input
                                 onChange={handleChange}
                                 name={"listLengths.reaches"}
-                                type="text" //no commas nor dollar signs!
+                                type="number"
                                 placeholder="2"
+                                required
+                                min={0}
                             />
                         </InputGroup>
                     </Grid>
