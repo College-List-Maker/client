@@ -8,6 +8,7 @@ export function SignOut() {
       eraseCookie("visitorId");
       resolve("finished erase");
     }).then(() => {
+      window.location.hash = "#";
       window.location.reload();
     });
   };

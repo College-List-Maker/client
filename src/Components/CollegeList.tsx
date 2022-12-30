@@ -5,6 +5,7 @@ import { Skeleton, OrderedList, ListItem, Box } from "@chakra-ui/react";
 import { UserCollegeData } from "../types";
 
 export function CollegeList() {
+
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [collegeData, setCollegeData] = useState<UserCollegeData>();
 

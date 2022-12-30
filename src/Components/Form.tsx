@@ -167,18 +167,14 @@ export function Form() {
     const toast = useToast();
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        console.log("submit");
         event.preventDefault();
-        console.log(formData);
-
         axios
             .post(
-                "http://localhost:4000/college/submit-data/" +
+                "https://collegy-server.herokuapp.com/college/submit-data/" +
                     getCookie("visitorId="),
                 formData
             )
             .then((res: any) => {
-                console.log(res);
                 toast({
                     title: "Details submitted.",
                     description: "Your colleges will appear soon.",
@@ -197,7 +193,6 @@ export function Form() {
                     isClosable: true,
                 });
             });
-
         window.location.hash = "#college-list";
     };
     // const [currentPage, setCurrentPage] = useState(0);
