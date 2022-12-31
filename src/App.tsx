@@ -1,10 +1,15 @@
 import { useEffect, useState } from "react";
-import { ChakraProvider, theme } from "@chakra-ui/react";
-import { Home } from "./Components/Home";
-import Navbar from "./Components/Navbar";
-import { CollegeList } from "./Components/CollegeList";
+import { ChakraProvider } from "@chakra-ui/react";
+import Navbar from "./Components/Navbar/Navbar";
+import { CollegeList } from "./Pages/CollegeList/CollegeList";
 import { SignIn } from "./Components/SignIn";
 import { isLoggedIn } from "./Cookie";
+import { LandingPage } from "./Pages/LandingPage/LandingPage";
+import Footer from "./Components/Footer";
+import theme from "./theme/index";
+import "./theme/styles.css";
+import { Form } from "./Pages/Form/Form";
+import { Profile } from "./Pages/Profile/Profile";
 
 export const App = () => {
   /* 
@@ -34,9 +39,11 @@ export const App = () => {
   return (
     <ChakraProvider theme={theme}>
       <Navbar />
-      {(hashtag === "" || hashtag === "#") && <Home />}
+      {(hashtag === "" || hashtag === "#") && <LandingPage />}
       {hashtag === "#college-list" && <CollegeList />}
-      {hashtag === "#sign-in" && <SignIn />}
+      {hashtag === "#form" && <Form />}
+      {hashtag === "#profile" && <Profile />}
+      <Footer />
     </ChakraProvider>
   );
 };

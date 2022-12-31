@@ -1,14 +1,12 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
-import { getCookie } from "../Cookie";
 import { Skeleton } from "@chakra-ui/react";
-import { Form } from "./Form";
-import { UserCollegeData } from "../types";
-import { Dashboard } from "./Dashboard";
+import axios from "axios";
+import { useState, useEffect } from "react";
+import { getCookie } from "../../Cookie";
+import { UserCollegeData } from "../../types";
 
-export function Home() {
+export function Profile() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [formData, setFormData] = useState<UserCollegeData>();
+  const [submissionData, setSubmissionData] = useState<UserCollegeData>();
 
   useEffect(() => {
     fetchSubmittedData();
@@ -21,7 +19,7 @@ export function Home() {
           getCookie("visitorId=")
       )
       .then((res: any) => {
-        setFormData(res.data[0]);
+        setSubmissionData(res.data[0]);
         setIsLoading(false);
       })
       .catch((err: any) => {
@@ -30,14 +28,12 @@ export function Home() {
   };
 
   return (
-    <div>
+    <>
       {isLoading ? (
-        <Skeleton>Test</Skeleton>
-      ) : formData ? (
-        <Dashboard data={formData} />
+        <Skeleton>LOADING</Skeleton>
       ) : (
-        <Form />
+        JSON.stringify(submissionData)
       )}
-    </div>
+    </>
   );
 }
