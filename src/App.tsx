@@ -30,7 +30,6 @@ export const App = () => {
     };
 
     window.onhashchange = handleHashChange;
-
     return () => {
       window.onhashchange = null;
     };
