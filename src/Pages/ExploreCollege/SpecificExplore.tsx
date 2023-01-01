@@ -3,5 +3,5 @@ interface SpecificExploreInt {
 }
 
 export function SpecificExplore({ collegeData }: SpecificExploreInt) {
-  return <>{JSON.parse(collegeData)}</>;
+  return <>{JSON.stringify(collegeData)}</>;
 }
