@@ -5,7 +5,7 @@
   "homepage": "https://college-list-maker.github.io/client/",
   "dependencies": {
     "@chakra-ui/icons": "^2.0.14",
-    "@chakra-ui/react": "^2.4.4",
+    "@chakra-ui/react": "^2.4.6",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@fontsource/actor": "^4.5.9",
@@ -20,6 +20,7 @@
     "@types/react-dom": "^18.0.9",
     "axios": "^1.2.1",
     "chakra": "^0.0.3",
+    "chakra-ui-steps": "^1.8.0",
     "config": "^3.3.8",
     "framer-motion": "^6.5.1",
     "gh-pages": "^4.0.0",

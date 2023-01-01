@@ -7,7 +7,6 @@ import { UserCollegeData } from "../../types";
 export function Profile() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [submissionData, setSubmissionData] = useState<UserCollegeData>();
-
   useEffect(() => {
     fetchSubmittedData();
   }, []);
