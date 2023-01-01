@@ -9,6 +9,7 @@ import theme from "./theme/index";
 import "./theme/styles.css";
 import { Form } from "./Pages/Form/Form";
 import { Profile } from "./Pages/Profile/Profile";
+import { AboutUs } from "./Pages/AboutUs/AboutUs";
 
 export const App = () => {
   /* 
@@ -42,6 +43,7 @@ export const App = () => {
       {hashtag === "#college-list" && <CollegeList />}
       {hashtag === "#form" && <Form />}
       {hashtag === "#profile" && <Profile />}
+      {hashtag === "#about-us" && <AboutUs />}
       <Footer />
     </ChakraProvider>
   );
