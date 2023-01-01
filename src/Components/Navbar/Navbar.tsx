@@ -13,7 +13,6 @@ import {
   useColorModeValue,
   useBreakpointValue,
   useDisclosure,
-  Image,
 } from "@chakra-ui/react";
 import {
   HamburgerIcon,
@@ -21,9 +20,12 @@ import {
   ChevronDownIcon,
   ChevronRightIcon,
 } from "@chakra-ui/icons";
-import { isLoggedIn } from "../Cookie";
-import { SignIn } from "./SignIn";
-import { SignOut } from "./SignOut";
+import { getCookie, isLoggedIn } from "../../Cookie";
+import { SearchBar } from "../SearchBar";
+import { ProfileButton } from "./ProfileButton";
+import { SignIn } from "../SignIn";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure();
@@ -62,13 +64,9 @@ export default function Navbar() {
                 base: "center",
                 md: "left",
               })}
+              fontFamily="Bakbak One"
             >
-              <Image
-                src={
-                  "https://avatars.githubusercontent.com/u/120841647?s=200&v=4"
-                }
-                h={6}
-              />
+              Collegy
             </Flex>
           </Link>
 
@@ -77,13 +75,9 @@ export default function Navbar() {
           </Flex>
         </Flex>
 
-        <Stack
-          flex={{ base: 1, md: 0 }}
-          justify={"flex-end"}
-          direction={"row"}
-          spacing={6}
-        >
-          {isLoggedIn() ? <SignOut /> : <SignIn />}
+        <Stack justify={"flex-end"} direction={"row"}>
+          <SearchBar />
+          {isLoggedIn() ? <ProfileButton /> : <SignIn />}
         </Stack>
       </Flex>
 
@@ -94,10 +88,51 @@ export default function Navbar() {
   );
 }
 
+interface NavItem {
+  label: string;
+  subLabel?: string;
+  children?: Array<NavItem>;
+  href?: string;
+}
+
 const DesktopNav = () => {
   const linkColor = useColorModeValue("gray.600", "gray.200");
   const linkHoverColor = useColorModeValue("gray.800", "white");
   const popoverContentBgColor = useColorModeValue("white", "gray.800");
+
+  /*
+    TODO: add to local storage a variable for if they have college data so
+          we don't have to call api just to check
+  */
+  const [hasCollegeData, setHasCollegeData] = useState(false);
+  useEffect(() => {
+    axios
+      .get(
+        "https://collegy-server.herokuapp.com/college/get-submit-data/" +
+          getCookie("visitorId=")
+      )
+      .then((res: any) => {
+        res.data.length && setHasCollegeData(true);
+      })
+      .catch((err: any) => {
+        console.error(err);
+      });
+  }, []);
+
+  const NAV_ITEMS: Array<NavItem> = [
+    {
+      label: hasCollegeData ? "College List" : "Mega Search",
+      href: hasCollegeData ? "#college-list" : "#form",
+    },
+    {
+      label: "Explore College",
+      href: "#explore-college",
+    },
+    {
+      label: "About Us",
+      href: "#about-us",
+    },
+  ];
 
   return (
     <Stack direction={"row"} spacing={4}>
@@ -181,6 +216,40 @@ const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
 };
 
 const MobileNav = () => {
+  /*
+    TODO: add to local storage a variable for if they have college data so
+          we don't have to call api just to check
+  */
+  const [hasCollegeData, setHasCollegeData] = useState(false);
+  useEffect(() => {
+    axios
+      .get(
+        "https://collegy-server.herokuapp.com/college/get-submit-data/" +
+          getCookie("visitorId=")
+      )
+      .then((res: any) => {
+        res.data.length && setHasCollegeData(true);
+      })
+      .catch((err: any) => {
+        console.error(err);
+      });
+  }, []);
+
+  const NAV_ITEMS: Array<NavItem> = [
+    {
+      label: hasCollegeData ? "College List" : "Mega Search",
+      href: hasCollegeData ? "#college-list" : "#form",
+    },
+    {
+      label: "Explore College",
+      href: "#explore-college",
+    },
+    {
+      label: "About Us",
+      href: "#about-us",
+    },
+  ];
+
   return (
     <Stack
       bg={useColorModeValue("white", "gray.800")}
@@ -246,37 +315,3 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
     </Stack>
   );
 };
-
-interface NavItem {
-  label: string;
-  subLabel?: string;
-  children?: Array<NavItem>;
-  href?: string;
-}
-
-const NAV_ITEMS: Array<NavItem> = [
-  {
-    label: "Your College List",
-    href: "#college-list",
-  },
-  {
-    label: "Explore College",
-    href: "#explore-college",
-  },
-  {
-    label: "More Tools",
-    href: "#more-tools",
-    children: [
-      {
-        label: "College Price Calculators",
-        subLabel: "Random text",
-        href: "#college-price-calculators",
-      },
-      {
-        label: "College Board",
-        subLabel: "Random text",
-        href: "#college-board",
-      },
-    ],
-  },
-];

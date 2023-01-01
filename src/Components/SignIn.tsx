@@ -22,5 +22,9 @@ export function SignIn() {
     onError: handleGoogleError,
   });
 
-  return <Button onClick={() => login()}>Sign In</Button>;
+  return (
+    <>
+      <Button onClick={() => login()}>Sign In/Up</Button>
+    </>
+  );
 }
