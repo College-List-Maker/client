@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { ChakraProvider } from "@chakra-ui/react";
 import Navbar from "./Components/Navbar/Navbar";
 import { CollegeList } from "./Pages/CollegeList/CollegeList";
-import { SignIn } from "./Components/SignIn";
 import { isLoggedIn } from "./Cookie";
 import { LandingPage } from "./Pages/LandingPage/LandingPage";
 import Footer from "./Components/Footer";
