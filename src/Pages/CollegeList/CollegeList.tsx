@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { getCookie } from "../../Cookie";
+import { getCookie, isQuestionaireCompleted } from "../../Cookie";
 import { Skeleton, OrderedList, ListItem, Box } from "@chakra-ui/react";
 import { UserCollegeData } from "../../types";
 
@@ -17,17 +17,7 @@ export function CollegeList() {
     TODO: ALSO REPLACE API CALL FOR A LOCAL STORAGE VARIABLE (like in navbar)
   */
   useEffect(() => {
-    axios
-      .get(
-        "https://collegy-server.herokuapp.com/college/get-submit-data/" +
-          getCookie("visitorId=")
-      )
-      .then((res: any) => {
-        if (!res.data.length) window.location.hash = "#form";
-      })
-      .catch((err: any) => {
-        console.error(err);
-      });
+    if (!isQuestionaireCompleted()) window.location.hash = "#college-list";
   }, []);
 
   const fetchSubmittedData = () => {

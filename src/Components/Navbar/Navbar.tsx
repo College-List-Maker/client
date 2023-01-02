@@ -20,12 +20,10 @@ import {
   ChevronDownIcon,
   ChevronRightIcon,
 } from "@chakra-ui/icons";
-import { getCookie, isLoggedIn } from "../../Cookie";
+import { isLoggedIn, isQuestionaireCompleted } from "../../Cookie";
 import { SearchBar } from "../SearchBar";
 import { ProfileButton } from "./ProfileButton";
 import { SignIn } from "../SignIn";
-import { useEffect, useState } from "react";
-import axios from "axios";
 
 export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure();
@@ -99,25 +97,7 @@ const DesktopNav = () => {
   const linkColor = useColorModeValue("gray.600", "gray.200");
   const linkHoverColor = useColorModeValue("gray.800", "white");
   const popoverContentBgColor = useColorModeValue("white", "gray.800");
-
-  /*
-    TODO: add to local storage a variable for if they have college data so
-          we don't have to call api just to check
-  */
-  const [hasCollegeData, setHasCollegeData] = useState(false);
-  useEffect(() => {
-    axios
-      .get(
-        "https://collegy-server.herokuapp.com/college/get-submit-data/" +
-          getCookie("visitorId=")
-      )
-      .then((res: any) => {
-        res.data.length && setHasCollegeData(true);
-      })
-      .catch((err: any) => {
-        console.error(err);
-      });
-  }, []);
+  const hasCollegeData = isQuestionaireCompleted();
 
   const NAV_ITEMS: Array<NavItem> = [
     {
@@ -220,20 +200,7 @@ const MobileNav = () => {
     TODO: add to local storage a variable for if they have college data so
           we don't have to call api just to check
   */
-  const [hasCollegeData, setHasCollegeData] = useState(false);
-  useEffect(() => {
-    axios
-      .get(
-        "https://collegy-server.herokuapp.com/college/get-submit-data/" +
-          getCookie("visitorId=")
-      )
-      .then((res: any) => {
-        res.data.length && setHasCollegeData(true);
-      })
-      .catch((err: any) => {
-        console.error(err);
-      });
-  }, []);
+  const hasCollegeData = isQuestionaireCompleted();
 
   const NAV_ITEMS: Array<NavItem> = [
     {

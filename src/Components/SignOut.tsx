@@ -1,9 +1,9 @@
 import { Button } from "@chakra-ui/react";
-import { eraseCookie } from "../Cookie";
+import { eraseCookie, removeLocalStorage } from "../Cookie";
 
 export const signout = () => {
   new Promise((resolve, reject) => {
-    window.localStorage.removeItem("user_info");
+    removeLocalStorage();
     eraseCookie("visitorId");
     resolve("finished erase");
   }).then(() => {

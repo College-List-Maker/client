@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { ChakraProvider } from "@chakra-ui/react";
 import Navbar from "./Components/Navbar/Navbar";
 import { CollegeList } from "./Pages/CollegeList/CollegeList";
-import { isLoggedIn } from "./Cookie";
+import { isLoggedIn, updateUserInfo } from "./Cookie";
 import { LandingPage } from "./Pages/LandingPage/LandingPage";
 import Footer from "./Components/Footer";
 import theme from "./theme/index";
@@ -18,6 +18,8 @@ export const App = () => {
   */
   const [hashtag, setHashtag] = useState(window.location.hash);
   useEffect(() => {
+    updateUserInfo();
+
     const checkSigninPage = () => {
       if (isLoggedIn()) {
         if (window.location.hash === "#sign-in") window.location.hash = "#";
