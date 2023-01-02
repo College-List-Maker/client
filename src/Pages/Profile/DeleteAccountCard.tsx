@@ -20,7 +20,7 @@ export function DeleteAccountCard() {
   const handleDelete = () => {
     axios
       .get(
-        "http://localhost:4000/college/delete-account/" +
+        "https://collegy-server.herokuapp.com/college/delete-account/" +
           getCookie("visitorId=")
       )
       .then(() => {

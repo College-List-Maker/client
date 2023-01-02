@@ -31,7 +31,8 @@ export function Profile() {
     event.preventDefault();
     axios
       .post(
-        "http://localhost:4000/college/submit-data/" + getCookie("visitorId="),
+        "https://collegy-server.herokuapp.com/college/submit-data/" +
+          getCookie("visitorId="),
         submissionData
       )
       .then((res: any) => {
