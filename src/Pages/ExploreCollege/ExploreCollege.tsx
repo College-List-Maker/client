@@ -18,7 +18,9 @@ export function ExploreCollege() {
       setQuery(college);
       if (college) {
         await axios
-          .get(`http://localhost:4000/college/get-college-data/${college}`)
+          .get(
+            `https://collegy-server.herokuapp.com/college/get-college-data/${college}`
+          )
           .then((res) => {
             const data = res.data;
             setCollegeData(data);

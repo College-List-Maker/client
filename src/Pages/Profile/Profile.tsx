@@ -15,7 +15,8 @@ export function Profile() {
   const fetchSubmittedData = () => {
     axios
       .get(
-        "http://localhost:4000/user/get-questionaire/" + getCookie("visitorId=")
+        "https://collegy-server.herokuapp.com/user/get-questionaire/" +
+          getCookie("visitorId=")
       )
       .then((res: any) => {
         setSubmissionData(res.data[0]);
@@ -30,14 +31,14 @@ export function Profile() {
     event.preventDefault();
     axios
       .post(
-        "http://localhost:4000/user/set-questionaire/" +
+        "https://collegy-server.herokuapp.com/user/set-questionaire/" +
           getCookie("visitorId="),
         submissionData
       )
       .then((res: any) => {
         axios
           .get(
-            "http://localhost:4000/user/set-college-list/" +
+            "https://collegy-server.herokuapp.com/user/set-college-list/" +
               getCookie("visitorId=")
           )
           .then(() => {
