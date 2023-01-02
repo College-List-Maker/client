@@ -9,6 +9,7 @@ import theme from "./theme/index";
 import "./theme/styles.css";
 import { Form } from "./Pages/Form/Form";
 import { Profile } from "./Pages/Profile/Profile";
+import { ExploreCollege } from "./Pages/ExploreCollege/ExploreCollege";
 
 export const App = () => {
   /* 
@@ -24,12 +25,11 @@ export const App = () => {
 
     const handleHashChange = () => {
       checkSigninPage();
-      const hash = window.location.hash;
+      const hash = window.location.hash.split("?")[0];
       setHashtag(hash);
     };
 
     window.onhashchange = handleHashChange;
-
     return () => {
       window.onhashchange = null;
     };
@@ -42,6 +42,7 @@ export const App = () => {
       {hashtag === "#college-list" && <CollegeList />}
       {hashtag === "#form" && <Form />}
       {hashtag === "#profile" && <Profile />}
+      {hashtag.startsWith("#explore-college") && <ExploreCollege />}
       <Footer />
     </ChakraProvider>
   );
