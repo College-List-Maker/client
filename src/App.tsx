@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { ChakraProvider } from "@chakra-ui/react";
 import Navbar from "./Components/Navbar/Navbar";
 import { CollegeList } from "./Pages/CollegeList/CollegeList";
-import { isLoggedIn, updateUserInfo } from "./Cookie";
+import { isLoggedIn, updateUserInfo } from "./Fetch";
 import { LandingPage } from "./Pages/LandingPage/LandingPage";
 import Footer from "./Components/Footer";
 import theme from "./theme/index";

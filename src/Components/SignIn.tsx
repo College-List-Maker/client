@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useGoogleLogin } from "@react-oauth/google";
 import { continueGoogle } from "../redux/actions/auth";
 import { useAppDispatch } from "../redux/const/hooks";
-import { updateUserInfo } from "../Cookie";
+import { updateUserInfo } from "../Fetch";
 
 export function SignIn() {
   const navigate = useNavigate();

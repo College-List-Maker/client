@@ -7,11 +7,13 @@ import {
   MenuItem,
   MenuList,
 } from "@chakra-ui/react";
-import { getProfilePicture } from "../../Cookie";
+import { useState } from "react";
+import { getProfilePicture } from "../../Fetch";
 import { signout } from "../SignOut";
 
 export function ProfileButton() {
-  const profilePicure = getProfilePicture();
+  const [profilePicture, setProfilePicture] = useState("");
+  getProfilePicture().then((res) => setProfilePicture(res?.data));
 
   const handlePageChange = (hash: string) => {
     window.location.hash = hash;
@@ -21,7 +23,7 @@ export function ProfileButton() {
     <>
       <Menu>
         <MenuButton as={Button} rounded={"full"} variant={"link"}>
-          <Avatar size={"sm"} src={profilePicure} />
+          <Avatar size={"sm"} src={profilePicture || ""} />
         </MenuButton>
         <MenuList alignItems={"center"}>
           <MenuItem onClick={() => handlePageChange("#college-list")}>

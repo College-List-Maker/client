@@ -20,7 +20,7 @@ import {
   ChevronDownIcon,
   ChevronRightIcon,
 } from "@chakra-ui/icons";
-import { isLoggedIn, isQuestionaireCompleted } from "../../Cookie";
+import { isLoggedIn, isQuestionaireCompleted } from "../../Fetch";
 import { SearchBar } from "../SearchBar";
 import { ProfileButton } from "./ProfileButton";
 import { SignIn } from "../SignIn";

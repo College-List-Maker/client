@@ -1,5 +1,5 @@
 import { Button } from "@chakra-ui/react";
-import { eraseCookie, removeLocalStorage } from "../Cookie";
+import { eraseCookie, removeLocalStorage } from "../Fetch";
 
 export const signout = () => {
   new Promise((resolve, reject) => {

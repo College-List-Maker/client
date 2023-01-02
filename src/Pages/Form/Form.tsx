@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getCookie, isQuestionaireCompleted } from "../../Cookie";
+import { getCookie, isQuestionaireCompleted } from "../../Fetch";
 import { UserCollegeData } from "../../types";
 import { useEffect, createContext, useState } from "react";
 import {
@@ -200,8 +200,7 @@ export function Form() {
     event.preventDefault();
     axios
       .post(
-        "https://collegy-server.herokuapp.com/college/submit-data/" +
-          getCookie("visitorId="),
+        "http://localhost:4000/college/submit-data/" + getCookie("visitorId="),
         formData
       )
       .then((res: any) => {
@@ -214,7 +213,7 @@ export function Form() {
         });
         axios
           .get(
-            "https://collegy-server.herokuapp.com/college/set-college-list/" +
+            "http://localhost:4000/college/set-college-list/" +
               getCookie("visitorId=")
           )
           .then(() => {

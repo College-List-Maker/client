@@ -1,12 +1,17 @@
 import axios from "axios";
 
+/* 
+  ------
+  COOKIE
+  ------
+*/
+
 export default function setVisitorCookie() {
   const visitorIdCookie = getCookie("visitorId=");
   try {
-    const profileId = JSON.parse(localStorage.getItem("user_info") || "").result
-      .id;
-    if (profileId && profileId !== visitorIdCookie) {
-      createCookie("visitorId", profileId, 10 * 365 * 24 * 60 * 60);
+    const user_id = localStorage.getItem("user_id");
+    if (user_id && user_id !== visitorIdCookie) {
+      createCookie("visitorId", user_id, 10 * 365 * 24 * 60 * 60);
     } else if (!visitorIdCookie) {
       createCookie("visitorId", createUniqueId(), 10 * 24 * 60 * 60);
     }
@@ -49,37 +54,47 @@ function createUniqueId() {
   );
 }
 
+/* 
+  ------------------
+  USER LOCAL STORAGE
+  ------------------
+*/
+
 export function isLoggedIn() {
-  const user_info = localStorage.getItem("user_info");
-  if (user_info && user_info !== "undefined") {
+  const user_token = localStorage.getItem("user_token");
+  if (user_token) {
     return true;
   }
   return false;
 }
 
-export function getProfilePicture() {
-  const user_info = localStorage.getItem("user_info");
-  if (user_info && user_info !== "undefined") {
-    return JSON.parse(user_info).result.profilePicture + "";
+/* 
+  GET USER PROFILE PICTURE
+*/
+export async function getProfilePicture() {
+  const user_token = localStorage.getItem("user_token");
+  if (user_token) {
+    return await axios.get(
+      "http://localhost:4000/user/get-profile-picture/" +
+        getCookie("visitorId=")
+    );
   }
-  return "";
 }
 
 /* 
   GET USER PROFILE NAME
 */
 export function getProfileName() {
-  const user_info = localStorage.getItem("user_info");
-  if (user_info && user_info !== "undefined") {
-    const first_name =
-      JSON.parse(user_info).result.firstName === "NA"
-        ? ""
-        : JSON.parse(user_info).result.firstName;
-    const last_name =
-      JSON.parse(user_info).result.lastName === "NA"
-        ? ""
-        : JSON.parse(user_info).result.lastName;
-    return first_name + " " + last_name;
+  const user_token = localStorage.getItem("user_token");
+  if (user_token) {
+    axios
+      .get("http://localhost:4000/user/get-name/" + getCookie("visitorId="))
+      .then((res: any) => {
+        return res.data;
+      })
+      .catch((err: any) => {
+        console.error(err);
+      });
   }
   return "";
 }
@@ -92,11 +107,11 @@ function setIsQuestionaireCompleted() {
   if (!questionaireFilled) {
     axios
       .get(
-        "https://collegy-server.herokuapp.com/college/get-submit-data/" +
-          getCookie("visitorId=")
+        "http://localhost:4000/user/get-questionaire/" + getCookie("visitorId=")
       )
       .then((res: any) => {
-        if (res.data.length) localStorage.setItem("questionaireFilled", "true");
+        if (res.data.length)
+          localStorage.setItem("questionaire_complete", "true");
       })
       .catch((err: any) => {
         console.error(err);
@@ -106,22 +121,21 @@ function setIsQuestionaireCompleted() {
 
 export function updateUserInfo() {
   // Get the current value of user_info from local storage
-  const user_info = localStorage.getItem("user_info");
-  if (user_info && user_info !== "undefined") {
-    let userInfoJSON = JSON.parse(user_info);
-    if (userInfoJSON) {
-      setIsQuestionaireCompleted();
-    }
-    localStorage.setItem("user_info", JSON.stringify(userInfoJSON));
+  const user_token = localStorage.getItem("user_token");
+  const user_id = localStorage.getItem("user_id");
+  if (user_token && user_id) {
+    setIsQuestionaireCompleted();
   }
 }
 
 export function isQuestionaireCompleted() {
-  const questionaireFilled = localStorage.getItem("questionaireFilled");
+  const questionaireFilled = localStorage.getItem("questionaire_complete");
   return questionaireFilled === "true";
 }
 
 export function removeLocalStorage() {
-  localStorage.removeItem("user_info");
-  localStorage.removeItem("questionaireFilled");
+  localStorage.removeItem("user_id");
+  localStorage.removeItem("user_token");
+  localStorage.removeItem("questionaire_complete");
+  localStorage.clear();
 }

@@ -10,7 +10,7 @@ import { BrowserRouter } from "react-router-dom";
 import { createStore, applyMiddleware, compose } from "redux";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { ColorModeScript } from "@chakra-ui/react";
-import setVisitorCookie from "./Cookie";
+import setVisitorCookie from "./Fetch";
 
 const container = document.getElementById("root");
 if (!container) throw new Error("Failed to find the root element");

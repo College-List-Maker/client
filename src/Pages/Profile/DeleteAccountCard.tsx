@@ -10,7 +10,7 @@ import {
 } from "@chakra-ui/react";
 import axios from "axios";
 import React from "react";
-import { getCookie } from "../../Cookie";
+import { getCookie } from "../../Fetch";
 import { signout } from "../../Components/SignOut";
 
 export function DeleteAccountCard() {
@@ -20,8 +20,7 @@ export function DeleteAccountCard() {
   const handleDelete = () => {
     axios
       .get(
-        "https://collegy-server.herokuapp.com/college/delete-account/" +
-          getCookie("visitorId=")
+        "http://localhost:4000/user/delete-account/" + getCookie("visitorId=")
       )
       .then(() => {
         signout();

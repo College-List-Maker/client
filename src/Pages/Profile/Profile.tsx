@@ -1,7 +1,7 @@
 import { Button, Center, Container, Heading, Skeleton } from "@chakra-ui/react";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { getCookie } from "../../Cookie";
+import { getCookie } from "../../Fetch";
 import { UserCollegeData } from "../../types";
 import { DeleteAccountCard } from "./DeleteAccountCard";
 
@@ -15,8 +15,7 @@ export function Profile() {
   const fetchSubmittedData = () => {
     axios
       .get(
-        "https://collegy-server.herokuapp.com/college/get-submit-data/" +
-          getCookie("visitorId=")
+        "http://localhost:4000/user/get-questionaire/" + getCookie("visitorId=")
       )
       .then((res: any) => {
         setSubmissionData(res.data[0]);
@@ -31,14 +30,14 @@ export function Profile() {
     event.preventDefault();
     axios
       .post(
-        "https://collegy-server.herokuapp.com/college/submit-data/" +
+        "http://localhost:4000/user/set-questionaire/" +
           getCookie("visitorId="),
         submissionData
       )
       .then((res: any) => {
         axios
           .get(
-            "https://collegy-server.herokuapp.com/college/set-college-list/" +
+            "http://localhost:4000/user/set-college-list/" +
               getCookie("visitorId=")
           )
           .then(() => {

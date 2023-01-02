@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { getCookie, isQuestionaireCompleted } from "../../Cookie";
+import { getCookie, isQuestionaireCompleted } from "../../Fetch";
 import { Skeleton, OrderedList, ListItem, Box } from "@chakra-ui/react";
 import { UserCollegeData } from "../../types";
 
@@ -23,8 +23,7 @@ export function CollegeList() {
   const fetchSubmittedData = () => {
     axios
       .get(
-        "https://collegy-server.herokuapp.com/college/get-college-list/" +
-          getCookie("visitorId=")
+        "http://localhost:4000/user/get-college-list/" + getCookie("visitorId=")
       )
       .then((res: any) => {
         if (res.data) {
