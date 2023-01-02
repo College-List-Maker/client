@@ -1,4 +1,4 @@
-import { Button, Center, Container, Skeleton } from "@chakra-ui/react";
+import { Button, Center, Container, Heading, Skeleton } from "@chakra-ui/react";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { getCookie } from "../../Cookie";
@@ -61,6 +61,7 @@ export function Profile() {
         <>
           <Center>
             <Container>
+              <Heading>Questionaire</Heading>
               {/* filled in form here */}
               <Button type={"submit"} colorScheme="teal">
                 Save
@@ -68,6 +69,7 @@ export function Profile() {
             </Container>
           </Center>
           <Container>
+            <Heading>Account Settings</Heading>
             <DeleteAccountCard />
           </Container>
         </>

@@ -4,7 +4,7 @@ export function TopCard() {
   return (
     <>
       <Stack>
-        <Stack>
+        <Stack color="white">
           <Heading as="h1">Maximize your college search.</Heading>
           <Text>
             Fill out a short questionnaire and find the best college matches for
