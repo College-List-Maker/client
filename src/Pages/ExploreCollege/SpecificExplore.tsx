@@ -18,7 +18,6 @@ export function SpecificExplore({ collegeData }: SpecificExploreInt) {
         MENONLY: number,
         WOMENONLY: number
     ): string {
-        let str = "None";
         if (
             HBCU != 0 ||
             PBI != 0 ||
@@ -30,7 +29,6 @@ export function SpecificExplore({ collegeData }: SpecificExploreInt) {
             MENONLY != 0 ||
             WOMENONLY != 0
         ) {
-            str = "";
         }
         const flags: string[] = [];
         if (HBCU != 0) flags.push("Historically Black College and University");
