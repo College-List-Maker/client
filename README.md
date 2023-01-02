@@ -1,1 +1,1 @@
-https://college-list-maker.github.io/client/
+https://collegy.github.io/client/
