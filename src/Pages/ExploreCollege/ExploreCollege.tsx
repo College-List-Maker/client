@@ -1,10 +1,11 @@
 import { DefaultExplore } from "./DefaultExplore";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Skeleton } from "@chakra-ui/react";
 import { SpecificExplore } from "./SpecificExplore";
 
 export function ExploreCollege() {
+  const [query, setQuery] = useState<string | null>(null);
   const [collegeData, setCollegeData] = useState(undefined);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -14,6 +15,7 @@ export function ExploreCollege() {
       const queryString = hash.substring(hash.indexOf("?") + 1);
       const urlParams = new URLSearchParams(queryString);
       const college = urlParams.get("college");
+      setQuery(college);
       if (college) {
         await axios
           .get(
@@ -33,9 +35,16 @@ export function ExploreCollege() {
     handleCollegeData().then(() => setIsLoading(false));
   };
 
-  // update page for changing hash or init
-  useEffect(updateCollegeData, []);
-  window.addEventListener("hashchange", updateCollegeData);
+  // anti spammer
+  const hashChangeListener = useRef(() => {});
+  useEffect(() => {
+    hashChangeListener.current = updateCollegeData;
+    window.addEventListener("hashchange", hashChangeListener.current);
+    updateCollegeData();
+    return () => {
+      window.removeEventListener("hashchange", hashChangeListener.current);
+    };
+  }, []);
 
   return (
     <>
@@ -44,7 +53,7 @@ export function ExploreCollege() {
       ) : collegeData ? (
         <SpecificExplore collegeData={collegeData} />
       ) : (
-        <DefaultExplore />
+        <DefaultExplore searchQuery={query} />
       )}
     </>
   );
