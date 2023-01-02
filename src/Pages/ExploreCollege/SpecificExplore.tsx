@@ -350,6 +350,7 @@ export function SpecificExplore({ collegeData }: SpecificExploreInt) {
                                 <Link
                                     href={"https://" + collegeData.INSTURL}
                                     isExternal
+                                    color="teal.500"
                                 >
                                     {collegeData.INSTURL}
                                 </Link>
