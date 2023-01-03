@@ -19,32 +19,34 @@ export function SpecificExplore({ collegeData }: SpecificExploreInt) {
     WOMENONLY: number
   ): string {
     if (
-      HBCU !== 0 ||
-      PBI !== 0 ||
-      ANNHI !== 0 ||
-      TRIBAL !== 0 ||
-      AANAPII !== 0 ||
-      HSI !== 0 ||
-      NANTI !== 0 ||
-      MENONLY !== 0 ||
-      WOMENONLY !== 0
+      Number(HBCU) !== 0 ||
+      Number(PBI) !== 0 ||
+      Number(ANNHI) !== 0 ||
+      Number(TRIBAL) !== 0 ||
+      Number(AANAPII) !== 0 ||
+      Number(HSI) !== 0 ||
+      Number(NANTI) !== 0 ||
+      Number(MENONLY) !== 0 ||
+      Number(WOMENONLY) !== 0
     ) {
     }
     const flags: string[] = [];
-    if (HBCU !== 0) flags.push("Historically Black College and University");
-    if (PBI !== 0) flags.push("Predominantly Black Institution");
-    if (ANNHI !== 0)
+    if (Number(HBCU) !== 0)
+      flags.push("Historically Black College and University");
+    if (Number(PBI) !== 0) flags.push("Predominantly Black Institution");
+    if (Number(ANNHI) !== 0)
       flags.push("Alaska Native Native Hawaiian Serving Institution");
-    if (TRIBAL !== 0) flags.push("Tribal College and University");
-    if (AANAPII !== 0)
+    if (Number(TRIBAL) !== 0) flags.push("Tribal College and University");
+    if (Number(AANAPII) !== 0)
       flags.push(
         "Asian American Native American Pacific Islander-Serving Institution"
       );
-    if (HSI !== 0) flags.push("Hispanic-Serving Institution");
-    if (NANTI !== 0) flags.push("Native American Non-Tribal Institution");
-    if (MENONLY !== 0) flags.push("Men-Only College");
-    if (WOMENONLY !== 0) flags.push("Women-Only College");
-    if (flags.length === 0) return "None";
+    if (Number(HSI) !== 0) flags.push("Hispanic-Serving Institution");
+    if (Number(NANTI) !== 0)
+      flags.push("Native American Non-Tribal Institution");
+    if (Number(MENONLY) !== 0) flags.push("Men-Only College");
+    if (Number(WOMENONLY) !== 0) flags.push("Women-Only College");
+    if (Number(flags.length) === 0) return "None";
     return flags.join(", ");
   }
   function findReligion(num: number): string {
