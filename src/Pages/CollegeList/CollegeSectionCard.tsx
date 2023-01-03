@@ -32,6 +32,7 @@ export function CollegeSectionCard({
                   position: index + 1,
                   unitid: "100690",
                 }}
+                key={index}
               />
             );
           })}

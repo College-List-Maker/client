@@ -27,8 +27,8 @@ export function RepoStats({ stats }: RepoStatsInt) {
           justifyContent="space-around"
           alignItems={"center"}
         >
-          {stats.map(({ stat, desc }) => {
-            return <Stat stat={stat} desc={desc} />;
+          {stats.map(({ stat, desc }, index) => {
+            return <Stat stat={stat} desc={desc} key={index} />;
           })}
         </Flex>
       </Container>
