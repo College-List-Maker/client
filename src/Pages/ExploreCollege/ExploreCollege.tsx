@@ -20,7 +20,7 @@ export function ExploreCollege() {
       if (college) {
         await axios
           .get(
-            `https://collegy-server.herokuapp.com/college/get-college-datas/${college}`
+            `https://collegy-server.herokuapp.com/college/get-college-data/${college}`
           )
           .then((res) => {
             const data = res.data;
