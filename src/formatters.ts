@@ -24,13 +24,18 @@ export function formatAsNumber(amount: number | string): string {
   return num.toString().replace(/\d(?=(\d{3})+$)/g, "$&,");
 }
 
-export function formatAsPercent(amount: number | string): string {
+export function formatAsPercent(
+  amount: number | string,
+  isDecimal = false
+): string {
   let num: number;
   if (typeof amount === "string") {
     num = parseFloat(amount);
   } else {
     num = amount;
   }
+  if (isDecimal) num *= 100;
+
   return (
     num
       .toFixed(2)

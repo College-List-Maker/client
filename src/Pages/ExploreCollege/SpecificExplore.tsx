@@ -332,7 +332,7 @@ export function SpecificExplore({ collegeData }: SpecificExploreInt) {
                 . {collegeData.INSTNM} is home to about{" "}
                 {formatAsNumber(collegeData.UGDS)} college students, and with an
                 acceptance rate of{" "}
-                {formatAsPercent(Number(collegeData.ADM_RATE) * 100)}, is
+                {formatAsPercent(Number(collegeData.ADM_RATE), true)}, is
                 classified as{" "}
                 {Number(collegeData.ADM_RATE) < 0.15
                   ? "a most selective"
@@ -420,13 +420,11 @@ export function SpecificExplore({ collegeData }: SpecificExploreInt) {
                 desc: "Institution Level",
               },
               {
-                stat: formatAsPercent(collegeData.COMP_ORIG_YR4_RT * 100),
+                stat: formatAsPercent(collegeData.COMP_ORIG_YR4_RT, true),
                 desc: "Graduation Rate (4yr)",
               },
               {
-                stat: formatAsPercent(
-                  100 - collegeData.WDRAW_ORIG_YR4_RT * 100
-                ),
+                stat: formatAsPercent(1 - collegeData.WDRAW_ORIG_YR4_RT, true),
                 desc: "Retention Rate (4yr)",
               },
             ]}
@@ -435,7 +433,7 @@ export function SpecificExplore({ collegeData }: SpecificExploreInt) {
             heading="Admission"
             stats={[
               {
-                stat: formatAsPercent(collegeData.ADM_RATE * 100),
+                stat: formatAsPercent(collegeData.ADM_RATE, true),
                 desc: "Acceptance Rate",
               },
               {
@@ -524,10 +522,10 @@ export function SpecificExplore({ collegeData }: SpecificExploreInt) {
               desc: "Student Body Size",
             },
             {
-              stat: `${formatAsPercent(collegeData.FEMALE * 100)} +
-                % Female /  +
-                ${formatAsPercent(100 - collegeData.FEMALE * 100)}
-                % Male`,
+              stat: `${formatAsPercent(collegeData.FEMALE, true)} 
+                Female /
+                ${formatAsPercent(1 - collegeData.FEMALE, true)}
+                Male`,
               desc: "Gender Diversity",
             },
             {
