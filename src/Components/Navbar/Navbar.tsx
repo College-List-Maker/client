@@ -25,20 +25,21 @@ import { SearchBar } from "../SearchBar";
 import { ProfileButton } from "./ProfileButton";
 import { SignIn } from "../SignIn";
 
-export default function Navbar() {
+interface NavbarInt {
+  dark?: boolean;
+}
+
+export default function Navbar({ dark }: NavbarInt) {
   const { isOpen, onToggle } = useDisclosure();
 
   return (
     <Box>
       <Flex
-        bg={useColorModeValue("white", "gray.800")}
-        color={useColorModeValue("gray.600", "white")}
+        bg={dark ? "#2E2E2E" : "transparent"}
+        color={dark ? "#ffffff" : "#2E2E2E"}
         minH={"60px"}
         py={{ base: 2 }}
         px={{ base: 4 }}
-        borderBottom={1}
-        borderStyle={"solid"}
-        borderColor={useColorModeValue("gray.200", "gray.900")}
         align={"center"}
       >
         <Flex
@@ -69,13 +70,15 @@ export default function Navbar() {
           </Link>
 
           <Flex display={{ base: "none", md: "flex" }} ml={10}>
-            <DesktopNav />
+            <DesktopNav dark={dark} />
           </Flex>
         </Flex>
 
         <Flex justify={"flex-end"} direction={"row"}>
-          <SearchBar />
-          {isLoggedIn() ? <ProfileButton /> : <SignIn />}
+          <Flex mr={"3"}>
+            <SearchBar dark={dark} />
+          </Flex>
+          {isLoggedIn() ? <ProfileButton dark={dark} /> : <SignIn />}
         </Flex>
       </Flex>
 
@@ -93,8 +96,12 @@ interface NavItem {
   href?: string;
 }
 
-const DesktopNav = () => {
-  const linkColor = useColorModeValue("gray.600", "gray.200");
+interface DesktopNavInt {
+  dark?: boolean;
+}
+
+const DesktopNav = ({ dark }: DesktopNavInt) => {
+  const linkColor = dark ? "#ffffff" : "#2E2E2E";
   const linkHoverColor = useColorModeValue("gray.800", "white");
   const popoverContentBgColor = useColorModeValue("white", "gray.800");
   const hasCollegeData = isQuestionaireCompleted();

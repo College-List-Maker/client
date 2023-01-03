@@ -1,18 +1,14 @@
-import {
-  Box,
-  Container,
-  Flex,
-  Link,
-  Stack,
-  Text,
-  useColorModeValue,
-} from "@chakra-ui/react";
+import { Box, Container, Flex, Link, Stack, Text } from "@chakra-ui/react";
 
-export default function Footer() {
+interface FooterInt {
+  dark?: boolean;
+}
+
+export default function Footer({ dark }: FooterInt) {
   return (
     <Box
-      bg={useColorModeValue("gray.50", "gray.900")}
-      color={useColorModeValue("gray.700", "gray.200")}
+      bgColor={dark ? "#2E2E2E" : "transparent"}
+      color={dark ? "#ffffff" : "#000000"}
     >
       <Container
         as={Stack}
@@ -39,7 +35,7 @@ export default function Footer() {
             w={"100%"}
             justifyContent={"space-around"}
             fontSize={"xs"}
-            color={"#5E5E5E"}
+            color={dark ? "#CBC9C9" : "#5E5E5E"}
           >
             <Link href="#about-us">About Us</Link>
             <Link href="#tos">Terms of Service</Link>
