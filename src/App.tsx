@@ -12,6 +12,9 @@ import { Profile } from "./Pages/Profile/Profile";
 import { AboutUs } from "./Pages/AboutUs/AboutUs";
 import { ExploreCollege } from "./Pages/ExploreCollege/ExploreCollege";
 import { TermsOfService } from "./Pages/TermsOfService/TermsOfService";
+import ComingSoon from "./Pages/ComingSoon/ComingSoon";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const App = () => {
   /* 
@@ -28,6 +31,7 @@ export const App = () => {
     };
 
     const handleHashChange = () => {
+      window.scrollTo(0, 0);
       checkSigninPage();
       const hash = window.location.hash.split("?")[0];
       setHashtag(hash);
@@ -41,6 +45,7 @@ export const App = () => {
 
   return (
     <ChakraProvider theme={theme}>
+      <ToastContainer />
       <Navbar />
       {(hashtag === "" || hashtag === "#") && <LandingPage />}
       {hashtag === "#college-list" && <CollegeList />}
@@ -48,6 +53,7 @@ export const App = () => {
       {hashtag === "#profile" && <Profile />}
       {hashtag === "#about-us" && <AboutUs />}
       {hashtag === "#tos" && <TermsOfService />}
+      {hashtag === "#coming-soon" && <ComingSoon />}
       {hashtag.startsWith("#explore-college") && <ExploreCollege />}
       <Footer />
     </ChakraProvider>

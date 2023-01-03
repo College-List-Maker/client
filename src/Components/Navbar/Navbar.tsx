@@ -73,10 +73,10 @@ export default function Navbar() {
           </Flex>
         </Flex>
 
-        <Stack justify={"flex-end"} direction={"row"}>
+        <Flex justify={"flex-end"} direction={"row"}>
           <SearchBar />
           {isLoggedIn() ? <ProfileButton /> : <SignIn />}
-        </Stack>
+        </Flex>
       </Flex>
 
       <Collapse in={isOpen} animateOpacity>

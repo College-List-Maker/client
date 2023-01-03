@@ -9,9 +9,6 @@ import {
 import { CollegeIndividualCard } from "./CollegeIndividualCard";
 
 interface CollegeSectionCardInt {
-    heading: string;
-    colleges: any;
-}
 
 export function CollegeSectionCard({
     heading,

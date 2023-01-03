@@ -25,9 +25,9 @@ export function StatCard({ heading, stats }: StatCardInt) {
 
         <CardBody>
           <Stack divider={<StackDivider />} spacing="4">
-            {stats.map(({ stat, desc }) => {
+            {stats.map(({ stat, desc }, index) => {
               return (
-                <Box>
+                <Box key={index}>
                   <Heading
                     size="xs"
                     textTransform="uppercase"

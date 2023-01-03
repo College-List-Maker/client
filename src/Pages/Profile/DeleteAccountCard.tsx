@@ -12,6 +12,7 @@ import axios from "axios";
 import React from "react";
 import { getCookie } from "../../Fetch";
 import { signout } from "../../Components/SignOut";
+import { toast } from "react-toastify";
 
 export function DeleteAccountCard() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -27,6 +28,7 @@ export function DeleteAccountCard() {
         signout();
       })
       .catch((err) => {
+        toast.error("Failed to delete account.");
         console.log(err);
       });
   };

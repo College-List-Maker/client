@@ -3,6 +3,7 @@ import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import { Skeleton } from "@chakra-ui/react";
 import { SpecificExplore } from "./SpecificExplore";
+import { toast } from "react-toastify";
 
 export function ExploreCollege() {
   const [query, setQuery] = useState<string | null>(null);
@@ -26,6 +27,7 @@ export function ExploreCollege() {
             setCollegeData(data);
           })
           .catch((err) => {
+            toast.error("Couldn't find the college.");
             console.log(err);
           });
       } else {

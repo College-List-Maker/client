@@ -1,6 +1,7 @@
 import { Button, Center, Container, Heading, Skeleton } from "@chakra-ui/react";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { toast } from "react-toastify";
 import { getCookie } from "../../Fetch";
 import { UserCollegeData } from "../../types";
 import { DeleteAccountCard } from "./DeleteAccountCard";
@@ -23,6 +24,7 @@ export function Profile() {
         setIsLoading(false);
       })
       .catch((err: any) => {
+        toast.error("An error occured.");
         console.error(err);
       });
   };
@@ -48,6 +50,7 @@ export function Profile() {
       })
       .catch((err: any) => {
         console.error(err);
+        toast.error("An error occured.");
       });
 
     window.location.hash = "#college-list";
