@@ -24,7 +24,7 @@ export function CollegeList() {
     const fetchSubmittedData = () => {
         axios
             .get(
-                "http://localhost:4000/user/get-college-list/" +
+                "https://collegy-server.herokuapp.com/user/get-college-list/" +
                     getCookie("visitorId=")
             )
             .then((res: any) => {

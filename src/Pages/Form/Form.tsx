@@ -214,7 +214,7 @@ export function Form() {
                 });
                 axios
                     .get(
-                        "http://localhost:4000/user/set-college-list/" +
+                        "https://collegy-server.herokuapp.com/user/set-college-list/" +
                             getCookie("visitorId=")
                     )
                     .then(() => {

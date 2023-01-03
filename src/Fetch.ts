@@ -75,7 +75,7 @@ export async function getProfilePicture() {
     const user_token = localStorage.getItem("user_token");
     if (user_token) {
         return await axios.get(
-            "http://localhost:4000/user/get-profile-picture/" +
+            "https://collegy-server.herokuapp.com/user/get-profile-picture/" +
                 getCookie("visitorId=")
         );
     }
@@ -89,7 +89,8 @@ export function getProfileName() {
     if (user_token) {
         axios
             .get(
-                "http://localhost:4000/user/get-name/" + getCookie("visitorId=")
+                "https://collegy-server.herokuapp.com/user/get-name/" +
+                    getCookie("visitorId=")
             )
             .then((res: any) => {
                 return res.data;
@@ -109,7 +110,7 @@ function setIsQuestionaireCompleted() {
     if (!questionaireFilled) {
         axios
             .get(
-                "http://localhost:4000/user/get-questionaire/" +
+                "https://collegy-server.herokuapp.com/user/get-questionaire/" +
                     getCookie("visitorId=")
             )
             .then((res: any) => {
