@@ -11,8 +11,23 @@ interface StatInt {
 function Stat({ stat, desc }: StatInt) {
   return (
     <Stack alignItems={"center"}>
-      <Heading>{stat}</Heading>
-      <Text>{desc}</Text>
+      <Heading
+        fontWeight={"900"}
+        color="#484848"
+        pb="0"
+        mb="0"
+        textAlign={"center"}
+      >
+        {stat}
+        <Text
+          color="#828282"
+          fontFamily={"actor"}
+          fontSize={"sm"}
+          fontWeight="100"
+        >
+          {desc}
+        </Text>
+      </Heading>
     </Stack>
   );
 }

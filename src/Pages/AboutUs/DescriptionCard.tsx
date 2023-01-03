@@ -1,13 +1,23 @@
-import { Container } from "@chakra-ui/react";
+import { Box, Text } from "@chakra-ui/react";
 
 interface DescriptionCardInt {
-  text: string;
+  paragraphs: string[];
 }
 
-export function DescriptionCard({ text }: DescriptionCardInt) {
+export function DescriptionCard({ paragraphs }: DescriptionCardInt) {
   return (
     <>
-      <Container shadow={"lg"}>{text}</Container>
+      <Box shadow={"lg"} p={"10"} rounded={"xl"} bgColor={"white"}>
+        {paragraphs.map((paragraph, index) => {
+          return (
+            <Text key={index}>
+              {paragraph}
+              <br />
+              <br />
+            </Text>
+          );
+        })}
+      </Box>
     </>
   );
 }

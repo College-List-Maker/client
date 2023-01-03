@@ -42,11 +42,12 @@ export function CollegeList() {
   };
 
   return (
-    <Container>
-      {!collegeData || isLoading ? (
-        <CollegeListSkeleton />
-      ) : (
-        <Stack>
+    <>
+      <Container>
+        {!collegeData || isLoading ? (
+          <CollegeListSkeleton />
+        ) : (
+          <Stack>
           <BounceBox>
             <CollegeSectionCard
               heading="Reaches"
@@ -67,6 +68,7 @@ export function CollegeList() {
           </BounceBox>
         </Stack>
       )}
-    </Container>
+      </Container>
+    </>
   );
 }

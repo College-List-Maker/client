@@ -25,6 +25,7 @@ export function TermsOfService() {
     },
   ];
   return (
+<>
     <Container>
       <Heading textAlign={"center"} as="h1" size={"md"}>
         Collegy's Terms of Service
@@ -40,5 +41,6 @@ export function TermsOfService() {
         );
       })}
     </Container>
+    </>
   );
 }
