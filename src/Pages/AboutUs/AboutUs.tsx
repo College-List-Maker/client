@@ -1,5 +1,6 @@
 import { Box, Container } from "@chakra-ui/react";
 import { BeginYourSearch } from "../../Components/BeginYourSearch";
+import { BounceBox } from "../../Components/MotionBox";
 import { AboutUsHeading } from "./AboutUsHeading";
 import { BiographyCard } from "./BiographyCard";
 import { DescriptionCard } from "./DescriptionCard";
@@ -11,6 +12,7 @@ export function AboutUs() {
     <>
       <Box bgColor={"#F8F8F8"} w={"100%"} pb={"10"}>
         <Container minW={"70%"}>
+        <BounceBox>
           <AboutUsHeading h1={"About Us"} h2={"More About Collegy"} />
           <DescriptionCard
             paragraphs={[
@@ -19,10 +21,12 @@ export function AboutUs() {
               "Overall, Collegy is a valuable resource for high school students who are trying to navigate the often overwhelming process of finding the right college. By using the platform's sophisticated algorithm, students can quickly and easily find colleges that are most likely to help them achieve their academic and professional goals.",
             ]}
           />
+          </BounceBox>
         </Container>
       </Box>
       <Box bgColor={"#E3E0E0"} pb={"10"}>
         <Container minW={"60%"}>
+        <BounceBox>
           <AboutUsHeading h1={"Team Biographies"} h2={"Meet our Team"} />
           <BiographyCard
             picture="https://media.licdn.com/dms/image/D4E03AQFkYwurI7k4xw/profile-displayphoto-shrink_400_400/0/1666456660962?e=1678320000&v=beta&t=oEauCFl1R3xMGEVy6RwdtwGBiDPopwy4ezhGfh0ZGxY"
@@ -30,6 +34,8 @@ export function AboutUs() {
             position="Software Engineer, Co-Founder"
             bio="Hi there! My name is John and I am a computer science student at Brown University. I am currently earning my ScB degree with concentrations in Artificial Intelligence/Machine Learning, Software Principles, Data, and Design. I am also certified in Data Fluency, and I have strong proficiencies in a variety of programming languages, including Python, Java, JavaScript, TypeScript, ReasonML, and Racket. In my work as a developer at Collegy, I have experience with a variety of web application frameworks, database management systems, and other systems and applications. I am especially passionate about artificial intelligence, software engineering, and data science, and I am always looking for new opportunities to learn and grow in these fields. I hope we can work together to build something amazing!"
           />
+        </BounceBox>
+        <BounceBox>
           <BiographyCard
             picture="https://media.licdn.com/dms/image/C5603AQHTB2qvlimbBw/profile-displayphoto-shrink_400_400/0/1634852696133?e=1678320000&v=beta&t=p1tlTFLG2_56Uc7HNxGchzMNlJJ4JOCBwQYCH0xDEBs"
             name="Tyler Cady"
@@ -37,6 +43,7 @@ export function AboutUs() {
             bio="Hello! My name is Tyler and I am a computer science student at the Georgia Institute of Technology. In addition to my studies, I am also a developer at Collegy, where I have the opportunity to work on a variety of projects and gain valuable experience in the field. I am currently developing my proficiency in Java, HTML, CSS, JavaScript, and database management, and I am eager to concentrate my learning around information/internetworks and modeling/simulation. My professional ambition is to become well adapted to a full-stack environment and advance myself with competence in high-demand software development. I am committed to continuing to learn and grow as a developer, and I am excited to use my skills and expertise to make a positive impact in the world of technology."
             orange={true}
           />
+          </BounceBox>
         </Container>
       </Box>
       <Box bgColor={"#F8F8F8"} w={"100%"} pb={"10"}>
@@ -49,7 +56,10 @@ export function AboutUs() {
               "It is also important to consider how your data will be used when using an open source algorithm for finding the best colleges for you. It is essential that any personal information you provide is handled with care and that your privacy is protected. It is also important to understand how your data will be used in the algorithm and to ensure that it is being used in a way that is ethical and beneficial to you.",
             ]}
           />
+          <BounceBox>
           <VisitRepoCard />
+          </BounceBox>
+          <BounceBox>
           <RepoStats
             stats={[
               { stat: "1.2M+", desc: "data points" },
@@ -57,9 +67,9 @@ export function AboutUs() {
               { stat: "1", desc: "repository" },
             ]}
           />
-        </Container>
-      </Box>
-      <BeginYourSearch />
+        </BounceBox>
+      </Container>
+        <BeginYourSearch />
     </>
   );
 }

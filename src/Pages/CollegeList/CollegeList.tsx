@@ -5,6 +5,7 @@ import { Container, Stack } from "@chakra-ui/react";
 import { UserCollegeData } from "../../types";
 import { CollegeSectionCard } from "./CollegeSectionCard";
 import { CollegeListSkeleton } from "./CollegeListSkeleton";
+import { BounceBox } from "../../Components/MotionBox";
 
 export function CollegeList() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -47,20 +48,26 @@ export function CollegeList() {
           <CollegeListSkeleton />
         ) : (
           <Stack>
+          <BounceBox>
             <CollegeSectionCard
               heading="Reaches"
               colleges={collegeData.finalReaches}
             />
+          </BounceBox>
+          <BounceBox>
             <CollegeSectionCard
               heading="Targets"
               colleges={collegeData.finalTargets}
             />
+          </BounceBox>
+          <BounceBox>
             <CollegeSectionCard
               heading="Safeties"
               colleges={collegeData.finalSafeties}
             />
-          </Stack>
-        )}
+          </BounceBox>
+        </Stack>
+      )}
       </Container>
     </>
   );

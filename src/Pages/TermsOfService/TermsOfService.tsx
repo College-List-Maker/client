@@ -25,15 +25,22 @@ export function TermsOfService() {
     },
   ];
   return (
-    <>
-      <Container>
-        <Heading textAlign={"center"} as="h1" size={"md"}>
-          Collegy's Terms of Service
-        </Heading>
-        {tos.map(({ title, text }, index) => {
-          return <TOSSectionCard title={title} text={text} index={index + 1} />;
-        })}
-      </Container>
+<>
+    <Container>
+      <Heading textAlign={"center"} as="h1" size={"md"}>
+        Collegy's Terms of Service
+      </Heading>
+      {tos.map(({ title, text }, index) => {
+        return (
+          <TOSSectionCard
+            title={title}
+            text={text}
+            index={index + 1}
+            key={index}
+          />
+        );
+      })}
+    </Container>
     </>
   );
 }

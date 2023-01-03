@@ -1,4 +1,5 @@
 import { Stack, Heading, Button, Text } from "@chakra-ui/react";
+import { BounceBox } from "../../Components/MotionBox";
 import { isQuestionaireCompleted } from "../../Fetch";
 
 export function TopCard() {
@@ -24,7 +25,9 @@ export function TopCard() {
         <Heading as="h1">{title}</Heading>
         <Text>{description}</Text>
       </Stack>
-      <Button onClick={handleClick}>{button}</Button>
+      <BounceBox>
+        <Button onClick={handleClick}>{button}</Button>
+      </BounceBox>
     </Stack>
   );
 }
