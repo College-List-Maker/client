@@ -346,7 +346,11 @@ export function SpecificExplore({ collegeData }: SpecificExploreInt) {
                 university. For more on {collegeData.INSTNM}, view the
                 comprehesive statistics below or visit their website at{" "}
                 <Link
-                  href={"https://" + collegeData.INSTURL}
+                  href={
+                    collegeData.INSTURL.startsWith("http")
+                      ? collegeData.INSTURL
+                      : "https://" + collegeData.INSTURL
+                  }
                   isExternal
                   color="teal.500"
                 >
@@ -508,7 +512,9 @@ export function SpecificExplore({ collegeData }: SpecificExploreInt) {
                 desc: "Endowment",
               },
               {
-                stat: "https://" + collegeData.NPCURL,
+                stat: collegeData.NPCURL.startsWith("http")
+                  ? collegeData.NPCURL
+                  : "https://" + collegeData.NPCURL,
                 desc: "Link to Net Price Calc",
               },
             ]}
