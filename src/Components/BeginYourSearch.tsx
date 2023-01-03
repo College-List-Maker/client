@@ -1,4 +1,5 @@
 import { Box, Button, Container, Flex, Heading, Text } from "@chakra-ui/react";
+import { FaArrowRight } from "react-icons/fa";
 
 export function BeginYourSearch() {
   const handleClick = (hash: string) => {
@@ -13,10 +14,20 @@ export function BeginYourSearch() {
         </Heading>
         <Text color={"#BDBDBD"}>Begin for free today</Text>
         <Flex justifyContent={"center"} mt="10">
-          <Button onClick={() => handleClick("#form")} mx={"3"}>
+          <Button
+            rightIcon={<FaArrowRight size={"15"} />}
+            variant={"gprimary"}
+            onClick={() => handleClick("#form")}
+            mx={"3"}
+          >
             Begin Mega Search
           </Button>
-          <Button onClick={() => handleClick("#explore-college")} mx={"3"}>
+          <Button
+            rightIcon={<FaArrowRight size={"15"} />}
+            variant={"gprimary"}
+            onClick={() => handleClick("#explore-college")}
+            mx={"3"}
+          >
             Explore College
           </Button>
         </Flex>

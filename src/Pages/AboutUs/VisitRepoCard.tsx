@@ -21,7 +21,7 @@ export function VisitRepoCard() {
             also a developer at Collegy, where I have the opportunity to work on
             a variety.
           </Text>
-          <Button>Visit GitHub Repo</Button>
+          <Button variant={"secondary"}>Visit GitHub Repo</Button>
         </Stack>
       </Container>
     </>

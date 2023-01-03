@@ -91,3 +91,22 @@ export const UpBox = ({ children, ...props }: BoxProps) => {
     </MotionBox>
   );
 };
+
+export const RotationBox = ({ children, ...props }: BoxProps) => {
+  return (
+    <MotionBox
+      initial={{ rotate: 0, y: 0 }}
+      whileInView={{ rotate: 360, y: [0, -30, 30, 0] }}
+      viewport={{ once: true, amount: 0.1 }}
+      transition={{
+        duration: 90,
+        loop: Infinity,
+        ease: "linear",
+      }}
+      repeat={Infinity}
+      {...props}
+    >
+      {children}
+    </MotionBox>
+  );
+};

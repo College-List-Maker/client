@@ -30,7 +30,7 @@ export function ProfileButton({ dark }: ProfileButtonInt) {
       <MenuButton as={Button} rounded={"full"} variant={"link"}>
         <Avatar size={"sm"} src={profilePicture || ""}>
           <AvatarBadge
-            borderColor={dark ? "#2E2E2E" : "#ffffff"}
+            borderColor={dark ? "#2E2E2E" : "#051927"}
             bg="green.500"
             boxSize="1em"
           />

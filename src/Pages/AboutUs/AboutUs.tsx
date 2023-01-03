@@ -1,6 +1,6 @@
 import { Box, Container } from "@chakra-ui/react";
 import { BeginYourSearch } from "../../Components/BeginYourSearch";
-import { BounceBox } from "../../Components/MotionBox";
+import { BounceBox, RightBox } from "../../Components/MotionBox";
 import { AboutUsHeading } from "./AboutUsHeading";
 import { BiographyCard } from "./BiographyCard";
 import { DescriptionCard } from "./DescriptionCard";
@@ -10,7 +10,7 @@ import { VisitRepoCard } from "./VisitRepoCard";
 export function AboutUs() {
   return (
     <>
-      <Box bgColor={"#F8F8F8"} w={"100%"} pb={"10"}>
+      <Box bgColor={"#F8F8F8"} w={"100%"} pb={"10"} pt={"20"}>
         <Container minW={"70%"}>
           <BounceBox>
             <AboutUsHeading h1={"About Us"} h2={"More About Collegy"} />
@@ -59,7 +59,7 @@ export function AboutUs() {
           <BounceBox>
             <VisitRepoCard />
           </BounceBox>
-          <BounceBox>
+          <RightBox>
             <RepoStats
               stats={[
                 { stat: "1.2M+", desc: "data points" },
@@ -67,7 +67,7 @@ export function AboutUs() {
                 { stat: "1", desc: "repository" },
               ]}
             />
-          </BounceBox>
+          </RightBox>
         </Container>
       </Box>
       <BeginYourSearch />

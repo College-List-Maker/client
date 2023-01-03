@@ -1,7 +1,7 @@
 import { DefaultExplore } from "./DefaultExplore";
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
-import { Skeleton } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import { SpecificExplore } from "./SpecificExplore";
 import { toast } from "react-toastify";
 
@@ -49,14 +49,14 @@ export function ExploreCollege() {
   }, []);
 
   return (
-    <>
+    <Box bgColor={"#051027"}>
       {isLoading ? (
-        <Skeleton>Loading</Skeleton>
+        <DefaultExplore searchQuery={query} />
       ) : collegeData ? (
         <SpecificExplore collegeData={collegeData} />
       ) : (
         <DefaultExplore searchQuery={query} />
       )}
-    </>
+    </Box>
   );
 }

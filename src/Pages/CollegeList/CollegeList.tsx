@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { getCookie, isQuestionaireCompleted } from "../../Fetch";
-import { Container, Stack } from "@chakra-ui/react";
+import { Box, Container, Stack } from "@chakra-ui/react";
 import { UserCollegeData } from "../../types";
 import { CollegeSectionCard } from "./CollegeSectionCard";
 import { CollegeListSkeleton } from "./CollegeListSkeleton";
@@ -16,11 +16,8 @@ export function CollegeList() {
     fetchSubmittedData();
   }, []);
 
-  /* 
-    TODO: ALSO REPLACE API CALL FOR A LOCAL STORAGE VARIABLE (like in navbar)
-  */
   useEffect(() => {
-    if (!isQuestionaireCompleted()) window.location.hash = "#college-list";
+    if (!isQuestionaireCompleted()) window.location.hash = "#form";
   }, []);
 
   const fetchSubmittedData = () => {
@@ -42,33 +39,33 @@ export function CollegeList() {
   };
 
   return (
-    <>
+    <Box pt={"20"} pb={"40"} bgColor={"#051027"}>
       <Container>
         {!collegeData || isLoading ? (
           <CollegeListSkeleton />
         ) : (
           <Stack>
-          <BounceBox>
-            <CollegeSectionCard
-              heading="Reaches"
-              colleges={collegeData.finalReaches}
-            />
-          </BounceBox>
-          <BounceBox>
-            <CollegeSectionCard
-              heading="Targets"
-              colleges={collegeData.finalTargets}
-            />
-          </BounceBox>
-          <BounceBox>
-            <CollegeSectionCard
-              heading="Safeties"
-              colleges={collegeData.finalSafeties}
-            />
-          </BounceBox>
-        </Stack>
-      )}
+            <BounceBox>
+              <CollegeSectionCard
+                heading="Reaches"
+                colleges={collegeData.finalReaches}
+              />
+            </BounceBox>
+            <BounceBox>
+              <CollegeSectionCard
+                heading="Targets"
+                colleges={collegeData.finalTargets}
+              />
+            </BounceBox>
+            <BounceBox>
+              <CollegeSectionCard
+                heading="Safeties"
+                colleges={collegeData.finalSafeties}
+              />
+            </BounceBox>
+          </Stack>
+        )}
       </Container>
-    </>
+    </Box>
   );
 }

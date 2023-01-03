@@ -18,7 +18,7 @@ interface StatCardInt {
 export function StatCard({ heading, stats }: StatCardInt) {
   return (
     <>
-      <Card>
+      <Card my={"2"}>
         <CardHeader>
           <Heading size="md">{heading}</Heading>
         </CardHeader>

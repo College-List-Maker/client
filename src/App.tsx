@@ -20,7 +20,11 @@ export const App = () => {
   /* 
     HANDLE APP DIRECTORY
   */
-  const isDark = ["#about-us"].includes(window.location.hash);
+  const isDarkNavbar = ["#about-us", "#profile"].includes(window.location.hash);
+  const isDarkFooter =
+    ["#about-us", "#college-list", "#coming-soon", "#form"].includes(
+      window.location.hash
+    ) || window.location.hash.startsWith("#explore-college");
   const [hashtag, setHashtag] = useState(window.location.hash);
   useEffect(() => {
     updateUserInfo();
@@ -46,7 +50,7 @@ export const App = () => {
   return (
     <ChakraProvider theme={theme}>
       <ToastContainer />
-      <Navbar dark={isDark} />
+      <Navbar dark={isDarkNavbar} />
       {(hashtag === "" || hashtag === "#") && <LandingPage />}
       {hashtag === "#college-list" && <CollegeList />}
       {hashtag === "#form" && <Form />}
@@ -55,7 +59,7 @@ export const App = () => {
       {hashtag === "#tos" && <TermsOfService />}
       {hashtag === "#coming-soon" && <ComingSoon />}
       {hashtag.startsWith("#explore-college") && <ExploreCollege />}
-      <Footer dark={isDark} />
+      <Footer dark={isDarkFooter} />
     </ChakraProvider>
   );
 };

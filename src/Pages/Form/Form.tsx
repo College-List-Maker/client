@@ -9,6 +9,8 @@ import {
   useToast,
   Flex,
   Heading,
+  Box,
+  Stack,
 } from "@chakra-ui/react";
 import { Page0 } from "./FormPages/Page0";
 import { Page1 } from "./FormPages/Page1";
@@ -346,11 +348,11 @@ export function Form() {
     initialStep: 0,
   });
   return (
-    <>
+    <Box minH={"100vh"} py={"20"} bgColor={"#051027"}>
       <Center>
-        <Container>
+        <Container maxW={"2xl"} bgColor={"#ffffff"} p={"10"} rounded={"md"}>
           <form onSubmit={handleSubmit}>
-            <Flex flexDir="column" width="100%">
+            <Stack justify={"space-between"}>
               <Steps display="flex" flexWrap="wrap" activeStep={activeStep}>
                 {steps.map(({ label }, index) => (
                   <Step label={label} key={label}>
@@ -390,10 +392,10 @@ export function Form() {
                   )}
                 </Flex>
               )}
-            </Flex>
+            </Stack>
           </form>
         </Container>
       </Center>
-    </>
+    </Box>
   );
 }

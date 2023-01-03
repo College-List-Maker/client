@@ -1,9 +1,9 @@
-import { Container, Heading, Text } from "@chakra-ui/react";
+import { Box, Container, Heading, Text } from "@chakra-ui/react";
 
 export default function ComingSoon() {
   return (
-    <>
-      <Container h={"80vh"}>
+    <Box py={"20"} bgColor={"#051027"} minH={"100vh"} color={"#cccccc"}>
+      <Container>
         <Heading py="10" textAlign={"center"}>
           Coming Soon!
         </Heading>
@@ -20,6 +20,6 @@ export default function ComingSoon() {
           date!
         </Text>
       </Container>
-    </>
+    </Box>
   );
 }

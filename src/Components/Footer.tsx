@@ -7,7 +7,10 @@ interface FooterInt {
 export default function Footer({ dark }: FooterInt) {
   return (
     <Box
-      bgColor={dark ? "#2E2E2E" : "transparent"}
+      position={"absolute"}
+      bottom={"0"}
+      width={"100%"}
+      bgColor={"#transparent"}
       color={dark ? "#ffffff" : "#000000"}
     >
       <Container
@@ -17,10 +20,15 @@ export default function Footer({ dark }: FooterInt) {
         direction={{ base: "column", md: "row" }}
         spacing={4}
         justify={{ base: "center", md: "space-between" }}
-        align={{ base: "top", md: "top" }}
+        align={{ base: "center", md: "top" }}
         fontSize={"sm"}
+        alignItems={{ md: "flex-start" }}
       >
-        <Text w="170px" fontFamily="Bakbak One">
+        <Text
+          visibility={{ base: "hidden", md: "visible" }}
+          w="225px"
+          fontFamily="Bakbak One"
+        >
           Collegy
         </Text>
         <Stack>
@@ -42,7 +50,16 @@ export default function Footer({ dark }: FooterInt) {
             <Link href="mailto:hey@collegy.net">hey@collegy.net</Link>
           </Flex>
         </Stack>
-        <Text>©2022, All rights reserved.</Text>
+        <Flex>
+          <Text
+            visibility={{ base: "visible", md: "hidden" }}
+            fontFamily="Bakbak One"
+            pr={"10"}
+          >
+            Collegy
+          </Text>
+          ©2022, All rights reserved.
+        </Flex>
       </Container>
     </Box>
   );

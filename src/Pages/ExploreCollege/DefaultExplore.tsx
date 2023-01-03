@@ -1,5 +1,10 @@
-import { Container, Heading, Image, Text } from "@chakra-ui/react";
-import { FadeBox, UpBox } from "../../Components/MotionBox";
+import { Box, Container, Heading, Image, Text } from "@chakra-ui/react";
+import {
+  FadeBox,
+  RightBox,
+  RotationBox,
+  UpBox,
+} from "../../Components/MotionBox";
 import { SearchBar } from "../../Components/SearchBar";
 
 interface DefaultExploreInt {
@@ -8,21 +13,28 @@ interface DefaultExploreInt {
 
 export function DefaultExplore({ searchQuery }: DefaultExploreInt) {
   return (
-    <Container textAlign={"center"}>
-      <FadeBox>
-        <Heading>Explore College</Heading>
-        <SearchBar placeholder="Search a college or place" />
-        {searchQuery ? (
-          <Text>{`No results for UNITID "${searchQuery}".`}</Text>
-        ) : (
+    <Box py={"20"} backgroundColor={"#051027"} color={"#ffffff"}>
+      <Container textAlign={"center"}>
+        <FadeBox>
+          <Heading py={"10"}>Explore College</Heading>
+          <SearchBar placeholder="Search a college or place" />
+          {searchQuery && (
+            <RightBox>
+              <Text
+                pt={"5vw"}
+              >{`No results for UNITID "${searchQuery}".`}</Text>
+            </RightBox>
+          )}
           <UpBox>
-            <Image
-              src={process.env.PUBLIC_URL + "/img/globe.png"}
-              alt="globe"
-            />
+            <RotationBox>
+              <Image
+                src={process.env.PUBLIC_URL + "/img/globe.svg"}
+                alt="globe"
+              />
+            </RotationBox>
           </UpBox>
-        )}
-      </FadeBox>
-    </Container>
+        </FadeBox>
+      </Container>
+    </Box>
   );
 }

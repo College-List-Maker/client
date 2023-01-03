@@ -1,4 +1,11 @@
-import { Button, Center, Container, Heading, Skeleton } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Center,
+  Container,
+  Heading,
+  Skeleton,
+} from "@chakra-ui/react";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
@@ -57,14 +64,16 @@ export function Profile() {
   };
 
   return (
-    <>
+    <Box pt={"20"} bgColor={"#E3E0E0"} minH={"100vh"}>
       {isLoading ? (
         <Skeleton>LOADING</Skeleton>
       ) : (
         <>
           <Center>
             <Container>
-              <Heading>Questionaire</Heading>
+              <Heading as="h1" size="lg">
+                Questionaire
+              </Heading>
               {/* filled in form here */}
               <Button type={"submit"} colorScheme="teal">
                 Save
@@ -72,11 +81,13 @@ export function Profile() {
             </Container>
           </Center>
           <Container>
-            <Heading>Account Settings</Heading>
+            <Heading as="h1" size="lg">
+              Account Settings
+            </Heading>
             <DeleteAccountCard />
           </Container>
         </>
       )}
-    </>
+    </Box>
   );
 }

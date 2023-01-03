@@ -294,8 +294,8 @@ export function SpecificExplore({ collegeData }: SpecificExploreInt) {
     return pcipFinal;
   }
   return (
-    <>
-      <Box bgColor={"#051027"}>
+    <Box>
+      <Box bgColor={"#051027"} pt={"20"}>
         <Container>
           <Stack>
             <Stack color={"white"}>
@@ -377,200 +377,203 @@ export function SpecificExplore({ collegeData }: SpecificExploreInt) {
           </svg>
         </div>
       </Box>
-      <Container>
-        <Stack>
-          <BounceBox>
-            <StatCard
-              heading="General"
-              stats={[
-                { stat: collegeData.INSTNM, desc: "Name" },
-                {
-                  stat: `${collegeData.CITY}, ${collegeData.STABBR} ${collegeData.ZIP}`,
-                  desc: "Location",
-                },
-                {
-                  stat:
-                    collegeData.CONTROL === String(1)
-                      ? "Public"
-                      : collegeData.CONTROL === String(2)
-                      ? "Private, Nonprofit"
-                      : collegeData.CONTROL === String(3)
-                      ? "Private, For-profit"
-                      : "",
-                  desc: "Control",
-                },
-                {
-                  stat:
-                    collegeData.HIGHDEG === String(0)
-                      ? ""
-                      : collegeData.HIGHDEG === String(1)
-                      ? "Certificate"
-                      : collegeData.HIGHDEG === String(2)
-                      ? "Certificate and Associate"
-                      : collegeData.HIGHDEG === String(3)
-                      ? "Associate and Bachelor"
-                      : collegeData.HIGHDEG === String(4)
-                      ? "Associate, Bachelor, and Graduate"
-                      : "",
-                  desc: "Offered Degrees",
-                },
-                {
-                  stat:
-                    collegeData.ICLEVEL === String(1)
-                      ? "4-year Institution"
-                      : collegeData.ICLEVEL === String(2)
-                      ? "2-year Institution"
-                      : collegeData.ICLEVEL === String(3)
-                      ? "Less than 2-year Institution"
-                      : "",
-                  desc: "Institution Level",
-                },
-                {
-                  stat: formatAsPercent(collegeData.COMP_ORIG_YR4_RT, true),
-                  desc: "Graduation Rate (4yr)",
-                },
-                {
-                  stat: formatAsPercent(
-                    1 - collegeData.WDRAW_ORIG_YR4_RT,
-                    true
-                  ),
-                  desc: "Retention Rate (4yr)",
-                },
-              ]}
-            />
-          </BounceBox>
-          <LeftBox>
-            <StatCard
-              heading="Admission"
-              stats={[
-                {
-                  stat: formatAsPercent(collegeData.ADM_RATE, true),
-                  desc: "Acceptance Rate",
-                },
-                {
-                  stat:
-                    collegeData.ADMCON7 === String(1)
-                      ? "Required"
-                      : collegeData.ADMCON7 === String(2)
-                      ? "Recommended"
-                      : collegeData.ADMCON7 === String(3)
-                      ? "Neither recommended nor required"
-                      : collegeData.ADMCON7 === String(5)
-                      ? "Considered but not required"
-                      : "Do not know",
-                  desc: "Test Score Requirements",
-                },
-                {
-                  stat: collegeData.SAT_AVG,
-                  desc: "Average SAT Score",
-                },
-                {
-                  stat: collegeData.ACTCMMID,
-                  desc: "Average ACT Score",
-                },
-              ]}
-            />
-          </LeftBox>
+      <Box bgColor={"#ffffff"}>
+        <Container pb="20">
+          <Stack>
+            <BounceBox>
+              <StatCard
+                heading="General"
+                stats={[
+                  { stat: collegeData.INSTNM, desc: "Name" },
+                  {
+                    stat: `${collegeData.CITY}, ${collegeData.STABBR} ${collegeData.ZIP}`,
+                    desc: "Location",
+                  },
+                  {
+                    stat:
+                      collegeData.CONTROL === String(1)
+                        ? "Public"
+                        : collegeData.CONTROL === String(2)
+                        ? "Private, Nonprofit"
+                        : collegeData.CONTROL === String(3)
+                        ? "Private, For-profit"
+                        : "",
+                    desc: "Control",
+                  },
+                  {
+                    stat:
+                      collegeData.HIGHDEG === String(0)
+                        ? ""
+                        : collegeData.HIGHDEG === String(1)
+                        ? "Certificate"
+                        : collegeData.HIGHDEG === String(2)
+                        ? "Certificate and Associate"
+                        : collegeData.HIGHDEG === String(3)
+                        ? "Associate and Bachelor"
+                        : collegeData.HIGHDEG === String(4)
+                        ? "Associate, Bachelor, and Graduate"
+                        : "",
+                    desc: "Offered Degrees",
+                  },
+                  {
+                    stat:
+                      collegeData.ICLEVEL === String(1)
+                        ? "4-year Institution"
+                        : collegeData.ICLEVEL === String(2)
+                        ? "2-year Institution"
+                        : collegeData.ICLEVEL === String(3)
+                        ? "Less than 2-year Institution"
+                        : "",
+                    desc: "Institution Level",
+                  },
+                  {
+                    stat: formatAsPercent(collegeData.COMP_ORIG_YR4_RT, true),
+                    desc: "Graduation Rate (4yr)",
+                  },
+                  {
+                    stat: formatAsPercent(
+                      1 - collegeData.WDRAW_ORIG_YR4_RT,
+                      true
+                    ),
+                    desc: "Retention Rate (4yr)",
+                  },
+                ]}
+              />
+            </BounceBox>
+            <LeftBox>
+              <StatCard
+                heading="Admission"
+                stats={[
+                  {
+                    stat: formatAsPercent(collegeData.ADM_RATE, true),
+                    desc: "Acceptance Rate",
+                  },
+                  {
+                    stat:
+                      collegeData.ADMCON7 === String(1)
+                        ? "Required"
+                        : collegeData.ADMCON7 === String(2)
+                        ? "Recommended"
+                        : collegeData.ADMCON7 === String(3)
+                        ? "Neither recommended nor required"
+                        : collegeData.ADMCON7 === String(5)
+                        ? "Considered but not required"
+                        : "Do not know",
+                    desc: "Test Score Requirements",
+                  },
+                  {
+                    stat: collegeData.SAT_AVG,
+                    desc: "Average SAT Score",
+                  },
+                  {
+                    stat: collegeData.ACTCMMID,
+                    desc: "Average ACT Score",
+                  },
+                ]}
+              />
+            </LeftBox>
+            <RightBox>
+              <StatCard
+                heading="Programs"
+                stats={[
+                  {
+                    stat: getLargestValues(collegeData)[0],
+                    desc: "Top Major",
+                  },
+                  {
+                    stat:
+                      getLargestValues(collegeData)[0] +
+                      ", " +
+                      getLargestValues(collegeData)[1] +
+                      ", " +
+                      getLargestValues(collegeData)[2] +
+                      ", " +
+                      getLargestValues(collegeData)[3] +
+                      ", " +
+                      getLargestValues(collegeData)[4],
+                    desc: "Top 5 Programs",
+                  },
+                ]}
+              />
+            </RightBox>
+            <LeftBox>
+              <StatCard
+                heading="Financials"
+                stats={[
+                  {
+                    stat: formatAsCurrency(collegeData.COSTT4_A),
+                    desc: "Average COA",
+                  },
+                  {
+                    stat:
+                      formatAsCurrency(collegeData.TUITIONFEE_IN) +
+                      " / " +
+                      formatAsCurrency(collegeData.TUITIONFEE_OUT),
+                    desc: "Instate vs Out of State Tuition",
+                  },
+                  {
+                    stat: formatAsCurrency(collegeData.MD_EARN_WNE_P6),
+                    desc: "Median 6yr Earnings",
+                  },
+                  {
+                    stat: formatAsCurrency(collegeData.MEDIAN_HH_INC),
+                    desc: "Student's Median Household Income",
+                  },
+                  {
+                    stat: formatAsCurrency(collegeData.ENDOWBEGIN),
+                    desc: "Endowment",
+                  },
+                  {
+                    stat:
+                      collegeData.NPCURL &&
+                      collegeData.NPCURL.startsWith("http")
+                        ? collegeData.NPCURL
+                        : "https://" + collegeData.NPCURL,
+                    desc: "Link to Net Price Calc",
+                  },
+                ]}
+              />
+            </LeftBox>
+          </Stack>
           <RightBox>
             <StatCard
-              heading="Programs"
+              heading="Student Body"
               stats={[
                 {
-                  stat: getLargestValues(collegeData)[0],
-                  desc: "Top Major",
+                  stat: formatAsNumber(collegeData.UGDS),
+                  desc: "Student Body Size",
                 },
                 {
-                  stat:
-                    getLargestValues(collegeData)[0] +
-                    ", " +
-                    getLargestValues(collegeData)[1] +
-                    ", " +
-                    getLargestValues(collegeData)[2] +
-                    ", " +
-                    getLargestValues(collegeData)[3] +
-                    ", " +
-                    getLargestValues(collegeData)[4],
-                  desc: "Top 5 Programs",
+                  stat: `${formatAsPercent(collegeData.FEMALE, true)} 
+                Female /
+                ${formatAsPercent(1 - collegeData.FEMALE, true)}
+                Male`,
+                  desc: "Gender Diversity",
+                },
+                {
+                  stat: findReligion(collegeData.RELAFFIL),
+                  desc: "Primary Religion",
+                },
+                {
+                  stat: findFlags(
+                    collegeData.HBCU,
+                    collegeData.PBI,
+                    collegeData.ANNHI,
+                    collegeData.TRIBAL,
+                    collegeData.AANAPII,
+                    collegeData.HSI,
+                    collegeData.NANTI,
+                    collegeData.MENONLY,
+                    collegeData.WOMENONLY
+                  ),
+                  desc: "Flags",
                 },
               ]}
             />
           </RightBox>
-          <LeftBox>
-            <StatCard
-              heading="Financials"
-              stats={[
-                {
-                  stat: formatAsCurrency(collegeData.COSTT4_A),
-                  desc: "Average COA",
-                },
-                {
-                  stat:
-                    formatAsCurrency(collegeData.TUITIONFEE_IN) +
-                    " / " +
-                    formatAsCurrency(collegeData.TUITIONFEE_OUT),
-                  desc: "Instate vs Out of State Tuition",
-                },
-                {
-                  stat: formatAsCurrency(collegeData.MD_EARN_WNE_P6),
-                  desc: "Median 6yr Earnings",
-                },
-                {
-                  stat: formatAsCurrency(collegeData.MEDIAN_HH_INC),
-                  desc: "Student's Median Household Income",
-                },
-                {
-                  stat: formatAsCurrency(collegeData.ENDOWBEGIN),
-                  desc: "Endowment",
-                },
-                {
-                  stat:
-                    collegeData.NPCURL && collegeData.NPCURL.startsWith("http")
-                      ? collegeData.NPCURL
-                      : "https://" + collegeData.NPCURL,
-                  desc: "Link to Net Price Calc",
-                },
-              ]}
-            />
-          </LeftBox>
-        </Stack>
-        <RightBox>
-          <StatCard
-            heading="Student Body"
-            stats={[
-              {
-                stat: formatAsNumber(collegeData.UGDS),
-                desc: "Student Body Size",
-              },
-              {
-                stat: `${formatAsPercent(collegeData.FEMALE, true)} 
-                Female /
-                ${formatAsPercent(1 - collegeData.FEMALE, true)}
-                Male`,
-                desc: "Gender Diversity",
-              },
-              {
-                stat: findReligion(collegeData.RELAFFIL),
-                desc: "Primary Religion",
-              },
-              {
-                stat: findFlags(
-                  collegeData.HBCU,
-                  collegeData.PBI,
-                  collegeData.ANNHI,
-                  collegeData.TRIBAL,
-                  collegeData.AANAPII,
-                  collegeData.HSI,
-                  collegeData.NANTI,
-                  collegeData.MENONLY,
-                  collegeData.WOMENONLY
-                ),
-                desc: "Flags",
-              },
-            ]}
-          />
-        </RightBox>
-        <BeginYourSearch />
-      </Container>
-    </>
+        </Container>
+      </Box>
+      <BeginYourSearch />
+    </Box>
   );
 }

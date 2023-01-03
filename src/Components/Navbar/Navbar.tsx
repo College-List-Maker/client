@@ -36,11 +36,14 @@ export default function Navbar({ dark }: NavbarInt) {
     <Box>
       <Flex
         bg={dark ? "#2E2E2E" : "transparent"}
-        color={dark ? "#ffffff" : "#2E2E2E"}
+        borderBottom={"1px solid rgba(255, 255, 255, 0.04)"}
+        color={"#ffffff"}
         minH={"60px"}
         py={{ base: 2 }}
         px={{ base: 4 }}
         align={"center"}
+        position={"absolute"}
+        w={"100%"}
       >
         <Flex
           flex={{ base: 1, md: "auto" }}
@@ -101,8 +104,8 @@ interface DesktopNavInt {
 }
 
 const DesktopNav = ({ dark }: DesktopNavInt) => {
-  const linkColor = dark ? "#ffffff" : "#2E2E2E";
-  const linkHoverColor = useColorModeValue("gray.800", "white");
+  const linkColor = "#ffffff";
+  const linkHoverColor = "#cccccc";
   const popoverContentBgColor = useColorModeValue("white", "gray.800");
   const hasCollegeData = isQuestionaireCompleted();
 

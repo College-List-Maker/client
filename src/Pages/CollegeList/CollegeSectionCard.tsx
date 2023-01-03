@@ -21,7 +21,7 @@ export function CollegeSectionCard({
   isSkeleton,
 }: CollegeSectionCardInt) {
   return (
-    <Card>
+    <Card bgColor={"#ffffff"} my={"2"}>
       <CardHeader>
         <Heading size="md">{heading}</Heading>
       </CardHeader>

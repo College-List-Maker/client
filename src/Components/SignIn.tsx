@@ -31,7 +31,9 @@ export function SignIn() {
 
   return (
     <>
-      <Button onClick={() => login()}>Sign In</Button>
+      <Button variant={"secondary"} onClick={() => login()}>
+        Sign In
+      </Button>
     </>
   );
 }
