@@ -30,7 +30,14 @@ export function TermsOfService() {
         Collegy's Terms of Service
       </Heading>
       {tos.map(({ title, text }, index) => {
-        return <TOSSectionCard title={title} text={text} index={index + 1} />;
+        return (
+          <TOSSectionCard
+            title={title}
+            text={text}
+            index={index + 1}
+            key={index}
+          />
+        );
       })}
     </Container>
   );
