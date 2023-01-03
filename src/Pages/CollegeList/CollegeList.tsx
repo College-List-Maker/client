@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { getCookie, isQuestionaireCompleted } from "../../Fetch";
-import { Skeleton, OrderedList, ListItem, Box } from "@chakra-ui/react";
+import { Skeleton, Container, Stack } from "@chakra-ui/react";
 import { UserCollegeData } from "../../types";
+import { CollegeSectionCard } from "./CollegeSectionCard";
 
 export function CollegeList() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -39,43 +40,29 @@ export function CollegeList() {
   };
 
   return (
-    <div>
+    <Container>
       {collegeData ? (
         isLoading ? (
           <Skeleton>Test</Skeleton>
         ) : (
-          <>
-            <Box display="flex" justifyContent="center">
-              <Box my={4}>
-                <Box my={4}>
-                  Safeties
-                  <OrderedList>
-                    {collegeData.finalSafeties.map((col: any) => {
-                      return <ListItem key={col}>{col}</ListItem>;
-                    })}
-                  </OrderedList>
-                </Box>
-                Targets
-                <OrderedList>
-                  {collegeData.finalTargets.map((col: any) => {
-                    return <ListItem key={col}>{col}</ListItem>;
-                  })}
-                </OrderedList>
-                <Box my={4}>
-                  Reaches
-                  <OrderedList>
-                    {collegeData.finalReaches.map((col: any) => {
-                      return <ListItem key={col}>{col}</ListItem>;
-                    })}
-                  </OrderedList>
-                </Box>
-              </Box>
-            </Box>
-          </>
+          <Stack>
+            <CollegeSectionCard
+              heading="Reaches"
+              colleges={collegeData.finalReaches}
+            />
+            <CollegeSectionCard
+              heading="Targets"
+              colleges={collegeData.finalTargets}
+            />
+            <CollegeSectionCard
+              heading="Safeties"
+              colleges={collegeData.finalSafeties}
+            />
+          </Stack>
         )
       ) : (
         <Skeleton>Test</Skeleton>
       )}
-    </div>
+    </Container>
   );
 }
