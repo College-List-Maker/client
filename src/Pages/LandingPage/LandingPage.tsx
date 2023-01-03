@@ -1,4 +1,4 @@
-import { Box, Container, Stack } from "@chakra-ui/react";
+import { Avatar, AvatarGroup, Box, Container, Stack } from "@chakra-ui/react";
 import { BottomCard } from "./BottomCard";
 import { MiddleCard } from "./MiddleCard";
 import { TopCard } from "./TopCard";
@@ -42,12 +42,21 @@ export function LandingPage() {
             button="Button Text"
           />
           <MiddleCard
-            heading="Heading Text"
-            description="Fill out a short questionnaire and find the best college matches
-              for you based on more than a million data points and a dense,
-              intricate algorithm."
-            button="Button Text"
-          />
+            heading="From college students, for high school students"
+            description="The team at Collegy are all college students, wanting you to succeed and find your best fit."
+            button="More About Us"
+          >
+            <AvatarGroup size="sm" max={5}>
+              <Avatar name="Ryan Florence" src="https://bit.ly/ryan-florence" />
+              <Avatar name="Segun Adebayo" src="https://bit.ly/sage-adebayo" />
+              <Avatar name="Kent Dodds" src="https://bit.ly/kent-c-dodds" />
+              <Avatar
+                name="Prosper Otemuyiwa"
+                src="https://bit.ly/prosper-baba"
+              />
+              <Avatar name="Christian Nwamba" src="https://bit.ly/code-beast" />
+            </AvatarGroup>
+          </MiddleCard>
         </Stack>
       </Container>
       <Box bgGradient={"linear(to-br, #31B5FF, #FF87C8, #FF87C8)"}>

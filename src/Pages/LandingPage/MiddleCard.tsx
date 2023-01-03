@@ -4,9 +4,15 @@ interface MiddleCardInputs {
   heading: string;
   description: string;
   button: string;
+  children?: any;
 }
 
-export function MiddleCard({ heading, description, button }: MiddleCardInputs) {
+export function MiddleCard({
+  heading,
+  description,
+  button,
+  children,
+}: MiddleCardInputs) {
   return (
     <>
       <Container>
@@ -15,6 +21,7 @@ export function MiddleCard({ heading, description, button }: MiddleCardInputs) {
             {heading}
           </Heading>
           <Text>{description}</Text>
+          {children}
           <Button fontFamily={"Inter"}>{button}</Button>
         </Stack>
       </Container>
