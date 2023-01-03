@@ -11,6 +11,7 @@ import { Form } from "./Pages/Form/Form";
 import { Profile } from "./Pages/Profile/Profile";
 import { AboutUs } from "./Pages/AboutUs/AboutUs";
 import { ExploreCollege } from "./Pages/ExploreCollege/ExploreCollege";
+import { TermsOfService } from "./Pages/TermsOfService/TermsOfService";
 
 export const App = () => {
   /* 
@@ -46,6 +47,7 @@ export const App = () => {
       {hashtag === "#form" && <Form />}
       {hashtag === "#profile" && <Profile />}
       {hashtag === "#about-us" && <AboutUs />}
+      {hashtag === "#tos" && <TermsOfService />}
       {hashtag.startsWith("#explore-college") && <ExploreCollege />}
       <Footer />
     </ChakraProvider>

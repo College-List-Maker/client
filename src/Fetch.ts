@@ -84,22 +84,14 @@ export async function getProfilePicture() {
 /* 
   GET USER PROFILE NAME
 */
-export function getProfileName() {
+export async function getProfileName() {
   const user_token = localStorage.getItem("user_token");
   if (user_token) {
-    axios
-      .get(
-        "https://collegy-server.herokuapp.com/user/get-name/" +
-          getCookie("visitorId=")
-      )
-      .then((res: any) => {
-        return res.data;
-      })
-      .catch((err: any) => {
-        console.error(err);
-      });
+    return await axios.get(
+      "https://collegy-server.herokuapp.com/user/get-name/" +
+        getCookie("visitorId=")
+    );
   }
-  return "";
 }
 
 /* 
