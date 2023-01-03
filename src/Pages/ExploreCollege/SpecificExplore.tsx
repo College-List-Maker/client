@@ -347,6 +347,7 @@ export function SpecificExplore({ collegeData }: SpecificExploreInt) {
                 comprehesive statistics below or visit their website at{" "}
                 <Link
                   href={
+                    collegeData.INSTURL &&
                     collegeData.INSTURL.startsWith("http")
                       ? collegeData.INSTURL
                       : "https://" + collegeData.INSTURL
@@ -512,9 +513,10 @@ export function SpecificExplore({ collegeData }: SpecificExploreInt) {
                 desc: "Endowment",
               },
               {
-                stat: collegeData.NPCURL.startsWith("http")
-                  ? collegeData.NPCURL
-                  : "https://" + collegeData.NPCURL,
+                stat:
+                  collegeData.NPCURL && collegeData.NPCURL.startsWith("http")
+                    ? collegeData.NPCURL
+                    : "https://" + collegeData.NPCURL,
                 desc: "Link to Net Price Calc",
               },
             ]}
