@@ -29,9 +29,11 @@ export default function Footer() {
         </Text>
         <Stack>
           <Flex w={"100%"} justifyContent={"space-around"}>
-            <Link>Find Your College</Link>
-            <Link px={"5"}>Explore Colleges</Link>
-            <Link>Maximize Acceptance</Link>
+            <Link href="#form">Find Your College</Link>
+            <Link href="#explore-college" px={"5"}>
+              Explore Colleges
+            </Link>
+            <Link href="#coming-soon">Maximize Acceptance</Link>
           </Flex>
           <Flex
             w={"100%"}
@@ -39,9 +41,9 @@ export default function Footer() {
             fontSize={"xs"}
             color={"#5E5E5E"}
           >
-            <Link>About Us</Link>
-            <Link>Terms of Service</Link>
-            <Link>hey@collegy.net</Link>
+            <Link href="#about-us">About Us</Link>
+            <Link href="#tos">Terms of Service</Link>
+            <Link href="mailto:hey@collegy.net">hey@collegy.net</Link>
           </Flex>
         </Stack>
         <Text>©2022, All rights reserved.</Text>
