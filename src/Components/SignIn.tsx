@@ -31,7 +31,7 @@ export function SignIn() {
 
   return (
     <>
-      <Button onClick={() => login()}>Sign In/Up</Button>
+      <Button onClick={() => login()}>Sign In</Button>
     </>
   );
 }
