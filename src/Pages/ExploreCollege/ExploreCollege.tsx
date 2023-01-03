@@ -3,6 +3,7 @@ import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import { Skeleton } from "@chakra-ui/react";
 import { SpecificExplore } from "./SpecificExplore";
+import { toast } from "react-toastify";
 
 export function ExploreCollege() {
   const [query, setQuery] = useState<string | null>(null);
@@ -19,13 +20,14 @@ export function ExploreCollege() {
       if (college) {
         await axios
           .get(
-            `https://collegy-server.herokuapp.com/college/get-college-data/${college}`
+            `https://collegy-server.herokuapp.com/college/get-college-datas/${college}`
           )
           .then((res) => {
             const data = res.data;
             setCollegeData(data);
           })
           .catch((err) => {
+            toast.error("Couldn't find the college.");
             console.log(err);
           });
       } else {

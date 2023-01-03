@@ -13,6 +13,8 @@ import { AboutUs } from "./Pages/AboutUs/AboutUs";
 import { ExploreCollege } from "./Pages/ExploreCollege/ExploreCollege";
 import { TermsOfService } from "./Pages/TermsOfService/TermsOfService";
 import ComingSoon from "./Pages/ComingSoon/ComingSoon";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const App = () => {
   /* 
@@ -43,6 +45,7 @@ export const App = () => {
 
   return (
     <ChakraProvider theme={theme}>
+      <ToastContainer />
       <Navbar />
       {(hashtag === "" || hashtag === "#") && <LandingPage />}
       {hashtag === "#college-list" && <CollegeList />}
