@@ -21,7 +21,7 @@ import {
   ChevronDownIcon,
   ChevronRightIcon,
 } from "@chakra-ui/icons";
-import { isLoggedIn } from "../Cookie";
+import { isLoggedIn } from "../Fetch";
 import { SignIn } from "./SignIn";
 import { SignOut } from "./SignOut";
 
