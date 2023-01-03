@@ -1,6 +1,10 @@
 import { Box, Container, Heading, Link, Stack, Text } from "@chakra-ui/react";
 import { BeginYourSearch } from "../../Components/BeginYourSearch";
-import { formatAsCurrency, formatAsNumber } from "../../formatters";
+import {
+  formatAsCurrency,
+  formatAsNumber,
+  formatAsPercent,
+} from "../../formatters";
 import { StatCard } from "./StatCard";
 import "./svg.css";
 interface SpecificExploreInt {
@@ -328,7 +332,7 @@ export function SpecificExplore({ collegeData }: SpecificExploreInt) {
                 . {collegeData.INSTNM} is home to about{" "}
                 {formatAsNumber(collegeData.UGDS)} college students, and with an
                 acceptance rate of{" "}
-                {(Number(collegeData.ADM_RATE) * 100).toFixed(2)}%, is
+                {formatAsPercent(Number(collegeData.ADM_RATE) * 100)}, is
                 classified as{" "}
                 {Number(collegeData.ADM_RATE) < 0.15
                   ? "a most selective"
@@ -416,12 +420,13 @@ export function SpecificExplore({ collegeData }: SpecificExploreInt) {
                 desc: "Institution Level",
               },
               {
-                stat: (collegeData.COMP_ORIG_YR4_RT * 100).toFixed(2) + "%",
+                stat: formatAsPercent(collegeData.COMP_ORIG_YR4_RT * 100),
                 desc: "Graduation Rate (4yr)",
               },
               {
-                stat:
-                  (100 - collegeData.WDRAW_ORIG_YR4_RT * 100).toFixed(2) + "%",
+                stat: formatAsPercent(
+                  100 - collegeData.WDRAW_ORIG_YR4_RT * 100
+                ),
                 desc: "Retention Rate (4yr)",
               },
             ]}
@@ -430,7 +435,7 @@ export function SpecificExplore({ collegeData }: SpecificExploreInt) {
             heading="Admission"
             stats={[
               {
-                stat: (collegeData.ADM_RATE * 100).toFixed(2) + "%",
+                stat: formatAsPercent(collegeData.ADM_RATE * 100),
                 desc: "Acceptance Rate",
               },
               {
@@ -519,11 +524,10 @@ export function SpecificExplore({ collegeData }: SpecificExploreInt) {
               desc: "Student Body Size",
             },
             {
-              stat:
-                (collegeData.FEMALE * 100).toFixed(2) +
-                "% Female / " +
-                (100 - collegeData.FEMALE * 100).toFixed(2) +
-                "% Male",
+              stat: `${formatAsPercent(collegeData.FEMALE * 100)} +
+                % Female /  +
+                ${formatAsPercent(100 - collegeData.FEMALE * 100)}
+                % Male`,
               desc: "Gender Diversity",
             },
             {

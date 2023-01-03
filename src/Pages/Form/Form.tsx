@@ -200,7 +200,7 @@ export function Form() {
     event.preventDefault();
     axios
       .post(
-        "https://collegy-server.herokuapp.com/college/submit-data/" +
+        "https://collegy-server.herokuapp.com/user/submit-questionaire/" +
           getCookie("visitorId="),
         formData
       )
@@ -214,7 +214,7 @@ export function Form() {
         });
         axios
           .get(
-            "https://collegy-server.herokuapp.com/college/set-college-list/" +
+            "https://collegy-server.herokuapp.com/user/set-college-list/" +
               getCookie("visitorId=")
           )
           .then(() => {
