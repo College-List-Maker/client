@@ -11,7 +11,7 @@ export function formatAsCurrency(
   if (inCents) {
     num /= 100;
   }
-  return "$" + num.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,");
+  return "$" + (num || 0).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,");
 }
 
 export function formatAsNumber(amount: number | string): string {
@@ -21,7 +21,7 @@ export function formatAsNumber(amount: number | string): string {
   } else {
     num = amount;
   }
-  return num.toString().replace(/\d(?=(\d{3})+$)/g, "$&,");
+  return (num || 0).toString().replace(/\d(?=(\d{3})+$)/g, "$&,");
 }
 
 export function formatAsPercent(
@@ -37,7 +37,7 @@ export function formatAsPercent(
   if (isDecimal) num *= 100;
 
   return (
-    num
+    (num || 0)
       .toFixed(2)
       .toString()
       .replace(/\d(?=(\d{3})+$)/g, "$&,") + "%"
