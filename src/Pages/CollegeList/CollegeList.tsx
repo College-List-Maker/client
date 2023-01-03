@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { getCookie, isQuestionaireCompleted } from "../../Fetch";
-import { Skeleton, Container, Stack } from "@chakra-ui/react";
+import { Container, Stack } from "@chakra-ui/react";
 import { UserCollegeData } from "../../types";
 import { CollegeSectionCard } from "./CollegeSectionCard";
+import { CollegeListSkeleton } from "./CollegeListSkeleton";
 
 export function CollegeList() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -41,27 +42,23 @@ export function CollegeList() {
 
   return (
     <Container>
-      {collegeData ? (
-        isLoading ? (
-          <Skeleton>Test</Skeleton>
-        ) : (
-          <Stack>
-            <CollegeSectionCard
-              heading="Reaches"
-              colleges={collegeData.finalReaches}
-            />
-            <CollegeSectionCard
-              heading="Targets"
-              colleges={collegeData.finalTargets}
-            />
-            <CollegeSectionCard
-              heading="Safeties"
-              colleges={collegeData.finalSafeties}
-            />
-          </Stack>
-        )
+      {!collegeData || isLoading ? (
+        <CollegeListSkeleton />
       ) : (
-        <Skeleton>Test</Skeleton>
+        <Stack>
+          <CollegeSectionCard
+            heading="Reaches"
+            colleges={collegeData.finalReaches}
+          />
+          <CollegeSectionCard
+            heading="Targets"
+            colleges={collegeData.finalTargets}
+          />
+          <CollegeSectionCard
+            heading="Safeties"
+            colleges={collegeData.finalSafeties}
+          />
+        </Stack>
       )}
     </Container>
   );
