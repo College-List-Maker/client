@@ -29,7 +29,7 @@ export function CollegeSectionCard({
         <Stack divider={<StackDivider />} spacing="4">
           {colleges.map((college: any, index: number) => {
             return isSkeleton ? (
-              <Skeleton>
+              <Skeleton key={index}>
                 <CollegeIndividualCard
                   college={{
                     name: college.name,
@@ -45,6 +45,7 @@ export function CollegeSectionCard({
                   position: index + 1,
                   unitid: college.unitid,
                 }}
+                key={index}
               />
             );
           })}
