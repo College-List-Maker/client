@@ -24,6 +24,7 @@ const theme = extendTheme({
           background: "#2EA44F",
           fontFamily: "Bakbak One",
           fontSize: "20px",
+          maxWidth: "100%",
           py: "5",
           px: "10",
           _hover: {
@@ -36,6 +37,7 @@ const theme = extendTheme({
           fontFamily: "Inter",
           border: "1px solid #BABABA",
           width: "fit-content",
+          maxWidth: "100%",
           _hover: {
             background: "#EEEEEE",
           },

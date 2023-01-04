@@ -79,7 +79,6 @@ export const UpBox = ({ children, ...props }: BoxProps) => {
     <MotionBox
       initial={{ opacity: 0, y: 350 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0 }}
       transition={{
         type: "spring",
         bounce: 0.3,

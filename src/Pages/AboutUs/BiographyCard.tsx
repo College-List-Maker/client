@@ -1,4 +1,5 @@
-import { Box, Heading, Image, Stack, Text } from "@chakra-ui/react";
+import { Box, Flex, Heading, Image, Link, Stack, Text } from "@chakra-ui/react";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 interface BiographyCardInt {
   picture: string;
@@ -6,6 +7,8 @@ interface BiographyCardInt {
   position: string;
   bio: string;
   orange?: boolean;
+  linkedin?: string;
+  github?: string;
 }
 
 export function BiographyCard({
@@ -14,6 +17,8 @@ export function BiographyCard({
   position,
   bio,
   orange,
+  linkedin,
+  github,
 }: BiographyCardInt) {
   return (
     <>
@@ -27,6 +32,7 @@ export function BiographyCard({
         }
         backgroundSize={"cover"}
         p={10}
+        pb={5}
         mb={10}
       >
         <Stack justifyContent={"center"} alignItems="center">
@@ -58,6 +64,32 @@ export function BiographyCard({
           <Text fontFamily={"Actor"} color={"#E9E9E9"}>
             {bio}
           </Text>
+          <Flex>
+            {linkedin && (
+              <Link
+                href={linkedin}
+                isExternal
+                mr={2}
+                opacity={0.5}
+                _hover={{ opacity: 0.9 }}
+                color={"#ffffff"}
+              >
+                <FaLinkedin size={"20"} />
+              </Link>
+            )}
+            {github && (
+              <Link
+                href={github}
+                isExternal
+                mr={2}
+                opacity={0.5}
+                _hover={{ opacity: 0.9 }}
+                color={"#ffffff"}
+              >
+                <FaGithub size={"20"} />
+              </Link>
+            )}
+          </Flex>
         </Stack>
       </Box>
     </>

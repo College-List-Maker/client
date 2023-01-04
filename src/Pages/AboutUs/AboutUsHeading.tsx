@@ -40,8 +40,8 @@ export function AboutUsHeading({ h1, h2, emoji }: AboutUsHeadingInt) {
         {emoji && emoji.right && (
           <FloatMoji
             emoji={emoji.emoji}
-            top={1}
-            right={0.1}
+            top={0.8}
+            right={0.15}
             rotate={emoji.tilt ? 11 : 0}
           />
         )}
