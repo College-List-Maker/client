@@ -165,11 +165,6 @@ export const FormDataContext = createContext<
 >([defaultData, () => {}]);
 
 export function Form() {
-  // useEffect below checks if user has already filled out form
-  //    if has college list, redirects to college list
-  /* 
-    TODO: ALSO REPLACE API CALL FOR A LOCAL STORAGE VARIABLE (like in navbar)
-  */
   type RootState = {
     form: {
       formValid: boolean;
@@ -190,13 +185,24 @@ export function Form() {
     prevStep();
     dispatch({ type: "SET_FORM_VALID", formValid: false });
   };
+  const toast = useToast();
+
   useEffect(() => {
-    if (isQuestionaireCompleted()) window.location.hash = "#college-list";
-  }, []);
+    if (isQuestionaireCompleted() && window.location.hash === "#form") {
+      window.location.hash = "#college-list";
+      toast({
+        title: "You're all set!",
+        description:
+          "Navigate to your profile settings to edit your questionaire.",
+        status: "info",
+        duration: 5000,
+        position: "top",
+        isClosable: true,
+      });
+    }
+  }, [toast]);
 
   const [formData, setFormData] = useState<UserCollegeData>(defaultData);
-
-  const toast = useToast();
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();

@@ -41,7 +41,7 @@ export const FadeBox = ({ children, ...props }: BoxProps) => {
 export const LeftBox = ({ children, ...props }: BoxProps) => {
   return (
     <MotionBox
-      initial={{ opacity: 0, x: -350 }}
+      initial={{ opacity: 0, x: -100 }}
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true, amount: 0.1 }}
       transition={{
@@ -59,7 +59,7 @@ export const LeftBox = ({ children, ...props }: BoxProps) => {
 export const RightBox = ({ children, ...props }: BoxProps) => {
   return (
     <MotionBox
-      initial={{ opacity: 0, x: 350 }}
+      initial={{ opacity: 0, x: 100 }}
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true, amount: 0.1 }}
       transition={{
@@ -95,15 +95,36 @@ export const UpBox = ({ children, ...props }: BoxProps) => {
 export const RotationBox = ({ children, ...props }: BoxProps) => {
   return (
     <MotionBox
-      initial={{ rotate: 0, y: 0 }}
-      whileInView={{ rotate: 360, y: [0, -30, 30, 0] }}
+      initial={{ rotate: 0 }}
+      whileInView={{ rotate: 360 }}
       viewport={{ once: true, amount: 0.1 }}
       transition={{
-        duration: 90,
+        duration: 60,
         loop: Infinity,
         ease: "linear",
       }}
-      repeat={Infinity}
+      {...props}
+    >
+      {children}
+    </MotionBox>
+  );
+};
+
+export const BackgroundSpanBox = ({ children, ...props }: BoxProps) => {
+  return (
+    <MotionBox
+      initial={{ x: "-55vw", y: 0 }}
+      animate={{
+        x: "55vw",
+        y: [0, -50, 50, 0],
+      }}
+      transition={{
+        duration: 75,
+        loop: Infinity,
+        ease: "easeInOut",
+      }}
+      position={"relative"}
+      zIndex={0}
       {...props}
     >
       {children}

@@ -1,4 +1,11 @@
-import { Button, Container, Heading, Stack, Text } from "@chakra-ui/react";
+import {
+  Button,
+  Container,
+  Heading,
+  Link,
+  Stack,
+  Text,
+} from "@chakra-ui/react";
 
 export function VisitRepoCard() {
   return (
@@ -21,7 +28,9 @@ export function VisitRepoCard() {
             also a developer at Collegy, where I have the opportunity to work on
             a variety.
           </Text>
-          <Button variant={"secondary"}>Visit GitHub Repo</Button>
+          <Link href="https://github.com/Collegy/algorithm" isExternal>
+            <Button variant={"secondary"}>Visit GitHub Repo</Button>
+          </Link>
         </Stack>
       </Container>
     </>

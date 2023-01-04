@@ -11,69 +11,74 @@ export function LandingPage() {
       <Box bgColor={"#051027"} pt={"20"}>
         <TopCard />
       </Box>
-      <Container>
-        <Stack>
-          <LeftBox>
-            <MiddleCard
-              heading="Heading Text"
-              description="Fill out a short questionnaire and find the best college matches
+      <Box bgColor={"#ffffff"}>
+        <Container>
+          <Stack>
+            <LeftBox>
+              <MiddleCard
+                heading="Heading Text"
+                description="Fill out a short questionnaire and find the best college matches
               for you based on more than a million data points and a dense,
               intricate algorithm."
-              button="Button Text"
-              hash="#about-us"
-            />
-          </LeftBox>
-          <RightBox>
-            <MiddleCard
-              heading="Heading Text"
-              description="Fill out a short questionnaire and find the best college matches
+                button="Button Text"
+                hash="#about-us"
+              />
+            </LeftBox>
+            <RightBox>
+              <MiddleCard
+                heading="Heading Text"
+                description="Fill out a short questionnaire and find the best college matches
               for you based on more than a million data points and a dense,
               intricate algorithm."
-              button="Button Text"
-              hash="#about-us"
-            />
-          </RightBox>
-          <LeftBox>
-            <MiddleCard
-              heading="From college students, for high school students"
-              description="The team at Collegy are all college students, wanting you to succeed and find your best fit."
-              button="More About Us"
-              width="50%"
-              hash="#about-us"
-            >
-              <Stack>
-                <AvatarGroup size="sm">
-                  <Avatar
-                    name="Ryan Florence"
-                    src="https://bit.ly/ryan-florence"
-                  />
-                  <Avatar
-                    name="Segun Adebayo"
-                    src="https://bit.ly/sage-adebayo"
-                  />
-                  <Avatar name="Kent Dodds" src="https://bit.ly/kent-c-dodds" />
-                  <Avatar
-                    name="Prosper Otemuyiwa"
-                    src="https://bit.ly/prosper-baba"
-                  />
-                  <Avatar
-                    name="Christian Nwamba"
-                    src="https://bit.ly/code-beast"
-                  />
-                  <Avatar
-                    name="Prosper Otemuyiwa"
-                    src="https://bit.ly/prosper-baba"
-                  />
-                  <Avatar
-                    name="Christian Nwamba"
-                    src="https://bit.ly/code-beast"
-                  />
-                </AvatarGroup>
-              </Stack>
-            </MiddleCard>
-          </LeftBox>
-        </Stack>
-      </Container>
+                button="Button Text"
+                hash="#about-us"
+              />
+            </RightBox>
+            <LeftBox>
+              <MiddleCard
+                heading="From college students, for high school students"
+                description="The team at Collegy are all college students, wanting you to succeed and find your best fit."
+                button="More About Us"
+                width="50%"
+                hash="#about-us"
+              >
+                <Stack>
+                  <AvatarGroup size="sm">
+                    <Avatar
+                      name="Ryan Florence"
+                      src="https://bit.ly/ryan-florence"
+                    />
+                    <Avatar
+                      name="Segun Adebayo"
+                      src="https://bit.ly/sage-adebayo"
+                    />
+                    <Avatar
+                      name="Kent Dodds"
+                      src="https://bit.ly/kent-c-dodds"
+                    />
+                    <Avatar
+                      name="Prosper Otemuyiwa"
+                      src="https://bit.ly/prosper-baba"
+                    />
+                    <Avatar
+                      name="Christian Nwamba"
+                      src="https://bit.ly/code-beast"
+                    />
+                    <Avatar
+                      name="Prosper Otemuyiwa"
+                      src="https://bit.ly/prosper-baba"
+                    />
+                    <Avatar
+                      name="Christian Nwamba"
+                      src="https://bit.ly/code-beast"
+                    />
+                  </AvatarGroup>
+                </Stack>
+              </MiddleCard>
+            </LeftBox>
+          </Stack>
+        </Container>
+      </Box>
       <Box
         bgImage={process.env.PUBLIC_URL + "/img/globebg.svg"}
         backgroundSize={"cover"}

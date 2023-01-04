@@ -11,7 +11,6 @@ import {
   PopoverTrigger,
   PopoverContent,
   useColorModeValue,
-  useBreakpointValue,
   useDisclosure,
 } from "@chakra-ui/react";
 import {
@@ -44,6 +43,7 @@ export default function Navbar({ dark }: NavbarInt) {
         align={"center"}
         position={"absolute"}
         w={"100%"}
+        zIndex={2}
       >
         <Flex
           flex={{ base: 1, md: "auto" }}
@@ -55,19 +55,19 @@ export default function Navbar({ dark }: NavbarInt) {
             icon={
               isOpen ? <CloseIcon w={3} h={3} /> : <HamburgerIcon w={5} h={5} />
             }
-            variant={"ghost"}
+            background="transparent"
+            _active={{
+              background: "transparent",
+            }}
+            _hover={{
+              background: "transparent",
+            }}
             aria-label={"Toggle Navigation"}
           />
         </Flex>
-        <Flex flex={{ base: 1 }} justify={{ base: "center", md: "start" }}>
+        <Flex flex={{ base: 1 }} justifyContent={"start"}>
           <Link href={"#"}>
-            <Flex
-              justifyContent={useBreakpointValue({
-                base: "center",
-                md: "left",
-              })}
-              fontFamily="Bakbak One"
-            >
+            <Flex justifyContent={"start"} fontFamily="Bakbak One">
               Collegy
             </Flex>
           </Link>
@@ -78,16 +78,18 @@ export default function Navbar({ dark }: NavbarInt) {
         </Flex>
 
         <Flex justify={"flex-end"} direction={"row"}>
-          <Flex mr={"3"}>
+          <Flex display={{ base: "none", md: "flex" }} mr={"3"}>
             <SearchBar dark={dark} />
           </Flex>
           {isLoggedIn() ? <ProfileButton dark={dark} /> : <SignIn />}
         </Flex>
       </Flex>
 
-      <Collapse in={isOpen} animateOpacity>
-        <MobileNav />
-      </Collapse>
+      <Box zIndex={2}>
+        <Collapse in={isOpen}>
+          <MobileNav />
+        </Collapse>
+      </Box>
     </Box>
   );
 }
@@ -228,15 +230,13 @@ const MobileNav = () => {
   ];
 
   return (
-    <Stack
-      bg={useColorModeValue("white", "gray.800")}
-      p={4}
-      display={{ md: "none" }}
-    >
-      {NAV_ITEMS.map((navItem) => (
-        <MobileNavItem key={navItem.label} {...navItem} />
-      ))}
-    </Stack>
+    <Box>
+      <Stack bgColor={"#2E2E2E"} p={4} display={{ md: "none" }} pt={"20"}>
+        {NAV_ITEMS.map((navItem) => (
+          <MobileNavItem key={navItem.label} {...navItem} />
+        ))}
+      </Stack>
+    </Box>
   );
 };
 
@@ -255,10 +255,7 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
           textDecoration: "none",
         }}
       >
-        <Text
-          fontWeight={600}
-          color={useColorModeValue("gray.600", "gray.200")}
-        >
+        <Text fontWeight={600} color={"#ffffff"}>
           {label}
         </Text>
         {children && (
@@ -272,7 +269,7 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
         )}
       </Flex>
 
-      <Collapse in={isOpen} animateOpacity style={{ marginTop: "0!important" }}>
+      <Collapse in={isOpen} style={{ marginTop: "0!important" }}>
         <Stack
           mt={2}
           pl={4}

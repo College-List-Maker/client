@@ -21,7 +21,7 @@ export function SearchBar({ placeholder, dark }: SearchBarInt) {
   const RRef = useRef<HTMLInputElement>(null);
   return (
     <>
-      <InputGroup onSubmit={handleSubmit}>
+      <InputGroup onSubmit={handleSubmit} zIndex={2}>
         <Input
           bg={"#202020"}
           border={"0px"}
@@ -30,12 +30,13 @@ export function SearchBar({ placeholder, dark }: SearchBarInt) {
           onChange={handleInputChange}
           onKeyPress={handleKeyPress}
           color={"#ffffff"}
+          _placeholder={{ color: "#666666" }}
         />
         <InputRightElement
           as="button"
           onClick={handleSubmit}
           children={<SearchIcon />}
-          color={"#7A7D86"}
+          color={"#666666"}
         />
       </InputGroup>
     </>

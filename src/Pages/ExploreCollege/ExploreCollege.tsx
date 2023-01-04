@@ -51,7 +51,7 @@ export function ExploreCollege() {
   return (
     <Box bgColor={"#051027"}>
       {isLoading ? (
-        <DefaultExplore searchQuery={query} />
+        <DefaultExplore searchQuery={null} />
       ) : collegeData ? (
         <SpecificExplore collegeData={collegeData} />
       ) : (

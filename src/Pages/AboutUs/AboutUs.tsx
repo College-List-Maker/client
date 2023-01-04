@@ -13,7 +13,11 @@ export function AboutUs() {
       <Box bgColor={"#F8F8F8"} w={"100%"} pb={"10"} pt={"20"}>
         <Container minW={"70%"}>
           <BounceBox>
-            <AboutUsHeading h1={"About Us"} h2={"More About Collegy"} />
+            <AboutUsHeading
+              h1={"About Us"}
+              h2={"More About Collegy"}
+              emoji={{ emoji: "✨", right: true }}
+            />
             <DescriptionCard
               paragraphs={[
                 "Collegy is a platform that helps high school students find their perfect college match. It was created by college students who wanted to make the process of finding a college easier and more efficient. The platform uses an algorithm that sources data from open source databases to provide a list of colleges that are most suitable for each individual student.",
@@ -27,7 +31,11 @@ export function AboutUs() {
       <Box bgColor={"#E3E0E0"} pb={"10"}>
         <Container minW={"60%"}>
           <BounceBox>
-            <AboutUsHeading h1={"Team Biographies"} h2={"Meet our Team"} />
+            <AboutUsHeading
+              h1={"Team Biographies"}
+              h2={"Meet our Team"}
+              emoji={{ emoji: "👋", right: false }}
+            />
             <BiographyCard
               picture="https://media.licdn.com/dms/image/D4E03AQFkYwurI7k4xw/profile-displayphoto-shrink_400_400/0/1666456660962?e=1678320000&v=beta&t=oEauCFl1R3xMGEVy6RwdtwGBiDPopwy4ezhGfh0ZGxY"
               name="John Farrell"
@@ -48,7 +56,11 @@ export function AboutUs() {
       </Box>
       <Box bgColor={"#F8F8F8"} w={"100%"} pb={"10"}>
         <Container minW={"70%"}>
-          <AboutUsHeading h1={"Algorithms"} h2={"Open-Source Algorithms"} />
+          <AboutUsHeading
+            h1={"Algorithms"}
+            h2={"Open-Source Algorithms"}
+            emoji={{ emoji: "🤖", right: true, tilt: true }}
+          />
           <DescriptionCard
             paragraphs={[
               "An open source algorithm for finding the best colleges for you could be a useful tool for students and their families as they navigate the college search and application process. This type of algorithm could take into account a variety of factors that are important to students, such as location, size of the school, cost, and academic programs.",

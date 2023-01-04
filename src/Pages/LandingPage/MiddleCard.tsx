@@ -28,7 +28,7 @@ export function MiddleCard({
         p={"5"}
         rounded={"lg"}
         my={"5"}
-        w={width}
+        w={{ base: "100%", sm: width }}
       >
         <Stack>
           <Heading

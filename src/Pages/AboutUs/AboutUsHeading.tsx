@@ -1,11 +1,13 @@
 import { Box, Heading } from "@chakra-ui/react";
+import FloatMoji from "../../Components/FloatMoji";
 
 interface AboutUsHeadingInt {
   h1: string;
   h2: string;
+  emoji?: { emoji: string; right: boolean; tilt?: boolean };
 }
 
-export function AboutUsHeading({ h1, h2 }: AboutUsHeadingInt) {
+export function AboutUsHeading({ h1, h2, emoji }: AboutUsHeadingInt) {
   return (
     <Box py={"10"}>
       <Heading
@@ -26,7 +28,23 @@ export function AboutUsHeading({ h1, h2 }: AboutUsHeadingInt) {
         fontFamily="Inter"
         fontWeight={"900"}
       >
+        {emoji && !emoji.right && (
+          <FloatMoji
+            emoji={emoji.emoji}
+            top={1}
+            right={-1.25}
+            rotate={emoji.tilt ? -11 : 0}
+          />
+        )}
         {h2}
+        {emoji && emoji.right && (
+          <FloatMoji
+            emoji={emoji.emoji}
+            top={1}
+            right={0.1}
+            rotate={emoji.tilt ? 11 : 0}
+          />
+        )}
       </Heading>
     </Box>
   );

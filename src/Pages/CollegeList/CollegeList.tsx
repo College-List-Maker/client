@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { getCookie, isQuestionaireCompleted } from "../../Fetch";
-import { Box, Container, Stack } from "@chakra-ui/react";
+import { Box, Container, Stack, useToast } from "@chakra-ui/react";
 import { UserCollegeData } from "../../types";
 import { CollegeSectionCard } from "./CollegeSectionCard";
 import { CollegeListSkeleton } from "./CollegeListSkeleton";
@@ -16,9 +16,24 @@ export function CollegeList() {
     fetchSubmittedData();
   }, []);
 
+  const toast = useToast();
   useEffect(() => {
-    if (!isQuestionaireCompleted()) window.location.hash = "#form";
-  }, []);
+    if (
+      !isQuestionaireCompleted() &&
+      window.location.hash === "#college-list"
+    ) {
+      window.location.hash = "#form";
+      toast({
+        title: "You haven't filled out the questionaire.",
+        description:
+          "If you believe this is a mistake, check your profile settings.",
+        status: "warning",
+        duration: 5000,
+        position: "top",
+        isClosable: true,
+      });
+    }
+  }, [toast]);
 
   const fetchSubmittedData = () => {
     axios

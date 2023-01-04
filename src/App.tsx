@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ChakraProvider } from "@chakra-ui/react";
+import { Box, ChakraProvider } from "@chakra-ui/react";
 import { CollegeList } from "./Pages/CollegeList/CollegeList";
 import { isLoggedIn, updateUserInfo } from "./Fetch";
 import { LandingPage } from "./Pages/LandingPage/LandingPage";
@@ -50,16 +50,18 @@ export const App = () => {
   return (
     <ChakraProvider theme={theme}>
       <ToastContainer />
-      <Navbar dark={isDarkNavbar} />
-      {(hashtag === "" || hashtag === "#") && <LandingPage />}
-      {hashtag === "#college-list" && <CollegeList />}
-      {hashtag === "#form" && <Form />}
-      {hashtag === "#profile" && <Profile />}
-      {hashtag === "#about-us" && <AboutUs />}
-      {hashtag === "#tos" && <TermsOfService />}
-      {hashtag === "#coming-soon" && <ComingSoon />}
-      {hashtag.startsWith("#explore-college") && <ExploreCollege />}
-      <Footer dark={isDarkFooter} />
+      <Box maxW={"100vw"} overflowX={"hidden"} bgColor={"#051027"}>
+        <Navbar dark={isDarkNavbar} />
+        {(hashtag === "" || hashtag === "#") && <LandingPage />}
+        {hashtag === "#college-list" && <CollegeList />}
+        {hashtag === "#form" && <Form />}
+        {hashtag === "#profile" && <Profile />}
+        {hashtag === "#about-us" && <AboutUs />}
+        {hashtag === "#tos" && <TermsOfService />}
+        {hashtag === "#coming-soon" && <ComingSoon />}
+        {hashtag.startsWith("#explore-college") && <ExploreCollege />}
+        <Footer dark={isDarkFooter} />
+      </Box>
     </ChakraProvider>
   );
 };
