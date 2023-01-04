@@ -29,7 +29,7 @@ export default function Footer({ dark }: FooterInt) {
           w="225px"
           fontFamily="Bakbak One"
         >
-          Collegy
+          <Link href="#">Collegy</Link>
         </Text>
         <Stack>
           <Flex w={"100%"} justifyContent={"space-around"}>
@@ -56,7 +56,7 @@ export default function Footer({ dark }: FooterInt) {
             fontFamily="Bakbak One"
             pr={"10"}
           >
-            Collegy
+            <Link href="#">Collegy</Link>
           </Text>
           ©2022, All rights reserved.
         </Flex>

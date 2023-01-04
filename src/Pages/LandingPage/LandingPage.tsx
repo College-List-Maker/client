@@ -16,7 +16,7 @@ export function LandingPage() {
           <Stack>
             <LeftBox>
               <MiddleCard
-                heading="Learn more about 5000+ universities"
+                heading="Learn about 3000+ universities"
                 description="The Collegy platform is designed and operated by a team of college students who are committed to helping you succeed in your educational journey. Our comprehensive search function allows you to easily explore and compare different colleges to find the best fit for your needs and goals."
                 button="Explore College"
                 hash="#explore-college"
