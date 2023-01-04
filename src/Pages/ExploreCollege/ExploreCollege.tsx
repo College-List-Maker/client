@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { Box } from "@chakra-ui/react";
 import { SpecificExplore } from "./SpecificExplore";
 import { toast } from "react-toastify";
+import { SpecificExploreSkeleton } from "./SpecificExploreSkeleton";
 
 export function ExploreCollege() {
   const [query, setQuery] = useState<string | null>(null);
@@ -16,7 +17,6 @@ export function ExploreCollege() {
       const queryString = hash.substring(hash.indexOf("?") + 1);
       const urlParams = new URLSearchParams(queryString);
       const college = urlParams.get("college");
-      setQuery(college);
       if (college) {
         await axios
           .get(
@@ -33,6 +33,7 @@ export function ExploreCollege() {
       } else {
         setCollegeData(undefined);
       }
+      setQuery(college);
     }
     handleCollegeData().then(() => setIsLoading(false));
   };
@@ -51,7 +52,7 @@ export function ExploreCollege() {
   return (
     <Box bgColor={"#051027"}>
       {isLoading ? (
-        <DefaultExplore searchQuery={null} />
+        <SpecificExploreSkeleton />
       ) : collegeData ? (
         <SpecificExplore collegeData={collegeData} />
       ) : (

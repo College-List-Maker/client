@@ -20,7 +20,9 @@ export const App = () => {
   /* 
     HANDLE APP DIRECTORY
   */
-  const isDarkNavbar = ["#about-us", "#profile"].includes(window.location.hash);
+  const isDarkNavbar = ["#about-us", "#profile", "#tos"].includes(
+    window.location.hash
+  );
   const isDarkFooter =
     ["#about-us", "#college-list", "#coming-soon", "#form"].includes(
       window.location.hash

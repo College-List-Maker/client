@@ -27,6 +27,7 @@ import { Page11 } from "./FormPages/Page11";
 import { Page12 } from "./FormPages/Page12";
 import { useSelector, useDispatch } from "react-redux";
 import { Step, Steps, useSteps } from "chakra-ui-steps";
+import { BounceBox } from "../../Components/MotionBox";
 
 const steps = [
   { label: "Step 1" },
@@ -356,51 +357,53 @@ export function Form() {
   return (
     <Box minH={"100vh"} py={"20"} bgColor={"#051027"}>
       <Center>
-        <Container maxW={"2xl"} bgColor={"#ffffff"} p={"10"} rounded={"md"}>
-          <form onSubmit={handleSubmit}>
-            <Stack justify={"space-between"}>
-              <Steps display="flex" flexWrap="wrap" activeStep={activeStep}>
-                {steps.map(({ label }, index) => (
-                  <Step label={label} key={label}>
-                    {contents({ index })}
-                  </Step>
-                ))}
-              </Steps>
-              {activeStep === steps.length ? (
-                <Flex px={4} py={4} width="100%" flexDirection="column">
-                  <Heading fontSize="xl" textAlign="center">
-                    Woohoo! All steps completed!
-                  </Heading>
-                  <Button mx="auto" mt={6} size="sm" onClick={reset}>
-                    Reset
-                  </Button>
-                </Flex>
-              ) : (
-                <Flex width="100%" justify="flex-end">
-                  <Button
-                    isDisabled={activeStep === 0}
-                    mr={4}
-                    onClick={prevCheck}
-                    size="sm"
-                    variant="ghost"
-                  >
-                    Prev
-                  </Button>
-                  {activeStep < steps.length - 1 && (
-                    <Button type="button" size="sm" onClick={nextCheck}>
-                      Next
+        <BounceBox>
+          <Container maxW={"2xl"} bgColor={"#ffffff"} p={"10"} rounded={"md"}>
+            <form onSubmit={handleSubmit}>
+              <Stack justify={"space-between"}>
+                <Steps display="flex" flexWrap="wrap" activeStep={activeStep}>
+                  {steps.map(({ label }, index) => (
+                    <Step label={label} key={label}>
+                      {contents({ index })}
+                    </Step>
+                  ))}
+                </Steps>
+                {activeStep === steps.length ? (
+                  <Flex px={4} py={4} width="100%" flexDirection="column">
+                    <Heading fontSize="xl" textAlign="center">
+                      Woohoo! All steps completed!
+                    </Heading>
+                    <Button mx="auto" mt={6} size="sm" onClick={reset}>
+                      Reset
                     </Button>
-                  )}
-                  {activeStep === steps.length - 1 && (
-                    <Button type={"submit"} size="sm">
-                      Finish
+                  </Flex>
+                ) : (
+                  <Flex width="100%" justify="flex-end">
+                    <Button
+                      isDisabled={activeStep === 0}
+                      mr={4}
+                      onClick={prevCheck}
+                      size="sm"
+                      variant="ghost"
+                    >
+                      Prev
                     </Button>
-                  )}
-                </Flex>
-              )}
-            </Stack>
-          </form>
-        </Container>
+                    {activeStep < steps.length - 1 && (
+                      <Button type="button" size="sm" onClick={nextCheck}>
+                        Next
+                      </Button>
+                    )}
+                    {activeStep === steps.length - 1 && (
+                      <Button type={"submit"} size="sm">
+                        Finish
+                      </Button>
+                    )}
+                  </Flex>
+                )}
+              </Stack>
+            </form>
+          </Container>
+        </BounceBox>
       </Center>
     </Box>
   );

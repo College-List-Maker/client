@@ -79,7 +79,7 @@ export const UpBox = ({ children, ...props }: BoxProps) => {
     <MotionBox
       initial={{ opacity: 0, y: 350 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.1 }}
+      viewport={{ once: true, amount: 0 }}
       transition={{
         type: "spring",
         bounce: 0.3,
@@ -100,7 +100,7 @@ export const RotationBox = ({ children, ...props }: BoxProps) => {
       viewport={{ once: true, amount: 0.1 }}
       transition={{
         duration: 60,
-        loop: Infinity,
+        repeatType: Infinity,
         ease: "linear",
       }}
       {...props}
@@ -120,7 +120,7 @@ export const BackgroundSpanBox = ({ children, ...props }: BoxProps) => {
       }}
       transition={{
         duration: 75,
-        loop: Infinity,
+        repeatType: Infinity,
         ease: "easeInOut",
       }}
       position={"relative"}

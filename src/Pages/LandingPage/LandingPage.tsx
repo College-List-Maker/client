@@ -16,22 +16,20 @@ export function LandingPage() {
           <Stack>
             <LeftBox>
               <MiddleCard
-                heading="Heading Text"
-                description="Fill out a short questionnaire and find the best college matches
-              for you based on more than a million data points and a dense,
-              intricate algorithm."
-                button="Button Text"
-                hash="#about-us"
+                heading="Learn more about 5000+ universities"
+                description="The Collegy platform is designed and operated by a team of college students who are committed to helping you succeed in your educational journey. Our comprehensive search function allows you to easily explore and compare different colleges to find the best fit for your needs and goals."
+                button="Explore College"
+                hash="#explore-college"
+                backgroundImg={process.env.PUBLIC_URL + "/img/collegeimg.png"}
               />
             </LeftBox>
             <RightBox>
               <MiddleCard
-                heading="Heading Text"
-                description="Fill out a short questionnaire and find the best college matches
-              for you based on more than a million data points and a dense,
-              intricate algorithm."
-                button="Button Text"
-                hash="#about-us"
+                heading="Maximize your acceptance"
+                description="At Collegy, we understand that the college application process can be overwhelming and stressful. That's why we've developed a feature that provides in-depth information on specific colleges, including admissions requirements, financial aid options, and student life. With this feature, you can get a better sense of what each college is looking for in applicants and how you can increase your chances of being accepted to your dream school."
+                button="Learn More"
+                hash="#coming-soon"
+                backgroundImg={process.env.PUBLIC_URL + "/img/maxaccept.png"}
               />
             </RightBox>
             <LeftBox>

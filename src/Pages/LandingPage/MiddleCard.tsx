@@ -1,4 +1,12 @@
-import { Container, Stack, Heading, Button, Text } from "@chakra-ui/react";
+import {
+  Container,
+  Stack,
+  Heading,
+  Button,
+  Text,
+  Image,
+  Flex,
+} from "@chakra-ui/react";
 
 interface MiddleCardInputs {
   heading: string;
@@ -7,6 +15,7 @@ interface MiddleCardInputs {
   children?: any;
   width?: string;
   hash: string;
+  backgroundImg?: string;
 }
 
 export function MiddleCard({
@@ -16,6 +25,7 @@ export function MiddleCard({
   children,
   width,
   hash,
+  backgroundImg,
 }: MiddleCardInputs) {
   const handleClick = (hash: string) => {
     window.location.hash = hash;
@@ -30,22 +40,32 @@ export function MiddleCard({
         my={"5"}
         w={{ base: "100%", sm: width }}
       >
-        <Stack>
-          <Heading
-            as="h2"
-            fontFamily={"Bakbak One"}
-            color={"#627597"}
-            size={"md"}
-            fontWeight={"semibold"}
-          >
-            {heading}
-          </Heading>
-          <Text color={"#626262"}>{description}</Text>
-          {children}
-          <Button onClick={() => handleClick(hash)} variant={"secondary"}>
-            {button}
-          </Button>
-        </Stack>
+        <Flex alignItems={"flex-end"}>
+          <Stack>
+            <Heading
+              as="h2"
+              fontFamily={"Bakbak One"}
+              color={"#627597"}
+              size={"md"}
+              fontWeight={"semibold"}
+            >
+              {heading}
+            </Heading>
+            <Text color={"#626262"}>{description}</Text>
+            {children}
+            <Button onClick={() => handleClick(hash)} variant={"secondary"}>
+              {button}
+            </Button>
+          </Stack>
+          {backgroundImg && (
+            <Image
+              display={{ base: "none", sm: "block" }}
+              src={backgroundImg}
+              objectFit={"contain"}
+              width={"20"}
+            />
+          )}
+        </Flex>
       </Container>
     </>
   );
