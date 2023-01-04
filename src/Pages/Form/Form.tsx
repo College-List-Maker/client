@@ -1,5 +1,9 @@
 import axios from "axios";
-import { getCookie, isQuestionaireCompleted } from "../../Fetch";
+import {
+  getCookie,
+  isQuestionaireCompleted,
+  updateUserInfo,
+} from "../../Fetch";
 import { UserCollegeData } from "../../types";
 import { useEffect, createContext, useState } from "react";
 import {
@@ -227,7 +231,9 @@ export function Form() {
               getCookie("visitorId=")
           )
           .then(() => {
-            window.location.hash = "#college-list";
+            updateUserInfo().then(
+              () => (window.location.hash = "#college-list")
+            );
           });
       })
       .catch((err: any) => {
