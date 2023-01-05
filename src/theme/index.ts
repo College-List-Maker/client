@@ -30,6 +30,8 @@ const theme = extendTheme({
           _hover: {
             background: "#278943",
           },
+          whiteSpace: "inherit",
+          height: "fit-content",
         },
         secondary: {
           color: "#000000",

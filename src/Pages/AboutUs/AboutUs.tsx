@@ -28,35 +28,45 @@ export function AboutUs() {
           </BounceBox>
         </Container>
       </Box>
-      <Box bgColor={"#E3E0E0"} pb={"10"}>
-        <Container minW={"60%"}>
-          <BounceBox>
-            <AboutUsHeading
-              h1={"Team Biographies"}
-              h2={"Meet our Team"}
-              emoji={{ emoji: "👋", right: false }}
-            />
-            <BiographyCard
-              picture="https://media.licdn.com/dms/image/D4E03AQFkYwurI7k4xw/profile-displayphoto-shrink_400_400/0/1666456660962?e=1678320000&v=beta&t=oEauCFl1R3xMGEVy6RwdtwGBiDPopwy4ezhGfh0ZGxY"
-              name="John Farrell"
-              position="Software Engineer, Co-Founder"
-              bio="Hi there! My name is John and I am a computer science student at Brown University. I am currently earning my ScB degree with concentrations in Artificial Intelligence/Machine Learning, Software Principles, Data, and Design. I am also certified in Data Fluency, and I have strong proficiencies in a variety of programming languages, including Python, Java, JavaScript, TypeScript, ReasonML, and Racket. In my work as a developer at Collegy, I have experience with a variety of web application frameworks, database management systems, and other systems and applications. I am especially passionate about artificial intelligence, software engineering, and data science, and I am always looking for new opportunities to learn and grow in these fields. I hope we can work together to build something amazing!"
-              linkedin="https://www.linkedin.com/in/johnsfarrell/"
-              github="https://github.com/johnsfarrell"
-            />
-          </BounceBox>
-          <BounceBox>
-            <BiographyCard
-              picture="https://media.licdn.com/dms/image/C5603AQHTB2qvlimbBw/profile-displayphoto-shrink_400_400/0/1634852696133?e=1678320000&v=beta&t=p1tlTFLG2_56Uc7HNxGchzMNlJJ4JOCBwQYCH0xDEBs"
-              name="Tyler Cady"
-              position="Software Engineer, Co-Founder"
-              bio="Hello! My name is Tyler and I am a computer science student at the Georgia Institute of Technology. In addition to my studies, I am also a developer at Collegy, where I have the opportunity to work on a variety of projects and gain valuable experience in the field. I am currently developing my proficiency in Java, HTML, CSS, JavaScript, and database management, and I am eager to concentrate my learning around information/internetworks and modeling/simulation. My professional ambition is to become well adapted to a full-stack environment and advance myself with competence in high-demand software development. I am committed to continuing to learn and grow as a developer, and I am excited to use my skills and expertise to make a positive impact in the world of technology."
-              orange={true}
-              linkedin="https://www.linkedin.com/in/tyler-cady-0a641321a/"
-              github="https://github.com/tylerrcady"
-            />
-          </BounceBox>
-        </Container>
+      <Box
+        bgColor={"#E3E0E0"}
+        bgImage={process.env.PUBLIC_URL + "/img/pattern.svg"}
+      >
+        <Box
+          bgGradient={
+            "linear-gradient(to right, rgba(225,225,225,0.95) 0%, rgba(225,225,225,0.97) 10%, rgba(225,225,225,.99) 30%, rgba(225,225,225,.99) 70%, rgba(225,225,225,0.97) 90%, rgba(225,225,225,0.95) 100%);"
+          }
+          pb={"10"}
+        >
+          <Container minW={"60%"}>
+            <BounceBox>
+              <AboutUsHeading
+                h1={"Team Biographies"}
+                h2={"Meet our Team"}
+                emoji={{ emoji: "👋", right: false }}
+              />
+              <BiographyCard
+                picture="https://media.licdn.com/dms/image/D4E03AQFkYwurI7k4xw/profile-displayphoto-shrink_400_400/0/1666456660962?e=1678320000&v=beta&t=oEauCFl1R3xMGEVy6RwdtwGBiDPopwy4ezhGfh0ZGxY"
+                name="John Farrell"
+                position="Software Engineer, Co-Founder"
+                bio="Hi there! My name is John and I am a computer science student at Brown University. I am currently earning my ScB degree with concentrations in Artificial Intelligence/Machine Learning, Software Principles, Data, and Design. I am also certified in Data Fluency, and I have strong proficiencies in a variety of programming languages, including Python, Java, JavaScript, TypeScript, ReasonML, and Racket. In my work as a developer at Collegy, I have experience with a variety of web application frameworks, database management systems, and other systems and applications. I am especially passionate about artificial intelligence, software engineering, and data science, and I am always looking for new opportunities to learn and grow in these fields. I hope we can work together to build something amazing!"
+                linkedin="https://www.linkedin.com/in/johnsfarrell/"
+                github="https://github.com/johnsfarrell"
+              />
+            </BounceBox>
+            <BounceBox>
+              <BiographyCard
+                picture="https://media.licdn.com/dms/image/C5603AQHTB2qvlimbBw/profile-displayphoto-shrink_400_400/0/1634852696133?e=1678320000&v=beta&t=p1tlTFLG2_56Uc7HNxGchzMNlJJ4JOCBwQYCH0xDEBs"
+                name="Tyler Cady"
+                position="Software Engineer, Co-Founder"
+                bio="Hello! My name is Tyler and I am a computer science student at the Georgia Institute of Technology. In addition to my studies, I am also a developer at Collegy, where I have the opportunity to work on a variety of projects and gain valuable experience in the field. I am currently developing my proficiency in Java, HTML, CSS, JavaScript, and database management, and I am eager to concentrate my learning around information/internetworks and modeling/simulation. My professional ambition is to become well adapted to a full-stack environment and advance myself with competence in high-demand software development. I am committed to continuing to learn and grow as a developer, and I am excited to use my skills and expertise to make a positive impact in the world of technology."
+                orange={true}
+                linkedin="https://www.linkedin.com/in/tyler-cady-0a641321a/"
+                github="https://github.com/tylerrcady"
+              />
+            </BounceBox>
+          </Container>
+        </Box>
       </Box>
       <Box bgColor={"#F8F8F8"} w={"100%"} pb={"10"}>
         <Container minW={"70%"}>

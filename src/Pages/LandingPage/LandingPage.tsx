@@ -8,7 +8,13 @@ import { LeftBox, RightBox } from "../../Components/MotionBox";
 export function LandingPage() {
   return (
     <>
-      <Box bgColor={"#051027"} pt={"20"} pb={"1"}>
+      <Box
+        bgColor={"#051027"}
+        pt={"20"}
+        pb={"1"}
+        bgSize={"cover"}
+        bgImage={process.env.PUBLIC_URL + "/img/bgfades.svg"}
+      >
         <TopCard />
       </Box>
       <Box w="100%" h={"10"} bgColor={"#ffffff"} borderTopRadius={"100%"} />

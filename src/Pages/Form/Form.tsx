@@ -361,7 +361,13 @@ export function Form() {
     initialStep: 0,
   });
   return (
-    <Box minH={"100vh"} py={"20"} bgColor={"#051027"}>
+    <Box
+      minH={"100vh"}
+      py={"20"}
+      bgColor={"#051027"}
+      bgSize={"cover"}
+      bgImage={process.env.PUBLIC_URL + "/img/bgfades.svg"}
+    >
       <Center>
         <BounceBox>
           <Container maxW={"2xl"} bgColor={"#ffffff"} p={"10"} rounded={"md"}>

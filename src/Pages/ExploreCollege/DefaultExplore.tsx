@@ -15,7 +15,14 @@ interface DefaultExploreInt {
 
 export function DefaultExplore({ searchQuery }: DefaultExploreInt) {
   return (
-    <Box minH={"100vh"} py={"20"} backgroundColor={"#051027"} color={"#ffffff"}>
+    <Box
+      minH={"100vh"}
+      py={"20"}
+      backgroundColor={"#051027"}
+      color={"#ffffff"}
+      bgSize={"cover"}
+      bgImage={process.env.PUBLIC_URL + "/img/bgfades.svg"}
+    >
       <Container textAlign={"center"}>
         <FadeBox>
           <Heading py={"10"} as="h1" zIndex={2}>

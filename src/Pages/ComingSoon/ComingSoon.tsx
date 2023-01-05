@@ -3,7 +3,14 @@ import { BounceBox, LeftBox, RightBox } from "../../Components/MotionBox";
 
 export default function ComingSoon() {
   return (
-    <Box py={"20"} bgColor={"#051027"} minH={"100vh"} color={"#cccccc"}>
+    <Box
+      py={"20"}
+      bgColor={"#051027"}
+      minH={"100vh"}
+      color={"#cccccc"}
+      bgSize={"cover"}
+      bgImage={process.env.PUBLIC_URL + "/img/bgfades.svg"}
+    >
       <Container>
         <BounceBox>
           <LeftBox>
