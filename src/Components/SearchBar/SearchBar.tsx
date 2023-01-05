@@ -62,10 +62,12 @@ export function SearchBar({ placeholder, dark, width, limit }: SearchBarInt) {
   const debouncedFetchResults = useDebounce(() => fetchResults(query), 200);
 
   const handleChange = (event: any) => {
-    setPastResults(results);
-    setIsLoading(true);
     setQuery(event.target.value);
-    debouncedFetchResults();
+    setPastResults(results);
+    if (event.target.value !== "") {
+      setIsLoading(true);
+      debouncedFetchResults();
+    }
   };
 
   const fetchResults = async (query: string) => {
@@ -76,6 +78,8 @@ export function SearchBar({ placeholder, dark, width, limit }: SearchBarInt) {
           setResults(res.data);
           setIsLoading(false);
         });
+    } else {
+      setIsLoading(false);
     }
   };
 
@@ -110,7 +114,11 @@ export function SearchBar({ placeholder, dark, width, limit }: SearchBarInt) {
                   borderBottom={curResults.length && "1px solid #272727"}
                 >
                   <Button
-                    onClick={() => handleResultClick(result.UNITID)}
+                    onClick={
+                      isLoading
+                        ? undefined
+                        : () => handleResultClick(result.UNITID)
+                    }
                     variant={"searchResult"}
                   >
                     <Skeleton isLoaded={!isLoading}>{result.INSTNM}</Skeleton>
