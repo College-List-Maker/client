@@ -73,7 +73,11 @@ export function SearchBar({ placeholder, dark, width, limit }: SearchBarInt) {
   const fetchResults = async (query: string) => {
     if (query !== "") {
       axios
-        .get(`http://localhost:4000/college/search/${query}/${limit || 1}`)
+        .get(
+          `https://collegy-server.herokuapp.com/college/search/${query}/${
+            limit || 1
+          }`
+        )
         .then((res) => {
           setResults(res.data);
           setIsLoading(false);
