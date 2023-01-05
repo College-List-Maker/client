@@ -31,7 +31,7 @@ export function DefaultExplore({ searchQuery }: DefaultExploreInt) {
           </Heading>
           <Center>
             <SearchBar
-              placeholder="Search a college or place"
+              placeholder="Search a college or city"
               width="md"
               limit={30}
             />
