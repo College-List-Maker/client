@@ -1,4 +1,4 @@
-import { Box, Container, Heading, Image, Text } from "@chakra-ui/react";
+import { Box, Center, Container, Heading, Image, Text } from "@chakra-ui/react";
 import FloatMoji from "../../Components/FloatMoji";
 import {
   BackgroundSpanBox,
@@ -7,7 +7,7 @@ import {
   RotationBox,
   UpBox,
 } from "../../Components/MotionBox";
-import { SearchBar } from "../../Components/SearchBar";
+import { SearchBar } from "../../Components/SearchBar/SearchBar";
 
 interface DefaultExploreInt {
   searchQuery: string | null;
@@ -29,7 +29,13 @@ export function DefaultExplore({ searchQuery }: DefaultExploreInt) {
             Explore College
             <FloatMoji emoji="🔍" top={0.5} right={0.3} shadow={true} />
           </Heading>
-          <SearchBar placeholder="Search a college or place" />
+          <Center>
+            <SearchBar
+              placeholder="Search a college or place"
+              width="md"
+              limit={30}
+            />
+          </Center>
           {searchQuery && (
             <RightBox>
               <Text
@@ -45,21 +51,26 @@ export function DefaultExplore({ searchQuery }: DefaultExploreInt) {
                   src={process.env.PUBLIC_URL + "/img/owl.svg"}
                   alt="globe"
                   margin="auto"
+                  m={0}
+                  p={0}
+                  display={"inline"}
                 />
               </RotationBox>
             </BackgroundSpanBox>
           </Box>
-          <UpBox>
-            <RotationBox>
-              <Image
-                w={"sm"}
-                src={process.env.PUBLIC_URL + "/img/globe.svg"}
-                alt="globe"
-                m={"auto"}
-                py={"20"}
-              />
-            </RotationBox>
-          </UpBox>
+          <Box py={20}>
+            <UpBox>
+              <RotationBox>
+                <Image
+                  w={"sm"}
+                  src={process.env.PUBLIC_URL + "/img/globe.svg"}
+                  alt="globe"
+                  m={"auto"}
+                  display={"inline"}
+                />
+              </RotationBox>
+            </UpBox>
+          </Box>
         </FadeBox>
       </Container>
     </Box>

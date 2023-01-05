@@ -44,6 +44,32 @@ const theme = extendTheme({
             background: "#EEEEEE",
           },
         },
+        searchResult: {
+          color: "#cccccc",
+          backgroundColor: "#202020",
+          _hover: {
+            background: "#272727",
+          },
+          fontSize: "xs",
+          display: "flex",
+          justifyContent: "flex-start",
+          overflow: "hidden",
+          p: "2",
+          w: "100%",
+          borderRadius: "0",
+          position: "relative", // add this line
+          "&::after": {
+            // add this block
+            content: "''",
+            position: "absolute",
+            top: 0,
+            right: 0,
+            bottom: 0,
+            left: 0,
+            background:
+              "linear-gradient(to right, rgba(255, 255, 255, 0) 90%, #202020 95%)",
+          },
+        },
       },
     },
   },

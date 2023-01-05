@@ -20,7 +20,7 @@ import {
   ChevronRightIcon,
 } from "@chakra-ui/icons";
 import { isLoggedIn, isQuestionaireCompleted } from "../../Fetch";
-import { SearchBar } from "../SearchBar";
+import { SearchBar } from "../SearchBar/SearchBar";
 import { ProfileButton } from "./ProfileButton";
 import { SignIn } from "../SignIn";
 
@@ -79,7 +79,7 @@ export default function Navbar({ dark }: NavbarInt) {
 
         <Flex justify={"flex-end"} direction={"row"}>
           <Flex display={{ base: "none", md: "flex" }} mr={"3"}>
-            <SearchBar dark={dark} />
+            <SearchBar />
           </Flex>
           {isLoggedIn() ? <ProfileButton dark={dark} /> : <SignIn />}
         </Flex>

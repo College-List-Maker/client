@@ -84,6 +84,7 @@ export const UpBox = ({ children, ...props }: BoxProps) => {
         bounce: 0.3,
         duration: 0.75,
       }}
+      m={"auto"}
       {...props}
     >
       {children}

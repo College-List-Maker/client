@@ -38,7 +38,7 @@ export function TopCard() {
   }
   function StatLineStat({ stat, desc }: StatLineStatInt) {
     return (
-      <Stack spacing={0} px={4}>
+      <Stack spacing={0} pl={8}>
         <Text color="#ffffff" fontSize={"xs"} fontFamily={"Anaheim"}>
           {stat}
         </Text>
@@ -82,11 +82,9 @@ export function TopCard() {
       </Container>
       <Container maxW={"container.md"}>
         <Flex borderTop={"1px solid #313131"}>
-          <Container display={"flex"}>
-            <StatLineStat stat={"1+ million"} desc={"Datapoints"} />
-            <StatLineStat stat={"6,000+"} desc={"Colleges"} />
-            <StatLineStat stat={"100%"} desc={"Match Rate"} />
-          </Container>
+          <StatLineStat stat={"1+ million"} desc={"Datapoints"} />
+          <StatLineStat stat={"6,000+"} desc={"Colleges"} />
+          <StatLineStat stat={"100%"} desc={"Match Rate"} />
         </Flex>
       </Container>
     </Box>
