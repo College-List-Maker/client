@@ -62,7 +62,7 @@ export function CollegeList() {
           <Stack>
             <LeftBox>
               <Heading textAlign={"center"} color={"#ffffff"} py={10}>
-                College List
+                Your College List
                 <FloatMoji emoji={"📝"} top={0.5} right={0.4} rotate={-25} />
               </Heading>
             </LeftBox>

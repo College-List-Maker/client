@@ -39,6 +39,7 @@ export function MiddleCard({
         rounded={"lg"}
         my={"5"}
         w={{ base: "100%", sm: width }}
+        bgColor={"#ffffff"}
       >
         <Flex alignItems={"flex-end"}>
           <Stack>

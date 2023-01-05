@@ -8,73 +8,71 @@ import { LeftBox, RightBox } from "../../Components/MotionBox";
 export function LandingPage() {
   return (
     <>
-      <Box bgColor={"#051027"} pt={"20"}>
+      <Box bgColor={"#051027"} pt={"20"} pb={"1"}>
         <TopCard />
       </Box>
+      <Box w="100%" h={"10"} bgColor={"#ffffff"} borderTopRadius={"100%"} />
       <Box bgColor={"#ffffff"}>
-        <Container>
-          <Stack>
-            <LeftBox>
-              <MiddleCard
-                heading="Learn about 3000+ universities"
-                description="The Collegy platform is designed and operated by a team of college students who are committed to helping you succeed in your educational journey. Our comprehensive search function allows you to easily explore and compare different colleges to find the best fit for your needs and goals."
-                button="Explore College"
-                hash="#explore-college"
-                backgroundImg={process.env.PUBLIC_URL + "/img/collegeimg.png"}
-              />
-            </LeftBox>
-            <RightBox>
-              <MiddleCard
-                heading="Maximize your acceptance"
-                description="At Collegy, we understand that the college application process can be overwhelming and stressful. That's why we've developed a feature that provides in-depth information on specific colleges, including admissions requirements, financial aid options, and student life. With this feature, you can get a better sense of what each college is looking for in applicants and how you can increase your chances of being accepted to your dream school."
-                button="Learn More"
-                hash="#coming-soon"
-                backgroundImg={process.env.PUBLIC_URL + "/img/maxaccept.png"}
-              />
-            </RightBox>
-            <LeftBox>
-              <MiddleCard
-                heading="From college students, for high school students"
-                description="The team at Collegy are all college students, wanting you to succeed and find your best fit."
-                button="More About Us"
-                width="50%"
-                hash="#about-us"
-              >
-                <Stack>
-                  <AvatarGroup size="sm">
-                    <Avatar
-                      name="Ryan Florence"
-                      src="https://bit.ly/ryan-florence"
-                    />
-                    <Avatar
-                      name="Segun Adebayo"
-                      src="https://bit.ly/sage-adebayo"
-                    />
-                    <Avatar
-                      name="Kent Dodds"
-                      src="https://bit.ly/kent-c-dodds"
-                    />
-                    <Avatar
-                      name="Prosper Otemuyiwa"
-                      src="https://bit.ly/prosper-baba"
-                    />
-                    <Avatar
-                      name="Christian Nwamba"
-                      src="https://bit.ly/code-beast"
-                    />
-                    <Avatar
-                      name="Prosper Otemuyiwa"
-                      src="https://bit.ly/prosper-baba"
-                    />
-                    <Avatar
-                      name="Christian Nwamba"
-                      src="https://bit.ly/code-beast"
-                    />
-                  </AvatarGroup>
-                </Stack>
-              </MiddleCard>
-            </LeftBox>
-          </Stack>
+        <Container
+          borderLeft={"2px solid #EFEFEF"}
+          borderRight={"2px solid #EFEFEF"}
+          maxW={"container.md"}
+          px={0}
+          bgColor={"#ffffff"}
+          backgroundSize="cover"
+          bgImage={process.env.PUBLIC_URL + "/img/pattern.svg"}
+        >
+          <Container
+            maxW={"container.md"}
+            px={0}
+            bgGradient={
+              "linear-gradient(to right, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.97) 10%, rgba(255,255,255,.99) 30%, rgba(255,255,255,.99) 70%, rgba(255,255,255,0.97) 90%, rgba(255,255,255,0.95) 100%);"
+            }
+            pb={"5"}
+          >
+            <Stack>
+              <LeftBox>
+                <MiddleCard
+                  heading="Learn about 3000+ universities"
+                  description="The Collegy platform is designed and operated by a team of college students who are committed to helping you succeed in your educational journey. Our comprehensive search function allows you to easily explore and compare different colleges to find the best fit for your needs and goals."
+                  button="Explore College"
+                  hash="#explore-college"
+                  backgroundImg={process.env.PUBLIC_URL + "/img/collegeimg.png"}
+                />
+              </LeftBox>
+              <RightBox>
+                <MiddleCard
+                  heading="Maximize your acceptance"
+                  description="At Collegy, we understand that the college application process can be overwhelming and stressful. That's why we've developed a feature that provides in-depth information on specific colleges, including admissions requirements, financial aid options, and student life. With this feature, you can get a better sense of what each college is looking for in applicants and how you can increase your chances of being accepted to your dream school."
+                  button="Learn More"
+                  hash="#coming-soon"
+                  backgroundImg={process.env.PUBLIC_URL + "/img/maxaccept.png"}
+                />
+              </RightBox>
+              <LeftBox>
+                <MiddleCard
+                  heading="From college students, for high school students"
+                  description="The team at Collegy are all college students, wanting you to succeed and find your best fit."
+                  button="More About Us"
+                  width="50%"
+                  hash="#about-us"
+                >
+                  <Stack>
+                    <AvatarGroup size="sm">
+                      <Avatar
+                        name="Tyler Cady"
+                        src="https://media.licdn.com/dms/image/C5603AQHTB2qvlimbBw/profile-displayphoto-shrink_400_400/0/1634852696133?e=1678320000&v=beta&t=p1tlTFLG2_56Uc7HNxGchzMNlJJ4JOCBwQYCH0xDEBs"
+                      />
+                      <Avatar
+                        name="John Farrell"
+                        src="https://media.licdn.com/dms/image/D4E03AQFkYwurI7k4xw/profile-displayphoto-shrink_400_400/0/1666456660962?e=1678320000&v=beta&t=oEauCFl1R3xMGEVy6RwdtwGBiDPopwy4ezhGfh0ZGxY"
+                      />
+                    </AvatarGroup>
+                  </Stack>
+                </MiddleCard>
+              </LeftBox>
+            </Stack>
+          </Container>
         </Container>
       </Box>
       <Box
