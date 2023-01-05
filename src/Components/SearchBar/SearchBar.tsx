@@ -91,6 +91,7 @@ export function SearchBar({ placeholder, dark, width, limit }: SearchBarInt) {
     }
   };
 
+  const handleKeyPress = (e: any) => e.key === "Enter" && handleSubmit();
   const RRef = useRef<HTMLInputElement>(null);
 
   function handleSubmit() {
@@ -167,6 +168,7 @@ export function SearchBar({ placeholder, dark, width, limit }: SearchBarInt) {
           value={query}
           onChange={handleChange}
           borderBottomRadius={showingQueryResults ? "0" : undefined}
+          onKeyPress={handleKeyPress}
         />
         <InputRightElement
           as="button"
