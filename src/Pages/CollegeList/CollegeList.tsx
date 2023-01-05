@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { getCookie, isQuestionaireCompleted } from "../../Fetch";
-import { Box, Container, Stack, useToast } from "@chakra-ui/react";
+import { Box, Container, Heading, Stack, useToast } from "@chakra-ui/react";
 import { UserCollegeData } from "../../types";
 import { CollegeSectionCard } from "./CollegeSectionCard";
-import { CollegeListSkeleton } from "./CollegeListSkeleton";
-import { BounceBox } from "../../Components/MotionBox";
+import { FadeBox, LeftBox } from "../../Components/MotionBox";
+import FloatMoji from "../../Components/FloatMoji";
 
 export function CollegeList() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -57,27 +57,33 @@ export function CollegeList() {
     <Box pt={"20"} pb={"40"} bgColor={"#051027"}>
       <Container>
         {!collegeData || isLoading ? (
-          <CollegeListSkeleton />
+          <Box h={"100vh"} />
         ) : (
           <Stack>
-            <BounceBox>
+            <LeftBox>
+              <Heading textAlign={"center"} color={"#ffffff"} py={10}>
+                College List
+                <FloatMoji emoji={"📝"} top={0.5} right={0.4} rotate={-25} />
+              </Heading>
+            </LeftBox>
+            <FadeBox>
               <CollegeSectionCard
                 heading="Reaches"
                 colleges={collegeData.finalReaches}
               />
-            </BounceBox>
-            <BounceBox>
+            </FadeBox>
+            <FadeBox>
               <CollegeSectionCard
                 heading="Targets"
                 colleges={collegeData.finalTargets}
               />
-            </BounceBox>
-            <BounceBox>
+            </FadeBox>
+            <FadeBox>
               <CollegeSectionCard
                 heading="Safeties"
                 colleges={collegeData.finalSafeties}
               />
-            </BounceBox>
+            </FadeBox>
           </Stack>
         )}
       </Container>

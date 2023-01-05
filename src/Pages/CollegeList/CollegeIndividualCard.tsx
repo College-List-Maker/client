@@ -20,7 +20,7 @@ export function CollegeIndividualCard({
       <Heading size="xs" textTransform="uppercase" fontFamily={"Bakbak One"}>
         {`${name}`}
       </Heading>
-      <Button onClick={handleClick}>
+      <Button background={"transparent"} onClick={handleClick}>
         <FaArrowRight />
       </Button>
     </Flex>

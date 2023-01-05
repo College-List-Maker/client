@@ -8,6 +8,7 @@ import {
   Image,
   Box,
   Container,
+  Flex,
 } from "@chakra-ui/react";
 import { FaArrowRight } from "react-icons/fa";
 import { BounceBox, RightBox } from "../../Components/MotionBox";
@@ -30,6 +31,23 @@ export function TopCard() {
       : "Fill out a short questionnaire and find the best college matches for you based on more than a million data points and a dense, intricate algorithm.",
     button: questionaireComplete ? "Continue Search" : "Begin Mega Search",
   };
+
+  interface StatLineStatInt {
+    stat: string;
+    desc: string;
+  }
+  function StatLineStat({ stat, desc }: StatLineStatInt) {
+    return (
+      <Stack spacing={0} px={4}>
+        <Text color="#ffffff" fontSize={"xs"} fontFamily={"Anaheim"}>
+          {stat}
+        </Text>
+        <Text color="#BBBBBB" fontSize={"2xs"} fontFamily={"Anaheim"}>
+          {desc}
+        </Text>
+      </Stack>
+    );
+  }
 
   return (
     <Box>
@@ -61,6 +79,15 @@ export function TopCard() {
             </RightBox>
           </GridItem>
         </Grid>
+      </Container>
+      <Container maxW={"container.md"}>
+        <Flex borderTop={"1px solid #313131"}>
+          <Container display={"flex"}>
+            <StatLineStat stat={"1 million+"} desc={"Datapoints"} />
+            <StatLineStat stat={"6,000+"} desc={"Colleges"} />
+            <StatLineStat stat={"100%"} desc={"Match Rate"} />
+          </Container>
+        </Flex>
       </Container>
       <div className="wave1">
         <svg
