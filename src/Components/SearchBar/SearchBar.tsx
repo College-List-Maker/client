@@ -81,6 +81,10 @@ export function SearchBar({ placeholder, dark, width, limit }: SearchBarInt) {
         .then((res) => {
           setResults(res.data);
           setIsLoading(false);
+        })
+        .catch((err) => {
+          console.log(err);
+          setIsLoading(false);
         });
     } else {
       setIsLoading(false);
