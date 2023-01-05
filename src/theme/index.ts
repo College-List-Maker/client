@@ -1,6 +1,30 @@
 import { extendTheme, theme as base } from "@chakra-ui/react";
-import { StepsStyleConfig as Steps } from "chakra-ui-steps";
 import { defineStyle, defineStyleConfig } from "@chakra-ui/react";
+import { StepsStyleConfig } from "chakra-ui-steps";
+
+const CustomSteps = {
+  ...StepsStyleConfig,
+  baseStyle: (props: any) => {
+    return {
+      ...StepsStyleConfig.baseStyle(props),
+      step: {
+        ...StepsStyleConfig.baseStyle(props).step,
+      },
+      stepContiner: {
+        ...StepsStyleConfig.baseStyle(props).stepContainer,
+      },
+      stepIconContainer: {
+        ...StepsStyleConfig.baseStyle(props).stepIconContainer,
+      },
+      connector: {
+        ...StepsStyleConfig.baseStyle(props).connector,
+      },
+      icon: {
+        ...StepsStyleConfig.baseStyle(props).icon,
+      },
+    };
+  },
+};
 
 const greenPrimary = defineStyle({
   color: "white",
@@ -16,7 +40,7 @@ const theme = extendTheme({
     body: `Actor, ${base.fonts.body}`,
   },
   components: {
-    Steps,
+    Steps: CustomSteps,
     Button: {
       variants: {
         gprimary: {

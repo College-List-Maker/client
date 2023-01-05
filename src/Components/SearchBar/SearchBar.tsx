@@ -12,16 +12,22 @@ import {
 } from "@chakra-ui/react";
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
-import "./SearchBar.css";
 
 interface SearchBarInt {
   placeholder?: string;
   dark?: boolean;
   width?: string;
   limit?: number;
+  maxH?: string;
 }
 
-export function SearchBar({ placeholder, dark, width, limit }: SearchBarInt) {
+export function SearchBar({
+  placeholder,
+  dark,
+  width,
+  limit,
+  maxH,
+}: SearchBarInt) {
   const [isActive, setIsActive] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -96,11 +102,12 @@ export function SearchBar({ placeholder, dark, width, limit }: SearchBarInt) {
 
   function handleSubmit() {
     if (results.length) {
-      window.location.hash = `#explore-college?college=${results[0].UNITID}`;
+      handleResultClick(results[0].UNITID);
     }
   }
   function handleResultClick(query: string) {
     window.location.hash = `#explore-college?college=${query}`;
+    setQuery("");
   }
 
   const showingQueryResults = isActive && (query || results.length);
@@ -111,7 +118,7 @@ export function SearchBar({ placeholder, dark, width, limit }: SearchBarInt) {
         <Box h={0}>
           <List
             bgColor={"#202020"}
-            maxH="xs"
+            maxH={maxH || "xs"}
             overflow={"scroll"}
             display={isActive ? undefined : "none"}
             borderBottomRadius={"lg"}

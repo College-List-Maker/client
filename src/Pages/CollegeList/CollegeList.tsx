@@ -54,7 +54,12 @@ export function CollegeList() {
   };
 
   return (
-    <Box pt={"20"} pb={"40"} bgColor={"#051027"}>
+    <Box
+      pt={"20"}
+      pb={"40"}
+      bgColor={"#051027"}
+      bgImage={process.env.PUBLIC_URL + "/img/bgfades.svg"}
+    >
       <Container>
         {!collegeData || isLoading ? (
           <Box h={"100vh"} />

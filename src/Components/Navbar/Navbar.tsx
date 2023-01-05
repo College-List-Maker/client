@@ -79,7 +79,7 @@ export default function Navbar({ dark }: NavbarInt) {
 
         <Flex justify={"flex-end"} direction={"row"}>
           <Flex display={{ base: "none", md: "flex" }} mr={"3"}>
-            <SearchBar />
+            <SearchBar limit={15} maxH={"20"} />
           </Flex>
           {isLoggedIn() ? <ProfileButton dark={dark} /> : <SignIn />}
         </Flex>
