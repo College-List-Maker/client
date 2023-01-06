@@ -17,9 +17,11 @@ import Navbar from "./Components/Navbar/Navbar";
 import Footer from "./Components/Footer";
 
 export const App = () => {
-    /* 
+  /* 
     HANDLE APP DIRECTORY
   */
+  const { component: ProfileComponent } = Profile();
+
   const isDarkNavbar = ["#about-us", "#profile", "#tos"].includes(
     window.location.hash
   );
@@ -27,6 +29,7 @@ export const App = () => {
     ["#about-us", "#college-list", "#coming-soon", "#form"].includes(
       window.location.hash
     ) || window.location.hash.startsWith("#explore-college");
+
   const [hashtag, setHashtag] = useState(window.location.hash);
   useEffect(() => {
     updateUserInfo();
@@ -42,13 +45,11 @@ export const App = () => {
       const hash = window.location.hash.split("?")[0];
       setHashtag(hash);
     };
-
-        const handleHashChange = () => {
-            window.scrollTo(0, 0);
-            checkSigninPage();
-            const hash = window.location.hash.split("?")[0];
-            setHashtag(hash);
-        };
+    window.onhashchange = handleHashChange;
+    return () => {
+      window.onhashchange = null;
+    };
+  }, []);
 
   return (
     <ChakraProvider theme={theme}>
@@ -58,7 +59,7 @@ export const App = () => {
         {(hashtag === "" || hashtag === "#") && <LandingPage />}
         {hashtag === "#college-list" && <CollegeList />}
         {hashtag === "#form" && <Form />}
-        {hashtag === "#profile" && <Profile />}
+        {hashtag === "#profile" && ProfileComponent}
         {hashtag === "#about-us" && <AboutUs />}
         {hashtag === "#tos" && <TermsOfService />}
         {hashtag === "#coming-soon" && <ComingSoon />}

@@ -7,9 +7,9 @@ import { toast } from "react-toastify";
 import { SpecificExploreSkeleton } from "./SpecificExploreSkeleton";
 
 export function ExploreCollege() {
-    const [query, setQuery] = useState<string | null>(null);
-    const [collegeData, setCollegeData] = useState(undefined);
-    const [isLoading, setIsLoading] = useState(true);
+  const [query, setQuery] = useState<string | null>(null);
+  const [collegeData, setCollegeData] = useState(undefined);
+  const [isLoading, setIsLoading] = useState(true);
 
   const updateCollegeData = () => {
     async function handleCollegeData() {
@@ -47,6 +47,7 @@ export function ExploreCollege() {
     return () => {
       window.removeEventListener("hashchange", hashChangeListener.current);
     };
+  }, []);
 
   return (
     <Box bgColor={"#051027"}>
