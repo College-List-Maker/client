@@ -40,26 +40,26 @@ export function CollegeList() {
             });
     };
 
-  return (
-    <Container>
-      {!collegeData || isLoading ? (
-        <CollegeListSkeleton />
-      ) : (
-        <Stack>
-          <CollegeSectionCard
-            heading="Reaches"
-            colleges={collegeData.finalReaches}
-          />
-          <CollegeSectionCard
-            heading="Targets"
-            colleges={collegeData.finalTargets}
-          />
-          <CollegeSectionCard
-            heading="Safeties"
-            colleges={collegeData.finalSafeties}
-          />
-        </Stack>
-      )}
-    </Container>
-  );
+    return (
+        <Container>
+            {!collegeData || isLoading ? (
+                <CollegeListSkeleton />
+            ) : (
+                <Stack>
+                    <CollegeSectionCard
+                        heading="Reaches"
+                        colleges={collegeData.finalReaches}
+                    />
+                    <CollegeSectionCard
+                        heading="Targets"
+                        colleges={collegeData.finalTargets}
+                    />
+                    <CollegeSectionCard
+                        heading="Safeties"
+                        colleges={collegeData.finalSafeties}
+                    />
+                </Stack>
+            )}
+        </Container>
+    );
 }

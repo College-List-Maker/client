@@ -1,6 +1,7 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import {
+    Button,
     Checkbox,
     Grid,
     Heading,
@@ -8,15 +9,33 @@ import {
     InputGroup,
     InputLeftAddon,
     Select,
+    Skeleton,
 } from "@chakra-ui/react";
-import { FormDataContext } from "../Form";
+import { Profile } from "../Profile";
+import { LoadingContext } from "../Profile";
+import { UserCollegeData } from "../../../types";
+import axios from "axios";
+import { getCookie } from "../../../Fetch";
 
 export function Page10() {
-    const [formData, setFormData] = useContext(FormDataContext);
+    const { context: FormDataContext } = Profile();
+    const [fD] = useContext(FormDataContext);
+    const [formData, setFormData] = useState<UserCollegeData>();
+    const [, setIsLoading] = useContext(LoadingContext);
 
     useEffect(() => {
-        setFormData(formData);
-    });
+        if (
+            fD === undefined ||
+            formData === undefined ||
+            fD.academic.gpa === -1 ||
+            formData.academic.gpa === -1
+        ) {
+            setFormData(fD);
+            if (formData !== undefined) {
+                setIsLocationChecked(formData.costPrefs.costImportance);
+            }
+        }
+    }, [fD, formData]);
 
     const zipRef = useRef<HTMLInputElement>(null);
     const curStateRef = useRef<HTMLSelectElement>(null);
@@ -28,7 +47,10 @@ export function Page10() {
     const prefWinTempRef = useRef<HTMLInputElement>(null);
     const dispatch = useDispatch();
 
-    const [isLocationChecked, setLocationChecked] = useState(false);
+    const formValid = true;
+    dispatch({ type: "SET_FORM_VALID", formValid });
+
+    const [isLocationChecked, setIsLocationChecked] = useState(false);
 
     function toggleLocationImportanceValue(event: any) {
         setFormData((prevFormData: any) => ({
@@ -39,7 +61,6 @@ export function Page10() {
                     !prevFormData["locationPrefs"]["locationImportance"],
             },
         }));
-        setLocationChecked(event.target.checked);
         checkValid();
     }
 
@@ -71,7 +92,6 @@ export function Page10() {
     checkValid();
     function checkValid() {
         let formValid;
-
         if (isLocationChecked) {
             if (
                 !zipRef.current?.value ||
@@ -93,9 +113,39 @@ export function Page10() {
             formValid = true;
         }
         dispatch({ type: "SET_FORM_VALID", formValid });
+        return formValid;
     }
 
-    return (
+    const HandleSave = (event: any) => {
+        setIsLoading(true);
+        checkValid();
+        if (formValid) {
+            event.preventDefault();
+            console.log(formData);
+            axios
+                .post(
+                    "https://collegy-server.herokuapp.com/user/submit-questionaire/" +
+                        getCookie("visitorId="),
+                    formData
+                )
+                .then((res: any) => {
+                    axios
+                        .get(
+                            "https://collegy-server.herokuapp.com/user/set-college-list/" +
+                                getCookie("visitorId=")
+                        )
+                        .then(() => {
+                            setIsLoading(false);
+                            window.location.hash = "#college-list";
+                        });
+                })
+                .catch((err: any) => {
+                    console.error(err);
+                });
+        }
+    };
+
+    return formData && formData.academic.gpa !== -1 ? (
         <>
             <Heading as="h4" size="md">
                 Location Preferences
@@ -105,28 +155,38 @@ export function Page10() {
                     <Checkbox
                         onChange={toggleLocationImportanceValue}
                         name={"locationPrefs.locationImportance"}
+                        defaultChecked={
+                            formData.locationPrefs.locationImportance
+                                ? true
+                                : false
+                        }
                     >
                         Is Location Important?
                     </Checkbox>
                 </InputGroup>
-                {isLocationChecked && (
+
+                <>
                     <InputGroup>
                         <Checkbox
                             onChange={toggleLivingAtHomePrefValue}
                             name={"locationPrefs.livingAtHome"}
+                            defaultChecked={
+                                formData.locationPrefs.livingAtHome
+                                    ? true
+                                    : false
+                            }
                         >
                             Will you 100% live at home (in-state)?
                         </Checkbox>
                     </InputGroup>
-                )}
-                {isLocationChecked && (
+
                     <InputGroup>
                         <InputLeftAddon children="ZIP" />
                         <Input
                             onChange={handleChange}
                             name={"locationPrefs.ZIP"}
                             type="text"
-                            placeholder="14450"
+                            defaultValue={String(formData.locationPrefs.ZIP)}
                             required
                             pattern="^[0-9]+$"
                             minLength={5}
@@ -134,13 +194,14 @@ export function Page10() {
                             ref={zipRef}
                         />
                     </InputGroup>
-                )}
-                {isLocationChecked && (
+
                     <InputGroup>
                         <Select
                             onChange={handleChange}
                             name={"locationPrefs.curState"}
-                            placeholder="Current State"
+                            defaultValue={String(
+                                formData.locationPrefs.curState
+                            )}
                             required
                             ref={curStateRef}
                         >
@@ -197,26 +258,28 @@ export function Page10() {
                             <option value="">N/A</option>
                         </Select>
                     </InputGroup>
-                )}
-                {isLocationChecked && (
+
                     <InputGroup>
                         <InputLeftAddon children="Pref City" />
                         <Input
                             onChange={handleChange}
                             name={"locationPrefs.prefCity"}
                             type="text"
-                            placeholder="Rochester"
+                            defaultValue={String(
+                                formData.locationPrefs.prefCity
+                            )}
                             required
                             ref={prefCityRef}
                         />
                     </InputGroup>
-                )}
-                {isLocationChecked && (
+
                     <InputGroup>
                         <Select
                             onChange={handleChange}
                             name={"locationPrefs.prefState"}
-                            placeholder="Pref State"
+                            defaultValue={String(
+                                formData.locationPrefs.prefState
+                            )}
                             required
                             ref={prefStateRef}
                         >
@@ -273,15 +336,18 @@ export function Page10() {
                             <option value="">N/A</option>
                         </Select>
                     </InputGroup>
-                )}
+                </>
             </Grid>
-            {isLocationChecked && (
+
+            <>
                 <Grid templateColumns="repeat(1, 1fr)" gap={1}>
                     <InputGroup>
                         <Select
                             onChange={handleChange}
                             name={"locationPrefs.prefRegion"}
-                            placeholder="Pref Region"
+                            defaultValue={String(
+                                formData.locationPrefs.prefRegion
+                            )}
                             required
                             ref={prefRegionRef}
                         >
@@ -321,7 +387,9 @@ export function Page10() {
                         <Select
                             onChange={handleChange}
                             name={"locationPrefs.prefLocale"}
-                            placeholder="Pref Locale"
+                            defaultValue={String(
+                                formData.locationPrefs.prefLocale
+                            )}
                             required
                             ref={prefLocaleRef}
                         >
@@ -382,8 +450,7 @@ export function Page10() {
                         </Select>
                     </InputGroup>
                 </Grid>
-            )}
-            {isLocationChecked && (
+
                 <Grid templateColumns="repeat(2, 1fr)" gap={1}>
                     <InputGroup>
                         <InputLeftAddon children="Pref Summer Temp ('F)" />
@@ -391,7 +458,9 @@ export function Page10() {
                             onChange={handleChange}
                             name={"locationPrefs.prefSummerClimate"}
                             type="number"
-                            placeholder="65"
+                            defaultValue={String(
+                                formData.locationPrefs.prefSummerClimate
+                            )}
                             required
                             ref={prefSumTempRef}
                         />
@@ -402,13 +471,21 @@ export function Page10() {
                             onChange={handleChange}
                             name={"locationPrefs.prefWinterClimate"}
                             type="number"
-                            placeholder="30"
+                            defaultValue={String(
+                                formData.locationPrefs.prefWinterClimate
+                            )}
                             required
                             ref={prefWinTempRef}
                         />
                     </InputGroup>
                 </Grid>
-            )}
+            </>
+
+            <Button onClick={HandleSave} size="sm">
+                Save*
+            </Button>
         </>
+    ) : (
+        <Skeleton>LOADING</Skeleton>
     );
 }

@@ -17,45 +17,48 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export const App = () => {
-  /* 
+    /* 
     HANDLE APP DIRECTORY
   */
-  const [hashtag, setHashtag] = useState(window.location.hash);
-  useEffect(() => {
-    updateUserInfo();
+    const { component: ProfileComponent } = Profile();
 
-    const checkSigninPage = () => {
-      if (isLoggedIn()) {
-        if (window.location.hash === "#sign-in") window.location.hash = "#";
-      }
-    };
+    const [hashtag, setHashtag] = useState(window.location.hash);
+    useEffect(() => {
+        updateUserInfo();
 
-    const handleHashChange = () => {
-      window.scrollTo(0, 0);
-      checkSigninPage();
-      const hash = window.location.hash.split("?")[0];
-      setHashtag(hash);
-    };
+        const checkSigninPage = () => {
+            if (isLoggedIn()) {
+                if (window.location.hash === "#sign-in")
+                    window.location.hash = "#";
+            }
+        };
 
-    window.onhashchange = handleHashChange;
-    return () => {
-      window.onhashchange = null;
-    };
-  }, []);
+        const handleHashChange = () => {
+            window.scrollTo(0, 0);
+            checkSigninPage();
+            const hash = window.location.hash.split("?")[0];
+            setHashtag(hash);
+        };
 
-  return (
-    <ChakraProvider theme={theme}>
-      <ToastContainer />
-      <Navbar />
-      {(hashtag === "" || hashtag === "#") && <LandingPage />}
-      {hashtag === "#college-list" && <CollegeList />}
-      {hashtag === "#form" && <Form />}
-      {hashtag === "#profile" && <Profile />}
-      {hashtag === "#about-us" && <AboutUs />}
-      {hashtag === "#tos" && <TermsOfService />}
-      {hashtag === "#coming-soon" && <ComingSoon />}
-      {hashtag.startsWith("#explore-college") && <ExploreCollege />}
-      <Footer />
-    </ChakraProvider>
-  );
+        window.onhashchange = handleHashChange;
+        return () => {
+            window.onhashchange = null;
+        };
+    }, []);
+
+    return (
+        <ChakraProvider theme={theme}>
+            <ToastContainer />
+            <Navbar />
+            {(hashtag === "" || hashtag === "#") && <LandingPage />}
+            {hashtag === "#college-list" && <CollegeList />}
+            {hashtag === "#form" && <Form />}
+            {hashtag === "#profile" && ProfileComponent}
+            {hashtag === "#about-us" && <AboutUs />}
+            {hashtag === "#tos" && <TermsOfService />}
+            {hashtag === "#coming-soon" && <ComingSoon />}
+            {hashtag.startsWith("#explore-college") && <ExploreCollege />}
+            <Footer />
+        </ChakraProvider>
+    );
 };
