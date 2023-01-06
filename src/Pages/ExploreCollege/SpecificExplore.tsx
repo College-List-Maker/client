@@ -1,6 +1,13 @@
 import { Box, Container, Heading, Link, Stack, Text } from "@chakra-ui/react";
 import { BeginYourSearch } from "../../Components/BeginYourSearch";
 import {
+  BounceBox,
+  FadeBox,
+  LeftBox,
+  RightBox,
+  UpBox,
+} from "../../Components/MotionBox";
+import {
   formatAsCurrency,
   formatAsNumber,
   formatAsPercent,
@@ -293,75 +300,79 @@ export function SpecificExplore({ collegeData }: SpecificExploreInt) {
     return pcipFinal;
   }
   return (
-    <>
-      <Box bgColor={"#051027"}>
+    <Box>
+      <Box bgColor={"#051027"} pt={"20"}>
         <Container>
-          <Stack>
-            <Stack color={"white"}>
-              <Heading as="h1">{collegeData.INSTNM}</Heading>
-              <Text>
-                {collegeData.INSTNM} is a{" "}
-                {collegeData.CONTROL === String(1)
-                  ? "public"
-                  : collegeData.CONTROL === String(2)
-                  ? "private, nonprofit"
-                  : collegeData.CONTROL === String(3)
-                  ? "private, for-profit"
-                  : ""}{" "}
-                institution of higher education that predominantly offers{" "}
-                {collegeData.ICLEVEL === String(1)
-                  ? "4-year"
-                  : collegeData.ICLEVEL === String(2)
-                  ? "2-year"
-                  : collegeData.ICLEVEL === String(3)
-                  ? "less than 2-year"
-                  : ""}{" "}
-                programs. It is located in {collegeData.CITY},{" "}
-                {collegeData.STABBR} and offers a variety of degree programs
-                {collegeData.HIGHDEG === String(0)
-                  ? ""
-                  : collegeData.HIGHDEG === String(1)
-                  ? " at the certificate level"
-                  : collegeData.HIGHDEG === String(2)
-                  ? " at the certificate and associate level"
-                  : collegeData.HIGHDEG === String(3)
-                  ? " at the associate and bachelor level"
-                  : collegeData.HIGHDEG === String(4)
-                  ? " at the associate, bachelor, and graduate level"
-                  : ""}
-                . {collegeData.INSTNM} is home to about{" "}
-                {formatAsNumber(collegeData.UGDS)} college students, and with an
-                acceptance rate of{" "}
-                {formatAsPercent(Number(collegeData.ADM_RATE), true)}, is
-                classified as{" "}
-                {Number(collegeData.ADM_RATE) < 0.15
-                  ? "a most selective"
-                  : Number(collegeData.ADM_RATE) < 0.35
-                  ? "an extremely selective"
-                  : Number(collegeData.ADM_RATE) < 0.5
-                  ? "a very selective"
-                  : Number(collegeData.ADM_RATE) < 0.6
-                  ? "a moderately selective"
-                  : "a selective"}{" "}
-                university. For more on {collegeData.INSTNM}, view the
-                comprehesive statistics below or visit their website at{" "}
-                <Link
-                  href={
-                    collegeData.INSTURL &&
-                    collegeData.INSTURL.startsWith("http")
-                      ? collegeData.INSTURL
-                      : "https://" + collegeData.INSTURL
-                  }
-                  isExternal
-                  color="teal.500"
-                >
-                  {collegeData.INSTURL}
-                </Link>
-                .
-              </Text>
+          <FadeBox>
+            <Stack>
+              <Stack color={"white"}>
+                <Heading as="h1">{collegeData.INSTNM}</Heading>
+                <Text>
+                  {collegeData.INSTNM} is a{" "}
+                  {collegeData.CONTROL === String(1)
+                    ? "public"
+                    : collegeData.CONTROL === String(2)
+                    ? "private, nonprofit"
+                    : collegeData.CONTROL === String(3)
+                    ? "private, for-profit"
+                    : ""}{" "}
+                  institution of higher education that predominantly offers{" "}
+                  {collegeData.ICLEVEL === String(1)
+                    ? "4-year"
+                    : collegeData.ICLEVEL === String(2)
+                    ? "2-year"
+                    : collegeData.ICLEVEL === String(3)
+                    ? "less than 2-year"
+                    : ""}{" "}
+                  programs. It is located in {collegeData.CITY},{" "}
+                  {collegeData.STABBR} and offers a variety of degree programs
+                  {collegeData.HIGHDEG === String(0)
+                    ? ""
+                    : collegeData.HIGHDEG === String(1)
+                    ? " at the certificate level"
+                    : collegeData.HIGHDEG === String(2)
+                    ? " at the certificate and associate level"
+                    : collegeData.HIGHDEG === String(3)
+                    ? " at the associate and bachelor level"
+                    : collegeData.HIGHDEG === String(4)
+                    ? " at the associate, bachelor, and graduate level"
+                    : ""}
+                  . {collegeData.INSTNM} is home to about{" "}
+                  {formatAsNumber(collegeData.UGDS)} college students, and with
+                  an acceptance rate of{" "}
+                  {formatAsPercent(Number(collegeData.ADM_RATE), true)}, is
+                  classified as{" "}
+                  {Number(collegeData.ADM_RATE) < 0.15
+                    ? "a most selective"
+                    : Number(collegeData.ADM_RATE) < 0.35
+                    ? "an extremely selective"
+                    : Number(collegeData.ADM_RATE) < 0.5
+                    ? "a very selective"
+                    : Number(collegeData.ADM_RATE) < 0.6
+                    ? "a moderately selective"
+                    : "a selective"}{" "}
+                  university. For more on {collegeData.INSTNM}, view the
+                  comprehesive statistics below or visit their website at{" "}
+                  <Link
+                    href={
+                      collegeData.INSTURL &&
+                      collegeData.INSTURL.startsWith("http")
+                        ? collegeData.INSTURL
+                        : "https://" + collegeData.INSTURL
+                    }
+                    isExternal
+                    color="teal.500"
+                  >
+                    {collegeData.INSTURL}
+                  </Link>
+                  .
+                </Text>
+              </Stack>
             </Stack>
-          </Stack>
+          </FadeBox>
         </Container>
+      </Box>
+      <UpBox>
         <div className="wave1">
           <svg
             data-name="Layer 1"
@@ -375,189 +386,204 @@ export function SpecificExplore({ collegeData }: SpecificExploreInt) {
             ></path>
           </svg>
         </div>
-      </Box>
-      {/* {JSON.stringify(collegeData)} */}
-      <Container>
-        <Stack>
-          <StatCard
-            heading="General"
-            stats={[
-              { stat: collegeData.INSTNM, desc: "Name" },
-              {
-                stat: `${collegeData.CITY}, ${collegeData.STABBR} ${collegeData.ZIP}`,
-                desc: "Location",
-              },
-              {
-                stat:
-                  collegeData.CONTROL === String(1)
-                    ? "Public"
-                    : collegeData.CONTROL === String(2)
-                    ? "Private, Nonprofit"
-                    : collegeData.CONTROL === String(3)
-                    ? "Private, For-profit"
-                    : "",
-                desc: "Control",
-              },
-              {
-                stat:
-                  collegeData.HIGHDEG === String(0)
-                    ? ""
-                    : collegeData.HIGHDEG === String(1)
-                    ? "Certificate"
-                    : collegeData.HIGHDEG === String(2)
-                    ? "Certificate and Associate"
-                    : collegeData.HIGHDEG === String(3)
-                    ? "Associate and Bachelor"
-                    : collegeData.HIGHDEG === String(4)
-                    ? "Associate, Bachelor, and Graduate"
-                    : "",
-                desc: "Offered Degrees",
-              },
-              {
-                stat:
-                  collegeData.ICLEVEL === String(1)
-                    ? "4-year Institution"
-                    : collegeData.ICLEVEL === String(2)
-                    ? "2-year Institution"
-                    : collegeData.ICLEVEL === String(3)
-                    ? "Less than 2-year Institution"
-                    : "",
-                desc: "Institution Level",
-              },
-              {
-                stat: formatAsPercent(collegeData.COMP_ORIG_YR4_RT, true),
-                desc: "Graduation Rate (4yr)",
-              },
-              {
-                stat: formatAsPercent(1 - collegeData.WDRAW_ORIG_YR4_RT, true),
-                desc: "Retention Rate (4yr)",
-              },
-            ]}
-          />
-          <StatCard
-            heading="Admission"
-            stats={[
-              {
-                stat: formatAsPercent(collegeData.ADM_RATE, true),
-                desc: "Acceptance Rate",
-              },
-              {
-                stat:
-                  collegeData.ADMCON7 === String(1)
-                    ? "Required"
-                    : collegeData.ADMCON7 === String(2)
-                    ? "Recommended"
-                    : collegeData.ADMCON7 === String(3)
-                    ? "Neither recommended nor required"
-                    : collegeData.ADMCON7 === String(5)
-                    ? "Considered but not required"
-                    : "Do not know",
-                desc: "Test Score Requirements",
-              },
-              {
-                stat: collegeData.SAT_AVG,
-                desc: "Average SAT Score",
-              },
-              {
-                stat: collegeData.ACTCMMID,
-                desc: "Average ACT Score",
-              },
-            ]}
-          />
-          <StatCard
-            heading="Programs"
-            stats={[
-              {
-                stat: getLargestValues(collegeData)[0],
-                desc: "Top Major",
-              },
-              {
-                stat:
-                  getLargestValues(collegeData)[0] +
-                  ", " +
-                  getLargestValues(collegeData)[1] +
-                  ", " +
-                  getLargestValues(collegeData)[2] +
-                  ", " +
-                  getLargestValues(collegeData)[3] +
-                  ", " +
-                  getLargestValues(collegeData)[4],
-                desc: "Top 5 Programs",
-              },
-            ]}
-          />
-          <StatCard
-            heading="Financials"
-            stats={[
-              {
-                stat: formatAsCurrency(collegeData.COSTT4_A),
-                desc: "Average COA",
-              },
-              {
-                stat:
-                  formatAsCurrency(collegeData.TUITIONFEE_IN) +
-                  " / " +
-                  formatAsCurrency(collegeData.TUITIONFEE_OUT),
-                desc: "Instate vs Out of State Tuition",
-              },
-              {
-                stat: formatAsCurrency(collegeData.MD_EARN_WNE_P6),
-                desc: "Median 6yr Earnings",
-              },
-              {
-                stat: formatAsCurrency(collegeData.MEDIAN_HH_INC),
-                desc: "Student's Median Household Income",
-              },
-              {
-                stat: formatAsCurrency(collegeData.ENDOWBEGIN),
-                desc: "Endowment",
-              },
-              {
-                stat:
-                  collegeData.NPCURL && collegeData.NPCURL.startsWith("http")
-                    ? collegeData.NPCURL
-                    : "https://" + collegeData.NPCURL,
-                desc: "Link to Net Price Calc",
-              },
-            ]}
-          />
-        </Stack>
-        <StatCard
-          heading="Student Body"
-          stats={[
-            {
-              stat: formatAsNumber(collegeData.UGDS),
-              desc: "Student Body Size",
-            },
-            {
-              stat: `${formatAsPercent(collegeData.FEMALE, true)} 
+        <Box bgColor={"#ffffff"}>
+          <Container pb="20">
+            <Stack>
+              <BounceBox>
+                <StatCard
+                  heading="General"
+                  stats={[
+                    { stat: collegeData.INSTNM, desc: "Name" },
+                    {
+                      stat: `${collegeData.CITY}, ${collegeData.STABBR} ${collegeData.ZIP}`,
+                      desc: "Location",
+                    },
+                    {
+                      stat:
+                        collegeData.CONTROL === String(1)
+                          ? "Public"
+                          : collegeData.CONTROL === String(2)
+                          ? "Private, Nonprofit"
+                          : collegeData.CONTROL === String(3)
+                          ? "Private, For-profit"
+                          : "",
+                      desc: "Control",
+                    },
+                    {
+                      stat:
+                        collegeData.HIGHDEG === String(0)
+                          ? ""
+                          : collegeData.HIGHDEG === String(1)
+                          ? "Certificate"
+                          : collegeData.HIGHDEG === String(2)
+                          ? "Certificate and Associate"
+                          : collegeData.HIGHDEG === String(3)
+                          ? "Associate and Bachelor"
+                          : collegeData.HIGHDEG === String(4)
+                          ? "Associate, Bachelor, and Graduate"
+                          : "",
+                      desc: "Offered Degrees",
+                    },
+                    {
+                      stat:
+                        collegeData.ICLEVEL === String(1)
+                          ? "4-year Institution"
+                          : collegeData.ICLEVEL === String(2)
+                          ? "2-year Institution"
+                          : collegeData.ICLEVEL === String(3)
+                          ? "Less than 2-year Institution"
+                          : "",
+                      desc: "Institution Level",
+                    },
+                    {
+                      stat: formatAsPercent(collegeData.COMP_ORIG_YR4_RT, true),
+                      desc: "Graduation Rate (4yr)",
+                    },
+                    {
+                      stat: formatAsPercent(
+                        1 - collegeData.WDRAW_ORIG_YR4_RT,
+                        true
+                      ),
+                      desc: "Retention Rate (4yr)",
+                    },
+                  ]}
+                />
+              </BounceBox>
+              <LeftBox>
+                <StatCard
+                  heading="Admission"
+                  stats={[
+                    {
+                      stat: formatAsPercent(collegeData.ADM_RATE, true),
+                      desc: "Acceptance Rate",
+                    },
+                    {
+                      stat:
+                        collegeData.ADMCON7 === String(1)
+                          ? "Required"
+                          : collegeData.ADMCON7 === String(2)
+                          ? "Recommended"
+                          : collegeData.ADMCON7 === String(3)
+                          ? "Neither recommended nor required"
+                          : collegeData.ADMCON7 === String(5)
+                          ? "Considered but not required"
+                          : "Do not know",
+                      desc: "Test Score Requirements",
+                    },
+                    {
+                      stat: collegeData.SAT_AVG,
+                      desc: "Average SAT Score",
+                    },
+                    {
+                      stat: collegeData.ACTCMMID,
+                      desc: "Average ACT Score",
+                    },
+                  ]}
+                />
+              </LeftBox>
+              <RightBox>
+                <StatCard
+                  heading="Programs"
+                  stats={[
+                    {
+                      stat: getLargestValues(collegeData)[0],
+                      desc: "Top Major",
+                    },
+                    {
+                      stat:
+                        getLargestValues(collegeData)[0] +
+                        ", " +
+                        getLargestValues(collegeData)[1] +
+                        ", " +
+                        getLargestValues(collegeData)[2] +
+                        ", " +
+                        getLargestValues(collegeData)[3] +
+                        ", " +
+                        getLargestValues(collegeData)[4],
+                      desc: "Top 5 Programs",
+                    },
+                  ]}
+                />
+              </RightBox>
+              <LeftBox>
+                <StatCard
+                  heading="Financials"
+                  stats={[
+                    {
+                      stat: formatAsCurrency(collegeData.COSTT4_A),
+                      desc: "Average COA",
+                    },
+                    {
+                      stat:
+                        formatAsCurrency(collegeData.TUITIONFEE_IN) +
+                        " / " +
+                        formatAsCurrency(collegeData.TUITIONFEE_OUT),
+                      desc: "Instate vs Out of State Tuition",
+                    },
+                    {
+                      stat: formatAsCurrency(collegeData.MD_EARN_WNE_P6),
+                      desc: "Median 6yr Earnings",
+                    },
+                    {
+                      stat: formatAsCurrency(collegeData.MEDIAN_HH_INC),
+                      desc: "Student's Median Household Income",
+                    },
+                    {
+                      stat: formatAsCurrency(collegeData.ENDOWBEGIN),
+                      desc: "Endowment",
+                    },
+                    {
+                      stat:
+                        collegeData.NPCURL &&
+                        collegeData.NPCURL.startsWith("http")
+                          ? collegeData.NPCURL
+                          : "https://" + collegeData.NPCURL,
+                      desc: "Link to Net Price Calc",
+                    },
+                  ]}
+                />
+              </LeftBox>
+            </Stack>
+            <RightBox>
+              <StatCard
+                heading="Student Body"
+                stats={[
+                  {
+                    stat: formatAsNumber(collegeData.UGDS),
+                    desc: "Student Body Size",
+                  },
+                  {
+                    stat: `${formatAsPercent(collegeData.FEMALE, true)} 
                 Female /
                 ${formatAsPercent(1 - collegeData.FEMALE, true)}
                 Male`,
-              desc: "Gender Diversity",
-            },
-            {
-              stat: findReligion(collegeData.RELAFFIL),
-              desc: "Primary Religion",
-            },
-            {
-              stat: findFlags(
-                collegeData.HBCU,
-                collegeData.PBI,
-                collegeData.ANNHI,
-                collegeData.TRIBAL,
-                collegeData.AANAPII,
-                collegeData.HSI,
-                collegeData.NANTI,
-                collegeData.MENONLY,
-                collegeData.WOMENONLY
-              ),
-              desc: "Flags",
-            },
-          ]}
-        />
-        <BeginYourSearch />
-      </Container>
-    </>
+                    desc: "Gender Diversity",
+                  },
+                  {
+                    stat: findReligion(collegeData.RELAFFIL),
+                    desc: "Primary Religion",
+                  },
+                  {
+                    stat: findFlags(
+                      collegeData.HBCU,
+                      collegeData.PBI,
+                      collegeData.ANNHI,
+                      collegeData.TRIBAL,
+                      collegeData.AANAPII,
+                      collegeData.HSI,
+                      collegeData.NANTI,
+                      collegeData.MENONLY,
+                      collegeData.WOMENONLY
+                    ),
+                    desc: "Flags",
+                  },
+                ]}
+              />
+            </RightBox>
+          </Container>
+        </Box>
+      </UpBox>
+      <BeginYourSearch />
+    </Box>
   );
 }

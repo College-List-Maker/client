@@ -1,4 +1,4 @@
-import { Heading, Container } from "@chakra-ui/react";
+import { Heading, Container, Box } from "@chakra-ui/react";
 import { TOSSectionCard } from "./TOSSectionCard";
 
 export function TermsOfService() {
@@ -25,13 +25,22 @@ export function TermsOfService() {
     },
   ];
   return (
-    <Container>
-      <Heading textAlign={"center"} as="h1" size={"md"}>
-        Collegy's Terms of Service
-      </Heading>
-      {tos.map(({ title, text }, index) => {
-        return <TOSSectionCard title={title} text={text} index={index + 1} />;
-      })}
-    </Container>
+    <Box py={"40"} backgroundColor={"#ffffff"}>
+      <Container>
+        <Heading textAlign={"center"} as="h1" size={"md"}>
+          Collegy's Terms of Service
+        </Heading>
+        {tos.map(({ title, text }, index) => {
+          return (
+            <TOSSectionCard
+              title={title}
+              text={text}
+              index={index + 1}
+              key={index}
+            />
+          );
+        })}
+      </Container>
+    </Box>
   );
 }

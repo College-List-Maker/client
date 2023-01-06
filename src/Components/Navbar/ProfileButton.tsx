@@ -13,7 +13,11 @@ import { useState } from "react";
 import { getProfilePicture } from "../../Fetch";
 import { signout } from "../SignOut";
 
-export function ProfileButton() {
+interface ProfileButtonInt {
+  dark?: boolean;
+}
+
+export function ProfileButton({ dark }: ProfileButtonInt) {
   const [profilePicture, setProfilePicture] = useState("");
   getProfilePicture().then((res) => setProfilePicture(res?.data));
 
@@ -25,10 +29,14 @@ export function ProfileButton() {
     <Menu>
       <MenuButton as={Button} rounded={"full"} variant={"link"}>
         <Avatar size={"sm"} src={profilePicture || ""}>
-          <AvatarBadge bg="green.500" boxSize="1em" />
+          <AvatarBadge
+            borderColor={dark ? "#2E2E2E" : "#051927"}
+            bg="green.500"
+            boxSize="1em"
+          />
         </Avatar>
       </MenuButton>
-      <MenuList>
+      <MenuList color={"#2E2E2E"}>
         <MenuGroup title="Profile">
           <MenuItem onClick={() => handlePageChange("#college-list")}>
             My College List

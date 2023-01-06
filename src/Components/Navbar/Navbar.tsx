@@ -11,7 +11,6 @@ import {
   PopoverTrigger,
   PopoverContent,
   useColorModeValue,
-  useBreakpointValue,
   useDisclosure,
 } from "@chakra-ui/react";
 import {
@@ -21,25 +20,30 @@ import {
   ChevronRightIcon,
 } from "@chakra-ui/icons";
 import { isLoggedIn, isQuestionaireCompleted } from "../../Fetch";
-import { SearchBar } from "../SearchBar";
+import { SearchBar } from "../SearchBar/SearchBar";
 import { ProfileButton } from "./ProfileButton";
 import { SignIn } from "../SignIn";
 
-export default function Navbar() {
+interface NavbarInt {
+  dark?: boolean;
+}
+
+export default function Navbar({ dark }: NavbarInt) {
   const { isOpen, onToggle } = useDisclosure();
 
   return (
     <Box>
       <Flex
-        bg={useColorModeValue("white", "gray.800")}
-        color={useColorModeValue("gray.600", "white")}
+        bg={dark ? "#2E2E2E" : "transparent"}
+        borderBottom={"1px solid rgba(255, 255, 255, 0.04)"}
+        color={"#ffffff"}
         minH={"60px"}
         py={{ base: 2 }}
         px={{ base: 4 }}
-        borderBottom={1}
-        borderStyle={"solid"}
-        borderColor={useColorModeValue("gray.200", "gray.900")}
         align={"center"}
+        position={"absolute"}
+        w={"100%"}
+        zIndex={2}
       >
         <Flex
           flex={{ base: 1, md: "auto" }}
@@ -51,37 +55,41 @@ export default function Navbar() {
             icon={
               isOpen ? <CloseIcon w={3} h={3} /> : <HamburgerIcon w={5} h={5} />
             }
-            variant={"ghost"}
+            background="transparent"
+            _active={{
+              background: "transparent",
+            }}
+            _hover={{
+              background: "transparent",
+            }}
             aria-label={"Toggle Navigation"}
           />
         </Flex>
-        <Flex flex={{ base: 1 }} justify={{ base: "center", md: "start" }}>
+        <Flex flex={{ base: 1 }} justifyContent={"start"}>
           <Link href={"#"}>
-            <Flex
-              justifyContent={useBreakpointValue({
-                base: "center",
-                md: "left",
-              })}
-              fontFamily="Bakbak One"
-            >
+            <Flex justifyContent={"start"} fontFamily="Bakbak One">
               Collegy
             </Flex>
           </Link>
 
           <Flex display={{ base: "none", md: "flex" }} ml={10}>
-            <DesktopNav />
+            <DesktopNav dark={dark} />
           </Flex>
         </Flex>
 
         <Flex justify={"flex-end"} direction={"row"}>
-          <SearchBar />
-          {isLoggedIn() ? <ProfileButton /> : <SignIn />}
+          <Flex display={{ base: "none", md: "flex" }} mr={"3"}>
+            <SearchBar limit={15} maxH={"20"} />
+          </Flex>
+          {isLoggedIn() ? <ProfileButton dark={dark} /> : <SignIn />}
         </Flex>
       </Flex>
 
-      <Collapse in={isOpen} animateOpacity>
-        <MobileNav />
-      </Collapse>
+      <Box zIndex={2}>
+        <Collapse in={isOpen}>
+          <MobileNav />
+        </Collapse>
+      </Box>
     </Box>
   );
 }
@@ -93,9 +101,13 @@ interface NavItem {
   href?: string;
 }
 
-const DesktopNav = () => {
-  const linkColor = useColorModeValue("gray.600", "gray.200");
-  const linkHoverColor = useColorModeValue("gray.800", "white");
+interface DesktopNavInt {
+  dark?: boolean;
+}
+
+const DesktopNav = ({ dark }: DesktopNavInt) => {
+  const linkColor = "#ffffff";
+  const linkHoverColor = "#cccccc";
   const popoverContentBgColor = useColorModeValue("white", "gray.800");
   const hasCollegeData = isQuestionaireCompleted();
 
@@ -218,15 +230,13 @@ const MobileNav = () => {
   ];
 
   return (
-    <Stack
-      bg={useColorModeValue("white", "gray.800")}
-      p={4}
-      display={{ md: "none" }}
-    >
-      {NAV_ITEMS.map((navItem) => (
-        <MobileNavItem key={navItem.label} {...navItem} />
-      ))}
-    </Stack>
+    <Box>
+      <Stack bgColor={"#2E2E2E"} p={4} display={{ md: "none" }} pt={"20"}>
+        {NAV_ITEMS.map((navItem) => (
+          <MobileNavItem key={navItem.label} {...navItem} />
+        ))}
+      </Stack>
+    </Box>
   );
 };
 
@@ -245,10 +255,7 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
           textDecoration: "none",
         }}
       >
-        <Text
-          fontWeight={600}
-          color={useColorModeValue("gray.600", "gray.200")}
-        >
+        <Text fontWeight={600} color={"#ffffff"}>
           {label}
         </Text>
         {children && (
@@ -262,7 +269,7 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
         )}
       </Flex>
 
-      <Collapse in={isOpen} animateOpacity style={{ marginTop: "0!important" }}>
+      <Collapse in={isOpen} style={{ marginTop: "0!important" }}>
         <Stack
           mt={2}
           pl={4}

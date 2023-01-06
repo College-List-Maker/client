@@ -1,18 +1,17 @@
-import {
-  Box,
-  Container,
-  Flex,
-  Link,
-  Stack,
-  Text,
-  useColorModeValue,
-} from "@chakra-ui/react";
+import { Box, Container, Flex, Link, Stack, Text } from "@chakra-ui/react";
 
-export default function Footer() {
+interface FooterInt {
+  dark?: boolean;
+}
+
+export default function Footer({ dark }: FooterInt) {
   return (
     <Box
-      bg={useColorModeValue("gray.50", "gray.900")}
-      color={useColorModeValue("gray.700", "gray.200")}
+      position={"absolute"}
+      bottom={"0"}
+      width={"100%"}
+      bgColor={"#transparent"}
+      color={dark ? "#ffffff" : "#000000"}
     >
       <Container
         as={Stack}
@@ -21,11 +20,16 @@ export default function Footer() {
         direction={{ base: "column", md: "row" }}
         spacing={4}
         justify={{ base: "center", md: "space-between" }}
-        align={{ base: "top", md: "top" }}
+        align={{ base: "center", md: "top" }}
         fontSize={"sm"}
+        alignItems={{ md: "flex-start" }}
       >
-        <Text w="170px" fontFamily="Bakbak One">
-          Collegy
+        <Text
+          visibility={{ base: "hidden", md: "visible" }}
+          w="225px"
+          fontFamily="Bakbak One"
+        >
+          <Link href="#">Collegy</Link>
         </Text>
         <Stack>
           <Flex w={"100%"} justifyContent={"space-around"}>
@@ -39,14 +43,23 @@ export default function Footer() {
             w={"100%"}
             justifyContent={"space-around"}
             fontSize={"xs"}
-            color={"#5E5E5E"}
+            color={dark ? "#CBC9C9" : "#5E5E5E"}
           >
             <Link href="#about-us">About Us</Link>
             <Link href="#tos">Terms of Service</Link>
             <Link href="mailto:hey@collegy.net">hey@collegy.net</Link>
           </Flex>
         </Stack>
-        <Text>©2022, All rights reserved.</Text>
+        <Flex>
+          <Text
+            visibility={{ base: "visible", md: "hidden" }}
+            fontFamily="Bakbak One"
+            pr={"10"}
+          >
+            <Link href="#">Collegy</Link>
+          </Text>
+          ©2022, All rights reserved.
+        </Flex>
       </Container>
     </Box>
   );

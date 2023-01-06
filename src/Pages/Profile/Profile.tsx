@@ -1,3 +1,11 @@
+import {
+  Box,
+  Button,
+  Center,
+  Container,
+  Heading,
+  Skeleton,
+} from "@chakra-ui/react";
 import axios from "axios";
 import { useState, createContext, useEffect } from "react";
 import { UserCollegeData } from "../../types";

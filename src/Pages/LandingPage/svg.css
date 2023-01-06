@@ -5,6 +5,7 @@
   overflow: hidden;
   line-height: 0;
   transform: rotate(180deg);
+  height: fit-content;
 }
 
 .wave1 svg {
@@ -12,6 +13,7 @@
   display: block;
   width: calc(300% + 1.3px);
   height: 50px;
+  height: fit-content;
 }
 
 .wave1 .shape-fill {

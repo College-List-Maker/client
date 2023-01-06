@@ -1,0 +1,15 @@
+.Radio {
+  height: 40px !important;
+  width: 9vw !important;
+  border-radius: 4px !important;
+  position: relative !important;
+}
+
+.Radio-label {
+  position: absolute !important;
+  top: 50% !important;
+  left: 37.5% !important;
+  transform: translate(-50%, -50%) !important;
+  font-size: 20px !important;
+  width: 0px;
+}

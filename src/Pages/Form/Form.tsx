@@ -1,14 +1,20 @@
 import axios from "axios";
-import { getCookie, isQuestionaireCompleted } from "../../Fetch";
+import {
+  getCookie,
+  isQuestionaireCompleted,
+  updateUserInfo,
+} from "../../Fetch";
 import { UserCollegeData } from "../../types";
 import { useEffect, createContext, useState } from "react";
 import {
-    Button,
-    Center,
-    Container,
-    useToast,
-    Flex,
-    Heading,
+  Button,
+  Center,
+  Container,
+  useToast,
+  Flex,
+  Heading,
+  Box,
+  Stack,
 } from "@chakra-ui/react";
 import { Page0 } from "./FormPages/Page0";
 import { Page1 } from "./FormPages/Page1";
@@ -25,417 +31,437 @@ import { Page11 } from "./FormPages/Page11";
 import { Page12 } from "./FormPages/Page12";
 import { useSelector, useDispatch } from "react-redux";
 import { Step, Steps, useSteps } from "chakra-ui-steps";
+import { BounceBox } from "../../Components/MotionBox";
+import FloatMoji from "../../Components/FloatMoji";
 
+const Icon = (text: string) => (props: any) => <span>{text}</span>;
 const steps = [
-    { label: "Step 1" },
-    { label: "Step 2" },
-    { label: "Step 3" },
-    { label: "Step 4" },
-    { label: "Step 5" },
-    { label: "Step 6" },
-    { label: "Step 7" },
-    { label: "Step 8" },
-    { label: "Step 9" },
-    { label: "Step 10" },
-    { label: "Step 11" },
-    { label: "Step 12" },
-    { label: "Step 13" },
+  { label: "List Length", icon: Icon("📝") },
+  { label: "Academics", icon: Icon("🤓") },
+  { label: "Courseload", icon: Icon("📚") },
+  { label: "Confidence", icon: Icon("😎") },
+  { label: "People", icon: Icon("👨‍👩‍👦") },
+  { label: "Residency", icon: Icon("📍") },
+  { label: "College", icon: Icon("🏫") },
+  { label: "Student Body", icon: Icon("👨‍🎓") },
+  { label: "Major and Degree", icon: Icon("📜") },
+  { label: "Cost", icon: Icon("💰") },
+  { label: "Location", icon: Icon("🌎") },
+  { label: "Success", icon: Icon("🙌") },
+  { label: "Finishing Details", icon: Icon("🎉") },
 ];
 
 const defaultData: UserCollegeData = {
-    academic: {
-        gpa: -1,
-        sat: -1,
-        act: -1,
-    },
-    courseload: {
-        honors: -1,
-        apib: -1,
-        lang: -1,
-        cs: "",
-        core: "",
-        major: -1,
-    },
-    confidence: {
-        extracurriculars: -1,
-        essay: -1,
-        awards: -1,
-        recommendations: -1,
-        volunteering: -1,
-        works: -1,
-        talents: -1,
-        interviewing: -1,
-        character: -1,
-        interest: -1,
-    },
-    colleges: {
-        legacy1: "",
-        legacy2: "",
-        legacy3: "",
-        alumni1: "",
-        alumni2: "",
-        alumni3: "",
-        feeder1: "",
-        feeder2: "",
-        feeder3: "",
-    },
-    residency: {
-        zipcode: -1,
-        state: "",
-        country: "",
-    },
-    class: {
-        size: -1,
-        rank: -1,
-    },
-    adversity: {
-        fgen: false,
-        international: false,
-        transfer: false,
-    },
-    collegePrefs: {
-        coedImportance: -1,
-        academicResourcesImportance: -1,
-        facilityImportance: false,
-        gender: "",
-        hbcuImportance: -1,
-        internshipImportance: -1,
-        majorProminenceImportance: false,
-        pref4yr: false,
-        prefCommittedFaculty: -1,
-        prefHighestDegree: -1,
-        prefMajor: "",
-        prefPrivateControl: false,
-        prefPublicControl: false,
-        prefReligion: -1,
-        prefReligious: false,
-        prefSexRatioF: -1,
-        prefSize: -1,
-        prestiegeImportance: -1,
-        researchImportance: -1,
-        rigorImportance: -1,
-        sameGenderImportance: -1,
-        studyAbroadImportance: -1,
-        workStudyImportance: -1,
-    },
-    costPrefs: {
-        costImportance: false,
-        federalAidImportance: false,
-        income: -1,
-        prefCOA: -1,
-    },
-    locationPrefs: {
-        locationImportance: false,
-        ZIP: -1,
-        curState: "",
-        prefCity: "",
-        prefState: "",
-        prefRegion: -1,
-        livingAtHome: false,
-        prefLocale: -1,
-        prefSummerClimate: -1,
-        prefWinterClimate: -1,
-    },
-    successPrefs: {
-        successImportance: false,
-        alumniCarreerImportance: false,
-        desiredEarnings: -1,
-        graduationRateImportance: false,
-        prefGraduationRate: -1,
-        prefRetentionRate: -1,
-        retentionRateImportance: false,
-    },
-    weights: {
-        collegeWeight: -1,
-        costWeight: -1,
-        locationWeight: -1,
-        successWeight: -1,
-    },
-    listLengths: {
-        reaches: -1,
-        safeties: -1,
-        targets: -1,
-    },
+  academic: {
+    gpa: -1,
+    sat: -1,
+    act: -1,
+  },
+  courseload: {
+    honors: -1,
+    apib: -1,
+    lang: -1,
+    cs: "",
+    core: "",
+    major: -1,
+  },
+  confidence: {
+    extracurriculars: -1,
+    essay: -1,
+    awards: -1,
+    recommendations: -1,
+    volunteering: -1,
+    works: -1,
+    talents: -1,
+    interviewing: -1,
+    character: -1,
+    interest: -1,
+  },
+  colleges: {
+    legacy1: "",
+    legacy2: "",
+    legacy3: "",
+    alumni1: "",
+    alumni2: "",
+    alumni3: "",
+    feeder1: "",
+    feeder2: "",
+    feeder3: "",
+  },
+  residency: {
+    zipcode: -1,
+    state: "",
+    country: "",
+  },
+  class: {
+    size: -1,
+    rank: -1,
+  },
+  adversity: {
+    fgen: false,
+    international: false,
+    transfer: false,
+  },
+  collegePrefs: {
+    coedImportance: -1,
+    academicResourcesImportance: -1,
+    facilityImportance: false,
+    gender: "",
+    hbcuImportance: -1,
+    internshipImportance: -1,
+    majorProminenceImportance: false,
+    pref4yr: false,
+    prefCommittedFaculty: -1,
+    prefHighestDegree: -1,
+    prefMajor: "",
+    prefPrivateControl: false,
+    prefPublicControl: false,
+    prefReligion: -1,
+    prefReligious: false,
+    prefSexRatioF: -1,
+    prefSize: -1,
+    prestiegeImportance: -1,
+    researchImportance: -1,
+    rigorImportance: -1,
+    sameGenderImportance: -1,
+    studyAbroadImportance: -1,
+    workStudyImportance: -1,
+  },
+  costPrefs: {
+    costImportance: false,
+    federalAidImportance: false,
+    income: -1,
+    prefCOA: -1,
+  },
+  locationPrefs: {
+    locationImportance: false,
+    ZIP: -1,
+    curState: "",
+    prefCity: "",
+    prefState: "",
+    prefRegion: -1,
+    livingAtHome: false,
+    prefLocale: -1,
+    prefSummerClimate: -1,
+    prefWinterClimate: -1,
+  },
+  successPrefs: {
+    successImportance: false,
+    alumniCarreerImportance: false,
+    desiredEarnings: -1,
+    graduationRateImportance: false,
+    prefGraduationRate: -1,
+    prefRetentionRate: -1,
+    retentionRateImportance: false,
+  },
+  weights: {
+    collegeWeight: -1,
+    costWeight: -1,
+    locationWeight: -1,
+    successWeight: -1,
+  },
+  listLengths: {
+    reaches: -1,
+    safeties: -1,
+    targets: -1,
+  },
 };
 
 export const FormDataContext = createContext<
-    [UserCollegeData, React.Dispatch<React.SetStateAction<UserCollegeData>>]
+  [UserCollegeData, React.Dispatch<React.SetStateAction<UserCollegeData>>]
 >([defaultData, () => {}]);
 
 export function Form() {
-    // useEffect below checks if user has already filled out form
-    //    if has college list, redirects to college list
-    /* 
-    TODO: ALSO REPLACE API CALL FOR A LOCAL STORAGE VARIABLE (like in navbar)
-  */
-    type RootState = {
-        form: {
-            formValid: boolean;
-        };
-        // other state properties go here
+  type RootState = {
+    form: {
+      formValid: boolean;
     };
-    const formValid = useSelector(
-        (state: RootState) => state && state.form && state.form.formValid
-    );
-    const dispatch = useDispatch();
-    const nextCheck = () => {
-        if (formValid) {
-            nextStep();
-            dispatch({ type: "SET_FORM_VALID", formValid: false });
-        }
-    };
-    const prevCheck = () => {
-        prevStep();
-        dispatch({ type: "SET_FORM_VALID", formValid: false });
-    };
-    useEffect(() => {
-        if (isQuestionaireCompleted()) window.location.hash = "#college-list";
-    }, []);
+    // other state properties go here
+  };
+  const formValid = useSelector(
+    (state: RootState) => state && state.form && state.form.formValid
+  );
+  const dispatch = useDispatch();
+  const nextCheck = () => {
+    if (formValid) {
+      nextStep();
+      dispatch({ type: "SET_FORM_VALID", formValid: false });
+    }
+  };
+  const prevCheck = () => {
+    prevStep();
+    dispatch({ type: "SET_FORM_VALID", formValid: false });
+  };
+  const toast = useToast();
 
-    const [formData, setFormData] = useState<UserCollegeData>(defaultData);
+  useEffect(() => {
+    if (isQuestionaireCompleted() && window.location.hash === "#form") {
+      window.location.hash = "#college-list";
+      toast({
+        title: "You're all set!",
+        description:
+          "Navigate to your profile settings to edit your questionaire.",
+        status: "info",
+        duration: 5000,
+        position: "top",
+        isClosable: true,
+      });
+    }
+  }, [toast]);
 
-    const toast = useToast();
+  const [formData, setFormData] = useState<UserCollegeData>(defaultData);
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    setIsLoading(true);
+    event.preventDefault();
+    axios
+      .post(
+        "https://collegy-server.herokuapp.com/user/submit-questionaire/" +
+          getCookie("visitorId="),
+        formData
+      )
+      .then((res: any) => {
+        toast({
+          title: "Details submitted.",
+          description: "Your colleges will appear soon.",
+          status: "success",
+          duration: 5000,
+          isClosable: true,
+        });
         axios
-            .post(
-                "https://collegy-server.herokuapp.com/user/submit-questionaire/" +
-                    getCookie("visitorId="),
-                formData
-            )
-            .then((res: any) => {
-                toast({
-                    title: "Details submitted.",
-                    description: "Your colleges will appear soon.",
-                    status: "success",
-                    duration: 5000,
-                    isClosable: true,
-                });
-                axios
-                    .get(
-                        "https://collegy-server.herokuapp.com/user/set-college-list/" +
-                            getCookie("visitorId=")
-                    )
-                    .then(() => {
-                        window.location.hash = "#college-list";
-                    });
-            })
-            .catch((err: any) => {
-                console.error(err);
-                toast({
-                    title: "Error",
-                    description: "Please try again.",
-                    status: "error",
-                    duration: 5000,
-                    isClosable: true,
-                });
-            });
-    };
+          .get(
+            "https://collegy-server.herokuapp.com/user/set-college-list/" +
+              getCookie("visitorId=")
+          )
+          .then(() => {
+            updateUserInfo().then(
+              () => (window.location.hash = "#college-list")
+            );
+          });
+      })
+      .catch((err: any) => {
+        console.error(err);
+        toast({
+          title: "Error",
+          description: "Please try again.",
+          status: "error",
+          duration: 5000,
+          isClosable: true,
+        });
+        setIsLoading(false);
+      });
+  };
 
-    const contents = ({ index }: { index: number }) => {
-        switch (index) {
-            case 0:
-                return (
-                    <>
-                        <FormDataContext.Provider
-                            value={[formData, setFormData]}
-                        >
-                            <Page0 />
-                        </FormDataContext.Provider>
-                    </>
-                );
-            case 1:
-                return (
-                    <>
-                        <FormDataContext.Provider
-                            value={[formData, setFormData]}
-                        >
-                            <Page1 />
-                        </FormDataContext.Provider>
-                    </>
-                );
-            case 2:
-                return (
-                    <>
-                        <FormDataContext.Provider
-                            value={[formData, setFormData]}
-                        >
-                            <Page2 />
-                        </FormDataContext.Provider>
-                    </>
-                );
-            case 3:
-                return (
-                    <>
-                        <FormDataContext.Provider
-                            value={[formData, setFormData]}
-                        >
-                            <Page3 />
-                        </FormDataContext.Provider>
-                    </>
-                );
-            case 4:
-                return (
-                    <>
-                        <FormDataContext.Provider
-                            value={[formData, setFormData]}
-                        >
-                            <Page4 />
-                        </FormDataContext.Provider>
-                    </>
-                );
-            case 5:
-                return (
-                    <>
-                        <FormDataContext.Provider
-                            value={[formData, setFormData]}
-                        >
-                            <Page5 />
-                        </FormDataContext.Provider>
-                    </>
-                );
-            case 6:
-                return (
-                    <>
-                        <FormDataContext.Provider
-                            value={[formData, setFormData]}
-                        >
-                            <Page6 />
-                        </FormDataContext.Provider>
-                    </>
-                );
-            case 7:
-                return (
-                    <>
-                        <FormDataContext.Provider
-                            value={[formData, setFormData]}
-                        >
-                            <Page7 />
-                        </FormDataContext.Provider>
-                    </>
-                );
-            case 8:
-                return (
-                    <>
-                        <FormDataContext.Provider
-                            value={[formData, setFormData]}
-                        >
-                            <Page8 />
-                        </FormDataContext.Provider>
-                    </>
-                );
-            case 9:
-                return (
-                    <>
-                        <FormDataContext.Provider
-                            value={[formData, setFormData]}
-                        >
-                            <Page9 />
-                        </FormDataContext.Provider>
-                    </>
-                );
-            case 10:
-                return (
-                    <>
-                        <FormDataContext.Provider
-                            value={[formData, setFormData]}
-                        >
-                            <Page10 />
-                        </FormDataContext.Provider>
-                    </>
-                );
-            case 11:
-                return (
-                    <>
-                        <FormDataContext.Provider
-                            value={[formData, setFormData]}
-                        >
-                            <Page11 />
-                        </FormDataContext.Provider>
-                    </>
-                );
-            case 12:
-                return (
-                    <>
-                        <FormDataContext.Provider
-                            value={[formData, setFormData]}
-                        >
-                            <Page12 />
-                        </FormDataContext.Provider>
-                    </>
-                );
-        }
-        return <></>;
-    };
-    const { nextStep, prevStep, reset, activeStep } = useSteps({
-        initialStep: 0,
-    });
-    return (
-        <Center>
-            <Container>
-                <form onSubmit={handleSubmit}>
-                    <Flex flexDir="column" width="100%">
-                        <Steps
-                            display="flex"
-                            flexWrap="wrap"
-                            activeStep={activeStep}
-                        >
-                            {steps.map(({ label }, index) => (
-                                <Step label={label} key={label}>
-                                    {contents({ index })}
-                                </Step>
-                            ))}
-                        </Steps>
-                        {activeStep === steps.length ? (
+  const [isLoading, setIsLoading] = useState(false);
+
+  const contents = ({ index }: { index: number }) => {
+    switch (index) {
+      case 0:
+        return (
+          <>
+            <FormDataContext.Provider value={[formData, setFormData]}>
+              <Page0 />
+            </FormDataContext.Provider>
+          </>
+        );
+      case 1:
+        return (
+          <>
+            <FormDataContext.Provider value={[formData, setFormData]}>
+              <Page1 />
+            </FormDataContext.Provider>
+          </>
+        );
+      case 2:
+        return (
+          <>
+            <FormDataContext.Provider value={[formData, setFormData]}>
+              <Page2 />
+            </FormDataContext.Provider>
+          </>
+        );
+      case 3:
+        return (
+          <>
+            <FormDataContext.Provider value={[formData, setFormData]}>
+              <Page3 />
+            </FormDataContext.Provider>
+          </>
+        );
+      case 4:
+        return (
+          <>
+            <FormDataContext.Provider value={[formData, setFormData]}>
+              <Page4 />
+            </FormDataContext.Provider>
+          </>
+        );
+      case 5:
+        return (
+          <>
+            <FormDataContext.Provider value={[formData, setFormData]}>
+              <Page5 />
+            </FormDataContext.Provider>
+          </>
+        );
+      case 6:
+        return (
+          <>
+            <FormDataContext.Provider value={[formData, setFormData]}>
+              <Page6 />
+            </FormDataContext.Provider>
+          </>
+        );
+      case 7:
+        return (
+          <>
+            <FormDataContext.Provider value={[formData, setFormData]}>
+              <Page7 />
+            </FormDataContext.Provider>
+          </>
+        );
+      case 8:
+        return (
+          <>
+            <FormDataContext.Provider value={[formData, setFormData]}>
+              <Page8 />
+            </FormDataContext.Provider>
+          </>
+        );
+      case 9:
+        return (
+          <>
+            <FormDataContext.Provider value={[formData, setFormData]}>
+              <Page9 />
+            </FormDataContext.Provider>
+          </>
+        );
+      case 10:
+        return (
+          <>
+            <FormDataContext.Provider value={[formData, setFormData]}>
+              <Page10 />
+            </FormDataContext.Provider>
+          </>
+        );
+      case 11:
+        return (
+          <>
+            <FormDataContext.Provider value={[formData, setFormData]}>
+              <Page11 />
+            </FormDataContext.Provider>
+          </>
+        );
+      case 12:
+        return (
+          <>
+            <FormDataContext.Provider value={[formData, setFormData]}>
+              <Page12 />
+            </FormDataContext.Provider>
+          </>
+        );
+    }
+    return <></>;
+  };
+  const { nextStep, prevStep, reset, activeStep } = useSteps({
+    initialStep: 0,
+  });
+  return (
+    <Box
+      minH={"100vh"}
+      py={"20"}
+      bgColor={"#051027"}
+      bgSize={"cover"}
+      bgImage={process.env.PUBLIC_URL + "/img/bgfades.svg"}
+      justifyContent={"center"}
+    >
+      <Heading textAlign={"center"} color={"#ffffff"} py={10}>
+        Questionnaire
+        <FloatMoji emoji={"📝"} top={0.5} right={0.4} rotate={-25} />
+      </Heading>
+      <Center>
+        <BounceBox>
+          <Container
+            maxW={"container.lg"}
+            bgColor={"#ffffff"}
+            p={"10"}
+            rounded={"md"}
+            mb={"20"}
+          >
+            <form onSubmit={handleSubmit}>
+              <Stack justify={"space-between"}>
+                <Steps
+                  display="flex"
+                  flexWrap="wrap"
+                  activeStep={activeStep}
+                  orientation={"vertical"}
+                  w="100%"
+                >
+                  {steps.map(({ label, icon }, index) => (
+                    <Step icon={icon} key={label} label={label}>
+                      <Container w={{ base: "75vw", md: "container.lg" }}>
+                        {contents({ index })}
+                        <Box pt={"5"}>
+                          {activeStep === steps.length ? (
                             <Flex
-                                px={4}
-                                py={4}
-                                width="100%"
-                                flexDirection="column"
+                              px={4}
+                              py={4}
+                              width="100%"
+                              flexDirection={"column"}
                             >
-                                <Heading fontSize="xl" textAlign="center">
-                                    Woohoo! All steps completed!
-                                </Heading>
-                                <Button
-                                    mx="auto"
-                                    mt={6}
-                                    size="sm"
-                                    onClick={reset}
-                                >
-                                    Reset
-                                </Button>
+                              <Heading fontSize="xl" textAlign="center">
+                                Woohoo! All steps completed!
+                              </Heading>
+                              <Button
+                                mx="auto"
+                                mt={6}
+                                size="sm"
+                                onClick={reset}
+                              >
+                                Reset
+                              </Button>
                             </Flex>
-                        ) : (
+                          ) : (
                             <Flex width="100%" justify="flex-end">
+                              <Button
+                                isDisabled={activeStep === 0}
+                                mr={4}
+                                onClick={prevCheck}
+                                size="sm"
+                                variant="ghost"
+                              >
+                                Prev
+                              </Button>
+                              {activeStep < steps.length - 1 && (
                                 <Button
-                                    isDisabled={activeStep === 0}
-                                    mr={4}
-                                    onClick={prevCheck}
-                                    size="sm"
-                                    variant="ghost"
+                                  type="button"
+                                  size="sm"
+                                  onClick={nextCheck}
                                 >
-                                    Prev
+                                  Next
                                 </Button>
-                                {activeStep < steps.length - 1 && (
-                                    <Button
-                                        type="button"
-                                        size="sm"
-                                        onClick={nextCheck}
-                                    >
-                                        Next
-                                    </Button>
-                                )}
-                                {activeStep === steps.length - 1 && (
-                                    <Button type={"submit"} size="sm">
-                                        Finish
-                                    </Button>
-                                )}
+                              )}
+                              {activeStep === steps.length - 1 && (
+                                <Button
+                                  isLoading={isLoading}
+                                  type={"submit"}
+                                  size="sm"
+                                >
+                                  Finish
+                                </Button>
+                              )}
                             </Flex>
-                        )}
-                    </Flex>
-                </form>
-            </Container>
-        </Center>
-    );
+                          )}
+                        </Box>
+                      </Container>
+                    </Step>
+                  ))}
+                </Steps>
+              </Stack>
+            </form>
+          </Container>
+        </BounceBox>
+      </Center>
+    </Box>
+  );
 }
