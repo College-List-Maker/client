@@ -23,10 +23,10 @@ export function VisitRepoCard() {
             View the algorithm code
           </Heading>
           <Text fontFamily={"Actor"} color="#E9E9E9">
-            Hi there! My name is Tyler and I am a computer science student at
-            the Georgia Institute of Technology. In addition to my studies, I am
-            also a developer at Collegy, where I have the opportunity to work on
-            a variety.
+            One of the resources offered by Collegy is an open source college
+            list algorithm, which uses data such as academic interests,
+            location, and cost to generate a customized list of colleges for
+            each student.
           </Text>
           <Link href="https://github.com/Collegy/algorithm" isExternal>
             <Button variant={"secondary"}>Visit GitHub Repo</Button>
