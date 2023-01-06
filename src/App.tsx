@@ -17,7 +17,7 @@ import Navbar from "./Components/Navbar/Navbar";
 import Footer from "./Components/Footer";
 
 export const App = () => {
-  /* 
+    /* 
     HANDLE APP DIRECTORY
   */
   const isDarkNavbar = ["#about-us", "#profile", "#tos"].includes(
@@ -43,11 +43,12 @@ export const App = () => {
       setHashtag(hash);
     };
 
-    window.onhashchange = handleHashChange;
-    return () => {
-      window.onhashchange = null;
-    };
-  }, []);
+        const handleHashChange = () => {
+            window.scrollTo(0, 0);
+            checkSigninPage();
+            const hash = window.location.hash.split("?")[0];
+            setHashtag(hash);
+        };
 
   return (
     <ChakraProvider theme={theme}>
