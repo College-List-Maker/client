@@ -186,6 +186,15 @@ export function Form() {
     if (formValid) {
       nextStep();
       dispatch({ type: "SET_FORM_VALID", formValid: false });
+    } else {
+      toast({
+        title: "Can't proceed.",
+        description: "Please fill out required questions.",
+        status: "warning",
+        duration: 2000,
+        position: "bottom",
+        isClosable: true,
+      });
     }
   };
   const prevCheck = () => {
