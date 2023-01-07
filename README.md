@@ -1,1 +1,1 @@
-https://collegy.github.io/client/
+https://collegy.org
