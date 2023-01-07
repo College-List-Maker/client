@@ -1,4 +1,4 @@
-import { Button } from "@chakra-ui/react";
+import { Box, Button } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { useGoogleLogin } from "@react-oauth/google";
 import { continueGoogle } from "../redux/actions/auth";
@@ -30,10 +30,10 @@ export function SignIn() {
   });
 
   return (
-    <>
-      <Button variant={"secondary"} onClick={() => login()}>
+    <Box h={"100%"} justifyContent={"center"}>
+      <Button variant={"signin"} onClick={() => login()}>
         Sign In
       </Button>
-    </>
+    </Box>
   );
 }

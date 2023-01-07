@@ -57,6 +57,20 @@ const theme = extendTheme({
           whiteSpace: "inherit",
           height: "fit-content",
         },
+        signin: {
+          color: "#ffffff",
+          background: "rgba(256, 256, 256, .10)",
+          fontFamily: "Actor",
+          fontSize: "13px",
+          maxWidth: "100%",
+          py: "2",
+          px: "4",
+          _hover: {
+            background: "rgba(256, 256, 256, .20)",
+          },
+          whiteSpace: "inherit",
+          height: "fit-content",
+        },
         secondary: {
           color: "#000000",
           background: "#ffffff",

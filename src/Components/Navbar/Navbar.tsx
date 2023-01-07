@@ -77,7 +77,7 @@ export default function Navbar({ dark }: NavbarInt) {
           </Flex>
         </Flex>
 
-        <Flex justify={"flex-end"} direction={"row"}>
+        <Flex justify={"flex-end"} alignItems={"center"} direction={"row"}>
           <Flex display={{ base: "none", md: "flex" }} mr={"3"}>
             <SearchBar limit={15} maxH={"20"} />
           </Flex>
