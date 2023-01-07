@@ -370,7 +370,7 @@ export function Profile(): {
       <Box bgColor={"#ffffff"} py={"20"}>
         <FadeBox>
           <>
-            <Accordion defaultIndex={[0]} allowMultiple>
+            <Accordion defaultIndex={[0]}>
               <Center>
                 <Container>
                   <Heading>Questionaire</Heading>
