@@ -63,9 +63,6 @@ export function Page0() {
   function handleChange(event: any) {
     const { name, value } = event.target;
     const [parent, child] = name.split(".");
-    console.log(value);
-    console.log(parent);
-    console.log(formData);
     setFormData((prevFormData: any) => ({
       ...prevFormData,
       [parent]: {
@@ -81,7 +78,6 @@ export function Page0() {
     checkValid();
     if (formValid) {
       event.preventDefault();
-      console.log(formData);
       axios
         .post(
           "https://collegy-server.herokuapp.com/user/submit-questionaire/" +

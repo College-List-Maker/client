@@ -340,17 +340,21 @@ export function SpecificExplore({ collegeData }: SpecificExploreInt) {
                   . {collegeData.INSTNM} is home to about{" "}
                   {formatAsNumber(collegeData.UGDS)} college students, and with
                   an acceptance rate of{" "}
-                  {formatAsPercent(Number(collegeData.ADM_RATE), true)}, is
-                  classified as{" "}
-                  {Number(collegeData.ADM_RATE) < 0.15
-                    ? "a most selective"
-                    : Number(collegeData.ADM_RATE) < 0.35
-                    ? "an extremely selective"
-                    : Number(collegeData.ADM_RATE) < 0.5
-                    ? "a very selective"
-                    : Number(collegeData.ADM_RATE) < 0.6
-                    ? "a moderately selective"
-                    : "a selective"}{" "}
+                  {collegeData.ADM_RATE
+                    ? formatAsPercent(Number(collegeData.ADM_RATE), true)
+                    : "N/A"}
+                  , is classified as{" "}
+                  {collegeData.ADM_RATE
+                    ? Number(collegeData.ADM_RATE) < 0.15
+                      ? "a most selective"
+                      : Number(collegeData.ADM_RATE) < 0.35
+                      ? "an extremely selective"
+                      : Number(collegeData.ADM_RATE) < 0.5
+                      ? "a very selective"
+                      : Number(collegeData.ADM_RATE) < 0.6
+                      ? "a moderately selective"
+                      : "a selective"
+                    : "a non-selective"}{" "}
                   university. For more on {collegeData.INSTNM}, view the
                   comprehesive statistics below or visit their website at{" "}
                   <Link
@@ -454,7 +458,9 @@ export function SpecificExplore({ collegeData }: SpecificExploreInt) {
                   heading="Admission"
                   stats={[
                     {
-                      stat: formatAsPercent(collegeData.ADM_RATE, true),
+                      stat: collegeData.ADM_RATE
+                        ? formatAsPercent(collegeData.ADM_RATE, true)
+                        : "Do not know",
                       desc: "Acceptance Rate",
                     },
                     {
@@ -471,11 +477,15 @@ export function SpecificExplore({ collegeData }: SpecificExploreInt) {
                       desc: "Test Score Requirements",
                     },
                     {
-                      stat: collegeData.SAT_AVG,
+                      stat: collegeData.SAT_AVG
+                        ? collegeData.SAT_AVG
+                        : "Do not know",
                       desc: "Average SAT Score",
                     },
                     {
-                      stat: collegeData.ACTCMMID,
+                      stat: collegeData.ACTCMMID
+                        ? collegeData.ACTCMMID
+                        : "Do not know",
                       desc: "Average ACT Score",
                     },
                   ]}

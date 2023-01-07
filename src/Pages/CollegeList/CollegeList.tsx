@@ -58,6 +58,7 @@ export function CollegeList() {
       pt={"20"}
       pb={"40"}
       bgColor={"#051027"}
+      bgSize={"cover"}
       bgImage={process.env.PUBLIC_URL + "/img/bgfades.svg"}
     >
       <Container>

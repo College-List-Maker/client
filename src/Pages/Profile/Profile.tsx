@@ -25,6 +25,8 @@ import {
   AccordionIcon,
 } from "@chakra-ui/react";
 import { FadeBox } from "../../Components/MotionBox";
+import { isQuestionaireCompleted } from "../../Fetch";
+import { ResetQuestionnaire } from "./ResetQuestionnaire";
 
 export const LoadingContext = createContext<
   [boolean, React.Dispatch<React.SetStateAction<boolean>>]
@@ -367,290 +369,292 @@ export function Profile(): {
 
   return {
     component: (
-      <Box bgColor={"#ffffff"} py={"20"}>
+      <Box bgColor={"#ffffff"} py={"20"} minH={"100vh"}>
         <FadeBox>
           <>
-            <Accordion defaultIndex={[0]}>
-              <Center>
-                <Container>
-                  <Heading>Questionaire</Heading>
-                  Save at each step*
-                  <Center>
-                    <Container>
-                      <AccordionItem>
-                        <h2>
-                          <AccordionButton>
-                            <Box>Preferred List Length</Box>
-                            <AccordionIcon />
-                          </AccordionButton>
-                        </h2>
-                        <AccordionPanel pb={4}>
-                          <LoadingContext.Provider
-                            value={[isLoading, setIsLoading]}
-                          >
-                            <FormDataContext.Provider
-                              value={[formData, setFormData]}
+            {isQuestionaireCompleted() && (
+              <Accordion defaultIndex={[0]}>
+                <Center>
+                  <Container>
+                    <Heading>Questionaire</Heading>
+                    Save at each step*
+                    <Center>
+                      <Container>
+                        <AccordionItem>
+                          <h2>
+                            <AccordionButton>
+                              <Box>Preferred List Length</Box>
+                              <AccordionIcon />
+                            </AccordionButton>
+                          </h2>
+                          <AccordionPanel pb={4}>
+                            <LoadingContext.Provider
+                              value={[isLoading, setIsLoading]}
                             >
-                              <Page0 />
-                            </FormDataContext.Provider>
-                          </LoadingContext.Provider>
-                        </AccordionPanel>
-                      </AccordionItem>
+                              <FormDataContext.Provider
+                                value={[formData, setFormData]}
+                              >
+                                <Page0 />
+                              </FormDataContext.Provider>
+                            </LoadingContext.Provider>
+                          </AccordionPanel>
+                        </AccordionItem>
 
-                      <AccordionItem>
-                        <h2>
-                          <AccordionButton>
-                            <Box>Applicant Academics</Box>
-                            <AccordionIcon />
-                          </AccordionButton>
-                        </h2>
-                        <AccordionPanel pb={4}>
-                          <LoadingContext.Provider
-                            value={[isLoading, setIsLoading]}
-                          >
-                            <FormDataContext.Provider
-                              value={[formData, setFormData]}
+                        <AccordionItem>
+                          <h2>
+                            <AccordionButton>
+                              <Box>Applicant Academics</Box>
+                              <AccordionIcon />
+                            </AccordionButton>
+                          </h2>
+                          <AccordionPanel pb={4}>
+                            <LoadingContext.Provider
+                              value={[isLoading, setIsLoading]}
                             >
-                              <Page1 />
-                            </FormDataContext.Provider>
-                          </LoadingContext.Provider>
-                        </AccordionPanel>
-                      </AccordionItem>
+                              <FormDataContext.Provider
+                                value={[formData, setFormData]}
+                              >
+                                <Page1 />
+                              </FormDataContext.Provider>
+                            </LoadingContext.Provider>
+                          </AccordionPanel>
+                        </AccordionItem>
 
-                      <AccordionItem>
-                        <h2>
-                          <AccordionButton>
-                            <Box>Applicant Courseload</Box>
-                            <AccordionIcon />
-                          </AccordionButton>
-                        </h2>
-                        <AccordionPanel pb={4}>
-                          <LoadingContext.Provider
-                            value={[isLoading, setIsLoading]}
-                          >
-                            <FormDataContext.Provider
-                              value={[formData, setFormData]}
+                        <AccordionItem>
+                          <h2>
+                            <AccordionButton>
+                              <Box>Applicant Courseload</Box>
+                              <AccordionIcon />
+                            </AccordionButton>
+                          </h2>
+                          <AccordionPanel pb={4}>
+                            <LoadingContext.Provider
+                              value={[isLoading, setIsLoading]}
                             >
-                              <Page2 />
-                            </FormDataContext.Provider>
-                          </LoadingContext.Provider>
-                        </AccordionPanel>
-                      </AccordionItem>
+                              <FormDataContext.Provider
+                                value={[formData, setFormData]}
+                              >
+                                <Page2 />
+                              </FormDataContext.Provider>
+                            </LoadingContext.Provider>
+                          </AccordionPanel>
+                        </AccordionItem>
 
-                      <AccordionItem>
-                        <h2>
-                          <AccordionButton>
-                            <Box>Applicant Confidence</Box>
-                            <AccordionIcon />
-                          </AccordionButton>
-                        </h2>
-                        <AccordionPanel pb={4}>
-                          <LoadingContext.Provider
-                            value={[isLoading, setIsLoading]}
-                          >
-                            {" "}
-                            <FormDataContext.Provider
-                              value={[formData, setFormData]}
+                        <AccordionItem>
+                          <h2>
+                            <AccordionButton>
+                              <Box>Applicant Confidence</Box>
+                              <AccordionIcon />
+                            </AccordionButton>
+                          </h2>
+                          <AccordionPanel pb={4}>
+                            <LoadingContext.Provider
+                              value={[isLoading, setIsLoading]}
                             >
-                              <Page3 />
-                            </FormDataContext.Provider>
-                          </LoadingContext.Provider>
-                        </AccordionPanel>
-                      </AccordionItem>
+                              {" "}
+                              <FormDataContext.Provider
+                                value={[formData, setFormData]}
+                              >
+                                <Page3 />
+                              </FormDataContext.Provider>
+                            </LoadingContext.Provider>
+                          </AccordionPanel>
+                        </AccordionItem>
 
-                      <AccordionItem>
-                        <h2>
-                          <AccordionButton>
-                            <Box>Applicant Extras</Box>
-                            <AccordionIcon />
-                          </AccordionButton>
-                        </h2>
-                        <AccordionPanel pb={4}>
-                          <LoadingContext.Provider
-                            value={[isLoading, setIsLoading]}
-                          >
-                            {" "}
-                            <FormDataContext.Provider
-                              value={[formData, setFormData]}
+                        <AccordionItem>
+                          <h2>
+                            <AccordionButton>
+                              <Box>Applicant Extras</Box>
+                              <AccordionIcon />
+                            </AccordionButton>
+                          </h2>
+                          <AccordionPanel pb={4}>
+                            <LoadingContext.Provider
+                              value={[isLoading, setIsLoading]}
                             >
-                              <Page4 />
-                            </FormDataContext.Provider>
-                          </LoadingContext.Provider>
-                        </AccordionPanel>
-                      </AccordionItem>
+                              {" "}
+                              <FormDataContext.Provider
+                                value={[formData, setFormData]}
+                              >
+                                <Page4 />
+                              </FormDataContext.Provider>
+                            </LoadingContext.Provider>
+                          </AccordionPanel>
+                        </AccordionItem>
 
-                      <AccordionItem>
-                        <h2>
-                          <AccordionButton>
-                            <Box>Residency</Box>
-                            <AccordionIcon />
-                          </AccordionButton>
-                        </h2>
-                        <AccordionPanel pb={4}>
-                          <LoadingContext.Provider
-                            value={[isLoading, setIsLoading]}
-                          >
-                            {" "}
-                            <FormDataContext.Provider
-                              value={[formData, setFormData]}
+                        <AccordionItem>
+                          <h2>
+                            <AccordionButton>
+                              <Box>Residency</Box>
+                              <AccordionIcon />
+                            </AccordionButton>
+                          </h2>
+                          <AccordionPanel pb={4}>
+                            <LoadingContext.Provider
+                              value={[isLoading, setIsLoading]}
                             >
-                              <Page5 />
-                            </FormDataContext.Provider>
-                          </LoadingContext.Provider>
-                        </AccordionPanel>
-                      </AccordionItem>
+                              {" "}
+                              <FormDataContext.Provider
+                                value={[formData, setFormData]}
+                              >
+                                <Page5 />
+                              </FormDataContext.Provider>
+                            </LoadingContext.Provider>
+                          </AccordionPanel>
+                        </AccordionItem>
 
-                      <AccordionItem>
-                        <h2>
-                          <AccordionButton>
-                            <Box>College Importance</Box>
-                            <AccordionIcon />
-                          </AccordionButton>
-                        </h2>
-                        <AccordionPanel pb={4}>
-                          <LoadingContext.Provider
-                            value={[isLoading, setIsLoading]}
-                          >
-                            {" "}
-                            <FormDataContext.Provider
-                              value={[formData, setFormData]}
+                        <AccordionItem>
+                          <h2>
+                            <AccordionButton>
+                              <Box>College Importance</Box>
+                              <AccordionIcon />
+                            </AccordionButton>
+                          </h2>
+                          <AccordionPanel pb={4}>
+                            <LoadingContext.Provider
+                              value={[isLoading, setIsLoading]}
                             >
-                              <Page6 />
-                            </FormDataContext.Provider>
-                          </LoadingContext.Provider>
-                        </AccordionPanel>
-                      </AccordionItem>
+                              {" "}
+                              <FormDataContext.Provider
+                                value={[formData, setFormData]}
+                              >
+                                <Page6 />
+                              </FormDataContext.Provider>
+                            </LoadingContext.Provider>
+                          </AccordionPanel>
+                        </AccordionItem>
 
-                      <AccordionItem>
-                        <h2>
-                          <AccordionButton>
-                            <Box>College Preferences</Box>
-                            <AccordionIcon />
-                          </AccordionButton>
-                        </h2>
-                        <AccordionPanel pb={4}>
-                          <LoadingContext.Provider
-                            value={[isLoading, setIsLoading]}
-                          >
-                            {" "}
-                            <FormDataContext.Provider
-                              value={[formData, setFormData]}
+                        <AccordionItem>
+                          <h2>
+                            <AccordionButton>
+                              <Box>College Preferences</Box>
+                              <AccordionIcon />
+                            </AccordionButton>
+                          </h2>
+                          <AccordionPanel pb={4}>
+                            <LoadingContext.Provider
+                              value={[isLoading, setIsLoading]}
                             >
-                              <Page7 />
-                            </FormDataContext.Provider>
-                          </LoadingContext.Provider>
-                        </AccordionPanel>
-                      </AccordionItem>
+                              {" "}
+                              <FormDataContext.Provider
+                                value={[formData, setFormData]}
+                              >
+                                <Page7 />
+                              </FormDataContext.Provider>
+                            </LoadingContext.Provider>
+                          </AccordionPanel>
+                        </AccordionItem>
 
-                      <AccordionItem>
-                        <h2>
-                          <AccordionButton>
-                            <Box>College Major</Box>
-                            <AccordionIcon />
-                          </AccordionButton>
-                        </h2>
-                        <AccordionPanel pb={4}>
-                          <LoadingContext.Provider
-                            value={[isLoading, setIsLoading]}
-                          >
-                            {" "}
-                            <FormDataContext.Provider
-                              value={[formData, setFormData]}
+                        <AccordionItem>
+                          <h2>
+                            <AccordionButton>
+                              <Box>College Major</Box>
+                              <AccordionIcon />
+                            </AccordionButton>
+                          </h2>
+                          <AccordionPanel pb={4}>
+                            <LoadingContext.Provider
+                              value={[isLoading, setIsLoading]}
                             >
-                              <Page8 />
-                            </FormDataContext.Provider>
-                          </LoadingContext.Provider>
-                        </AccordionPanel>
-                      </AccordionItem>
+                              {" "}
+                              <FormDataContext.Provider
+                                value={[formData, setFormData]}
+                              >
+                                <Page8 />
+                              </FormDataContext.Provider>
+                            </LoadingContext.Provider>
+                          </AccordionPanel>
+                        </AccordionItem>
 
-                      <AccordionItem>
-                        <h2>
-                          <AccordionButton>
-                            <Box>Cost Preferences</Box>
-                            <AccordionIcon />
-                          </AccordionButton>
-                        </h2>
-                        <AccordionPanel pb={4}>
-                          <LoadingContext.Provider
-                            value={[isLoading, setIsLoading]}
-                          >
-                            {" "}
-                            <FormDataContext.Provider
-                              value={[formData, setFormData]}
+                        <AccordionItem>
+                          <h2>
+                            <AccordionButton>
+                              <Box>Cost Preferences</Box>
+                              <AccordionIcon />
+                            </AccordionButton>
+                          </h2>
+                          <AccordionPanel pb={4}>
+                            <LoadingContext.Provider
+                              value={[isLoading, setIsLoading]}
                             >
-                              <Page9 />
-                            </FormDataContext.Provider>
-                          </LoadingContext.Provider>
-                        </AccordionPanel>
-                      </AccordionItem>
+                              {" "}
+                              <FormDataContext.Provider
+                                value={[formData, setFormData]}
+                              >
+                                <Page9 />
+                              </FormDataContext.Provider>
+                            </LoadingContext.Provider>
+                          </AccordionPanel>
+                        </AccordionItem>
 
-                      <AccordionItem>
-                        <h2>
-                          <AccordionButton>
-                            <Box>Location Preferences</Box>
-                            <AccordionIcon />
-                          </AccordionButton>
-                        </h2>
-                        <AccordionPanel pb={4}>
-                          <LoadingContext.Provider
-                            value={[isLoading, setIsLoading]}
-                          >
-                            {" "}
-                            <FormDataContext.Provider
-                              value={[formData, setFormData]}
+                        <AccordionItem>
+                          <h2>
+                            <AccordionButton>
+                              <Box>Location Preferences</Box>
+                              <AccordionIcon />
+                            </AccordionButton>
+                          </h2>
+                          <AccordionPanel pb={4}>
+                            <LoadingContext.Provider
+                              value={[isLoading, setIsLoading]}
                             >
-                              <Page10 />
-                            </FormDataContext.Provider>
-                          </LoadingContext.Provider>
-                        </AccordionPanel>
-                      </AccordionItem>
+                              {" "}
+                              <FormDataContext.Provider
+                                value={[formData, setFormData]}
+                              >
+                                <Page10 />
+                              </FormDataContext.Provider>
+                            </LoadingContext.Provider>
+                          </AccordionPanel>
+                        </AccordionItem>
 
-                      <AccordionItem>
-                        <h2>
-                          <AccordionButton>
-                            <Box>Success Preferences</Box>
-                            <AccordionIcon />
-                          </AccordionButton>
-                        </h2>
-                        <AccordionPanel pb={4}>
-                          <LoadingContext.Provider
-                            value={[isLoading, setIsLoading]}
-                          >
-                            {" "}
-                            <FormDataContext.Provider
-                              value={[formData, setFormData]}
+                        <AccordionItem>
+                          <h2>
+                            <AccordionButton>
+                              <Box>Success Preferences</Box>
+                              <AccordionIcon />
+                            </AccordionButton>
+                          </h2>
+                          <AccordionPanel pb={4}>
+                            <LoadingContext.Provider
+                              value={[isLoading, setIsLoading]}
                             >
-                              <Page11 />
-                            </FormDataContext.Provider>
-                          </LoadingContext.Provider>
-                        </AccordionPanel>
-                      </AccordionItem>
+                              {" "}
+                              <FormDataContext.Provider
+                                value={[formData, setFormData]}
+                              >
+                                <Page11 />
+                              </FormDataContext.Provider>
+                            </LoadingContext.Provider>
+                          </AccordionPanel>
+                        </AccordionItem>
 
-                      <AccordionItem>
-                        <h2>
-                          <AccordionButton>
-                            <Box>Weighting Preferences</Box>
-                            <AccordionIcon />
-                          </AccordionButton>
-                        </h2>
-                        <AccordionPanel pb={4}>
-                          <LoadingContext.Provider
-                            value={[isLoading, setIsLoading]}
-                          >
-                            {" "}
-                            <FormDataContext.Provider
-                              value={[formData, setFormData]}
+                        <AccordionItem>
+                          <h2>
+                            <AccordionButton>
+                              <Box>Weighting Preferences</Box>
+                              <AccordionIcon />
+                            </AccordionButton>
+                          </h2>
+                          <AccordionPanel pb={4}>
+                            <LoadingContext.Provider
+                              value={[isLoading, setIsLoading]}
                             >
-                              <Page12 />
-                            </FormDataContext.Provider>
-                          </LoadingContext.Provider>
-                        </AccordionPanel>
-                      </AccordionItem>
-                    </Container>
-                  </Center>
-                </Container>
-              </Center>
-            </Accordion>
+                              {" "}
+                              <FormDataContext.Provider
+                                value={[formData, setFormData]}
+                              >
+                                <Page12 />
+                              </FormDataContext.Provider>
+                            </LoadingContext.Provider>
+                          </AccordionPanel>
+                        </AccordionItem>
+                      </Container>
+                    </Center>
+                  </Container>
+                </Center>
+              </Accordion>
+            )}
             <Container
               py="10"
               display="flex"
@@ -658,7 +662,11 @@ export function Profile(): {
               flexDir="column"
             >
               <Heading as="h1" size="sm" p={"1"}>
-                Account Management
+                Manage Questionnaire
+              </Heading>
+              <ResetQuestionnaire />
+              <Heading as="h1" size="sm" p={"1"} pt={"5"}>
+                Manage Account
               </Heading>
               <DeleteAccountCard />
             </Container>

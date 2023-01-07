@@ -44,7 +44,6 @@ export function Page12() {
   dispatch({ type: "SET_FORM_VALID", formValid });
 
   function handleChange(event: any) {
-    console.log(formData);
     const { name, value } = event.target;
     const [parent, child] = name.split(".");
     setFormData((prevFormData: any) => ({
@@ -76,7 +75,6 @@ export function Page12() {
     checkValid();
     if (formValid) {
       event.preventDefault();
-      console.log(formData);
       axios
         .post(
           "https://collegy-server.herokuapp.com/user/submit-questionaire/" +

@@ -56,7 +56,6 @@ export function Page10() {
   }
 
   function handleChange(event: any) {
-    console.log(formData);
     const { name, value } = event.target;
     const [parent, child] = name.split(".");
     setFormData((prevFormData: any) => ({
@@ -95,7 +94,7 @@ export function Page10() {
     }
     dispatch({ type: "SET_FORM_VALID", formValid });
   }
-  
+
   return (
     <>
       <Heading as="h4" size="md">

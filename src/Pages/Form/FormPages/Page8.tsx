@@ -35,7 +35,6 @@ export function Page8() {
   }
 
   function handleChange(event: any) {
-    console.log(formData);
     const { name, value } = event.target;
     const [parent, child] = name.split(".");
     setFormData((prevFormData: any) => ({

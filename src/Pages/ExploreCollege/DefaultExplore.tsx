@@ -30,11 +30,7 @@ export function DefaultExplore({ searchQuery }: DefaultExploreInt) {
             <FloatMoji emoji="🔍" top={0.5} right={0.3} shadow={true} />
           </Heading>
           <Center>
-            <SearchBar
-              placeholder="Search a college or city"
-              width="md"
-              limit={30}
-            />
+            <SearchBar placeholder="Search a college" width="md" limit={30} />
           </Center>
           {searchQuery && (
             <RightBox>

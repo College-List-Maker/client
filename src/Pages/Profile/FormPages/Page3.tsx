@@ -172,7 +172,6 @@ export function Page3() {
     checkValid();
     if (formValid) {
       event.preventDefault();
-      console.log(formData);
       axios
         .post(
           "https://collegy-server.herokuapp.com/user/submit-questionaire/" +
