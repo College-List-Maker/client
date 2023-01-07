@@ -85,13 +85,13 @@ export async function getProfilePicture() {
   GET USER PROFILE NAME
 */
 export async function getProfileName() {
-    const user_token = localStorage.getItem("user_token");
-    if (user_token) {
-        return await axios.get(
-            "https://collegy-server.herokuapp.com/user/get-name/" +
-                getCookie("visitorId=")
-        );
-    }
+  const user_token = localStorage.getItem("user_token");
+  if (user_token) {
+    return await axios.get(
+      "https://collegy-server.herokuapp.com/user/get-name/" +
+        getCookie("visitorId=")
+    );
+  }
 }
 
 /* 
