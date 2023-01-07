@@ -117,7 +117,10 @@ export function Page12() {
       <Heading as="h4" size="md">
         Weighting Preferences
       </Heading>
-      <Grid templateColumns="repeat(2, 1fr)" gap={1}>
+      <Grid
+        templateColumns={{ base: "repeat(1, 1fr)", md: "repeat(2, 1fr)" }}
+        gap={1}
+      >
         <InputGroup>
           <Select
             onChange={handleChange}

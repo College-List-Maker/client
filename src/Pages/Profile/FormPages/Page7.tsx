@@ -240,7 +240,10 @@ export function Page7() {
       <Heading as="h3" size="sm">
         Student Body
       </Heading>
-      <Grid templateColumns="repeat(2, 1fr)" gap={1}>
+      <Grid
+        templateColumns={{ base: "repeat(1, 1fr)", md: "repeat(2, 1fr)" }}
+        gap={1}
+      >
         <InputGroup>
           <InputLeftAddon children="Pref Size" />
           <Input

@@ -165,7 +165,10 @@ export function Page10() {
       <Heading as="h4" size="md">
         Location Preferences
       </Heading>
-      <Grid templateColumns="repeat(2, 1fr)" gap={1}>
+      <Grid
+        templateColumns={{ base: "repeat(1, 1fr)", md: "repeat(2, 1fr)" }}
+        gap={1}
+      >
         <InputGroup>
           <Checkbox
             onChange={toggleLocationImportanceValue}
@@ -431,7 +434,7 @@ export function Page10() {
           </InputGroup>
         </Grid>
 
-        <Grid templateColumns="repeat(2, 1fr)" gap={1}>
+        <Grid templateColumns="repeat(1, 1fr)" gap={1}>
           <InputGroup>
             <InputLeftAddon children="Pref Summer Temp ('F)" />
             <Input

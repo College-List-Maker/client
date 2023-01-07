@@ -119,7 +119,10 @@ export function Page5() {
       <Heading as="h3" size="sm">
         Residency
       </Heading>
-      <Grid templateColumns="repeat(3, 1fr)" gap={1}>
+      <Grid
+        templateColumns={{ base: "repeat(1, 1fr)", md: "repeat(3, 1fr)" }}
+        gap={1}
+      >
         <InputGroup>
           <InputLeftAddon children="ZIP" />
           <Input

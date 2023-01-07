@@ -159,7 +159,7 @@ export function Page1() {
       <Heading as="h4" size="md">
         Academics
       </Heading>
-      <Grid templateColumns="repeat(3, 1fr)" gap={1}>
+      <Grid templateColumns="repeat(1, 3fr)" gap={1}>
         <Checkbox onChange={handleSATChange}>SAT</Checkbox>
         {isSATChecked && (
           <InputGroup>

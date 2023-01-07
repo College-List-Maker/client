@@ -120,7 +120,10 @@ export function Page0() {
       <Heading as="h4" size="md">
         Preferred List Length
       </Heading>
-      <Grid templateColumns="repeat(3, 1fr)" gap={1}>
+      <Grid
+        templateColumns={{ base: "repeat(1, 3fr)", md: "repeat(3, 1fr)" }}
+        gap={1}
+      >
         <FormControl>
           <InputGroup>
             <InputLeftAddon children="# Safeties" />

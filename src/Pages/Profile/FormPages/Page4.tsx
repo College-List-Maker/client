@@ -125,7 +125,10 @@ export function Page4() {
         Parents / Siblings
       </Heading>
       (leave blank if N/A)
-      <Grid templateColumns="repeat(3, 1fr)" gap={1}>
+      <Grid
+        templateColumns={{ base: "repeat(1, 1fr)", md: "repeat(3, 1fr)" }}
+        gap={1}
+      >
         <InputGroup>
           <InputLeftAddon children="Mom" />
           <Input

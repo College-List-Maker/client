@@ -122,7 +122,14 @@ export function Page2() {
       <Heading as="h4" size="md">
         Courseload
       </Heading>
-      <Grid templateColumns="repeat(3, 1fr)" gap={1}>
+      <Grid
+        templateColumns={{
+          base: "repeat(1, 1fr)",
+          sm: "repeat(2, 1fr)",
+          md: "repeat(3, 1fr)",
+        }}
+        gap={1}
+      >
         <InputGroup>
           <Select
             onChange={handleChange}

@@ -151,7 +151,10 @@ export function Page9() {
       <Heading as="h4" size="md">
         Cost Preferences
       </Heading>
-      <Grid templateColumns="repeat(2, 1fr)" gap={1}>
+      <Grid
+        templateColumns={{ base: "repeat(1, 1fr)", md: "repeat(2, 1fr)" }}
+        gap={1}
+      >
         <InputGroup>
           <Checkbox
             onChange={toggleCostImportanceValue}
