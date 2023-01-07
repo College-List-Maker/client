@@ -10,6 +10,7 @@ import {
   InputGroup,
   InputLeftAddon,
   Skeleton,
+  useToast,
 } from "@chakra-ui/react";
 import { Profile } from "../Profile";
 import { LoadingContext } from "../Profile";
@@ -22,6 +23,8 @@ export function Page0() {
   const [fD] = useContext(FormDataContext);
   const [formData, setFormData] = useState<UserCollegeData>();
   const [isLoading, setIsLoading] = useContext(LoadingContext);
+
+  const toast = useToast();
 
   useEffect(() => {
     if (
@@ -93,11 +96,25 @@ export function Page0() {
             )
             .then(() => {
               setIsLoading(false);
-              window.location.hash = "#college-list";
+              toast({
+                title: "Saved!",
+                description: "Your college list has been updated.",
+                status: "success",
+                duration: 3000,
+                isClosable: true,
+              });
             });
         })
         .catch((err: any) => {
           console.error(err);
+          setIsLoading(false);
+          toast({
+            title: "Oops...",
+            description: "Something went wrong saving.",
+            status: "error",
+            duration: 3000,
+            isClosable: true,
+          });
         });
     }
   };

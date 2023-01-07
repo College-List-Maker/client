@@ -10,6 +10,7 @@ import {
   InputGroup,
   InputLeftAddon,
   Skeleton,
+  useToast,
 } from "@chakra-ui/react";
 import { Profile } from "../Profile";
 import { LoadingContext } from "../Profile";
@@ -33,6 +34,8 @@ export function Page1() {
       setFormData(fD);
     }
   }, [fD, formData]);
+
+  const toast = useToast();
 
   const GPARef = useRef<HTMLInputElement>(null);
   const SATRef = useRef<HTMLInputElement>(null);
@@ -130,11 +133,25 @@ export function Page1() {
             )
             .then(() => {
               setIsLoading(false);
-              window.location.hash = "#college-list";
+              toast({
+                title: "Saved!",
+                description: "Your college list has been updated.",
+                status: "success",
+                duration: 3000,
+                isClosable: true,
+              });
             });
         })
         .catch((err: any) => {
           console.error(err);
+          setIsLoading(false);
+          toast({
+            title: "Oops...",
+            description: "Something went wrong saving.",
+            status: "error",
+            duration: 3000,
+            isClosable: true,
+          });
         });
     }
   };
