@@ -26,7 +26,6 @@ import {
 } from "@chakra-ui/react";
 import { FadeBox } from "../../Components/MotionBox";
 import { isQuestionaireCompleted } from "../../Fetch";
-import { ResetQuestionnaire } from "./ResetQuestionnaire";
 
 export const LoadingContext = createContext<
   [boolean, React.Dispatch<React.SetStateAction<boolean>>]
@@ -661,10 +660,6 @@ export function Profile(): {
               alignItems={"center"}
               flexDir="column"
             >
-              <Heading as="h1" size="sm" p={"1"}>
-                Manage Questionnaire
-              </Heading>
-              <ResetQuestionnaire />
               <Heading as="h1" size="sm" p={"1"} pt={"5"}>
                 Manage Account
               </Heading>
