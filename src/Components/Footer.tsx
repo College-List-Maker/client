@@ -47,7 +47,7 @@ export default function Footer({ dark }: FooterInt) {
           >
             <Link href="#about-us">About Us</Link>
             <Link href="#tos">Terms of Service</Link>
-            <Link href="mailto:hey@collegy.net">hey@collegy.net</Link>
+            <Link href="mailto:hey@collegy.org">hey@collegy.org</Link>
           </Flex>
         </Stack>
         <Flex>

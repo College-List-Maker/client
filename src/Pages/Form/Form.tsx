@@ -18,13 +18,6 @@ import {
 } from "@chakra-ui/react";
 import { Page0 } from "./FormPages/Page0";
 import { Page1 } from "./FormPages/Page1";
-import { Page2 } from "./FormPages/Page2";
-import { Page3 } from "./FormPages/Page3";
-import { Page4 } from "./FormPages/Page4";
-import { Page5 } from "./FormPages/Page5";
-import { Page6 } from "./FormPages/Page6";
-import { Page7 } from "./FormPages/Page7";
-import { Page8 } from "./FormPages/Page8";
 import { Page9 } from "./FormPages/Page9";
 import { Page10 } from "./FormPages/Page10";
 import { Page11 } from "./FormPages/Page11";
@@ -38,13 +31,6 @@ const Icon = (text: string) => (props: any) => <span>{text}</span>;
 const steps = [
   { label: "List Length", icon: Icon("📝") },
   { label: "Academics", icon: Icon("🤓") },
-  { label: "Courseload", icon: Icon("📚") },
-  { label: "Confidence", icon: Icon("😎") },
-  { label: "People", icon: Icon("👨‍👩‍👦") },
-  { label: "Residency", icon: Icon("📍") },
-  { label: "College", icon: Icon("🏫") },
-  { label: "Student Body", icon: Icon("👨‍🎓") },
-  { label: "Major and Degree", icon: Icon("📜") },
   { label: "Cost", icon: Icon("💰") },
   { label: "Location", icon: Icon("🌎") },
   { label: "Success", icon: Icon("🙌") },
@@ -58,24 +44,24 @@ const defaultData: UserCollegeData = {
     act: -1,
   },
   courseload: {
-    honors: -1,
-    apib: -1,
-    lang: -1,
-    cs: "",
-    core: "",
-    major: -1,
+    honors: 3,
+    apib: 4,
+    lang: 3,
+    cs: "Y",
+    core: "Y",
+    major: 3,
   },
   confidence: {
-    extracurriculars: -1,
-    essay: -1,
-    awards: -1,
-    recommendations: -1,
-    volunteering: -1,
-    works: -1,
-    talents: -1,
-    interviewing: -1,
-    character: -1,
-    interest: -1,
+    extracurriculars: 3,
+    essay: 3,
+    awards: 4,
+    recommendations: 4,
+    volunteering: 3,
+    works: 4,
+    talents: 3,
+    interviewing: 3,
+    character: 4,
+    interest: 4,
   },
   colleges: {
     legacy1: "",
@@ -89,9 +75,9 @@ const defaultData: UserCollegeData = {
     feeder3: "",
   },
   residency: {
-    zipcode: -1,
-    state: "",
-    country: "",
+    zipcode: 12345,
+    state: "IA",
+    country: "US",
   },
   class: {
     size: -1,
@@ -103,29 +89,29 @@ const defaultData: UserCollegeData = {
     transfer: false,
   },
   collegePrefs: {
-    coedImportance: -1,
-    academicResourcesImportance: -1,
+    coedImportance: 4,
+    academicResourcesImportance: 4,
     facilityImportance: false,
-    gender: "",
-    hbcuImportance: -1,
-    internshipImportance: -1,
+    gender: "M",
+    hbcuImportance: 4,
+    internshipImportance: 4,
     majorProminenceImportance: false,
     pref4yr: false,
-    prefCommittedFaculty: -1,
-    prefHighestDegree: -1,
-    prefMajor: "",
+    prefCommittedFaculty: 4,
+    prefHighestDegree: 3,
+    prefMajor: "PCIP11",
     prefPrivateControl: false,
     prefPublicControl: false,
-    prefReligion: -1,
+    prefReligion: 1,
     prefReligious: false,
-    prefSexRatioF: -1,
-    prefSize: -1,
-    prestiegeImportance: -1,
-    researchImportance: -1,
-    rigorImportance: -1,
-    sameGenderImportance: -1,
-    studyAbroadImportance: -1,
-    workStudyImportance: -1,
+    prefSexRatioF: 50,
+    prefSize: 25000,
+    prestiegeImportance: 4,
+    researchImportance: 4,
+    rigorImportance: 4,
+    sameGenderImportance: 4,
+    studyAbroadImportance: 4,
+    workStudyImportance: 4,
   },
   costPrefs: {
     costImportance: false,
@@ -221,6 +207,7 @@ export function Form() {
   const [formData, setFormData] = useState<UserCollegeData>(defaultData);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    console.log(formData);
     setIsLoading(true);
     event.preventDefault();
     axios
@@ -285,7 +272,7 @@ export function Form() {
         return (
           <>
             <FormDataContext.Provider value={[formData, setFormData]}>
-              <Page2 />
+              <Page9 />
             </FormDataContext.Provider>
           </>
         );
@@ -293,7 +280,7 @@ export function Form() {
         return (
           <>
             <FormDataContext.Provider value={[formData, setFormData]}>
-              <Page3 />
+              <Page10 />
             </FormDataContext.Provider>
           </>
         );
@@ -301,67 +288,11 @@ export function Form() {
         return (
           <>
             <FormDataContext.Provider value={[formData, setFormData]}>
-              <Page4 />
-            </FormDataContext.Provider>
-          </>
-        );
-      case 5:
-        return (
-          <>
-            <FormDataContext.Provider value={[formData, setFormData]}>
-              <Page5 />
-            </FormDataContext.Provider>
-          </>
-        );
-      case 6:
-        return (
-          <>
-            <FormDataContext.Provider value={[formData, setFormData]}>
-              <Page6 />
-            </FormDataContext.Provider>
-          </>
-        );
-      case 7:
-        return (
-          <>
-            <FormDataContext.Provider value={[formData, setFormData]}>
-              <Page7 />
-            </FormDataContext.Provider>
-          </>
-        );
-      case 8:
-        return (
-          <>
-            <FormDataContext.Provider value={[formData, setFormData]}>
-              <Page8 />
-            </FormDataContext.Provider>
-          </>
-        );
-      case 9:
-        return (
-          <>
-            <FormDataContext.Provider value={[formData, setFormData]}>
-              <Page9 />
-            </FormDataContext.Provider>
-          </>
-        );
-      case 10:
-        return (
-          <>
-            <FormDataContext.Provider value={[formData, setFormData]}>
-              <Page10 />
-            </FormDataContext.Provider>
-          </>
-        );
-      case 11:
-        return (
-          <>
-            <FormDataContext.Provider value={[formData, setFormData]}>
               <Page11 />
             </FormDataContext.Provider>
           </>
         );
-      case 12:
+      case 5:
         return (
           <>
             <FormDataContext.Provider value={[formData, setFormData]}>

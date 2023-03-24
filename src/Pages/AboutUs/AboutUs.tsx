@@ -46,7 +46,7 @@ export function AboutUs() {
                 emoji={{ emoji: "👋", right: false }}
               />
               <BiographyCard
-                picture="https://media.licdn.com/dms/image/D4E03AQFkYwurI7k4xw/profile-displayphoto-shrink_400_400/0/1666456660962?e=1678320000&v=beta&t=oEauCFl1R3xMGEVy6RwdtwGBiDPopwy4ezhGfh0ZGxY"
+                picture="https://media.licdn.com/dms/image/D4E03AQFkYwurI7k4xw/profile-displayphoto-shrink_400_400/0/1666456660962?e=1684972800&v=beta&t=VqC0FGSh7G0UVBTC7vMAN5PwKwgTukbtrGdqeDSgLJo"
                 name="John Farrell"
                 position="Software Engineer, Co-Founder"
                 bio="Hi there! My name is John and I am a computer science student at Brown University. I am currently earning my ScB degree with concentrations in Artificial Intelligence/Machine Learning, Software Principles, Data, and Design. I am also certified in Data Fluency, and I have strong proficiencies in a variety of programming languages, including Python, Java, JavaScript, TypeScript, ReasonML, and Racket. In my work as a developer at Collegy, I have experience with a variety of web application frameworks, database management systems, and other systems and applications. I am especially passionate about artificial intelligence, software engineering, and data science, and I am always looking for new opportunities to learn and grow in these fields. I hope we can work together to build something amazing!"
@@ -56,7 +56,7 @@ export function AboutUs() {
             </BounceBox>
             <BounceBox>
               <BiographyCard
-                picture="https://media.licdn.com/dms/image/C5603AQHTB2qvlimbBw/profile-displayphoto-shrink_400_400/0/1634852696133?e=1678320000&v=beta&t=p1tlTFLG2_56Uc7HNxGchzMNlJJ4JOCBwQYCH0xDEBs"
+                picture="https://media.licdn.com/dms/image/C5603AQHTB2qvlimbBw/profile-displayphoto-shrink_400_400/0/1634852696133?e=1684972800&v=beta&t=xV3RBIO9OG2-rKYZ8K-zNAwUeH311QF16ttvhAigZ1A"
                 name="Tyler Cady"
                 position="Software Engineer, Co-Founder"
                 bio="Hello! My name is Tyler and I am a computer science student at the Georgia Institute of Technology. In addition to my studies, I am also a developer at Collegy, where I have the opportunity to work on a variety of projects and gain valuable experience in the field. I am currently developing my proficiency in Java, HTML, CSS, JavaScript, and database management, and I am eager to concentrate my learning around information/internetworks and modeling/simulation. My professional ambition is to become well adapted to a full-stack environment and advance myself with competence in high-demand software development. I am committed to continuing to learn and grow as a developer, and I am excited to use my skills and expertise to make a positive impact in the world of technology."
